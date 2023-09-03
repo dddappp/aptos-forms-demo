@@ -6,6 +6,7 @@
 module aptos_forms_demo::main_form_created {
 
     use aptos_forms_demo::main_form::{Self, MainFormCreated};
+    use aptos_forms_demo::string_range::StringRange;
     use std::string::String;
 
     public fun signer_address(main_form_created: &MainFormCreated): address {
@@ -44,8 +45,20 @@ module aptos_forms_demo::main_form_created {
         main_form::main_form_created_fr_1z7o(main_form_created)
     }
 
+    public fun fr_d8rw(main_form_created: &MainFormCreated): StringRange {
+        main_form::main_form_created_fr_d8rw(main_form_created)
+    }
+
+    public fun fr_dy3l(main_form_created: &MainFormCreated): StringRange {
+        main_form::main_form_created_fr_dy3l(main_form_created)
+    }
+
     public fun fr_6f68(main_form_created: &MainFormCreated): u128 {
         main_form::main_form_created_fr_6f68(main_form_created)
+    }
+
+    public fun fr_47yy(main_form_created: &MainFormCreated): StringRange {
+        main_form::main_form_created_fr_47yy(main_form_created)
     }
 
     public fun fr_gh3o(main_form_created: &MainFormCreated): vector<String> {

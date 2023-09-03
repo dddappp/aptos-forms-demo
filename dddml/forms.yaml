@@ -52,10 +52,25 @@
         max: 10
         type: u128
         sequenceNumber: -1
+      Fr_d8rw:
+        name: Fr_d8rw
+        optional: false
+        type: StringRange
+        sequenceNumber: -1
+      Fr_dy3l:
+        name: Fr_dy3l
+        optional: false
+        type: StringRange
+        sequenceNumber: -1
       Fr_6f68:
         name: Fr_6f68
         optional: false
         type: u128
+        sequenceNumber: -1
+      Fr_47yy:
+        name: Fr_47yy
+        optional: false
+        type: StringRange
         sequenceNumber: -1
       Fr_gh3o:
         name: Fr_gh3o

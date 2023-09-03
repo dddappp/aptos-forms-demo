@@ -6,6 +6,7 @@
 module aptos_forms_demo::main_form {
     use aptos_forms_demo::genesis_account;
     use aptos_forms_demo::pass_object;
+    use aptos_forms_demo::string_range::StringRange;
     use aptos_framework::account;
     use aptos_framework::event;
     use aptos_std::table::{Self, Table};
@@ -55,7 +56,10 @@ module aptos_forms_demo::main_form {
         fr_4ok6: u128,
         fr_b3ub: String,
         fr_1z7o: u128,
+        fr_d8rw: StringRange,
+        fr_dy3l: StringRange,
         fr_6f68: u128,
+        fr_47yy: StringRange,
         fr_gh3o: vector<String>,
         fr_fbba: vector<String>,
         fr_hhzp: String,
@@ -137,12 +141,36 @@ module aptos_forms_demo::main_form {
         main_form.fr_1z7o = fr_1z7o;
     }
 
+    public fun fr_d8rw(main_form: &MainForm): StringRange {
+        main_form.fr_d8rw
+    }
+
+    public(friend) fun set_fr_d8rw(main_form: &mut MainForm, fr_d8rw: StringRange) {
+        main_form.fr_d8rw = fr_d8rw;
+    }
+
+    public fun fr_dy3l(main_form: &MainForm): StringRange {
+        main_form.fr_dy3l
+    }
+
+    public(friend) fun set_fr_dy3l(main_form: &mut MainForm, fr_dy3l: StringRange) {
+        main_form.fr_dy3l = fr_dy3l;
+    }
+
     public fun fr_6f68(main_form: &MainForm): u128 {
         main_form.fr_6f68
     }
 
     public(friend) fun set_fr_6f68(main_form: &mut MainForm, fr_6f68: u128) {
         main_form.fr_6f68 = fr_6f68;
+    }
+
+    public fun fr_47yy(main_form: &MainForm): StringRange {
+        main_form.fr_47yy
+    }
+
+    public(friend) fun set_fr_47yy(main_form: &mut MainForm, fr_47yy: StringRange) {
+        main_form.fr_47yy = fr_47yy;
     }
 
     public fun fr_gh3o(main_form: &MainForm): vector<String> {
@@ -189,7 +217,10 @@ module aptos_forms_demo::main_form {
         fr_4ok6: u128,
         fr_b3ub: String,
         fr_1z7o: u128,
+        fr_d8rw: StringRange,
+        fr_dy3l: StringRange,
         fr_6f68: u128,
+        fr_47yy: StringRange,
         fr_gh3o: vector<String>,
         fr_fbba: vector<String>,
         fr_hhzp: String,
@@ -211,7 +242,10 @@ module aptos_forms_demo::main_form {
             fr_4ok6,
             fr_b3ub,
             fr_1z7o,
+            fr_d8rw,
+            fr_dy3l,
             fr_6f68,
+            fr_47yy,
             fr_gh3o,
             fr_fbba,
             fr_hhzp,
@@ -229,7 +263,10 @@ module aptos_forms_demo::main_form {
         fr_4ok6: u128,
         fr_b3ub: String,
         fr_1z7o: u128,
+        fr_d8rw: StringRange,
+        fr_dy3l: StringRange,
         fr_6f68: u128,
+        fr_47yy: StringRange,
         fr_gh3o: vector<String>,
         fr_fbba: vector<String>,
         fr_hhzp: String,
@@ -272,8 +309,20 @@ module aptos_forms_demo::main_form {
         main_form_created.fr_1z7o
     }
 
+    public fun main_form_created_fr_d8rw(main_form_created: &MainFormCreated): StringRange {
+        main_form_created.fr_d8rw
+    }
+
+    public fun main_form_created_fr_dy3l(main_form_created: &MainFormCreated): StringRange {
+        main_form_created.fr_dy3l
+    }
+
     public fun main_form_created_fr_6f68(main_form_created: &MainFormCreated): u128 {
         main_form_created.fr_6f68
+    }
+
+    public fun main_form_created_fr_47yy(main_form_created: &MainFormCreated): StringRange {
+        main_form_created.fr_47yy
     }
 
     public fun main_form_created_fr_gh3o(main_form_created: &MainFormCreated): vector<String> {
@@ -302,7 +351,10 @@ module aptos_forms_demo::main_form {
         fr_4ok6: u128,
         fr_b3ub: String,
         fr_1z7o: u128,
+        fr_d8rw: StringRange,
+        fr_dy3l: StringRange,
         fr_6f68: u128,
+        fr_47yy: StringRange,
         fr_gh3o: vector<String>,
         fr_fbba: vector<String>,
         fr_hhzp: String,
@@ -318,7 +370,10 @@ module aptos_forms_demo::main_form {
             fr_4ok6,
             fr_b3ub,
             fr_1z7o,
+            fr_d8rw,
+            fr_dy3l,
             fr_6f68,
+            fr_47yy,
             fr_gh3o,
             fr_fbba,
             fr_hhzp,
@@ -337,7 +392,10 @@ module aptos_forms_demo::main_form {
         fr_4ok6: u128,
         fr_b3ub: String,
         fr_1z7o: u128,
+        fr_d8rw: StringRange,
+        fr_dy3l: StringRange,
         fr_6f68: u128,
+        fr_47yy: StringRange,
         fr_gh3o: vector<String>,
         fr_fbba: vector<String>,
         fr_hhzp: String,
@@ -354,7 +412,10 @@ module aptos_forms_demo::main_form {
             fr_4ok6,
             fr_b3ub,
             fr_1z7o,
+            fr_d8rw,
+            fr_dy3l,
             fr_6f68,
+            fr_47yy,
             fr_gh3o,
             fr_fbba,
             fr_hhzp,
@@ -416,7 +477,10 @@ module aptos_forms_demo::main_form {
             fr_4ok6: _fr_4ok6,
             fr_b3ub: _fr_b3ub,
             fr_1z7o: _fr_1z7o,
+            fr_d8rw: _fr_d8rw,
+            fr_dy3l: _fr_dy3l,
             fr_6f68: _fr_6f68,
+            fr_47yy: _fr_47yy,
             fr_gh3o: _fr_gh3o,
             fr_fbba: _fr_fbba,
             fr_hhzp: _fr_hhzp,

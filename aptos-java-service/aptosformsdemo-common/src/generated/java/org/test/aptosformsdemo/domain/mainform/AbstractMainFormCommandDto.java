@@ -6,8 +6,8 @@
 package org.test.aptosformsdemo.domain.mainform;
 
 import java.math.BigInteger;
-import java.util.Date;
 import org.test.aptosformsdemo.domain.*;
+import java.util.Date;
 import org.test.aptosformsdemo.domain.AbstractCommand;
 
 public abstract class AbstractMainFormCommandDto extends AbstractCommand {

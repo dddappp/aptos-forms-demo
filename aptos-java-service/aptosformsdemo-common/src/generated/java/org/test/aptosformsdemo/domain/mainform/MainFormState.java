@@ -8,8 +8,8 @@ package org.test.aptosformsdemo.domain.mainform;
 import java.util.*;
 import java.math.*;
 import java.math.BigInteger;
-import java.util.Date;
 import org.test.aptosformsdemo.domain.*;
+import java.util.Date;
 import org.test.aptosformsdemo.specialization.Event;
 
 public interface MainFormState extends VersionedAptosMoveObject
@@ -32,7 +32,13 @@ public interface MainFormState extends VersionedAptosMoveObject
 
     BigInteger getFr_1z7o();
 
+    StringRange getFr_d8rw();
+
+    StringRange getFr_dy3l();
+
     BigInteger getFr_6f68();
+
+    StringRange getFr_47yy();
 
     String getFr_hhzp();
 
@@ -75,7 +81,13 @@ public interface MainFormState extends VersionedAptosMoveObject
 
         void setFr_1z7o(BigInteger fr_1z7o);
 
+        void setFr_d8rw(StringRange fr_d8rw);
+
+        void setFr_dy3l(StringRange fr_dy3l);
+
         void setFr_6f68(BigInteger fr_6f68);
+
+        void setFr_47yy(StringRange fr_47yy);
 
         void setFr_hhzp(String fr_hhzp);
 

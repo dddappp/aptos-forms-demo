@@ -1,6 +1,7 @@
 module aptos_forms_demo::main_form_create_logic {
     use aptos_forms_demo::main_form;
     use aptos_forms_demo::main_form_created;
+    use aptos_forms_demo::string_range::StringRange;
     use std::string::String;
 
     friend aptos_forms_demo::main_form_aggregate;
@@ -15,7 +16,10 @@ module aptos_forms_demo::main_form_create_logic {
         fr_4ok6: u128,
         fr_b3ub: String,
         fr_1z7o: u128,
+        fr_d8rw: StringRange,
+        fr_dy3l: StringRange,
         fr_6f68: u128,
+        fr_47yy: StringRange,
         fr_gh3o: vector<String>,
         fr_fbba: vector<String>,
         fr_hhzp: String,
@@ -33,7 +37,10 @@ module aptos_forms_demo::main_form_create_logic {
             fr_4ok6,
             fr_b3ub,
             fr_1z7o,
+            fr_d8rw,
+            fr_dy3l,
             fr_6f68,
+            fr_47yy,
             fr_gh3o,
             fr_fbba,
             fr_hhzp,
@@ -54,7 +61,10 @@ module aptos_forms_demo::main_form_create_logic {
         let fr_4ok6 = main_form_created::fr_4ok6(main_form_created);
         let fr_b3ub = main_form_created::fr_b3ub(main_form_created);
         let fr_1z7o = main_form_created::fr_1z7o(main_form_created);
+        let fr_d8rw = main_form_created::fr_d8rw(main_form_created);
+        let fr_dy3l = main_form_created::fr_dy3l(main_form_created);
         let fr_6f68 = main_form_created::fr_6f68(main_form_created);
+        let fr_47yy = main_form_created::fr_47yy(main_form_created);
         let fr_gh3o = main_form_created::fr_gh3o(main_form_created);
         let fr_fbba = main_form_created::fr_fbba(main_form_created);
         let fr_hhzp = main_form_created::fr_hhzp(main_form_created);
@@ -69,7 +79,10 @@ module aptos_forms_demo::main_form_create_logic {
             fr_4ok6,
             fr_b3ub,
             fr_1z7o,
+            fr_d8rw,
+            fr_dy3l,
             fr_6f68,
+            fr_47yy,
             fr_gh3o,
             fr_fbba,
             fr_hhzp,

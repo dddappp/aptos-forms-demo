@@ -30,6 +30,16 @@ public class DomainBeanUtils {
         return coin;
     }
 
+    public static org.test.aptosformsdemo.domain.StringRange toStringRange(StringRange contractStringRange) {
+        if (contractStringRange == null) {
+            return null;
+        }
+        org.test.aptosformsdemo.domain.StringRange stringRange = new org.test.aptosformsdemo.domain.StringRange();
+        stringRange.setStart(contractStringRange.getStart());
+        stringRange.setEnd(contractStringRange.getEnd());
+        return stringRange;
+    }
+
 
     public static AbstractMainFormEvent.MainFormCreated toMainFormCreated(Event<MainFormCreated> eventEnvelope) {
         MainFormCreated contractEvent = eventEnvelope.getData();
@@ -44,7 +54,10 @@ public class DomainBeanUtils {
         mainFormCreated.setFr_4ok6(contractEvent.getFr_4ok6());
         mainFormCreated.setFr_b3ub(contractEvent.getFr_b3ub());
         mainFormCreated.setFr_1z7o(contractEvent.getFr_1z7o());
+        mainFormCreated.setFr_d8rw(DomainBeanUtils.toStringRange(contractEvent.getFr_d8rw()));
+        mainFormCreated.setFr_dy3l(DomainBeanUtils.toStringRange(contractEvent.getFr_dy3l()));
         mainFormCreated.setFr_6f68(contractEvent.getFr_6f68());
+        mainFormCreated.setFr_47yy(DomainBeanUtils.toStringRange(contractEvent.getFr_47yy()));
         mainFormCreated.setFr_gh3o(contractEvent.getFr_gh3o());
         mainFormCreated.setFr_fbba(contractEvent.getFr_fbba());
         mainFormCreated.setFr_hhzp(contractEvent.getFr_hhzp());

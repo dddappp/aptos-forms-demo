@@ -7,8 +7,8 @@ package org.test.aptosformsdemo.domain.mainform;
 
 import java.util.*;
 import java.math.BigInteger;
-import java.util.Date;
 import org.test.aptosformsdemo.domain.*;
+import java.util.Date;
 import org.test.aptosformsdemo.specialization.Event;
 
 public interface MainFormEvent extends Event, AptosEvent, HasStatus {

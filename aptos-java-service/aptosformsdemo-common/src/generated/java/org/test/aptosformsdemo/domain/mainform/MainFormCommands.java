@@ -7,8 +7,8 @@ package org.test.aptosformsdemo.domain.mainform;
 
 import java.util.*;
 import java.math.BigInteger;
-import java.util.Date;
 import org.test.aptosformsdemo.domain.*;
+import java.util.Date;
 
 public class MainFormCommands {
     private MainFormCommands() {
@@ -142,6 +142,32 @@ public class MainFormCommands {
         }
 
         /**
+         * Fr_d8rw
+         */
+        private StringRange fr_d8rw;
+
+        public StringRange getFr_d8rw() {
+            return this.fr_d8rw;
+        }
+
+        public void setFr_d8rw(StringRange fr_d8rw) {
+            this.fr_d8rw = fr_d8rw;
+        }
+
+        /**
+         * Fr_dy3l
+         */
+        private StringRange fr_dy3l;
+
+        public StringRange getFr_dy3l() {
+            return this.fr_dy3l;
+        }
+
+        public void setFr_dy3l(StringRange fr_dy3l) {
+            this.fr_dy3l = fr_dy3l;
+        }
+
+        /**
          * Fr_6f68
          */
         private BigInteger fr_6f68;
@@ -152,6 +178,19 @@ public class MainFormCommands {
 
         public void setFr_6f68(BigInteger fr_6f68) {
             this.fr_6f68 = fr_6f68;
+        }
+
+        /**
+         * Fr_47yy
+         */
+        private StringRange fr_47yy;
+
+        public StringRange getFr_47yy() {
+            return this.fr_47yy;
+        }
+
+        public void setFr_47yy(StringRange fr_47yy) {
+            this.fr_47yy = fr_47yy;
         }
 
         /**

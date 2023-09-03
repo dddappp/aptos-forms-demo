@@ -7,8 +7,8 @@ package org.test.aptosformsdemo.domain.mainform;
 
 import java.util.*;
 import java.math.BigInteger;
-import java.util.Date;
 import org.test.aptosformsdemo.domain.*;
+import java.util.Date;
 import org.test.aptosformsdemo.specialization.*;
 import org.test.aptosformsdemo.domain.AbstractEvent;
 
@@ -285,6 +285,30 @@ public abstract class AbstractMainFormEvent extends AbstractEvent implements Mai
             getDynamicProperties().put("fr_1z7o", value);
         }
 
+        public StringRange getFr_d8rw() {
+            Object val = getDynamicProperties().get("fr_d8rw");
+            if (val instanceof StringRange) {
+                return (StringRange) val;
+            }
+            return ApplicationContext.current.getTypeConverter().convertValue(val, StringRange.class);
+        }
+
+        public void setFr_d8rw(StringRange value) {
+            getDynamicProperties().put("fr_d8rw", value);
+        }
+
+        public StringRange getFr_dy3l() {
+            Object val = getDynamicProperties().get("fr_dy3l");
+            if (val instanceof StringRange) {
+                return (StringRange) val;
+            }
+            return ApplicationContext.current.getTypeConverter().convertValue(val, StringRange.class);
+        }
+
+        public void setFr_dy3l(StringRange value) {
+            getDynamicProperties().put("fr_dy3l", value);
+        }
+
         public BigInteger getFr_6f68() {
             Object val = getDynamicProperties().get("fr_6f68");
             if (val instanceof BigInteger) {
@@ -295,6 +319,18 @@ public abstract class AbstractMainFormEvent extends AbstractEvent implements Mai
 
         public void setFr_6f68(BigInteger value) {
             getDynamicProperties().put("fr_6f68", value);
+        }
+
+        public StringRange getFr_47yy() {
+            Object val = getDynamicProperties().get("fr_47yy");
+            if (val instanceof StringRange) {
+                return (StringRange) val;
+            }
+            return ApplicationContext.current.getTypeConverter().convertValue(val, StringRange.class);
+        }
+
+        public void setFr_47yy(StringRange value) {
+            getDynamicProperties().put("fr_47yy", value);
         }
 
         public String[] getFr_gh3o() {

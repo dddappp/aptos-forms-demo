@@ -7,8 +7,8 @@ package org.test.aptosformsdemo.domain.mainform;
 
 import java.util.*;
 import java.math.BigInteger;
-import java.util.Date;
 import org.test.aptosformsdemo.domain.*;
+import java.util.Date;
 import org.test.aptosformsdemo.specialization.*;
 
 public abstract class AbstractMainFormAggregate extends AbstractAggregate implements MainFormAggregate {
@@ -47,18 +47,18 @@ public abstract class AbstractMainFormAggregate extends AbstractAggregate implem
         }
 
         @Override
-        public void create(BigInteger fr_5pqi, String[] fr_duif, String[] fr_6i34, String fr_8xjs, String fr_9c3f, BigInteger fr_4ok6, String fr_b3ub, BigInteger fr_1z7o, BigInteger fr_6f68, String[] fr_gh3o, String[] fr_fbba, String fr_hhzp, String single_text1, Long offChainVersion, String commandId, String requesterId, MainFormCommands.Create c) {
+        public void create(BigInteger fr_5pqi, String[] fr_duif, String[] fr_6i34, String fr_8xjs, String fr_9c3f, BigInteger fr_4ok6, String fr_b3ub, BigInteger fr_1z7o, StringRange fr_d8rw, StringRange fr_dy3l, BigInteger fr_6f68, StringRange fr_47yy, String[] fr_gh3o, String[] fr_fbba, String fr_hhzp, String single_text1, Long offChainVersion, String commandId, String requesterId, MainFormCommands.Create c) {
             try {
-                verifyCreate(fr_5pqi, fr_duif, fr_6i34, fr_8xjs, fr_9c3f, fr_4ok6, fr_b3ub, fr_1z7o, fr_6f68, fr_gh3o, fr_fbba, fr_hhzp, single_text1, c);
+                verifyCreate(fr_5pqi, fr_duif, fr_6i34, fr_8xjs, fr_9c3f, fr_4ok6, fr_b3ub, fr_1z7o, fr_d8rw, fr_dy3l, fr_6f68, fr_47yy, fr_gh3o, fr_fbba, fr_hhzp, single_text1, c);
             } catch (Exception ex) {
                 throw new DomainError("VerificationFailed", ex);
             }
 
-            Event e = newMainFormCreated(fr_5pqi, fr_duif, fr_6i34, fr_8xjs, fr_9c3f, fr_4ok6, fr_b3ub, fr_1z7o, fr_6f68, fr_gh3o, fr_fbba, fr_hhzp, single_text1, offChainVersion, commandId, requesterId);
+            Event e = newMainFormCreated(fr_5pqi, fr_duif, fr_6i34, fr_8xjs, fr_9c3f, fr_4ok6, fr_b3ub, fr_1z7o, fr_d8rw, fr_dy3l, fr_6f68, fr_47yy, fr_gh3o, fr_fbba, fr_hhzp, single_text1, offChainVersion, commandId, requesterId);
             apply(e);
         }
 
-        protected void verifyCreate(BigInteger fr_5pqi, String[] fr_duif, String[] fr_6i34, String fr_8xjs, String fr_9c3f, BigInteger fr_4ok6, String fr_b3ub, BigInteger fr_1z7o, BigInteger fr_6f68, String[] fr_gh3o, String[] fr_fbba, String fr_hhzp, String single_text1, MainFormCommands.Create c) {
+        protected void verifyCreate(BigInteger fr_5pqi, String[] fr_duif, String[] fr_6i34, String fr_8xjs, String fr_9c3f, BigInteger fr_4ok6, String fr_b3ub, BigInteger fr_1z7o, StringRange fr_d8rw, StringRange fr_dy3l, BigInteger fr_6f68, StringRange fr_47yy, String[] fr_gh3o, String[] fr_fbba, String fr_hhzp, String single_text1, MainFormCommands.Create c) {
             BigInteger Fr_5pqi = fr_5pqi;
             String[] Fr_duif = fr_duif;
             String[] Fr_6i34 = fr_6i34;
@@ -67,7 +67,10 @@ public abstract class AbstractMainFormAggregate extends AbstractAggregate implem
             BigInteger Fr_4ok6 = fr_4ok6;
             String Fr_b3ub = fr_b3ub;
             BigInteger Fr_1z7o = fr_1z7o;
+            StringRange Fr_d8rw = fr_d8rw;
+            StringRange Fr_dy3l = fr_dy3l;
             BigInteger Fr_6f68 = fr_6f68;
+            StringRange Fr_47yy = fr_47yy;
             String[] Fr_gh3o = fr_gh3o;
             String[] Fr_fbba = fr_fbba;
             String Fr_hhzp = fr_hhzp;
@@ -76,21 +79,21 @@ public abstract class AbstractMainFormAggregate extends AbstractAggregate implem
             ReflectUtils.invokeStaticMethod(
                     "org.test.aptosformsdemo.domain.mainform.CreateLogic",
                     "verify",
-                    new Class[]{MainFormState.class, BigInteger.class, String[].class, String[].class, String.class, String.class, BigInteger.class, String.class, BigInteger.class, BigInteger.class, String[].class, String[].class, String.class, String.class, VerificationContext.class},
-                    new Object[]{getState(), fr_5pqi, fr_duif, fr_6i34, fr_8xjs, fr_9c3f, fr_4ok6, fr_b3ub, fr_1z7o, fr_6f68, fr_gh3o, fr_fbba, fr_hhzp, single_text1, VerificationContext.forCommand(c)}
+                    new Class[]{MainFormState.class, BigInteger.class, String[].class, String[].class, String.class, String.class, BigInteger.class, String.class, BigInteger.class, StringRange.class, StringRange.class, BigInteger.class, StringRange.class, String[].class, String[].class, String.class, String.class, VerificationContext.class},
+                    new Object[]{getState(), fr_5pqi, fr_duif, fr_6i34, fr_8xjs, fr_9c3f, fr_4ok6, fr_b3ub, fr_1z7o, fr_d8rw, fr_dy3l, fr_6f68, fr_47yy, fr_gh3o, fr_fbba, fr_hhzp, single_text1, VerificationContext.forCommand(c)}
             );
 
 //package org.test.aptosformsdemo.domain.mainform;
 //
 //public class CreateLogic {
-//    public static void verify(MainFormState mainFormState, BigInteger fr_5pqi, String[] fr_duif, String[] fr_6i34, String fr_8xjs, String fr_9c3f, BigInteger fr_4ok6, String fr_b3ub, BigInteger fr_1z7o, BigInteger fr_6f68, String[] fr_gh3o, String[] fr_fbba, String fr_hhzp, String single_text1, VerificationContext verificationContext) {
+//    public static void verify(MainFormState mainFormState, BigInteger fr_5pqi, String[] fr_duif, String[] fr_6i34, String fr_8xjs, String fr_9c3f, BigInteger fr_4ok6, String fr_b3ub, BigInteger fr_1z7o, StringRange fr_d8rw, StringRange fr_dy3l, BigInteger fr_6f68, StringRange fr_47yy, String[] fr_gh3o, String[] fr_fbba, String fr_hhzp, String single_text1, VerificationContext verificationContext) {
 //    }
 //}
 
         }
            
 
-        protected AbstractMainFormEvent.MainFormCreated newMainFormCreated(BigInteger fr_5pqi, String[] fr_duif, String[] fr_6i34, String fr_8xjs, String fr_9c3f, BigInteger fr_4ok6, String fr_b3ub, BigInteger fr_1z7o, BigInteger fr_6f68, String[] fr_gh3o, String[] fr_fbba, String fr_hhzp, String single_text1, Long offChainVersion, String commandId, String requesterId) {
+        protected AbstractMainFormEvent.MainFormCreated newMainFormCreated(BigInteger fr_5pqi, String[] fr_duif, String[] fr_6i34, String fr_8xjs, String fr_9c3f, BigInteger fr_4ok6, String fr_b3ub, BigInteger fr_1z7o, StringRange fr_d8rw, StringRange fr_dy3l, BigInteger fr_6f68, StringRange fr_47yy, String[] fr_gh3o, String[] fr_fbba, String fr_hhzp, String single_text1, Long offChainVersion, String commandId, String requesterId) {
             MainFormEventId eventId = new MainFormEventId(getState().getSignerAddress(), null);
             AbstractMainFormEvent.MainFormCreated e = new AbstractMainFormEvent.MainFormCreated();
 
@@ -102,7 +105,10 @@ public abstract class AbstractMainFormAggregate extends AbstractAggregate implem
             e.setFr_4ok6(fr_4ok6);
             e.setFr_b3ub(fr_b3ub);
             e.setFr_1z7o(fr_1z7o);
+            e.setFr_d8rw(fr_d8rw);
+            e.setFr_dy3l(fr_dy3l);
             e.setFr_6f68(fr_6f68);
+            e.setFr_47yy(fr_47yy);
             e.setFr_gh3o(fr_gh3o);
             e.setFr_fbba(fr_fbba);
             e.setFr_hhzp(fr_hhzp);

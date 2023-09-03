@@ -8,8 +8,8 @@ package org.test.aptosformsdemo.domain.mainform;
 import java.util.*;
 import java.math.*;
 import java.math.BigInteger;
-import java.util.Date;
 import org.test.aptosformsdemo.domain.*;
+import java.util.Date;
 import org.test.aptosformsdemo.specialization.*;
 import org.test.aptosformsdemo.domain.mainform.MainFormEvent.*;
 
@@ -85,6 +85,26 @@ public abstract class AbstractMainFormState implements MainFormState.SqlMainForm
         this.fr_1z7o = fr_1z7o;
     }
 
+    private StringRange fr_d8rw;
+
+    public StringRange getFr_d8rw() {
+        return this.fr_d8rw;
+    }
+
+    public void setFr_d8rw(StringRange fr_d8rw) {
+        this.fr_d8rw = fr_d8rw;
+    }
+
+    private StringRange fr_dy3l;
+
+    public StringRange getFr_dy3l() {
+        return this.fr_dy3l;
+    }
+
+    public void setFr_dy3l(StringRange fr_dy3l) {
+        this.fr_dy3l = fr_dy3l;
+    }
+
     private BigInteger fr_6f68;
 
     public BigInteger getFr_6f68() {
@@ -93,6 +113,16 @@ public abstract class AbstractMainFormState implements MainFormState.SqlMainForm
 
     public void setFr_6f68(BigInteger fr_6f68) {
         this.fr_6f68 = fr_6f68;
+    }
+
+    private StringRange fr_47yy;
+
+    public StringRange getFr_47yy() {
+        return this.fr_47yy;
+    }
+
+    public void setFr_47yy(StringRange fr_47yy) {
+        this.fr_47yy = fr_47yy;
     }
 
     private String fr_hhzp;
@@ -318,7 +348,10 @@ public abstract class AbstractMainFormState implements MainFormState.SqlMainForm
         this.setFr_4ok6(s.getFr_4ok6());
         this.setFr_b3ub(s.getFr_b3ub());
         this.setFr_1z7o(s.getFr_1z7o());
+        this.setFr_d8rw(s.getFr_d8rw());
+        this.setFr_dy3l(s.getFr_dy3l());
         this.setFr_6f68(s.getFr_6f68());
+        this.setFr_47yy(s.getFr_47yy());
         this.setFr_gh3o(s.getFr_gh3o());
         this.setFr_fbba(s.getFr_fbba());
         this.setFr_hhzp(s.getFr_hhzp());
@@ -346,8 +379,14 @@ public abstract class AbstractMainFormState implements MainFormState.SqlMainForm
         String Fr_b3ub = fr_b3ub;
         BigInteger fr_1z7o = e.getFr_1z7o();
         BigInteger Fr_1z7o = fr_1z7o;
+        StringRange fr_d8rw = e.getFr_d8rw();
+        StringRange Fr_d8rw = fr_d8rw;
+        StringRange fr_dy3l = e.getFr_dy3l();
+        StringRange Fr_dy3l = fr_dy3l;
         BigInteger fr_6f68 = e.getFr_6f68();
         BigInteger Fr_6f68 = fr_6f68;
+        StringRange fr_47yy = e.getFr_47yy();
+        StringRange Fr_47yy = fr_47yy;
         String[] fr_gh3o = e.getFr_gh3o();
         String[] Fr_gh3o = fr_gh3o;
         String[] fr_fbba = e.getFr_fbba();
@@ -379,14 +418,14 @@ public abstract class AbstractMainFormState implements MainFormState.SqlMainForm
         MainFormState updatedMainFormState = (MainFormState) ReflectUtils.invokeStaticMethod(
                     "org.test.aptosformsdemo.domain.mainform.CreateLogic",
                     "mutate",
-                    new Class[]{MainFormState.class, BigInteger.class, String[].class, String[].class, String.class, String.class, BigInteger.class, String.class, BigInteger.class, BigInteger.class, String[].class, String[].class, String.class, String.class, BigInteger.class, BigInteger.class, String.class, AptosEventGuid.class, String.class, MutationContext.class},
-                    new Object[]{this, fr_5pqi, fr_duif, fr_6i34, fr_8xjs, fr_9c3f, fr_4ok6, fr_b3ub, fr_1z7o, fr_6f68, fr_gh3o, fr_fbba, fr_hhzp, single_text1, aptosEventVersion, aptosEventSequenceNumber, aptosEventType, aptosEventGuid, status, MutationContext.forEvent(e, s -> {if (s == this) {return this;} else {throw new UnsupportedOperationException();}})}
+                    new Class[]{MainFormState.class, BigInteger.class, String[].class, String[].class, String.class, String.class, BigInteger.class, String.class, BigInteger.class, StringRange.class, StringRange.class, BigInteger.class, StringRange.class, String[].class, String[].class, String.class, String.class, BigInteger.class, BigInteger.class, String.class, AptosEventGuid.class, String.class, MutationContext.class},
+                    new Object[]{this, fr_5pqi, fr_duif, fr_6i34, fr_8xjs, fr_9c3f, fr_4ok6, fr_b3ub, fr_1z7o, fr_d8rw, fr_dy3l, fr_6f68, fr_47yy, fr_gh3o, fr_fbba, fr_hhzp, single_text1, aptosEventVersion, aptosEventSequenceNumber, aptosEventType, aptosEventGuid, status, MutationContext.forEvent(e, s -> {if (s == this) {return this;} else {throw new UnsupportedOperationException();}})}
             );
 
 //package org.test.aptosformsdemo.domain.mainform;
 //
 //public class CreateLogic {
-//    public static MainFormState mutate(MainFormState mainFormState, BigInteger fr_5pqi, String[] fr_duif, String[] fr_6i34, String fr_8xjs, String fr_9c3f, BigInteger fr_4ok6, String fr_b3ub, BigInteger fr_1z7o, BigInteger fr_6f68, String[] fr_gh3o, String[] fr_fbba, String fr_hhzp, String single_text1, BigInteger aptosEventVersion, BigInteger aptosEventSequenceNumber, String aptosEventType, AptosEventGuid aptosEventGuid, String status, MutationContext<MainFormState, MainFormState.MutableMainFormState> mutationContext) {
+//    public static MainFormState mutate(MainFormState mainFormState, BigInteger fr_5pqi, String[] fr_duif, String[] fr_6i34, String fr_8xjs, String fr_9c3f, BigInteger fr_4ok6, String fr_b3ub, BigInteger fr_1z7o, StringRange fr_d8rw, StringRange fr_dy3l, BigInteger fr_6f68, StringRange fr_47yy, String[] fr_gh3o, String[] fr_fbba, String fr_hhzp, String single_text1, BigInteger aptosEventVersion, BigInteger aptosEventSequenceNumber, String aptosEventType, AptosEventGuid aptosEventGuid, String status, MutationContext<MainFormState, MainFormState.MutableMainFormState> mutationContext) {
 //    }
 //}
 

@@ -36,7 +36,13 @@ public class MainForm {
 
     private BigInteger fr_1z7o;
 
+    private StringRange fr_d8rw;
+
+    private StringRange fr_dy3l;
+
     private BigInteger fr_6f68;
+
+    private StringRange fr_47yy;
 
     private String[] fr_gh3o;
 
@@ -128,12 +134,36 @@ public class MainForm {
         this.fr_1z7o = fr_1z7o;
     }
 
+    public StringRange getFr_d8rw() {
+        return fr_d8rw;
+    }
+
+    public void setFr_d8rw(StringRange fr_d8rw) {
+        this.fr_d8rw = fr_d8rw;
+    }
+
+    public StringRange getFr_dy3l() {
+        return fr_dy3l;
+    }
+
+    public void setFr_dy3l(StringRange fr_dy3l) {
+        this.fr_dy3l = fr_dy3l;
+    }
+
     public BigInteger getFr_6f68() {
         return fr_6f68;
     }
 
     public void setFr_6f68(BigInteger fr_6f68) {
         this.fr_6f68 = fr_6f68;
+    }
+
+    public StringRange getFr_47yy() {
+        return fr_47yy;
+    }
+
+    public void setFr_47yy(StringRange fr_47yy) {
+        this.fr_47yy = fr_47yy;
     }
 
     public String[] getFr_gh3o() {
@@ -189,7 +219,10 @@ public class MainForm {
                 ", fr_4ok6=" + fr_4ok6 +
                 ", fr_b3ub=" + '\'' + fr_b3ub + '\'' +
                 ", fr_1z7o=" + fr_1z7o +
+                ", fr_d8rw=" + fr_d8rw +
+                ", fr_dy3l=" + fr_dy3l +
                 ", fr_6f68=" + fr_6f68 +
+                ", fr_47yy=" + fr_47yy +
                 ", fr_gh3o=" + Arrays.toString(fr_gh3o) +
                 ", fr_fbba=" + Arrays.toString(fr_fbba) +
                 ", fr_hhzp=" + '\'' + fr_hhzp + '\'' +

@@ -83,7 +83,10 @@ public class AptosMainFormStateRetriever {
         mainFormState.setFr_4ok6(mainForm.getFr_4ok6());
         mainFormState.setFr_b3ub(mainForm.getFr_b3ub());
         mainFormState.setFr_1z7o(mainForm.getFr_1z7o());
+        mainFormState.setFr_d8rw(DomainBeanUtils.toStringRange(mainForm.getFr_d8rw()));
+        mainFormState.setFr_dy3l(DomainBeanUtils.toStringRange(mainForm.getFr_dy3l()));
         mainFormState.setFr_6f68(mainForm.getFr_6f68());
+        mainFormState.setFr_47yy(DomainBeanUtils.toStringRange(mainForm.getFr_47yy()));
         mainFormState.setFr_gh3o(new HashSet<>(Arrays.asList(mainForm.getFr_gh3o())));
         mainFormState.setFr_fbba(new HashSet<>(Arrays.asList(mainForm.getFr_fbba())));
         mainFormState.setFr_hhzp(mainForm.getFr_hhzp());

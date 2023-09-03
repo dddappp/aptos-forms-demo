@@ -9,8 +9,8 @@ import java.util.*;
 import java.util.function.Consumer;
 import org.dddml.support.criterion.Criterion;
 import java.math.BigInteger;
-import java.util.Date;
 import org.test.aptosformsdemo.domain.*;
+import java.util.Date;
 import org.test.aptosformsdemo.specialization.*;
 
 public abstract class AbstractMainFormApplicationService implements MainFormApplicationService {
@@ -51,7 +51,7 @@ public abstract class AbstractMainFormApplicationService implements MainFormAppl
     }
 
     public void when(MainFormCommands.Create c) {
-        update(c, ar -> ar.create(c.getFr_5pqi(), c.getFr_duif(), c.getFr_6i34(), c.getFr_8xjs(), c.getFr_9c3f(), c.getFr_4ok6(), c.getFr_b3ub(), c.getFr_1z7o(), c.getFr_6f68(), c.getFr_gh3o(), c.getFr_fbba(), c.getFr_hhzp(), c.getSingle_text1(), c.getOffChainVersion(), c.getCommandId(), c.getRequesterId(), c));
+        update(c, ar -> ar.create(c.getFr_5pqi(), c.getFr_duif(), c.getFr_6i34(), c.getFr_8xjs(), c.getFr_9c3f(), c.getFr_4ok6(), c.getFr_b3ub(), c.getFr_1z7o(), c.getFr_d8rw(), c.getFr_dy3l(), c.getFr_6f68(), c.getFr_47yy(), c.getFr_gh3o(), c.getFr_fbba(), c.getFr_hhzp(), c.getSingle_text1(), c.getOffChainVersion(), c.getCommandId(), c.getRequesterId(), c));
     }
 
     public MainFormState get(String id) {

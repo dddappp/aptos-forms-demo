@@ -8,8 +8,8 @@ package org.test.aptosformsdemo.domain.mainform;
 import java.util.*;
 import java.math.*;
 import java.math.BigInteger;
-import java.util.Date;
 import org.test.aptosformsdemo.domain.*;
+import java.util.Date;
 import org.test.aptosformsdemo.specialization.*;
 
 
@@ -99,6 +99,30 @@ public class MainFormStateDto {
         this.fr_1z7o = fr_1z7o;
     }
 
+    private StringRange fr_d8rw;
+
+    public StringRange getFr_d8rw()
+    {
+        return this.fr_d8rw;
+    }
+
+    public void setFr_d8rw(StringRange fr_d8rw)
+    {
+        this.fr_d8rw = fr_d8rw;
+    }
+
+    private StringRange fr_dy3l;
+
+    public StringRange getFr_dy3l()
+    {
+        return this.fr_dy3l;
+    }
+
+    public void setFr_dy3l(StringRange fr_dy3l)
+    {
+        this.fr_dy3l = fr_dy3l;
+    }
+
     private BigInteger fr_6f68;
 
     public BigInteger getFr_6f68()
@@ -109,6 +133,18 @@ public class MainFormStateDto {
     public void setFr_6f68(BigInteger fr_6f68)
     {
         this.fr_6f68 = fr_6f68;
+    }
+
+    private StringRange fr_47yy;
+
+    public StringRange getFr_47yy()
+    {
+        return this.fr_47yy;
+    }
+
+    public void setFr_47yy(StringRange fr_47yy)
+    {
+        this.fr_47yy = fr_47yy;
     }
 
     private String fr_hhzp;
@@ -309,8 +345,17 @@ public class MainFormStateDto {
             if (returnedFieldsContains("Fr_1z7o")) {
                 dto.setFr_1z7o(state.getFr_1z7o());
             }
+            if (returnedFieldsContains("Fr_d8rw")) {
+                dto.setFr_d8rw(state.getFr_d8rw());
+            }
+            if (returnedFieldsContains("Fr_dy3l")) {
+                dto.setFr_dy3l(state.getFr_dy3l());
+            }
             if (returnedFieldsContains("Fr_6f68")) {
                 dto.setFr_6f68(state.getFr_6f68());
+            }
+            if (returnedFieldsContains("Fr_47yy")) {
+                dto.setFr_47yy(state.getFr_47yy());
             }
             if (returnedFieldsContains("Fr_hhzp")) {
                 dto.setFr_hhzp(state.getFr_hhzp());

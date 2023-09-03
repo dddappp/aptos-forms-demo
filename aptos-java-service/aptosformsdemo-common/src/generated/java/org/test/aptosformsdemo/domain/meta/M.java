@@ -151,6 +151,12 @@ public class M {
             "updatedAt",
             "active",
             "deleted",
+            "fr_d8rw.start",
+            "fr_d8rw.end",
+            "fr_dy3l.start",
+            "fr_dy3l.end",
+            "fr_47yy.start",
+            "fr_47yy.end",
     };
 
     public static final String[] propertyTypes = new String[] {
@@ -172,6 +178,12 @@ public class M {
             "Date",
             "Boolean",
             "Boolean",
+            "String",
+            "String",
+            "String",
+            "String",
+            "String",
+            "String",
     };
 
     public static final Map<String, String> propertyTypeMap;
@@ -222,6 +234,18 @@ public class M {
         aliasMap.put("Active", "active");
         aliasMap.put("deleted", "deleted");
         aliasMap.put("Deleted", "deleted");
+        aliasMap.put("fr_d8rw.start", "fr_d8rw.start");
+        aliasMap.put("Fr_d8rw.Start", "fr_d8rw.start");
+        aliasMap.put("fr_d8rw.end", "fr_d8rw.end");
+        aliasMap.put("Fr_d8rw.End", "fr_d8rw.end");
+        aliasMap.put("fr_dy3l.start", "fr_dy3l.start");
+        aliasMap.put("Fr_dy3l.Start", "fr_dy3l.start");
+        aliasMap.put("fr_dy3l.end", "fr_dy3l.end");
+        aliasMap.put("Fr_dy3l.End", "fr_dy3l.end");
+        aliasMap.put("fr_47yy.start", "fr_47yy.start");
+        aliasMap.put("Fr_47yy.Start", "fr_47yy.start");
+        aliasMap.put("fr_47yy.end", "fr_47yy.end");
+        aliasMap.put("Fr_47yy.End", "fr_47yy.end");
     }
 
     private static void initPropertyTypeMap() {

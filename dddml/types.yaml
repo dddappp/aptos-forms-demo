@@ -1,0 +1,10 @@
+typeDefinitions:
+  StringRange:
+    moveType: "aptos_forms_demo::string_range::StringRange"
+    dataStruct:
+      properties:
+        Start:
+          type: String
+        End:
+          type: String
+
