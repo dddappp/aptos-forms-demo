@@ -1,0 +1,9 @@
+[package]
+name = "AptosFormsDemo"
+version = "0.0.1"
+
+[addresses]
+aptos_forms_demo = "_"
+
+[dependencies]
+AptosFramework = { git = "https://github.com/aptos-labs/aptos-core.git", subdir = "aptos-move/framework/aptos-framework", rev = "aptos-cli-v1.0.11" }

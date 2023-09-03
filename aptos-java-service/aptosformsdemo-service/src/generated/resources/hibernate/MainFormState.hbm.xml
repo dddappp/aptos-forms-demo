@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"[]>
+<hibernate-mapping package="org.test.aptosformsdemo.domain.mainform">
+  <class name="org.test.aptosformsdemo.domain.mainform.AbstractMainFormState$SimpleMainFormState" table="main_form">
+    <id name="accountAddress" length="66">
+      <column name="account_address" sql-type="VARCHAR(66)" />
+      <generator class="assigned" />
+    </id>
+    <version name="offChainVersion" column="off_chain_version" type="long" />
+    <property name="fr_5pqi">
+      <column name="fr_5pqi" sql-type="DECIMAL(20,0)" />
+    </property>
+    <property name="fr_8xjs">
+      <column name="fr_8xjs" />
+    </property>
+    <property name="fr_9c3f">
+      <column name="fr_9c3f" />
+    </property>
+    <property name="fr_4ok6">
+      <column name="fr_4ok6" sql-type="DECIMAL(20,0)" />
+    </property>
+    <property name="fr_b3ub">
+      <column name="fr_b3ub" />
+    </property>
+    <property name="fr_1z7o">
+      <column name="fr_1z7o" sql-type="DECIMAL(20,0)" />
+    </property>
+    <property name="fr_6f68">
+      <column name="fr_6f68" sql-type="DECIMAL(20,0)" />
+    </property>
+    <property name="fr_hhzp">
+      <column name="fr_hhzp" />
+    </property>
+    <property name="single_text1">
+      <column name="single_text1" />
+    </property>
+    <property name="version">
+      <column name="version" sql-type="DECIMAL(20,0)" />
+    </property>
+    <property name="createdBy">
+      <column name="created_by" />
+    </property>
+    <property name="updatedBy">
+      <column name="updated_by" />
+    </property>
+    <property name="active">
+      <column name="active" />
+    </property>
+    <property name="deleted">
+      <column name="deleted" />
+    </property>
+    <property name="createdAt" column="created_at" />
+    <property name="updatedAt" column="updated_at" />
+    <set name="fr_duif" table="main_form_fr_duif" lazy="false">
+      <key column="AccountAddress" />
+      <element column="fr_duif_item" type="string" not-null="true" />
+    </set>
+    <set name="fr_6i34" table="main_form_fr_6i34" lazy="false">
+      <key column="AccountAddress" />
+      <element column="fr_6i34_item" type="string" not-null="true" />
+    </set>
+    <set name="fr_gh3o" table="main_form_fr_gh3o" lazy="false">
+      <key column="AccountAddress" />
+      <element column="fr_gh3o_item" type="string" not-null="true" />
+    </set>
+    <set name="fr_fbba" table="main_form_fr_fbba" lazy="false">
+      <key column="AccountAddress" />
+      <element column="fr_fbba_item" type="string" not-null="true" />
+    </set>
+  </class>
+</hibernate-mapping>

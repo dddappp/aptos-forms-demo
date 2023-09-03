@@ -1,0 +1,175 @@
+﻿aggregates:
+  MainForm:
+    name: MainForm
+    id:
+      conceptual: true
+      name: AccountAddress
+      type: address
+      sequenceNumber: -1
+    properties:
+      Fr_5pqi:
+        name: Fr_5pqi
+        optional: false
+        type: u128
+        sequenceNumber: -1
+      Fr_duif:
+        name: Fr_duif
+        optional: false
+        itemType: Fr_duif
+        sequenceNumber: -1
+      Fr_6i34:
+        name: Fr_6i34
+        optional: false
+        itemType: Fr_6i34
+        sequenceNumber: -1
+      Fr_8xjs:
+        name: Fr_8xjs
+        optional: false
+        type: String
+        sequenceNumber: -1
+      Fr_9c3f:
+        name: Fr_9c3f
+        optional: false
+        type: Fr_9c3f
+        sequenceNumber: -1
+      Fr_4ok6:
+        name: Fr_4ok6
+        optional: false
+        scale: 2
+        type: u128
+        sequenceNumber: -1
+      Fr_b3ub:
+        name: Fr_b3ub
+        optional: false
+        type: String
+        sequenceNumber: -1
+      Fr_1z7o:
+        name: Fr_1z7o
+        optional: false
+        min: 1
+        max: 10
+        type: u128
+        sequenceNumber: -1
+      Fr_6f68:
+        name: Fr_6f68
+        optional: false
+        type: u128
+        sequenceNumber: -1
+      Fr_gh3o:
+        name: Fr_gh3o
+        optional: false
+        itemType: Fr_gh3o
+        sequenceNumber: -1
+      Fr_fbba:
+        name: Fr_fbba
+        optional: false
+        itemType: Fr_fbba
+        sequenceNumber: -1
+      Fr_hhzp:
+        name: Fr_hhzp
+        optional: false
+        type: String
+        sequenceNumber: -1
+      Single_text1:
+        name: Single_text1
+        optional: false
+        type: String
+        sequenceNumber: -1
+    metadata:
+      Preprocessors:
+      - MOVE_CRUD_IT
+      CRUD_IT_NO_UPDATE: true
+      CRUD_IT_NO_DELETE: true
+enumObjects:
+  Fr_duif:
+    baseType: String
+    values:
+      A:
+        name: A
+        displayName: A
+        value: A
+        stringValue: A
+      B:
+        name: B
+        displayName: B
+        value: B
+        stringValue: B
+    name: Fr_duif
+  Fr_6i34:
+    baseType: String
+    values:
+      A:
+        name: A
+        displayName: A
+        value: A
+        stringValue: A
+      B:
+        name: B
+        displayName: B
+        value: B
+        stringValue: B
+      C:
+        name: C
+        displayName: C
+        value: C
+        stringValue: C
+    name: Fr_6i34
+  Fr_9c3f:
+    baseType: String
+    values:
+      Option_1:
+        name: Option_1
+        displayName: A
+        value: 1
+        intValue: 1
+        stringValue: 1
+      Option_2:
+        name: Option_2
+        displayName: B
+        value: 2
+        intValue: 2
+        stringValue: 2
+      Option_3:
+        name: Option_3
+        displayName: C
+        value: 3
+        intValue: 3
+        stringValue: 3
+    name: Fr_9c3f
+  Fr_gh3o:
+    baseType: String
+    values:
+      A:
+        name: A
+        displayName: A
+        value: A
+        stringValue: A
+      B:
+        name: B
+        displayName: B
+        value: B
+        stringValue: B
+    name: Fr_gh3o
+  Fr_fbba:
+    baseType: String
+    values:
+      Option_1:
+        name: Option_1
+        displayName: A
+        value: 1
+        intValue: 1
+        stringValue: 1
+      Option_2:
+        name: Option_2
+        displayName: B
+        value: 2
+        intValue: 2
+        stringValue: 2
+      Option_3:
+        name: Option_3
+        displayName: C
+        value: 3
+        intValue: 3
+        stringValue: 3
+    name: Fr_fbba
+
