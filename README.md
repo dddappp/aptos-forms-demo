@@ -1,9 +1,5 @@
 # README
 
-An example of developing a blog_example application based on the Aptos platform.
-
-It only requires 30 or so lines of code (all of which is a description of the domain model) to be written by the developer, and then generates a blog example that emulates [RoR Getting Started](https://guides.rubyonrails.org/getting_started.html) in one click, without requiring the developer to write a single line of other code.
-
 ## Prerequisites
 
 Currently, the dddappp low-code tool is published as a Docker image for developers to experience.
