@@ -30,8 +30,9 @@ sudo docker run -p 3306:3306 --name mysql \
 -d mysql:5.7
 ```
 
-
 ## Programming
+
+We use the following XRender form schema to generate the DDDML model file.
 
 ```json
 {
@@ -240,6 +241,9 @@ sudo docker run -p 3306:3306 --name mysql \
 }
 ```
 
+The generated model file is available at `. /dddml/forms.yaml`.
+
+
 ### Run dddappp Project Creation Tool
 
 #### Update dddappp Docker Image
@@ -351,4 +355,15 @@ If the command is executed successfully, it should display similar information:
 }
 ```
 
+Initialize the contract first:
+
+```shell
+aptos move run --function-id 'default::aptos_forms_demo_init::initialize' --assume-yes
+```
+
+### Tip: Using this Cheatsheet
+
+Here it is a cheatsheet on how to use the Aptos Client CLI to call on-chain contracts: [AptosMoveCLICheatsheet](./aptos-contracts/AptosMoveCLICheatsheet.md)
+
+The parameters you need to fill in are placeholders containing their type and meaning (name). You can copy these commands, modify them as needed, and execute them directly in a terminal.
 
