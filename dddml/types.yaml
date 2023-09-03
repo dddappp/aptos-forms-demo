@@ -1,6 +1,8 @@
 typeDefinitions:
   StringRange:
     moveType: "aptos_forms_demo::string_range::StringRange"
+    moveEntryFunType: "vector<std::string::String>"
+    moveEntryFunTypeDeserializeFun: "aptos_forms_demo::string_range::value_of"
     dataStruct:
       properties:
         Start:
