@@ -5,6 +5,7 @@ typeDefinitions:
       properties:
         Start:
           type: String
+          length: 50
         End:
           type: String
-
+          length: 50

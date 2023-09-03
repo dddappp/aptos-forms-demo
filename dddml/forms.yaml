@@ -27,6 +27,7 @@
       Fr_8xjs:
         name: Fr_8xjs
         optional: false
+        length: 255
         type: String
         sequenceNumber: -1
       Fr_9c3f:
@@ -43,6 +44,7 @@
       Fr_b3ub:
         name: Fr_b3ub
         optional: false
+        length: 255
         type: String
         sequenceNumber: -1
       Fr_1z7o:
@@ -85,11 +87,13 @@
       Fr_hhzp:
         name: Fr_hhzp
         optional: false
+        length: 255
         type: String
         sequenceNumber: -1
       Single_text1:
         name: Single_text1
         optional: false
+        length: 50
         type: String
         sequenceNumber: -1
     metadata:

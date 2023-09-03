@@ -105,6 +105,7 @@ module aptos_forms_demo::main_form {
     }
 
     public(friend) fun set_fr_8xjs(main_form: &mut MainForm, fr_8xjs: String) {
+        assert!(std::string::length(&fr_8xjs) <= 255, EDATA_TOO_LONG);
         main_form.fr_8xjs = fr_8xjs;
     }
 
@@ -130,6 +131,7 @@ module aptos_forms_demo::main_form {
     }
 
     public(friend) fun set_fr_b3ub(main_form: &mut MainForm, fr_b3ub: String) {
+        assert!(std::string::length(&fr_b3ub) <= 255, EDATA_TOO_LONG);
         main_form.fr_b3ub = fr_b3ub;
     }
 
@@ -196,6 +198,7 @@ module aptos_forms_demo::main_form {
     }
 
     public(friend) fun set_fr_hhzp(main_form: &mut MainForm, fr_hhzp: String) {
+        assert!(std::string::length(&fr_hhzp) <= 255, EDATA_TOO_LONG);
         main_form.fr_hhzp = fr_hhzp;
     }
 
@@ -204,6 +207,7 @@ module aptos_forms_demo::main_form {
     }
 
     public(friend) fun set_single_text1(main_form: &mut MainForm, single_text1: String) {
+        assert!(std::string::length(&single_text1) <= 50, EDATA_TOO_LONG);
         main_form.single_text1 = single_text1;
     }
 
@@ -228,9 +232,13 @@ module aptos_forms_demo::main_form {
     ): MainForm {
         assert!(aptos_forms_demo::fr_duif::are_all_valid(&fr_duif), EINVALID_ENUM_VALUE);
         assert!(aptos_forms_demo::fr_6i34::are_all_valid(&fr_6i34), EINVALID_ENUM_VALUE);
+        assert!(std::string::length(&fr_8xjs) <= 255, EDATA_TOO_LONG);
         assert!(aptos_forms_demo::fr_9c3f::is_valid(fr_9c3f), EINVALID_ENUM_VALUE);
+        assert!(std::string::length(&fr_b3ub) <= 255, EDATA_TOO_LONG);
         assert!(aptos_forms_demo::fr_gh3o::are_all_valid(&fr_gh3o), EINVALID_ENUM_VALUE);
         assert!(aptos_forms_demo::fr_fbba::are_all_valid(&fr_fbba), EINVALID_ENUM_VALUE);
+        assert!(std::string::length(&fr_hhzp) <= 255, EDATA_TOO_LONG);
+        assert!(std::string::length(&single_text1) <= 50, EDATA_TOO_LONG);
         MainForm {
             signer_address,
             version: 0,
