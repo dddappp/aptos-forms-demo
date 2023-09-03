@@ -44,7 +44,7 @@ public class AptosMainFormStateRetriever {
         this.mainFormStateFactory = mainFormStateFactory;
     }
 
-    public MainFormState retrieveMainFormState(String accountAddress) {
+    public MainFormState retrieveMainFormState(String signerAddress) {
         String resourceAccountAddress = getResourceAccountAddress();
         AccountResource<MainForm.Tables> accountResource;
         try {
@@ -62,7 +62,7 @@ public class AptosMainFormStateRetriever {
                     tableHandle,
                     ContractConstants.toNumericalAddressType(ContractConstants.MAIN_FORM_ID_TYPE, this.aptosContractAddress),
                     this.aptosContractAddress + "::" + ContractConstants.MAIN_FORM_MODULE_MAIN_FORM,
-                    accountAddress,
+                    signerAddress,
                     MainForm.class,
                     null
             );
@@ -73,7 +73,7 @@ public class AptosMainFormStateRetriever {
     }
 
     private MainFormState toMainFormState(MainForm mainForm) {
-        MainFormState.MutableMainFormState mainFormState = mainFormStateFactory.apply(mainForm.getAccountAddress());
+        MainFormState.MutableMainFormState mainFormState = mainFormStateFactory.apply(mainForm.getSignerAddress());
         mainFormState.setVersion(mainForm.getVersion());
         mainFormState.setFr_5pqi(mainForm.getFr_5pqi());
         mainFormState.setFr_duif(new HashSet<>(Arrays.asList(mainForm.getFr_duif())));

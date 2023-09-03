@@ -1,5 +1,4 @@
 module aptos_forms_demo::main_form_create_logic {
-    use std::signer;
     use aptos_forms_demo::main_form;
     use aptos_forms_demo::main_form_created;
     use std::string::String;
@@ -22,11 +21,10 @@ module aptos_forms_demo::main_form_create_logic {
         fr_hhzp: String,
         single_text1: String,
     ): main_form::MainFormCreated {
-        let _ = account;
-        let account_address = signer::address_of(account);
-        main_form::asset_main_form_not_exists(account_address);
+        let signer_address = std::signer::address_of(account);
+        main_form::asset_main_form_not_exists(signer_address);
         main_form::new_main_form_created(
-            account_address,
+            signer_address,
             fr_5pqi,
             fr_duif,
             fr_6i34,
@@ -47,7 +45,7 @@ module aptos_forms_demo::main_form_create_logic {
         _account: &signer,
         main_form_created: &main_form::MainFormCreated,
     ): main_form::MainForm {
-        let account_address = main_form_created::account_address(main_form_created);
+        let signer_address = main_form_created::signer_address(main_form_created);
         let fr_5pqi = main_form_created::fr_5pqi(main_form_created);
         let fr_duif = main_form_created::fr_duif(main_form_created);
         let fr_6i34 = main_form_created::fr_6i34(main_form_created);
@@ -62,7 +60,7 @@ module aptos_forms_demo::main_form_create_logic {
         let fr_hhzp = main_form_created::fr_hhzp(main_form_created);
         let single_text1 = main_form_created::single_text1(main_form_created);
         main_form::create_main_form(
-            account_address,
+            signer_address,
             fr_5pqi,
             fr_duif,
             fr_6i34,

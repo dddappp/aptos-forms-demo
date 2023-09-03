@@ -2,8 +2,10 @@
   MainForm:
     name: MainForm
     id:
+      generator:
+        class: signer
       conceptual: true
-      name: AccountAddress
+      name: SignerAddress
       type: address
       sequenceNumber: -1
     properties:

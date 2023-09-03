@@ -3,8 +3,8 @@
 <hibernate-mapping package="org.test.aptosformsdemo.domain.mainform">
   <class name="AbstractMainFormEvent" table="main_form_event" abstract="true">
     <composite-id name="mainFormEventId" class="org.test.aptosformsdemo.domain.mainform.MainFormEventId">
-      <key-property name="accountAddress">
-        <column name="account_address" sql-type="VARCHAR(66)" />
+      <key-property name="signerAddress">
+        <column name="signer_address" sql-type="VARCHAR(66)" />
       </key-property>
       <key-property name="version">
         <column name="version" sql-type="DECIMAL(20,0)" />

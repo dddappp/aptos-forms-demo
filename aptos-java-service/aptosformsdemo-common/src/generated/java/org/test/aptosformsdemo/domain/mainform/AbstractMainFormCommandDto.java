@@ -13,18 +13,18 @@ import org.test.aptosformsdemo.domain.AbstractCommand;
 public abstract class AbstractMainFormCommandDto extends AbstractCommand {
 
     /**
-     * Account Address
+     * Signer Address
      */
-    private String accountAddress;
+    private String signerAddress;
 
-    public String getAccountAddress()
+    public String getSignerAddress()
     {
-        return this.accountAddress;
+        return this.signerAddress;
     }
 
-    public void setAccountAddress(String accountAddress)
+    public void setSignerAddress(String signerAddress)
     {
-        this.accountAddress = accountAddress;
+        this.signerAddress = signerAddress;
     }
 
     /**
@@ -44,7 +44,7 @@ public abstract class AbstractMainFormCommandDto extends AbstractCommand {
 
 
     public void copyTo(MainFormCommand command) {
-        command.setAccountAddress(this.getAccountAddress());
+        command.setSignerAddress(this.getSignerAddress());
         command.setOffChainVersion(this.getOffChainVersion());
         
         command.setRequesterId(this.getRequesterId());

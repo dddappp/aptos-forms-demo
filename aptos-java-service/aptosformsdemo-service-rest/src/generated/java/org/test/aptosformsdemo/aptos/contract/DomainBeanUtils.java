@@ -35,7 +35,7 @@ public class DomainBeanUtils {
         MainFormCreated contractEvent = eventEnvelope.getData();
 
         AbstractMainFormEvent.MainFormCreated mainFormCreated = new AbstractMainFormEvent.MainFormCreated();
-        mainFormCreated.setAccountAddress(contractEvent.getAccountAddress());
+        mainFormCreated.setSignerAddress(contractEvent.getSignerAddress());
         mainFormCreated.setFr_5pqi(contractEvent.getFr_5pqi());
         mainFormCreated.setFr_duif(contractEvent.getFr_duif());
         mainFormCreated.setFr_6i34(contractEvent.getFr_6i34());

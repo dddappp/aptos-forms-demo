@@ -28,7 +28,7 @@ public class UpdateMainFormStateTaskService {
     @Transactional
     public void updateMainFormStates() {
         mainFormEventRepository.findByStatusIsNull().forEach(e -> {
-            aptosMainFormService.updateMainFormState(e.getAccountAddress());
+            aptosMainFormService.updateMainFormState(e.getSignerAddress());
             mainFormEventService.updateStatusToProcessed(e);
         });
     }

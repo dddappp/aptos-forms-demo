@@ -2,8 +2,8 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"[]>
 <hibernate-mapping package="org.test.aptosformsdemo.domain.mainform">
   <class name="org.test.aptosformsdemo.domain.mainform.AbstractMainFormState$SimpleMainFormState" table="main_form">
-    <id name="accountAddress" length="66">
-      <column name="account_address" sql-type="VARCHAR(66)" />
+    <id name="signerAddress" length="66">
+      <column name="signer_address" sql-type="VARCHAR(66)" />
       <generator class="assigned" />
     </id>
     <version name="offChainVersion" column="off_chain_version" type="long" />
@@ -52,19 +52,19 @@
     <property name="createdAt" column="created_at" />
     <property name="updatedAt" column="updated_at" />
     <set name="fr_duif" table="main_form_fr_duif" lazy="false">
-      <key column="AccountAddress" />
+      <key column="SignerAddress" />
       <element column="fr_duif_item" type="string" not-null="true" />
     </set>
     <set name="fr_6i34" table="main_form_fr_6i34" lazy="false">
-      <key column="AccountAddress" />
+      <key column="SignerAddress" />
       <element column="fr_6i34_item" type="string" not-null="true" />
     </set>
     <set name="fr_gh3o" table="main_form_fr_gh3o" lazy="false">
-      <key column="AccountAddress" />
+      <key column="SignerAddress" />
       <element column="fr_gh3o_item" type="string" not-null="true" />
     </set>
     <set name="fr_fbba" table="main_form_fr_fbba" lazy="false">
-      <key column="AccountAddress" />
+      <key column="SignerAddress" />
       <element column="fr_fbba_item" type="string" not-null="true" />
     </set>
   </class>

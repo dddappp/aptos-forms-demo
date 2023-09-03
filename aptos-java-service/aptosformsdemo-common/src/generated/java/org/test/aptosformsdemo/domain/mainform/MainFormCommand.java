@@ -14,9 +14,9 @@ import org.test.aptosformsdemo.specialization.DomainError;
 
 public interface MainFormCommand extends Command {
 
-    String getAccountAddress();
+    String getSignerAddress();
 
-    void setAccountAddress(String accountAddress);
+    void setSignerAddress(String signerAddress);
 
     Long getOffChainVersion();
 

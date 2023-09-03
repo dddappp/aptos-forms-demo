@@ -39,17 +39,17 @@ public class AptosMainFormService {
                 aptosNodeApiClient,
                 aptosContractAddress,
                 aptosAccountRepository,
-                accountAddress -> {
+                signerAddress -> {
                     MainFormState.MutableMainFormState s = new AbstractMainFormState.SimpleMainFormState();
-                    s.setAccountAddress(accountAddress);
+                    s.setSignerAddress(signerAddress);
                     return s;
                 }
         );
     }
 
     @Transactional
-    public void updateMainFormState(String accountAddress) {
-        MainFormState mainFormState = aptosMainFormStateRetriever.retrieveMainFormState(accountAddress);
+    public void updateMainFormState(String signerAddress) {
+        MainFormState mainFormState = aptosMainFormStateRetriever.retrieveMainFormState(signerAddress);
         if (mainFormState == null) {
             return;
         }

@@ -18,7 +18,7 @@ public interface MainFormState extends VersionedAptosMoveObject
 
     Long VERSION_NULL = VERSION_ZERO - 1;
 
-    String getAccountAddress();
+    String getSignerAddress();
 
     BigInteger getFr_5pqi();
 
@@ -61,7 +61,7 @@ public interface MainFormState extends VersionedAptosMoveObject
     Set<String> getFr_fbba();
 
     interface MutableMainFormState extends MainFormState, VersionedAptosMoveObject.MutableVersionedAptosMoveObject {
-        void setAccountAddress(String accountAddress);
+        void setSignerAddress(String signerAddress);
 
         void setFr_5pqi(BigInteger fr_5pqi);
 

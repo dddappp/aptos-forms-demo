@@ -21,9 +21,9 @@ public interface MainFormEvent extends Event, AptosEvent, HasStatus {
         void setEventReadOnly(boolean readOnly);
     }
 
-    String getAccountAddress();
+    String getSignerAddress();
 
-    //void setAccountAddress(String accountAddress);
+    //void setSignerAddress(String signerAddress);
 
     BigInteger getVersion();
     

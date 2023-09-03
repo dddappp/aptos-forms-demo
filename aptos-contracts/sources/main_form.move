@@ -45,7 +45,7 @@ module aptos_forms_demo::main_form {
     }
 
     struct MainForm has store {
-        account_address: address,
+        signer_address: address,
         version: u64,
         fr_5pqi: u128,
         fr_duif: vector<String>,
@@ -62,8 +62,8 @@ module aptos_forms_demo::main_form {
         single_text1: String,
     }
 
-    public fun account_address(main_form: &MainForm): address {
-        main_form.account_address
+    public fun signer_address(main_form: &MainForm): address {
+        main_form.signer_address
     }
 
     public fun version(main_form: &MainForm): u64 {
@@ -180,7 +180,7 @@ module aptos_forms_demo::main_form {
     }
 
     fun new_main_form(
-        account_address: address,
+        signer_address: address,
         fr_5pqi: u128,
         fr_duif: vector<String>,
         fr_6i34: vector<String>,
@@ -201,7 +201,7 @@ module aptos_forms_demo::main_form {
         assert!(aptos_forms_demo::fr_gh3o::are_all_valid(&fr_gh3o), EINVALID_ENUM_VALUE);
         assert!(aptos_forms_demo::fr_fbba::are_all_valid(&fr_fbba), EINVALID_ENUM_VALUE);
         MainForm {
-            account_address,
+            signer_address,
             version: 0,
             fr_5pqi,
             fr_duif,
@@ -220,7 +220,7 @@ module aptos_forms_demo::main_form {
     }
 
     struct MainFormCreated has store, drop {
-        account_address: address,
+        signer_address: address,
         fr_5pqi: u128,
         fr_duif: vector<String>,
         fr_6i34: vector<String>,
@@ -236,8 +236,8 @@ module aptos_forms_demo::main_form {
         single_text1: String,
     }
 
-    public fun main_form_created_account_address(main_form_created: &MainFormCreated): address {
-        main_form_created.account_address
+    public fun main_form_created_signer_address(main_form_created: &MainFormCreated): address {
+        main_form_created.signer_address
     }
 
     public fun main_form_created_fr_5pqi(main_form_created: &MainFormCreated): u128 {
@@ -293,7 +293,7 @@ module aptos_forms_demo::main_form {
     }
 
     public(friend) fun new_main_form_created(
-        account_address: address,
+        signer_address: address,
         fr_5pqi: u128,
         fr_duif: vector<String>,
         fr_6i34: vector<String>,
@@ -309,7 +309,7 @@ module aptos_forms_demo::main_form {
         single_text1: String,
     ): MainFormCreated {
         MainFormCreated {
-            account_address,
+            signer_address,
             fr_5pqi,
             fr_duif,
             fr_6i34,
@@ -328,7 +328,7 @@ module aptos_forms_demo::main_form {
 
 
     public(friend) fun create_main_form(
-        account_address: address,
+        signer_address: address,
         fr_5pqi: u128,
         fr_duif: vector<String>,
         fr_6i34: vector<String>,
@@ -343,9 +343,9 @@ module aptos_forms_demo::main_form {
         fr_hhzp: String,
         single_text1: String,
     ): MainForm acquires Tables {
-        asset_main_form_not_exists(account_address);
+        asset_main_form_not_exists(signer_address);
         let main_form = new_main_form(
-            account_address,
+            signer_address,
             fr_5pqi,
             fr_duif,
             fr_6i34,
@@ -364,11 +364,11 @@ module aptos_forms_demo::main_form {
     }
 
     public(friend) fun asset_main_form_not_exists(
-        account_address: address,
+        signer_address: address,
     ) acquires Tables {
         assert!(exists<Tables>(genesis_account::resouce_account_address()), ENOT_INITIALIZED);
         let tables = borrow_global_mut<Tables>(genesis_account::resouce_account_address());
-        assert!(!table::contains(&tables.main_form_table, account_address), EID_ALREADY_EXISTS);
+        assert!(!table::contains(&tables.main_form_table, signer_address), EID_ALREADY_EXISTS);
     }
 
     public(friend) fun update_version_and_add(main_form: MainForm) acquires Tables {
@@ -382,20 +382,20 @@ module aptos_forms_demo::main_form {
         private_add_main_form(main_form);
     }
 
-    public(friend) fun remove_main_form(account_address: address): MainForm acquires Tables {
+    public(friend) fun remove_main_form(signer_address: address): MainForm acquires Tables {
         assert!(exists<Tables>(genesis_account::resouce_account_address()), ENOT_INITIALIZED);
         let tables = borrow_global_mut<Tables>(genesis_account::resouce_account_address());
-        table::remove(&mut tables.main_form_table, account_address)
+        table::remove(&mut tables.main_form_table, signer_address)
     }
 
     fun private_add_main_form(main_form: MainForm) acquires Tables {
         assert!(exists<Tables>(genesis_account::resouce_account_address()), ENOT_INITIALIZED);
         let tables = borrow_global_mut<Tables>(genesis_account::resouce_account_address());
-        table::add(&mut tables.main_form_table, account_address(&main_form), main_form);
+        table::add(&mut tables.main_form_table, signer_address(&main_form), main_form);
     }
 
-    public fun get_main_form(account_address: address): pass_object::PassObject<MainForm> acquires Tables {
-        let main_form = remove_main_form(account_address);
+    public fun get_main_form(signer_address: address): pass_object::PassObject<MainForm> acquires Tables {
+        let main_form = remove_main_form(signer_address);
         pass_object::new(main_form)
     }
 
@@ -407,7 +407,7 @@ module aptos_forms_demo::main_form {
     public(friend) fun drop_main_form(main_form: MainForm) {
         let MainForm {
             version: _version,
-            account_address: _account_address,
+            signer_address: _signer_address,
             fr_5pqi: _fr_5pqi,
             fr_duif: _fr_duif,
             fr_6i34: _fr_6i34,

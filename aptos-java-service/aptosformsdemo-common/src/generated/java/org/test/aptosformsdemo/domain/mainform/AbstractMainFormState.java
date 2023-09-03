@@ -15,14 +15,14 @@ import org.test.aptosformsdemo.domain.mainform.MainFormEvent.*;
 
 public abstract class AbstractMainFormState implements MainFormState.SqlMainFormState {
 
-    private String accountAddress;
+    private String signerAddress;
 
-    public String getAccountAddress() {
-        return this.accountAddress;
+    public String getSignerAddress() {
+        return this.signerAddress;
     }
 
-    public void setAccountAddress(String accountAddress) {
-        this.accountAddress = accountAddress;
+    public void setSignerAddress(String signerAddress) {
+        this.signerAddress = signerAddress;
     }
 
     private BigInteger fr_5pqi;
@@ -258,7 +258,7 @@ public abstract class AbstractMainFormState implements MainFormState.SqlMainForm
     public AbstractMainFormState(List<Event> events) {
         initializeForReapplying();
         if (events != null && events.size() > 0) {
-            this.setAccountAddress(((MainFormEvent.SqlMainFormEvent) events.get(0)).getMainFormEventId().getAccountAddress());
+            this.setSignerAddress(((MainFormEvent.SqlMainFormEvent) events.get(0)).getMainFormEventId().getSignerAddress());
             for (Event e : events) {
                 mutate(e);
                 this.setOffChainVersion((this.getOffChainVersion() == null ? MainFormState.VERSION_NULL : this.getOffChainVersion()) + 1);
@@ -282,14 +282,14 @@ public abstract class AbstractMainFormState implements MainFormState.SqlMainForm
 
     @Override
     public int hashCode() {
-        return getAccountAddress().hashCode();
+        return getSignerAddress().hashCode();
     }
 
     @Override
     public boolean equals(Object obj) {
         if (this == obj) { return true; }
         if (obj instanceof MainFormState) {
-            return Objects.equals(this.getAccountAddress(), ((MainFormState)obj).getAccountAddress());
+            return Objects.equals(this.getSignerAddress(), ((MainFormState)obj).getSignerAddress());
         }
         return false;
     }
@@ -398,8 +398,8 @@ public abstract class AbstractMainFormState implements MainFormState.SqlMainForm
     }
 
     protected void throwOnWrongEvent(MainFormEvent event) {
-        String stateEntityId = this.getAccountAddress(); // Aggregate Id
-        String eventEntityId = ((MainFormEvent.SqlMainFormEvent)event).getMainFormEventId().getAccountAddress(); // EntityBase.Aggregate.GetEventIdPropertyIdName();
+        String stateEntityId = this.getSignerAddress(); // Aggregate Id
+        String eventEntityId = ((MainFormEvent.SqlMainFormEvent)event).getMainFormEventId().getSignerAddress(); // EntityBase.Aggregate.GetEventIdPropertyIdName();
         if (!stateEntityId.equals(eventEntityId)) {
             throw DomainError.named("mutateWrongEntity", "Entity Id %1$s in state but entity id %2$s in event", stateEntityId, eventEntityId);
         }

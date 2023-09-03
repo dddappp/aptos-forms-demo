@@ -91,7 +91,7 @@ public abstract class AbstractMainFormAggregate extends AbstractAggregate implem
            
 
         protected AbstractMainFormEvent.MainFormCreated newMainFormCreated(BigInteger fr_5pqi, String[] fr_duif, String[] fr_6i34, String fr_8xjs, String fr_9c3f, BigInteger fr_4ok6, String fr_b3ub, BigInteger fr_1z7o, BigInteger fr_6f68, String[] fr_gh3o, String[] fr_fbba, String fr_hhzp, String single_text1, Long offChainVersion, String commandId, String requesterId) {
-            MainFormEventId eventId = new MainFormEventId(getState().getAccountAddress(), null);
+            MainFormEventId eventId = new MainFormEventId(getState().getSignerAddress(), null);
             AbstractMainFormEvent.MainFormCreated e = new AbstractMainFormEvent.MainFormCreated();
 
             e.setFr_5pqi(fr_5pqi);

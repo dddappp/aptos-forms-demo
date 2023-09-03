@@ -8,8 +8,8 @@ module aptos_forms_demo::main_form_created {
     use aptos_forms_demo::main_form::{Self, MainFormCreated};
     use std::string::String;
 
-    public fun account_address(main_form_created: &MainFormCreated): address {
-        main_form::main_form_created_account_address(main_form_created)
+    public fun signer_address(main_form_created: &MainFormCreated): address {
+        main_form::main_form_created_signer_address(main_form_created)
     }
 
     public fun fr_5pqi(main_form_created: &MainFormCreated): u128 {

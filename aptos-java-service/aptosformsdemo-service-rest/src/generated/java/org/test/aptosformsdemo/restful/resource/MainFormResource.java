@@ -129,11 +129,11 @@ public class MainFormResource {
      * Retrieve.
      * Retrieves MainForm with the specified ID.
      */
-    @GetMapping("{accountAddress}")
+    @GetMapping("{signerAddress}")
     @Transactional(readOnly = true)
-    public MainFormStateDto get(@PathVariable("accountAddress") String accountAddress, @RequestParam(value = "fields", required = false) String fields) {
+    public MainFormStateDto get(@PathVariable("signerAddress") String signerAddress, @RequestParam(value = "fields", required = false) String fields) {
         try {
-            String idObj = accountAddress;
+            String idObj = signerAddress;
             MainFormState state = mainFormApplicationService.get(idObj);
             if (state == null) { return null; }
 
@@ -171,16 +171,16 @@ public class MainFormResource {
     }
 
 
-    @PutMapping("{accountAddress}/_commands/Create")
-    public void create(@PathVariable("accountAddress") String accountAddress, @RequestBody MainFormCommands.Create content) {
+    @PutMapping("{signerAddress}/_commands/Create")
+    public void create(@PathVariable("signerAddress") String signerAddress, @RequestBody MainFormCommands.Create content) {
         try {
 
             MainFormCommands.Create cmd = content;//.toCreate();
-            String idObj = accountAddress;
-            if (cmd.getAccountAddress() == null) {
-                cmd.setAccountAddress(idObj);
-            } else if (!cmd.getAccountAddress().equals(idObj)) {
-                throw DomainError.named("inconsistentId", "Argument Id %1$s NOT equals body Id %2$s", accountAddress, cmd.getAccountAddress());
+            String idObj = signerAddress;
+            if (cmd.getSignerAddress() == null) {
+                cmd.setSignerAddress(idObj);
+            } else if (!cmd.getSignerAddress().equals(idObj)) {
+                throw DomainError.named("inconsistentId", "Argument Id %1$s NOT equals body Id %2$s", signerAddress, cmd.getSignerAddress());
             }
             cmd.setRequesterId(SecurityContextUtil.getRequesterId());
             mainFormApplicationService.when(cmd);
@@ -201,24 +201,24 @@ public class MainFormResource {
         } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
     }
 
-    @GetMapping("{accountAddress}/_events/{version}")
+    @GetMapping("{signerAddress}/_events/{version}")
     @Transactional(readOnly = true)
-    public MainFormEvent getEvent(@PathVariable("accountAddress") String accountAddress, @PathVariable("version") long version) {
+    public MainFormEvent getEvent(@PathVariable("signerAddress") String signerAddress, @PathVariable("version") long version) {
         try {
 
-            String idObj = accountAddress;
+            String idObj = signerAddress;
             //MainFormStateEventDtoConverter dtoConverter = getMainFormStateEventDtoConverter();
             return mainFormApplicationService.getEvent(idObj, version);
 
         } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
     }
 
-    @GetMapping("{accountAddress}/_historyStates/{version}")
+    @GetMapping("{signerAddress}/_historyStates/{version}")
     @Transactional(readOnly = true)
-    public MainFormStateDto getHistoryState(@PathVariable("accountAddress") String accountAddress, @PathVariable("version") long version, @RequestParam(value = "fields", required = false) String fields) {
+    public MainFormStateDto getHistoryState(@PathVariable("signerAddress") String signerAddress, @PathVariable("version") long version, @RequestParam(value = "fields", required = false) String fields) {
         try {
 
-            String idObj = accountAddress;
+            String idObj = signerAddress;
             MainFormStateDto.DtoConverter dtoConverter = new MainFormStateDto.DtoConverter();
             if (StringHelper.isNullOrEmpty(fields)) {
                 dtoConverter.setAllFieldsReturned(true);
@@ -253,12 +253,12 @@ public class MainFormResource {
  
     public static class MainFormResourceUtils {
 
-        public static void setNullIdOrThrowOnInconsistentIds(String accountAddress, MainFormCommand value) {
-            String idObj = accountAddress;
-            if (value.getAccountAddress() == null) {
-                value.setAccountAddress(idObj);
-            } else if (!value.getAccountAddress().equals(idObj)) {
-                throw DomainError.named("inconsistentId", "Argument Id %1$s NOT equals body Id %2$s", accountAddress, value.getAccountAddress());
+        public static void setNullIdOrThrowOnInconsistentIds(String signerAddress, MainFormCommand value) {
+            String idObj = signerAddress;
+            if (value.getSignerAddress() == null) {
+                value.setSignerAddress(idObj);
+            } else if (!value.getSignerAddress().equals(idObj)) {
+                throw DomainError.named("inconsistentId", "Argument Id %1$s NOT equals body Id %2$s", signerAddress, value.getSignerAddress());
             }
         }
     
@@ -314,7 +314,7 @@ public class MainFormResource {
             List<MainFormStateDto> states = new ArrayList<>();
             ids.forEach(i -> {
                 MainFormStateDto dto = new MainFormStateDto();
-                dto.setAccountAddress(i);
+                dto.setSignerAddress(i);
                 states.add(dto);
             });
             return states.toArray(new MainFormStateDto[0]);

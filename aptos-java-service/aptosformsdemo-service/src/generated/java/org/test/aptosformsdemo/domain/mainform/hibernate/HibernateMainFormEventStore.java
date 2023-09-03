@@ -39,7 +39,7 @@ public class HibernateMainFormEventStore extends AbstractHibernateEventStore {
         }
         String idObj = (String) eventStoreAggregateId.getId();
         Criteria criteria = getCurrentSession().createCriteria(AbstractMainFormEvent.class);
-        criteria.add(Restrictions.eq("mainFormEventId.accountAddress", idObj));
+        criteria.add(Restrictions.eq("mainFormEventId.signerAddress", idObj));
         criteria.add(Restrictions.le("mainFormEventId.offChainVersion", version));
         criteria.addOrder(Order.asc("mainFormEventId.offChainVersion"));
         List es = criteria.list();

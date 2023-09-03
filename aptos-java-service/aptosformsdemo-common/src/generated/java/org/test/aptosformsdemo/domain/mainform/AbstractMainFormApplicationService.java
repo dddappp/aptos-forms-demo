@@ -83,18 +83,18 @@ public abstract class AbstractMainFormApplicationService implements MainFormAppl
         return getStateQueryRepository().getCount(filter);
     }
 
-    public MainFormEvent getEvent(String accountAddress, long version) {
-        MainFormEvent e = (MainFormEvent)getEventStore().getEvent(toEventStoreAggregateId(accountAddress), version);
+    public MainFormEvent getEvent(String signerAddress, long version) {
+        MainFormEvent e = (MainFormEvent)getEventStore().getEvent(toEventStoreAggregateId(signerAddress), version);
         if (e != null) {
             ((MainFormEvent.SqlMainFormEvent)e).setEventReadOnly(true); 
         } else if (version == -1) {
-            return getEvent(accountAddress, 0);
+            return getEvent(signerAddress, 0);
         }
         return e;
     }
 
-    public MainFormState getHistoryState(String accountAddress, long version) {
-        EventStream eventStream = getEventStore().loadEventStream(AbstractMainFormEvent.class, toEventStoreAggregateId(accountAddress), version - 1);
+    public MainFormState getHistoryState(String signerAddress, long version) {
+        EventStream eventStream = getEventStore().loadEventStream(AbstractMainFormEvent.class, toEventStoreAggregateId(signerAddress), version - 1);
         return new AbstractMainFormState.SimpleMainFormState(eventStream.getEvents());
     }
 
@@ -108,7 +108,7 @@ public abstract class AbstractMainFormApplicationService implements MainFormAppl
     }
 
     protected void update(MainFormCommand c, Consumer<MainFormAggregate> action) {
-        String aggregateId = c.getAccountAddress();
+        String aggregateId = c.getSignerAddress();
         EventStoreAggregateId eventStoreAggregateId = toEventStoreAggregateId(aggregateId);
         MainFormState state = getStateRepository().get(aggregateId, false);
         boolean duplicate = isDuplicateCommand(c, eventStoreAggregateId, state);

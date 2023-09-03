@@ -16,7 +16,7 @@ import java.util.*;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class MainFormCreated {
 
-    private String accountAddress;
+    private String signerAddress;
 
     private BigInteger fr_5pqi;
 
@@ -44,12 +44,12 @@ public class MainFormCreated {
 
     private String single_text1;
 
-    public String getAccountAddress() {
-        return accountAddress;
+    public String getSignerAddress() {
+        return signerAddress;
     }
 
-    public void setAccountAddress(String accountAddress) {
-        this.accountAddress = accountAddress;
+    public void setSignerAddress(String signerAddress) {
+        this.signerAddress = signerAddress;
     }
 
     public BigInteger getFr_5pqi() {
@@ -159,7 +159,7 @@ public class MainFormCreated {
     @Override
     public String toString() {
         return "MainFormCreated{" +
-                "accountAddress=" + '\'' + accountAddress + '\'' +
+                "signerAddress=" + '\'' + signerAddress + '\'' +
                 ", fr_5pqi=" + fr_5pqi +
                 ", fr_duif=" + Arrays.toString(fr_duif) +
                 ", fr_6i34=" + Arrays.toString(fr_6i34) +

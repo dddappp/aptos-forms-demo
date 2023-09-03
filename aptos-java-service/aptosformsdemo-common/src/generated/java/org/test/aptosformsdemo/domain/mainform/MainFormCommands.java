@@ -25,16 +25,16 @@ public class MainFormCommands {
         }
 
         /**
-         * Account Address
+         * Signer Address
          */
-        private String accountAddress;
+        private String signerAddress;
 
-        public String getAccountAddress() {
-            return this.accountAddress;
+        public String getSignerAddress() {
+            return this.signerAddress;
         }
 
-        public void setAccountAddress(String accountAddress) {
-            this.accountAddress = accountAddress;
+        public void setSignerAddress(String signerAddress) {
+            this.signerAddress = signerAddress;
         }
 
         /**

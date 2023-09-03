@@ -10,16 +10,16 @@ import java.math.BigInteger;
 import org.test.aptosformsdemo.domain.*;
 
 public class MainFormEventId implements Serializable {
-    private String accountAddress;
+    private String signerAddress;
 
-    public String getAccountAddress()
+    public String getSignerAddress()
     {
-        return this.accountAddress;
+        return this.signerAddress;
     }
 
-    public void setAccountAddress(String accountAddress)
+    public void setSignerAddress(String signerAddress)
     {
-        this.accountAddress = accountAddress;
+        this.signerAddress = signerAddress;
     }
 
     private BigInteger version;
@@ -38,9 +38,9 @@ public class MainFormEventId implements Serializable {
     {
     }
 
-    public MainFormEventId(String accountAddress, BigInteger version)
+    public MainFormEventId(String signerAddress, BigInteger version)
     {
-        this.accountAddress = accountAddress;
+        this.signerAddress = signerAddress;
         this.version = version;
     }
 
@@ -56,7 +56,7 @@ public class MainFormEventId implements Serializable {
 
         MainFormEventId other = (MainFormEventId)obj;
         return true 
-            && (accountAddress == other.accountAddress || (accountAddress != null && accountAddress.equals(other.accountAddress)))
+            && (signerAddress == other.signerAddress || (signerAddress != null && signerAddress.equals(other.signerAddress)))
             && (version == other.version || (version != null && version.equals(other.version)))
             ;
     }
@@ -65,8 +65,8 @@ public class MainFormEventId implements Serializable {
     public int hashCode()
     {
         int hash = 0;
-        if (this.accountAddress != null) {
-            hash += 13 * this.accountAddress.hashCode();
+        if (this.signerAddress != null) {
+            hash += 13 * this.signerAddress.hashCode();
         }
         if (this.version != null) {
             hash += 13 * this.version.hashCode();
@@ -77,13 +77,13 @@ public class MainFormEventId implements Serializable {
     @Override
     public String toString() {
         return "MainFormEventId{" +
-                "accountAddress=" + '\'' + accountAddress + '\'' +
+                "signerAddress=" + '\'' + signerAddress + '\'' +
                 ", version=" + version +
                 '}';
     }
 
     protected static final String[] FLATTENED_PROPERTY_NAMES = new String[]{
-            "accountAddress",
+            "signerAddress",
             "version",
     };
 

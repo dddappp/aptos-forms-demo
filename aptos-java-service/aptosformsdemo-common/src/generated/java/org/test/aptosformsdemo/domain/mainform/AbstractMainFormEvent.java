@@ -23,12 +23,12 @@ public abstract class AbstractMainFormEvent extends AbstractEvent implements Mai
         this.mainFormEventId = eventId;
     }
     
-    public String getAccountAddress() {
-        return getMainFormEventId().getAccountAddress();
+    public String getSignerAddress() {
+        return getMainFormEventId().getSignerAddress();
     }
 
-    public void setAccountAddress(String accountAddress) {
-        getMainFormEventId().setAccountAddress(accountAddress);
+    public void setSignerAddress(String signerAddress) {
+        getMainFormEventId().setSignerAddress(signerAddress);
     }
 
     private boolean eventReadOnly;

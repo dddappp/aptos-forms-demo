@@ -31,9 +31,9 @@ public interface MainFormApplicationService {
 
     long getCount(Criterion filter);
 
-    MainFormEvent getEvent(String accountAddress, long version);
+    MainFormEvent getEvent(String signerAddress, long version);
 
-    MainFormState getHistoryState(String accountAddress, long version);
+    MainFormState getHistoryState(String signerAddress, long version);
 
 }
 

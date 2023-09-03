@@ -15,16 +15,16 @@ import org.test.aptosformsdemo.specialization.*;
 
 public class MainFormStateDto {
 
-    private String accountAddress;
+    private String signerAddress;
 
-    public String getAccountAddress()
+    public String getSignerAddress()
     {
-        return this.accountAddress;
+        return this.signerAddress;
     }
 
-    public void setAccountAddress(String accountAddress)
+    public void setSignerAddress(String signerAddress)
     {
-        this.accountAddress = accountAddress;
+        this.signerAddress = signerAddress;
     }
 
     private BigInteger fr_5pqi;
@@ -288,8 +288,8 @@ public class MainFormStateDto {
                 return null;
             }
             MainFormStateDto dto = new MainFormStateDto();
-            if (returnedFieldsContains("AccountAddress")) {
-                dto.setAccountAddress(state.getAccountAddress());
+            if (returnedFieldsContains("SignerAddress")) {
+                dto.setSignerAddress(state.getSignerAddress());
             }
             if (returnedFieldsContains("Fr_5pqi")) {
                 dto.setFr_5pqi(state.getFr_5pqi());

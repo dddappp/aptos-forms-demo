@@ -31,7 +31,7 @@ public class HibernateMainFormStateRepository implements MainFormStateRepository
         return this.sessionFactory.getCurrentSession();
     }
     
-    private static final Set<String> readOnlyPropertyPascalCaseNames = new HashSet<String>(Arrays.asList("AccountAddress", "Fr_5pqi", "Fr_duif", "Fr_6i34", "Fr_8xjs", "Fr_9c3f", "Fr_4ok6", "Fr_b3ub", "Fr_1z7o", "Fr_6f68", "Fr_gh3o", "Fr_fbba", "Fr_hhzp", "Single_text1", "Version", "OffChainVersion", "CreatedBy", "CreatedAt", "UpdatedBy", "UpdatedAt", "Active", "Deleted"));
+    private static final Set<String> readOnlyPropertyPascalCaseNames = new HashSet<String>(Arrays.asList("SignerAddress", "Fr_5pqi", "Fr_duif", "Fr_6i34", "Fr_8xjs", "Fr_9c3f", "Fr_4ok6", "Fr_b3ub", "Fr_1z7o", "Fr_6f68", "Fr_gh3o", "Fr_fbba", "Fr_hhzp", "Single_text1", "Version", "OffChainVersion", "CreatedBy", "CreatedAt", "UpdatedBy", "UpdatedAt", "Active", "Deleted"));
     
     private ReadOnlyProxyGenerator readOnlyProxyGenerator;
     
@@ -48,7 +48,7 @@ public class HibernateMainFormStateRepository implements MainFormStateRepository
         MainFormState.SqlMainFormState state = (MainFormState.SqlMainFormState)getCurrentSession().get(AbstractMainFormState.SimpleMainFormState.class, id);
         if (!nullAllowed && state == null) {
             state = new AbstractMainFormState.SimpleMainFormState();
-            state.setAccountAddress(id);
+            state.setSignerAddress(id);
         }
         if (getReadOnlyProxyGenerator() != null && state != null) {
             return (MainFormState) getReadOnlyProxyGenerator().createProxy(state, new Class[]{MainFormState.SqlMainFormState.class}, "getStateReadOnly", readOnlyPropertyPascalCaseNames);
@@ -76,7 +76,7 @@ public class HibernateMainFormStateRepository implements MainFormStateRepository
     }
 
     public void merge(MainFormState detached) {
-        MainFormState persistent = getCurrentSession().get(AbstractMainFormState.SimpleMainFormState.class, detached.getAccountAddress());
+        MainFormState persistent = getCurrentSession().get(AbstractMainFormState.SimpleMainFormState.class, detached.getSignerAddress());
         if (persistent != null) {
             merge(persistent, detached);
             getCurrentSession().merge(detached);

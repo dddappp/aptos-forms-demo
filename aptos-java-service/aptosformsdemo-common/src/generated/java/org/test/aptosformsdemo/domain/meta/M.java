@@ -133,7 +133,7 @@ public class M {
     public static final Class ID_CLASS = String.class;
 
     public static final String[] propertyNames = new String[] {
-            "accountAddress",
+            "signerAddress",
             "fr_5pqi",
             "fr_8xjs",
             "fr_9c3f",
@@ -186,8 +186,8 @@ public class M {
     }
 
     private static  void initAliasMap() {
-        aliasMap.put("accountAddress", "accountAddress");
-        aliasMap.put("AccountAddress", "accountAddress");
+        aliasMap.put("signerAddress", "signerAddress");
+        aliasMap.put("SignerAddress", "signerAddress");
         aliasMap.put("fr_5pqi", "fr_5pqi");
         aliasMap.put("Fr_5pqi", "fr_5pqi");
         aliasMap.put("fr_8xjs", "fr_8xjs");
