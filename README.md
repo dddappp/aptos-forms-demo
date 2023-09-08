@@ -169,6 +169,41 @@ Initialize the contract first:
 aptos move run --function-id 'default::aptos_forms_demo_init::initialize' --assume-yes
 ```
 
+
+### Get Resource Account Address
+
+Our contracts use a separate resource account to hold data of form.
+
+You can get the address of this resource account by using the following command:
+
+```shell
+curl https://fullnode.devnet.aptoslabs.com/v1/accounts/{ACCOUNT_ADDRESS}/resource/{ACCOUNT_ADDRESS}::resource_account::ResourceAccount
+```
+
+The output is similar to the following:
+
+```json
+{"type":"{ACCOUNT_ADDRESS}::resource_account::ResourceAccount","data":{"cap":{"account":"{RESOURCE_ACCOUNT_ADDRESS}"}}}
+```
+
+In the location `{RESOURCE_ACCOUNT_ADDRESS}` above, the address of the resource account will be displayed.
+
+
+#### Get Form Table Handle
+
+```shell
+curl 'https://fullnode.devnet.aptoslabs.com/v1/accounts/{RESOURCE_ACCOUNT_ADDRESS}/resource/{ACCOUNT_ADDRESS}::main_form::Tables'
+```
+
+The output is similar to the following:
+
+```json
+{"type":"{ACCOUNT_ADDRESS}::main_form::Tables","data":{"main_form_table":{"handle":"{FORM_TABLE_HANDLE}"}}}
+```
+
+In the location `{FORM_TABLE_HANDLE}` above, the form table handle will be displayed.
+
+
 ### Tip: Using this Cheatsheet
 
 Here it is a cheatsheet on how to use the Aptos Client CLI to call on-chain contracts: [AptosMoveCLICheatsheet](./aptos-contracts/AptosMoveCLICheatsheet.md)
