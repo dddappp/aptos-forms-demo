@@ -123,6 +123,11 @@ It should display similar information:
 }
 ```
 
+Note that the form contract depends on a utility package in this project: https://github.com/dddappp/XRender-Form-Utils
+
+We need to publish this package on chain first, and then we can compile the form contract. 
+In the following command, we assume that the package is published at address `0x71df3ab1b6cf015aa5870a8a6e8ee0951c54e8d7d79bb59fa3b737c3a38fb93b`.
+
 ---
 
 In the directory `aptos-contracts`, execute the compilation, which should now succeed:
