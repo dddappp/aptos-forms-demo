@@ -30,7 +30,7 @@ sudo docker run -p 3306:3306 --name mysql \
 
 We use the XRender form schema file `./form-schema/form.json` to generate the DDDML model file.
 
-The generated model file is available at `. /dddml/forms.yaml`.
+The generated model file is available at `./dddml/forms.yaml`.
 
 ### Run dddappp Project Creation Tool
 
@@ -55,6 +55,8 @@ In repository root directory, run:
 docker run \
 -v .:/myapp \
 wubuku/dddappp-aptos:0.0.1 \
+--xRenderFormSchema /myapp/form-schema/form.json \
+--xRenderFormId AptosFormsDemo \
 --dddmlDirectoryPath /myapp/dddml \
 --boundedContextName Test.AptosFormsDemo \
 --aptosMoveProjectDirectoryPath /myapp/aptos-contracts \
@@ -66,6 +68,24 @@ wubuku/dddappp-aptos:0.0.1 \
 --pomGroupId test.aptosformsdemo
 ```
 
+The command parameters above are straightforward:
+
+* The first line indicates mounting your local directory into the `/myapp` directory inside the container.
+* `xRenderFormSchema` is the path of XRender form schema file. It should be a readable file path in the container.
+* `xRenderFormId` is the ID of XRender form. It's recommended to use PascalCase naming style.
+* `dddmlDirectoryPath` is the directory where DDDML model files are located. It should be a readable directory path in the container.
+* Interpret the value of (optional) parameter `boundedContextName` as the name of your application you want to develop. When there are multiple parts in your name, separate them with dots and use PascalCase naming style for each part. Bounded-context is a term in Domain-driven design (DDD) that refers to a specific problem domain scope that contains specific business boundaries, constraints, and language. If you don't understand this concept for now, it's not a big deal.
+* `aptosMoveProjectDirectoryPath` is directory path where on-chain Aptos contract code is placed. It should be a readable and writable directory path in container.
+* (Optional) `boundedContextAptosPackageName` is package name of on-chain Aptos contracts. It's recommended to use PascalCase naming style.
+* (Optional) `boundedContextAptosNamedAddress` is default named address of on-chain Aptos contracts. It's recommended to use snake_case naming style.
+* (Optional) `boundedContextJavaPackageName` is Java package name of off-chain service. According to Java naming conventions, it should be all lowercase and parts should be separated by dots.
+* `javaProjectsDirectoryPath` is directory path where off-chain service code is placed. Off-chain service consists of multiple modules (projects). It should be a readable and writable directory path in container.
+* (Optional) `javaProjectNamePrefix` is name prefix of each module of off-chain service. It's recommended to use an all-lowercase name.
+* (Optional) `pomGroupId` is GroupId of off-chain service. We use Maven as project management tool for off-chain service. It should be all lowercase and parts should be separated by dots.
+
+If you don't specify the optional parameters, the tool will derive them based on `xRenderFormId`.
+
+After executing above command successfully, a directory `aptos-contracts` should be added to local current directory.
 
 ## Test Example
 
