@@ -6,11 +6,11 @@
 module aptos_forms_demo::main_form {
     use aptos_forms_demo::genesis_account;
     use aptos_forms_demo::pass_object;
-    use aptos_forms_demo::string_range::StringRange;
     use aptos_framework::account;
     use aptos_framework::event;
     use aptos_std::table::{Self, Table};
     use std::string::String;
+    use xrender_form_utils::string_range::StringRange;
     friend aptos_forms_demo::main_form_create_logic;
     friend aptos_forms_demo::main_form_aggregate;
 

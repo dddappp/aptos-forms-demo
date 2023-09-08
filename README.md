@@ -128,7 +128,7 @@ It should display similar information:
 In the directory `aptos-contracts`, execute the compilation, which should now succeed:
 
 ```shell
-aptos move compile --named-addresses aptos_forms_demo=default
+aptos move compile --named-addresses aptos_forms_demo=default,xrender_form_utils=0x71df3ab1b6cf015aa5870a8a6e8ee0951c54e8d7d79bb59fa3b737c3a38fb93b
 ```
 
 At this point, the coding phase of the application development is complete! Isn't it very simple?
@@ -142,7 +142,7 @@ Next, we will deploy and test the Demo application.
 Execute the following command in the directory `aptos-contracts` to publish the contracts to the chain:
 
 ```shell
-aptos move publish --named-addresses aptos_forms_demo=default --assume-yes
+aptos move publish --named-addresses aptos_forms_demo=default,xrender_form_utils=0x71df3ab1b6cf015aa5870a8a6e8ee0951c54e8d7d79bb59fa3b737c3a38fb93b --assume-yes
 ```
 
 If the command is executed successfully, it should display similar information:

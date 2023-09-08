@@ -6,8 +6,8 @@
 module aptos_forms_demo::main_form_created {
 
     use aptos_forms_demo::main_form::{Self, MainFormCreated};
-    use aptos_forms_demo::string_range::StringRange;
     use std::string::String;
+    use xrender_form_utils::string_range::StringRange;
 
     public fun signer_address(main_form_created: &MainFormCreated): address {
         main_form::main_form_created_signer_address(main_form_created)

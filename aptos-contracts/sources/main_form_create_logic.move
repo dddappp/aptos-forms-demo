@@ -1,8 +1,8 @@
 module aptos_forms_demo::main_form_create_logic {
     use aptos_forms_demo::main_form;
     use aptos_forms_demo::main_form_created;
-    use aptos_forms_demo::string_range::StringRange;
     use std::string::String;
+    use xrender_form_utils::string_range::StringRange;
 
     friend aptos_forms_demo::main_form_aggregate;
 
