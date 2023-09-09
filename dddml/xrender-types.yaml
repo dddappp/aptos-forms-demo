@@ -11,3 +11,4 @@ typeDefinitions:
         End:
           type: String
           length: 50
+
