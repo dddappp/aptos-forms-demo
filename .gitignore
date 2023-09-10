@@ -1,2 +1,4 @@
 aptos-contracts/build
 .idea
+aptos-java-service/aptosformsdemo-*/target
+aptos-java-service/scripts
