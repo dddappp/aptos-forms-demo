@@ -34,21 +34,6 @@ The generated model file is available at `./dddml/forms.yaml`.
 
 ### Run dddappp Project Creation Tool
 
-#### Update dddappp Docker Image
-
-Since the dddappp v0.0.1 image is updated frequently, you may be required to manually delete the image and pull it again before `docker run`.
-
-```shell
-# If you have already run it, you may need to Clean Up Exited Docker Containers first
-docker rm $(docker ps -aq --filter "ancestor=wubuku/dddappp-aptos:0.0.1")
-# remove the image
-docker image rm wubuku/dddappp-aptos:0.0.1
-# pull the image
-git pull wubuku/dddappp-aptos:0.0.1
-```
-
----
-
 In repository root directory, run:
 
 ```shell
@@ -123,12 +108,14 @@ It should display similar information:
 }
 ```
 
+#### Contract dependencies
+
 Note that the form contract depends on a utility package in this project: https://github.com/dddappp/XRender-Form-Utils
 
 We need to publish this package on chain first, and then we can compile the form contract. 
 In the following command, we assume that the package is published at address `0x71df3ab1b6cf015aa5870a8a6e8ee0951c54e8d7d79bb59fa3b737c3a38fb93b`.
 
----
+#### Compile form contract
 
 In the directory `aptos-contracts`, execute the compilation, which should now succeed:
 
@@ -142,9 +129,9 @@ At this point, the coding phase of the application development is complete! Isn'
 
 Next, we will deploy and test the Demo application.
 
-### Publish the Aptos contracts
+### Publish the Aptos contract
 
-Execute the following command in the directory `aptos-contracts` to publish the contracts to the chain:
+Execute the following command in the directory `aptos-contracts` to publish the contract on chain:
 
 ```shell
 aptos move publish --named-addresses aptos_forms_demo=default,xrender_form_utils=0x71df3ab1b6cf015aa5870a8a6e8ee0951c54e8d7d79bb59fa3b737c3a38fb93b --assume-yes
@@ -173,48 +160,6 @@ Initialize the contract first:
 ```shell
 aptos move run --function-id 'default::aptos_forms_demo_init::initialize' --assume-yes
 ```
-
-
-### Get Resource Account Address
-
-Our contracts use a separate resource account to hold data of form.
-
-You can get the address of this resource account by using the following command:
-
-```shell
-curl https://fullnode.devnet.aptoslabs.com/v1/accounts/{ACCOUNT_ADDRESS}/resource/{ACCOUNT_ADDRESS}::resource_account::ResourceAccount
-```
-
-The output is similar to the following:
-
-```json
-{"type":"{ACCOUNT_ADDRESS}::resource_account::ResourceAccount","data":{"cap":{"account":"{RESOURCE_ACCOUNT_ADDRESS}"}}}
-```
-
-In the location `{RESOURCE_ACCOUNT_ADDRESS}` above, the address of the resource account will be displayed.
-
-
-#### Get Form Table Handle
-
-```shell
-curl 'https://fullnode.devnet.aptoslabs.com/v1/accounts/{RESOURCE_ACCOUNT_ADDRESS}/resource/{ACCOUNT_ADDRESS}::main_form::Tables'
-```
-
-The output is similar to the following:
-
-```json
-{"type":"{ACCOUNT_ADDRESS}::main_form::Tables","data":{"main_form_table":{"handle":"{FORM_TABLE_HANDLE}"}}}
-```
-
-In the location `{FORM_TABLE_HANDLE}` above, the form table handle will be displayed.
-
-
-### Tip: Using this Cheatsheet
-
-Here it is a cheatsheet on how to use the Aptos Client CLI to call on-chain contracts: [AptosMoveCLICheatsheet](./aptos-contracts/AptosMoveCLICheatsheet.md)
-
-The parameters you need to fill in are placeholders containing their type and meaning (name). You can copy these commands, modify them as needed, and execute them directly in a terminal.
-
 
 ## Test Off-chain Service
 
@@ -273,6 +218,8 @@ aptos:
       "0xd19e5d4634d89efe118138177628d8b2137918bb634fe461ce6061c99a56a0be"
     node-api:
       base-url: "https://fullnode.devnet.aptoslabs.com/v1"
+      # if use testnet:
+      #base-url: "https://fullnode.testnet.aptoslabs.com/v1"
 ```
 
 ### Starting Off-Chain Service
@@ -289,4 +236,59 @@ You can use the following command to query posts:
 
 ```shell
 curl http://localhost:1023/api/MainForms
-```F
+```
+
+
+## Tips
+
+### Update dddappp Docker Image
+
+Since the dddappp v0.0.1 image is updated frequently, you may be required to manually delete the image and pull it again before `docker run`.
+
+```shell
+# If you have already run it, you may need to Clean Up Exited Docker Containers first
+docker rm $(docker ps -aq --filter "ancestor=wubuku/dddappp-aptos:0.0.1")
+# remove the image
+docker image rm wubuku/dddappp-aptos:0.0.1
+# pull the image
+git pull wubuku/dddappp-aptos:0.0.1
+```
+
+### Using this Cheatsheet
+
+Here it is a cheatsheet on how to use the Aptos Client CLI to call on-chain contracts: [AptosMoveCLICheatsheet](./aptos-contracts/AptosMoveCLICheatsheet.md)
+
+The parameters you need to fill in are placeholders containing their type and meaning (name). You can copy these commands, modify them as needed, and execute them directly in a terminal.
+
+
+### Get Resource Account Address
+
+Our contracts use a separate resource account to hold data of form.
+
+You can get the address of this resource account by using the following command:
+
+```shell
+curl https://fullnode.devnet.aptoslabs.com/v1/accounts/{ACCOUNT_ADDRESS}/resource/{ACCOUNT_ADDRESS}::resource_account::ResourceAccount
+```
+
+The output is similar to the following:
+
+```json
+{"type":"{ACCOUNT_ADDRESS}::resource_account::ResourceAccount","data":{"cap":{"account":"{RESOURCE_ACCOUNT_ADDRESS}"}}}
+```
+
+In the location `{RESOURCE_ACCOUNT_ADDRESS}` above, the address of the resource account will be displayed.
+
+### Get Form Table Handle
+
+```shell
+curl 'https://fullnode.devnet.aptoslabs.com/v1/accounts/{RESOURCE_ACCOUNT_ADDRESS}/resource/{ACCOUNT_ADDRESS}::main_form::Tables'
+```
+
+The output is similar to the following:
+
+```json
+{"type":"{ACCOUNT_ADDRESS}::main_form::Tables","data":{"main_form_table":{"handle":"{FORM_TABLE_HANDLE}"}}}
+```
+
+In the location `{FORM_TABLE_HANDLE}` above, the form table handle will be displayed.
