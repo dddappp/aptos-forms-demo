@@ -261,7 +261,7 @@ docker image rm wubuku/dddappp-aptos:0.0.1
 git pull wubuku/dddappp-aptos:0.0.1
 ```
 
-### Using this Cheatsheet
+### Using This Cheatsheet
 
 Here it is a cheatsheet on how to use the Aptos Client CLI to call on-chain contracts: [AptosMoveCLICheatsheet](./aptos-contracts/AptosMoveCLICheatsheet.md)
 
@@ -285,6 +285,16 @@ The output is similar to the following:
 ```
 
 In the location `{RESOURCE_ACCOUNT_ADDRESS}` above, the address of the resource account will be displayed.
+
+### Getting Form Submission Events
+
+Execute the following command, noting the replacement of the placeholders `{RESOURCE_ACCOUNT_ADDRESS}` and `{ACCOUNT_ADDRESS}`:
+
+```shell
+curl --request GET \
+  --url 'https://fullnode.testnet.aptoslabs.com/v1/accounts/{RESOURCE_ACCOUNT_ADDRESS}/events/{ACCOUNT_ADDRESS}::main_form::Events/main_form_created_handle?start=0&limit=10' \
+  --header 'Accept: application/json'
+```
 
 ### Get Form Table Handle
 
