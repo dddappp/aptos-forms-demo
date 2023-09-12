@@ -20,6 +20,19 @@ Here we need to clarify the difference between Low-Code and No-Code.
 
 As can see from this demo, Low-Code has powerful capabilities that can support No-Code tool implementations.
 
+## How Move Forms Works
+
+The following explains how Move Forms works.
+
+![How Move Forms Works](./docs/HowMoveFormsWorks.jpg)
+
+* First, you use Form Builder to design a form.
+* Then, you can export the schema of this form.
+* We use the a command line tool to convert the schema into a domain model, from which we can generate on-chain contract and off-chain service.
+* In addition, we can use a tool to generate a form submission page from the schema.
+* Then end-users can fill out and submit the form.
+* You can view the submitted data via the off-chain service.
+
 ## Prerequisites
 
 Currently, the dddappp low-code tool is published as a Docker image for developers to experience.
@@ -196,6 +209,15 @@ aptos move run --function-id 'default::aptos_forms_demo_init::initialize' --assu
 > 
 > Once the contract is published, you can use Aptos Explorer's Modules | Run feature to test it.
 > Here is an example form we've already deployed on testnet: https://explorer.aptoslabs.com/account/0xf0ee3187beaa48e56def59dbe52d7e932c3e559c28ae26568fa91ff9ae85e145/modules/run/main_form_aggregate/create?network=testnet
+
+### Generate submission page from schema
+
+We're still refining the tool for this step…
+
+#### Publish form submission page
+
+We're still refining the tool for this step…
+
 
 ## Test Off-chain Service
 
