@@ -1,5 +1,25 @@
 # README
 
+This is a demo of Move Forms.
+
+Move Forms is a No-Code tool. It is based on [dddappp](https://www.dddappp.org), the Low-Code Development Platform.
+
+Here we need to clarify the difference between Low-Code and No-Code.
+
+* Low-Code is for professional developers.
+
+    There is a consensus  (de facto standard)  in the industry on what the core features of a Low-Code platform should have.
+
+    The bottom line is that they must take a "model-driven" approach. For our discussion of this, see: https://www.dddappp.org/#what-is-a-true-low-code-development-platform
+
+* No-Code refers to a large category of tools for "end-users". 
+
+    There is no standardization on what is considered No-Code.
+  
+    They allow users to create simple applications such as product advertisement pages, online questionnaires, personal blogs, etc.
+
+As can see from this demo, Low-Code has powerful capabilities that can support No-Code tool implementations.
+
 ## Prerequisites
 
 Currently, the dddappp low-code tool is published as a Docker image for developers to experience.
@@ -39,7 +59,11 @@ You can use the *Export (导出)* button to export the form's schema to the clip
 
 ### Run dddappp Project Creation Tool
 
-We use the XRender form schema file `./form-schema/form.json` to generate the DDDML model file. The generated model file is available at `./dddml/forms.yaml`.
+We use the XRender form schema file `form-schema/form.json` to generate the DDDML model file. The generated model file is available at `dddml/forms.yaml`.
+
+> **Tip**
+>
+> About DDDML, here is an introductory article: ["Introducing DDDML: The Key to Low-Code Development for Decentralized Applications"](https://github.com/wubuku/Dapp-LCDP-Demo/blob/main/IntroducingDDDML.md).
 
 In repository root directory, run:
 
