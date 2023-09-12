@@ -26,13 +26,20 @@ sudo docker run -p 3306:3306 --name mysql \
 -d mysql:5.7
 ```
 
-## Programming
+## ~~Programming~~
 
-We use the XRender form schema file `./form-schema/form.json` to generate the DDDML model file.
+### How to design a form and get its schema
 
-The generated model file is available at `./dddml/forms.yaml`.
+XRender is a form solution open-sourced by Alibaba. It supports designing and rendering forms and submitting form data in JSON format to backends.
+It was originally a Web2 solution. But obviously we can improve it and make it work for Web3.
+
+You can use this Form Schema Builder to design a form: https://xrender.fun/schema-builder-online
+
+You can use the *Export (导出)* button to export the form's schema to the clipboard, then save the exported schema as a plain text file.
 
 ### Run dddappp Project Creation Tool
+
+We use the XRender form schema file `./form-schema/form.json` to generate the DDDML model file. The generated model file is available at `./dddml/forms.yaml`.
 
 In repository root directory, run:
 
