@@ -28,7 +28,7 @@ The following explains how Move Forms works.
 
 * First, you use Form Builder to design a form.
 * Then, you can export the schema of this form.
-* We use the a command line tool to convert the schema into a domain model, from which we can generate on-chain contract and off-chain service.
+* We use a command line tool to convert the schema into a domain model, from which we can generate on-chain contract and off-chain service.
 * In addition, we can use a tool to generate a form submission page from the schema.
 * Then end-users can fill out and submit the form.
 * You can view the submitted data via the off-chain service.
