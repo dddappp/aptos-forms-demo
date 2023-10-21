@@ -14,11 +14,11 @@ module aptos_forms_demo::main_form {
     friend aptos_forms_demo::main_form_create_logic;
     friend aptos_forms_demo::main_form_aggregate;
 
-    const EID_ALREADY_EXISTS: u64 = 101;
-    const EDATA_TOO_LONG: u64 = 102;
-    const EINAPPROPRIATE_VERSION: u64 = 103;
-    const ENOT_INITIALIZED: u64 = 110;
-    const EINVALID_ENUM_VALUE: u64 = 106;
+    const EIdAlreadyExists: u64 = 101;
+    const EDataTooLong: u64 = 102;
+    const EInappropriateVersion: u64 = 103;
+    const ENotInitialized: u64 = 110;
+    const EInvalidEnumValue: u64 = 106;
 
     struct Events has key {
         main_form_created_handle: event::EventHandle<MainFormCreated>,
@@ -87,7 +87,7 @@ module aptos_forms_demo::main_form {
     }
 
     public(friend) fun set_fr_duif(main_form: &mut MainForm, fr_duif: vector<String>) {
-        assert!(aptos_forms_demo::fr_duif::are_all_valid(&fr_duif), EINVALID_ENUM_VALUE);
+        assert!(aptos_forms_demo::fr_duif::are_all_valid(&fr_duif), EInvalidEnumValue);
         main_form.fr_duif = fr_duif;
     }
 
@@ -96,7 +96,7 @@ module aptos_forms_demo::main_form {
     }
 
     public(friend) fun set_fr_6i34(main_form: &mut MainForm, fr_6i34: vector<String>) {
-        assert!(aptos_forms_demo::fr_6i34::are_all_valid(&fr_6i34), EINVALID_ENUM_VALUE);
+        assert!(aptos_forms_demo::fr_6i34::are_all_valid(&fr_6i34), EInvalidEnumValue);
         main_form.fr_6i34 = fr_6i34;
     }
 
@@ -105,7 +105,7 @@ module aptos_forms_demo::main_form {
     }
 
     public(friend) fun set_fr_8xjs(main_form: &mut MainForm, fr_8xjs: String) {
-        assert!(std::string::length(&fr_8xjs) <= 255, EDATA_TOO_LONG);
+        assert!(std::string::length(&fr_8xjs) <= 255, EDataTooLong);
         main_form.fr_8xjs = fr_8xjs;
     }
 
@@ -114,7 +114,7 @@ module aptos_forms_demo::main_form {
     }
 
     public(friend) fun set_fr_9c3f(main_form: &mut MainForm, fr_9c3f: String) {
-        assert!(aptos_forms_demo::fr_9c3f::is_valid(fr_9c3f), EINVALID_ENUM_VALUE);
+        assert!(aptos_forms_demo::fr_9c3f::is_valid(fr_9c3f), EInvalidEnumValue);
         main_form.fr_9c3f = fr_9c3f;
     }
 
@@ -131,7 +131,7 @@ module aptos_forms_demo::main_form {
     }
 
     public(friend) fun set_fr_b3ub(main_form: &mut MainForm, fr_b3ub: String) {
-        assert!(std::string::length(&fr_b3ub) <= 255, EDATA_TOO_LONG);
+        assert!(std::string::length(&fr_b3ub) <= 255, EDataTooLong);
         main_form.fr_b3ub = fr_b3ub;
     }
 
@@ -180,7 +180,7 @@ module aptos_forms_demo::main_form {
     }
 
     public(friend) fun set_fr_gh3o(main_form: &mut MainForm, fr_gh3o: vector<String>) {
-        assert!(aptos_forms_demo::fr_gh3o::are_all_valid(&fr_gh3o), EINVALID_ENUM_VALUE);
+        assert!(aptos_forms_demo::fr_gh3o::are_all_valid(&fr_gh3o), EInvalidEnumValue);
         main_form.fr_gh3o = fr_gh3o;
     }
 
@@ -189,7 +189,7 @@ module aptos_forms_demo::main_form {
     }
 
     public(friend) fun set_fr_fbba(main_form: &mut MainForm, fr_fbba: vector<String>) {
-        assert!(aptos_forms_demo::fr_fbba::are_all_valid(&fr_fbba), EINVALID_ENUM_VALUE);
+        assert!(aptos_forms_demo::fr_fbba::are_all_valid(&fr_fbba), EInvalidEnumValue);
         main_form.fr_fbba = fr_fbba;
     }
 
@@ -198,7 +198,7 @@ module aptos_forms_demo::main_form {
     }
 
     public(friend) fun set_fr_hhzp(main_form: &mut MainForm, fr_hhzp: String) {
-        assert!(std::string::length(&fr_hhzp) <= 255, EDATA_TOO_LONG);
+        assert!(std::string::length(&fr_hhzp) <= 255, EDataTooLong);
         main_form.fr_hhzp = fr_hhzp;
     }
 
@@ -207,7 +207,7 @@ module aptos_forms_demo::main_form {
     }
 
     public(friend) fun set_single_text1(main_form: &mut MainForm, single_text1: String) {
-        assert!(std::string::length(&single_text1) <= 50, EDATA_TOO_LONG);
+        assert!(std::string::length(&single_text1) <= 50, EDataTooLong);
         main_form.single_text1 = single_text1;
     }
 
@@ -230,15 +230,15 @@ module aptos_forms_demo::main_form {
         fr_hhzp: String,
         single_text1: String,
     ): MainForm {
-        assert!(aptos_forms_demo::fr_duif::are_all_valid(&fr_duif), EINVALID_ENUM_VALUE);
-        assert!(aptos_forms_demo::fr_6i34::are_all_valid(&fr_6i34), EINVALID_ENUM_VALUE);
-        assert!(std::string::length(&fr_8xjs) <= 255, EDATA_TOO_LONG);
-        assert!(aptos_forms_demo::fr_9c3f::is_valid(fr_9c3f), EINVALID_ENUM_VALUE);
-        assert!(std::string::length(&fr_b3ub) <= 255, EDATA_TOO_LONG);
-        assert!(aptos_forms_demo::fr_gh3o::are_all_valid(&fr_gh3o), EINVALID_ENUM_VALUE);
-        assert!(aptos_forms_demo::fr_fbba::are_all_valid(&fr_fbba), EINVALID_ENUM_VALUE);
-        assert!(std::string::length(&fr_hhzp) <= 255, EDATA_TOO_LONG);
-        assert!(std::string::length(&single_text1) <= 50, EDATA_TOO_LONG);
+        assert!(aptos_forms_demo::fr_duif::are_all_valid(&fr_duif), EInvalidEnumValue);
+        assert!(aptos_forms_demo::fr_6i34::are_all_valid(&fr_6i34), EInvalidEnumValue);
+        assert!(std::string::length(&fr_8xjs) <= 255, EDataTooLong);
+        assert!(aptos_forms_demo::fr_9c3f::is_valid(fr_9c3f), EInvalidEnumValue);
+        assert!(std::string::length(&fr_b3ub) <= 255, EDataTooLong);
+        assert!(aptos_forms_demo::fr_gh3o::are_all_valid(&fr_gh3o), EInvalidEnumValue);
+        assert!(aptos_forms_demo::fr_fbba::are_all_valid(&fr_fbba), EInvalidEnumValue);
+        assert!(std::string::length(&fr_hhzp) <= 255, EDataTooLong);
+        assert!(std::string::length(&single_text1) <= 50, EDataTooLong);
         MainForm {
             signer_address,
             version: 0,
@@ -435,30 +435,30 @@ module aptos_forms_demo::main_form {
     public(friend) fun asset_main_form_not_exists(
         signer_address: address,
     ) acquires Tables {
-        assert!(exists<Tables>(genesis_account::resouce_account_address()), ENOT_INITIALIZED);
+        assert!(exists<Tables>(genesis_account::resouce_account_address()), ENotInitialized);
         let tables = borrow_global_mut<Tables>(genesis_account::resouce_account_address());
-        assert!(!table::contains(&tables.main_form_table, signer_address), EID_ALREADY_EXISTS);
+        assert!(!table::contains(&tables.main_form_table, signer_address), EIdAlreadyExists);
     }
 
     public(friend) fun update_version_and_add(main_form: MainForm) acquires Tables {
         main_form.version = main_form.version + 1;
-        //assert!(main_form.version != 0, EINAPPROPRIATE_VERSION);
+        //assert!(main_form.version != 0, EInappropriateVersion);
         private_add_main_form(main_form);
     }
 
     public(friend) fun add_main_form(main_form: MainForm) acquires Tables {
-        assert!(main_form.version == 0, EINAPPROPRIATE_VERSION);
+        assert!(main_form.version == 0, EInappropriateVersion);
         private_add_main_form(main_form);
     }
 
     public(friend) fun remove_main_form(signer_address: address): MainForm acquires Tables {
-        assert!(exists<Tables>(genesis_account::resouce_account_address()), ENOT_INITIALIZED);
+        assert!(exists<Tables>(genesis_account::resouce_account_address()), ENotInitialized);
         let tables = borrow_global_mut<Tables>(genesis_account::resouce_account_address());
         table::remove(&mut tables.main_form_table, signer_address)
     }
 
     fun private_add_main_form(main_form: MainForm) acquires Tables {
-        assert!(exists<Tables>(genesis_account::resouce_account_address()), ENOT_INITIALIZED);
+        assert!(exists<Tables>(genesis_account::resouce_account_address()), ENotInitialized);
         let tables = borrow_global_mut<Tables>(genesis_account::resouce_account_address());
         table::add(&mut tables.main_form_table, signer_address(&main_form), main_form);
     }
@@ -497,7 +497,7 @@ module aptos_forms_demo::main_form {
     }
 
     public(friend) fun emit_main_form_created(main_form_created: MainFormCreated) acquires Events {
-        assert!(exists<Events>(genesis_account::resouce_account_address()), ENOT_INITIALIZED);
+        assert!(exists<Events>(genesis_account::resouce_account_address()), ENotInitialized);
         let events = borrow_global_mut<Events>(genesis_account::resouce_account_address());
         event::emit_event(&mut events.main_form_created_handle, main_form_created);
     }
