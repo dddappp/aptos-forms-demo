@@ -33,7 +33,7 @@ public class M {
     static {
         Map<String, String> typeToAggMap = new HashMap<>();
 
-        typeToAggMap.put("MainForm", "MainForm");
+        typeToAggMap.put("AptosFormsDemoMainForm", "AptosFormsDemoMainForm");
         TYPE_NAME_TO_AGGREGATE_NAME_MAP = typeToAggMap;
 
         Map<String, Class<?>> clsMap = new HashMap<>();
@@ -117,9 +117,9 @@ public class M {
 
 
   // /////////////////////////////////////////////////////////  
-  public static class MainFormMetadata {
+  public static class AptosFormsDemoMainFormMetadata {
 
-    private MainFormMetadata() {
+    private AptosFormsDemoMainFormMetadata() {
     }
 
     public static final String PROPERTY_NAME_VERSION      = "offChainVersion";

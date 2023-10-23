@@ -5,9 +5,9 @@
 
 package org.test.aptosformsdemo.config;
 
-import org.test.aptosformsdemo.domain.mainform.*;
+import org.test.aptosformsdemo.domain.aptosformsdemomainform.*;
 import org.test.aptosformsdemo.domain.*;
-import org.test.aptosformsdemo.domain.mainform.hibernate.*;
+import org.test.aptosformsdemo.domain.aptosformsdemomainform.hibernate.*;
 import org.test.aptosformsdemo.specialization.AggregateEventListener;
 import org.test.aptosformsdemo.specialization.EventStore;
 import org.test.aptosformsdemo.specialization.IdGenerator;
@@ -22,44 +22,44 @@ public class AggregatesHibernateConfig {
 
 
     @Bean
-    public MainFormStateRepository mainFormStateRepository(
+    public AptosFormsDemoMainFormStateRepository aptosFormsDemoMainFormStateRepository(
             SessionFactory hibernateSessionFactory,
             ReadOnlyProxyGenerator stateReadOnlyProxyGenerator
     ) {
-        HibernateMainFormStateRepository repository = new HibernateMainFormStateRepository();
+        HibernateAptosFormsDemoMainFormStateRepository repository = new HibernateAptosFormsDemoMainFormStateRepository();
         repository.setSessionFactory(hibernateSessionFactory);
         repository.setReadOnlyProxyGenerator(stateReadOnlyProxyGenerator);
         return repository;
     }
 
     @Bean
-    public MainFormStateQueryRepository mainFormStateQueryRepository(
+    public AptosFormsDemoMainFormStateQueryRepository aptosFormsDemoMainFormStateQueryRepository(
             SessionFactory hibernateSessionFactory,
             ReadOnlyProxyGenerator stateReadOnlyProxyGenerator
     ) {
-        HibernateMainFormStateQueryRepository repository = new HibernateMainFormStateQueryRepository();
+        HibernateAptosFormsDemoMainFormStateQueryRepository repository = new HibernateAptosFormsDemoMainFormStateQueryRepository();
         repository.setSessionFactory(hibernateSessionFactory);
         repository.setReadOnlyProxyGenerator(stateReadOnlyProxyGenerator);
         return repository;
     }
 
     @Bean
-    public HibernateMainFormEventStore mainFormEventStore(SessionFactory hibernateSessionFactory) {
-        HibernateMainFormEventStore eventStore = new HibernateMainFormEventStore();
+    public HibernateAptosFormsDemoMainFormEventStore aptosFormsDemoMainFormEventStore(SessionFactory hibernateSessionFactory) {
+        HibernateAptosFormsDemoMainFormEventStore eventStore = new HibernateAptosFormsDemoMainFormEventStore();
         eventStore.setSessionFactory(hibernateSessionFactory);
         return eventStore;
     }
 
     @Bean
-    public AbstractMainFormApplicationService.SimpleMainFormApplicationService mainFormApplicationService(
-            @Qualifier("mainFormEventStore") EventStore mainFormEventStore,
-            MainFormStateRepository mainFormStateRepository,
-            MainFormStateQueryRepository mainFormStateQueryRepository
+    public AbstractAptosFormsDemoMainFormApplicationService.SimpleAptosFormsDemoMainFormApplicationService aptosFormsDemoMainFormApplicationService(
+            @Qualifier("aptosFormsDemoMainFormEventStore") EventStore aptosFormsDemoMainFormEventStore,
+            AptosFormsDemoMainFormStateRepository aptosFormsDemoMainFormStateRepository,
+            AptosFormsDemoMainFormStateQueryRepository aptosFormsDemoMainFormStateQueryRepository
     ) {
-        AbstractMainFormApplicationService.SimpleMainFormApplicationService applicationService = new AbstractMainFormApplicationService.SimpleMainFormApplicationService(
-                mainFormEventStore,
-                mainFormStateRepository,
-                mainFormStateQueryRepository
+        AbstractAptosFormsDemoMainFormApplicationService.SimpleAptosFormsDemoMainFormApplicationService applicationService = new AbstractAptosFormsDemoMainFormApplicationService.SimpleAptosFormsDemoMainFormApplicationService(
+                aptosFormsDemoMainFormEventStore,
+                aptosFormsDemoMainFormStateRepository,
+                aptosFormsDemoMainFormStateQueryRepository
         );
         return applicationService;
     }

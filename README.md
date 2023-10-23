@@ -86,6 +86,7 @@ docker run \
 wubuku/dddappp-aptos:0.0.1 \
 --xRenderFormSchema /myapp/form-schema/form.json \
 --xRenderFormId AptosFormsDemo \
+--xRenderFormStartPageName MainForm \
 --dddmlDirectoryPath /myapp/dddml \
 --boundedContextName Test.AptosFormsDemo \
 --aptosMoveProjectDirectoryPath /myapp/aptos-contracts \
@@ -102,6 +103,7 @@ The command parameters above are straightforward:
 * The first line indicates mounting your local directory into the `/myapp` directory inside the container.
 * `xRenderFormSchema` is the path of XRender form schema file. It should be a readable file path in the container.
 * `xRenderFormId` is the ID of XRender form. It's recommended to use PascalCase naming style.
+* (Optional) `xRenderFormStartPageName` is the name of start page of XRender form. It's recommended to use PascalCase naming style. The default value is `MainForm`.
 * `dddmlDirectoryPath` is the directory where DDDML model files are located. It should be a readable directory path in the container.
 * Interpret the value of (optional) parameter `boundedContextName` as the name of your application you want to develop. When there are multiple parts in your name, separate them with dots and use PascalCase naming style for each part. Bounded-context is a term in Domain-driven design (DDD) that refers to a specific problem domain scope that contains specific business boundaries, constraints, and language. If you don't understand this concept for now, it's not a big deal.
 * `aptosMoveProjectDirectoryPath` is directory path where on-chain Aptos contract code is placed. It should be a readable and writable directory path in container.

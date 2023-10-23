@@ -8,7 +8,7 @@ package org.test.aptosformsdemo.domain;
 import org.test.aptosformsdemo.specialization.ReflectUtils;
 import org.test.aptosformsdemo.specialization.MutationContext;
 import org.test.aptosformsdemo.specialization.VerificationContext;
-import org.test.aptosformsdemo.domain.mainform.*;
+import org.test.aptosformsdemo.domain.aptosformsdemomainform.*;
 import java.math.BigInteger;
 import org.test.aptosformsdemo.domain.*;
 import java.util.Date;
@@ -18,17 +18,17 @@ public class StaticMethodConstraints {
     public static void assertStaticVerificationAndMutationMethods() {
 
         ReflectUtils.assertStaticMethodIfClassExists(
-                    "org.test.aptosformsdemo.domain.mainform.CreateLogic",
+                    "org.test.aptosformsdemo.domain.aptosformsdemomainform.SubmitLogic",
                     "verify",
-                    new Class[]{MainFormState.class, BigInteger.class, String[].class, String[].class, String.class, String.class, BigInteger.class, String.class, BigInteger.class, StringRange.class, StringRange.class, BigInteger.class, StringRange.class, String[].class, String[].class, String.class, String.class, VerificationContext.class},
+                    new Class[]{AptosFormsDemoMainFormState.class, BigInteger.class, String[].class, String[].class, String.class, String.class, BigInteger.class, String.class, BigInteger.class, StringRange.class, StringRange.class, BigInteger.class, StringRange.class, String[].class, String[].class, String.class, String.class, VerificationContext.class},
                     new String[]{"_", "fr_5pqi", "fr_duif", "fr_6i34", "fr_8xjs", "fr_9c3f", "fr_4ok6", "fr_b3ub", "fr_1z7o", "fr_d8rw", "fr_dy3l", "fr_6f68", "fr_47yy", "fr_gh3o", "fr_fbba", "fr_hhzp", "single_text1"}
             );
 
 
         ReflectUtils.assertStaticMethodIfClassExists(
-                    "org.test.aptosformsdemo.domain.mainform.CreateLogic",
+                    "org.test.aptosformsdemo.domain.aptosformsdemomainform.SubmitLogic",
                     "mutate",
-                    new Class[]{MainFormState.class, BigInteger.class, String[].class, String[].class, String.class, String.class, BigInteger.class, String.class, BigInteger.class, StringRange.class, StringRange.class, BigInteger.class, StringRange.class, String[].class, String[].class, String.class, String.class, BigInteger.class, BigInteger.class, String.class, AptosEventGuid.class, String.class, MutationContext.class},
+                    new Class[]{AptosFormsDemoMainFormState.class, BigInteger.class, String[].class, String[].class, String.class, String.class, BigInteger.class, String.class, BigInteger.class, StringRange.class, StringRange.class, BigInteger.class, StringRange.class, String[].class, String[].class, String.class, String.class, BigInteger.class, BigInteger.class, String.class, AptosEventGuid.class, String.class, MutationContext.class},
                     new String[]{"_", "fr_5pqi", "fr_duif", "fr_6i34", "fr_8xjs", "fr_9c3f", "fr_4ok6", "fr_b3ub", "fr_1z7o", "fr_d8rw", "fr_dy3l", "fr_6f68", "fr_47yy", "fr_gh3o", "fr_fbba", "fr_hhzp", "single_text1", "aptosEventVersion", "aptosEventSequenceNumber", "aptosEventType", "aptosEventGuid", "status"}
             );
 

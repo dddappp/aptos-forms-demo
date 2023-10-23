@@ -10,16 +10,16 @@ public class ContractConstants {
 
     public static final String CONTRACT_NAMED_ADDRESS = "aptos_forms_demo";
 
-    public static final String MAIN_FORM_MODULE_MAIN_FORM_CREATED = "main_form::MainFormCreated";
-    public static final String MAIN_FORM_MODULE_MAIN_FORM_CREATED_HANDLE_FIELD = "main_form_created_handle";
+    public static final String APTOS_FORMS_DEMO_MAIN_FORM_MODULE_APTOS_FORMS_DEMO_MAIN_FORM_SUBMITTED = "aptos_forms_demo_main_form::AptosFormsDemoMainFormSubmitted";
+    public static final String APTOS_FORMS_DEMO_MAIN_FORM_MODULE_APTOS_FORMS_DEMO_MAIN_FORM_SUBMITTED_HANDLE_FIELD = "aptos_forms_demo_main_form_submitted_handle";
 
-    public static final String MAIN_FORM_MODULE_MAIN_FORM = "main_form::MainForm";
+    public static final String APTOS_FORMS_DEMO_MAIN_FORM_MODULE_APTOS_FORMS_DEMO_MAIN_FORM = "aptos_forms_demo_main_form::AptosFormsDemoMainForm";
 
-    public static final String MAIN_FORM_ID_TYPE = "address";
+    public static final String APTOS_FORMS_DEMO_MAIN_FORM_ID_TYPE = "address";
 
-    public static final String MAIN_FORM_MODULE_TABLES = "main_form::Tables";
+    public static final String APTOS_FORMS_DEMO_MAIN_FORM_MODULE_TABLES = "aptos_forms_demo_main_form::Tables";
 
-    public static final String MAIN_FORM_MODULE_EVENTS = "main_form::Events";
+    public static final String APTOS_FORMS_DEMO_MAIN_FORM_MODULE_EVENTS = "aptos_forms_demo_main_form::Events";
 
     public static String toNumericalAddressType(String type, String contractAddress) {
         if (type.startsWith(CONTRACT_NAMED_ADDRESS + "::")) {

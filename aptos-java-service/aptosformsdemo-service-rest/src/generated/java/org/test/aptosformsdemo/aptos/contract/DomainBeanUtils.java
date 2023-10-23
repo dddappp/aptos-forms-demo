@@ -11,8 +11,8 @@ import com.github.wubuku.aptos.bean.Event;
 import com.github.wubuku.aptos.bean.Option;
 import org.test.aptosformsdemo.domain.AptosEvent;
 import org.test.aptosformsdemo.domain.AptosEventGuid;
-import org.test.aptosformsdemo.domain.mainform.AbstractMainFormEvent;
-import org.test.aptosformsdemo.aptos.contract.mainform.MainFormCreated;
+import org.test.aptosformsdemo.domain.aptosformsdemomainform.AbstractAptosFormsDemoMainFormEvent;
+import org.test.aptosformsdemo.aptos.contract.aptosformsdemomainform.AptosFormsDemoMainFormSubmitted;
 
 /**
  * Utils that convert beans in the contract package to domain beans.
@@ -41,32 +41,32 @@ public class DomainBeanUtils {
     }
 
 
-    public static AbstractMainFormEvent.MainFormCreated toMainFormCreated(Event<MainFormCreated> eventEnvelope) {
-        MainFormCreated contractEvent = eventEnvelope.getData();
+    public static AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted toAptosFormsDemoMainFormSubmitted(Event<AptosFormsDemoMainFormSubmitted> eventEnvelope) {
+        AptosFormsDemoMainFormSubmitted contractEvent = eventEnvelope.getData();
 
-        AbstractMainFormEvent.MainFormCreated mainFormCreated = new AbstractMainFormEvent.MainFormCreated();
-        mainFormCreated.setSignerAddress(contractEvent.getSignerAddress());
-        mainFormCreated.setFr_5pqi(contractEvent.getFr_5pqi());
-        mainFormCreated.setFr_duif(contractEvent.getFr_duif());
-        mainFormCreated.setFr_6i34(contractEvent.getFr_6i34());
-        mainFormCreated.setFr_8xjs(contractEvent.getFr_8xjs());
-        mainFormCreated.setFr_9c3f(contractEvent.getFr_9c3f());
-        mainFormCreated.setFr_4ok6(contractEvent.getFr_4ok6());
-        mainFormCreated.setFr_b3ub(contractEvent.getFr_b3ub());
-        mainFormCreated.setFr_1z7o(contractEvent.getFr_1z7o());
-        mainFormCreated.setFr_d8rw(DomainBeanUtils.toStringRange(contractEvent.getFr_d8rw()));
-        mainFormCreated.setFr_dy3l(DomainBeanUtils.toStringRange(contractEvent.getFr_dy3l()));
-        mainFormCreated.setFr_6f68(contractEvent.getFr_6f68());
-        mainFormCreated.setFr_47yy(DomainBeanUtils.toStringRange(contractEvent.getFr_47yy()));
-        mainFormCreated.setFr_gh3o(contractEvent.getFr_gh3o());
-        mainFormCreated.setFr_fbba(contractEvent.getFr_fbba());
-        mainFormCreated.setFr_hhzp(contractEvent.getFr_hhzp());
-        mainFormCreated.setSingle_text1(contractEvent.getSingle_text1());
-        mainFormCreated.setVersion(BigInteger.valueOf(-1));
+        AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted aptosFormsDemoMainFormSubmitted = new AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted();
+        aptosFormsDemoMainFormSubmitted.setSignerAddress(contractEvent.getSignerAddress());
+        aptosFormsDemoMainFormSubmitted.setFr_5pqi(contractEvent.getFr_5pqi());
+        aptosFormsDemoMainFormSubmitted.setFr_duif(contractEvent.getFr_duif());
+        aptosFormsDemoMainFormSubmitted.setFr_6i34(contractEvent.getFr_6i34());
+        aptosFormsDemoMainFormSubmitted.setFr_8xjs(contractEvent.getFr_8xjs());
+        aptosFormsDemoMainFormSubmitted.setFr_9c3f(contractEvent.getFr_9c3f());
+        aptosFormsDemoMainFormSubmitted.setFr_4ok6(contractEvent.getFr_4ok6());
+        aptosFormsDemoMainFormSubmitted.setFr_b3ub(contractEvent.getFr_b3ub());
+        aptosFormsDemoMainFormSubmitted.setFr_1z7o(contractEvent.getFr_1z7o());
+        aptosFormsDemoMainFormSubmitted.setFr_d8rw(DomainBeanUtils.toStringRange(contractEvent.getFr_d8rw()));
+        aptosFormsDemoMainFormSubmitted.setFr_dy3l(DomainBeanUtils.toStringRange(contractEvent.getFr_dy3l()));
+        aptosFormsDemoMainFormSubmitted.setFr_6f68(contractEvent.getFr_6f68());
+        aptosFormsDemoMainFormSubmitted.setFr_47yy(DomainBeanUtils.toStringRange(contractEvent.getFr_47yy()));
+        aptosFormsDemoMainFormSubmitted.setFr_gh3o(contractEvent.getFr_gh3o());
+        aptosFormsDemoMainFormSubmitted.setFr_fbba(contractEvent.getFr_fbba());
+        aptosFormsDemoMainFormSubmitted.setFr_hhzp(contractEvent.getFr_hhzp());
+        aptosFormsDemoMainFormSubmitted.setSingle_text1(contractEvent.getSingle_text1());
+        aptosFormsDemoMainFormSubmitted.setVersion(BigInteger.valueOf(-1));
 
-        setAptosEventProperties(mainFormCreated, eventEnvelope);
+        setAptosEventProperties(aptosFormsDemoMainFormSubmitted, eventEnvelope);
 
-        return mainFormCreated;
+        return aptosFormsDemoMainFormSubmitted;
     }
 
     public static void setAptosEventProperties(AptosEvent.MutableAptosEvent domainAptosEvent, Event<?> eventEnvelope) {
