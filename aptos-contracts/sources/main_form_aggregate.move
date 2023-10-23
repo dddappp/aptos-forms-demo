@@ -5,10 +5,10 @@
 
 module aptos_forms_demo::main_form_aggregate {
     use aptos_forms_demo::main_form;
-    use aptos_forms_demo::main_form_create_logic;
+    use aptos_forms_demo::main_form_submit_logic;
     use std::string::String;
 
-    public entry fun create(
+    public entry fun submit(
         account: &signer,
         fr_5pqi: u128,
         fr_duif: vector<String>,
@@ -27,7 +27,7 @@ module aptos_forms_demo::main_form_aggregate {
         fr_hhzp: String,
         single_text1: String,
     ) {
-        let main_form_created = main_form_create_logic::verify(
+        let main_form_submitted = main_form_submit_logic::verify(
             account,
             fr_5pqi,
             fr_duif,
@@ -46,12 +46,12 @@ module aptos_forms_demo::main_form_aggregate {
             fr_hhzp,
             single_text1,
         );
-        let main_form = main_form_create_logic::mutate(
+        let main_form = main_form_submit_logic::mutate(
             account,
-            &main_form_created,
+            &main_form_submitted,
         );
         main_form::add_main_form(main_form);
-        main_form::emit_main_form_created(main_form_created);
+        main_form::emit_main_form_submitted(main_form_submitted);
     }
 
 }

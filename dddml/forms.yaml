@@ -1,6 +1,19 @@
-﻿aggregates:
+﻿configuration:
+  move:
+    isModuleNamePackagePrefixEnabled: true
+
+aggregates:
   MainForm:
-    name: MainForm
+    metadata:
+      Preprocessors:
+        - MOVE_CRUD_IT
+      CRUD_IT_NO_UPDATE: true
+      CRUD_IT_NO_DELETE: true
+      CRUD_IT_CREATE_METHOD_NAME: Submit
+    methods:
+      Submit:
+        event:
+          name: MainFormSubmitted
     id:
       generator:
         class: signer
@@ -100,11 +113,6 @@
         length: 50
         type: String
         sequenceNumber: 15
-    metadata:
-      Preprocessors:
-      - MOVE_CRUD_IT
-      CRUD_IT_NO_UPDATE: true
-      CRUD_IT_NO_DELETE: true
 enumObjects:
   Fr_duif:
     baseType: String

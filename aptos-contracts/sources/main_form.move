@@ -11,7 +11,7 @@ module aptos_forms_demo::main_form {
     use aptos_std::table::{Self, Table};
     use std::string::String;
     use xrender_form_utils::string_range::StringRange;
-    friend aptos_forms_demo::main_form_create_logic;
+    friend aptos_forms_demo::main_form_submit_logic;
     friend aptos_forms_demo::main_form_aggregate;
 
     const EIdAlreadyExists: u64 = 101;
@@ -21,7 +21,7 @@ module aptos_forms_demo::main_form {
     const EInvalidEnumValue: u64 = 106;
 
     struct Events has key {
-        main_form_created_handle: event::EventHandle<MainFormCreated>,
+        main_form_submitted_handle: event::EventHandle<MainFormSubmitted>,
     }
 
     struct Tables has key {
@@ -33,7 +33,7 @@ module aptos_forms_demo::main_form {
 
         let res_account = genesis_account::resource_account_signer();
         move_to(&res_account, Events {
-            main_form_created_handle: account::new_event_handle<MainFormCreated>(&res_account),
+            main_form_submitted_handle: account::new_event_handle<MainFormSubmitted>(&res_account),
         });
 
         move_to(
@@ -261,7 +261,7 @@ module aptos_forms_demo::main_form {
         }
     }
 
-    struct MainFormCreated has store, drop {
+    struct MainFormSubmitted has store, drop {
         signer_address: address,
         fr_5pqi: u128,
         fr_duif: vector<String>,
@@ -281,75 +281,75 @@ module aptos_forms_demo::main_form {
         single_text1: String,
     }
 
-    public fun main_form_created_signer_address(main_form_created: &MainFormCreated): address {
-        main_form_created.signer_address
+    public fun main_form_submitted_signer_address(main_form_submitted: &MainFormSubmitted): address {
+        main_form_submitted.signer_address
     }
 
-    public fun main_form_created_fr_5pqi(main_form_created: &MainFormCreated): u128 {
-        main_form_created.fr_5pqi
+    public fun main_form_submitted_fr_5pqi(main_form_submitted: &MainFormSubmitted): u128 {
+        main_form_submitted.fr_5pqi
     }
 
-    public fun main_form_created_fr_duif(main_form_created: &MainFormCreated): vector<String> {
-        main_form_created.fr_duif
+    public fun main_form_submitted_fr_duif(main_form_submitted: &MainFormSubmitted): vector<String> {
+        main_form_submitted.fr_duif
     }
 
-    public fun main_form_created_fr_6i34(main_form_created: &MainFormCreated): vector<String> {
-        main_form_created.fr_6i34
+    public fun main_form_submitted_fr_6i34(main_form_submitted: &MainFormSubmitted): vector<String> {
+        main_form_submitted.fr_6i34
     }
 
-    public fun main_form_created_fr_8xjs(main_form_created: &MainFormCreated): String {
-        main_form_created.fr_8xjs
+    public fun main_form_submitted_fr_8xjs(main_form_submitted: &MainFormSubmitted): String {
+        main_form_submitted.fr_8xjs
     }
 
-    public fun main_form_created_fr_9c3f(main_form_created: &MainFormCreated): String {
-        main_form_created.fr_9c3f
+    public fun main_form_submitted_fr_9c3f(main_form_submitted: &MainFormSubmitted): String {
+        main_form_submitted.fr_9c3f
     }
 
-    public fun main_form_created_fr_4ok6(main_form_created: &MainFormCreated): u128 {
-        main_form_created.fr_4ok6
+    public fun main_form_submitted_fr_4ok6(main_form_submitted: &MainFormSubmitted): u128 {
+        main_form_submitted.fr_4ok6
     }
 
-    public fun main_form_created_fr_b3ub(main_form_created: &MainFormCreated): String {
-        main_form_created.fr_b3ub
+    public fun main_form_submitted_fr_b3ub(main_form_submitted: &MainFormSubmitted): String {
+        main_form_submitted.fr_b3ub
     }
 
-    public fun main_form_created_fr_1z7o(main_form_created: &MainFormCreated): u128 {
-        main_form_created.fr_1z7o
+    public fun main_form_submitted_fr_1z7o(main_form_submitted: &MainFormSubmitted): u128 {
+        main_form_submitted.fr_1z7o
     }
 
-    public fun main_form_created_fr_d8rw(main_form_created: &MainFormCreated): StringRange {
-        main_form_created.fr_d8rw
+    public fun main_form_submitted_fr_d8rw(main_form_submitted: &MainFormSubmitted): StringRange {
+        main_form_submitted.fr_d8rw
     }
 
-    public fun main_form_created_fr_dy3l(main_form_created: &MainFormCreated): StringRange {
-        main_form_created.fr_dy3l
+    public fun main_form_submitted_fr_dy3l(main_form_submitted: &MainFormSubmitted): StringRange {
+        main_form_submitted.fr_dy3l
     }
 
-    public fun main_form_created_fr_6f68(main_form_created: &MainFormCreated): u128 {
-        main_form_created.fr_6f68
+    public fun main_form_submitted_fr_6f68(main_form_submitted: &MainFormSubmitted): u128 {
+        main_form_submitted.fr_6f68
     }
 
-    public fun main_form_created_fr_47yy(main_form_created: &MainFormCreated): StringRange {
-        main_form_created.fr_47yy
+    public fun main_form_submitted_fr_47yy(main_form_submitted: &MainFormSubmitted): StringRange {
+        main_form_submitted.fr_47yy
     }
 
-    public fun main_form_created_fr_gh3o(main_form_created: &MainFormCreated): vector<String> {
-        main_form_created.fr_gh3o
+    public fun main_form_submitted_fr_gh3o(main_form_submitted: &MainFormSubmitted): vector<String> {
+        main_form_submitted.fr_gh3o
     }
 
-    public fun main_form_created_fr_fbba(main_form_created: &MainFormCreated): vector<String> {
-        main_form_created.fr_fbba
+    public fun main_form_submitted_fr_fbba(main_form_submitted: &MainFormSubmitted): vector<String> {
+        main_form_submitted.fr_fbba
     }
 
-    public fun main_form_created_fr_hhzp(main_form_created: &MainFormCreated): String {
-        main_form_created.fr_hhzp
+    public fun main_form_submitted_fr_hhzp(main_form_submitted: &MainFormSubmitted): String {
+        main_form_submitted.fr_hhzp
     }
 
-    public fun main_form_created_single_text1(main_form_created: &MainFormCreated): String {
-        main_form_created.single_text1
+    public fun main_form_submitted_single_text1(main_form_submitted: &MainFormSubmitted): String {
+        main_form_submitted.single_text1
     }
 
-    public(friend) fun new_main_form_created(
+    public(friend) fun new_main_form_submitted(
         signer_address: address,
         fr_5pqi: u128,
         fr_duif: vector<String>,
@@ -367,8 +367,8 @@ module aptos_forms_demo::main_form {
         fr_fbba: vector<String>,
         fr_hhzp: String,
         single_text1: String,
-    ): MainFormCreated {
-        MainFormCreated {
+    ): MainFormSubmitted {
+        MainFormSubmitted {
             signer_address,
             fr_5pqi,
             fr_duif,
@@ -496,10 +496,10 @@ module aptos_forms_demo::main_form {
         } = main_form;
     }
 
-    public(friend) fun emit_main_form_created(main_form_created: MainFormCreated) acquires Events {
+    public(friend) fun emit_main_form_submitted(main_form_submitted: MainFormSubmitted) acquires Events {
         assert!(exists<Events>(genesis_account::resouce_account_address()), ENotInitialized);
         let events = borrow_global_mut<Events>(genesis_account::resouce_account_address());
-        event::emit_event(&mut events.main_form_created_handle, main_form_created);
+        event::emit_event(&mut events.main_form_submitted_handle, main_form_submitted);
     }
 
 }
