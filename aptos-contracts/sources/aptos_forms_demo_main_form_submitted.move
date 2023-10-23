@@ -7,7 +7,9 @@ module aptos_forms_demo::aptos_forms_demo_main_form_submitted {
 
     use aptos_forms_demo::aptos_forms_demo_main_form::{Self, AptosFormsDemoMainFormSubmitted};
     use std::string::String;
-    use xrender_form_utils::string_range::StringRange;
+    use xrender_form_utils::date::Date;
+    use xrender_form_utils::date_range::DateRange;
+    use xrender_form_utils::time_range::TimeRange;
 
     public fun signer_address(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): address {
         aptos_forms_demo_main_form::aptos_forms_demo_main_form_submitted_signer_address(aptos_forms_demo_main_form_submitted)
@@ -45,11 +47,11 @@ module aptos_forms_demo::aptos_forms_demo_main_form_submitted {
         aptos_forms_demo_main_form::aptos_forms_demo_main_form_submitted_fr_1z7o(aptos_forms_demo_main_form_submitted)
     }
 
-    public fun fr_d8rw(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): StringRange {
+    public fun fr_d8rw(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): DateRange {
         aptos_forms_demo_main_form::aptos_forms_demo_main_form_submitted_fr_d8rw(aptos_forms_demo_main_form_submitted)
     }
 
-    public fun fr_dy3l(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): StringRange {
+    public fun fr_dy3l(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): DateRange {
         aptos_forms_demo_main_form::aptos_forms_demo_main_form_submitted_fr_dy3l(aptos_forms_demo_main_form_submitted)
     }
 
@@ -57,7 +59,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form_submitted {
         aptos_forms_demo_main_form::aptos_forms_demo_main_form_submitted_fr_6f68(aptos_forms_demo_main_form_submitted)
     }
 
-    public fun fr_47yy(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): StringRange {
+    public fun fr_47yy(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): TimeRange {
         aptos_forms_demo_main_form::aptos_forms_demo_main_form_submitted_fr_47yy(aptos_forms_demo_main_form_submitted)
     }
 
@@ -69,7 +71,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form_submitted {
         aptos_forms_demo_main_form::aptos_forms_demo_main_form_submitted_fr_fbba(aptos_forms_demo_main_form_submitted)
     }
 
-    public fun fr_hhzp(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): String {
+    public fun fr_hhzp(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): Date {
         aptos_forms_demo_main_form::aptos_forms_demo_main_form_submitted_fr_hhzp(aptos_forms_demo_main_form_submitted)
     }
 

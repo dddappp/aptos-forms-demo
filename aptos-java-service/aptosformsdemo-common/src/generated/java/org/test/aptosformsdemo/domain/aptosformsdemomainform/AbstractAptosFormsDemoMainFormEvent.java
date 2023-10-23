@@ -285,27 +285,27 @@ public abstract class AbstractAptosFormsDemoMainFormEvent extends AbstractEvent 
             getDynamicProperties().put("fr_1z7o", value);
         }
 
-        public StringRange getFr_d8rw() {
+        public DateRange getFr_d8rw() {
             Object val = getDynamicProperties().get("fr_d8rw");
-            if (val instanceof StringRange) {
-                return (StringRange) val;
+            if (val instanceof DateRange) {
+                return (DateRange) val;
             }
-            return ApplicationContext.current.getTypeConverter().convertValue(val, StringRange.class);
+            return ApplicationContext.current.getTypeConverter().convertValue(val, DateRange.class);
         }
 
-        public void setFr_d8rw(StringRange value) {
+        public void setFr_d8rw(DateRange value) {
             getDynamicProperties().put("fr_d8rw", value);
         }
 
-        public StringRange getFr_dy3l() {
+        public DateRange getFr_dy3l() {
             Object val = getDynamicProperties().get("fr_dy3l");
-            if (val instanceof StringRange) {
-                return (StringRange) val;
+            if (val instanceof DateRange) {
+                return (DateRange) val;
             }
-            return ApplicationContext.current.getTypeConverter().convertValue(val, StringRange.class);
+            return ApplicationContext.current.getTypeConverter().convertValue(val, DateRange.class);
         }
 
-        public void setFr_dy3l(StringRange value) {
+        public void setFr_dy3l(DateRange value) {
             getDynamicProperties().put("fr_dy3l", value);
         }
 
@@ -321,15 +321,15 @@ public abstract class AbstractAptosFormsDemoMainFormEvent extends AbstractEvent 
             getDynamicProperties().put("fr_6f68", value);
         }
 
-        public StringRange getFr_47yy() {
+        public TimeRange getFr_47yy() {
             Object val = getDynamicProperties().get("fr_47yy");
-            if (val instanceof StringRange) {
-                return (StringRange) val;
+            if (val instanceof TimeRange) {
+                return (TimeRange) val;
             }
-            return ApplicationContext.current.getTypeConverter().convertValue(val, StringRange.class);
+            return ApplicationContext.current.getTypeConverter().convertValue(val, TimeRange.class);
         }
 
-        public void setFr_47yy(StringRange value) {
+        public void setFr_47yy(TimeRange value) {
             getDynamicProperties().put("fr_47yy", value);
         }
 
@@ -357,15 +357,15 @@ public abstract class AbstractAptosFormsDemoMainFormEvent extends AbstractEvent 
             getDynamicProperties().put("fr_fbba", value);
         }
 
-        public String getFr_hhzp() {
+        public XRenderFormDate getFr_hhzp() {
             Object val = getDynamicProperties().get("fr_hhzp");
-            if (val instanceof String) {
-                return (String) val;
+            if (val instanceof XRenderFormDate) {
+                return (XRenderFormDate) val;
             }
-            return ApplicationContext.current.getTypeConverter().convertValue(val, String.class);
+            return ApplicationContext.current.getTypeConverter().convertValue(val, XRenderFormDate.class);
         }
 
-        public void setFr_hhzp(String value) {
+        public void setFr_hhzp(XRenderFormDate value) {
             getDynamicProperties().put("fr_hhzp", value);
         }
 

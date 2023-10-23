@@ -83,13 +83,13 @@ public class AptosAptosFormsDemoMainFormStateRetriever {
         aptosFormsDemoMainFormState.setFr_4ok6(aptosFormsDemoMainForm.getFr_4ok6());
         aptosFormsDemoMainFormState.setFr_b3ub(aptosFormsDemoMainForm.getFr_b3ub());
         aptosFormsDemoMainFormState.setFr_1z7o(aptosFormsDemoMainForm.getFr_1z7o());
-        aptosFormsDemoMainFormState.setFr_d8rw(DomainBeanUtils.toStringRange(aptosFormsDemoMainForm.getFr_d8rw()));
-        aptosFormsDemoMainFormState.setFr_dy3l(DomainBeanUtils.toStringRange(aptosFormsDemoMainForm.getFr_dy3l()));
+        aptosFormsDemoMainFormState.setFr_d8rw(DomainBeanUtils.toDateRange(aptosFormsDemoMainForm.getFr_d8rw()));
+        aptosFormsDemoMainFormState.setFr_dy3l(DomainBeanUtils.toDateRange(aptosFormsDemoMainForm.getFr_dy3l()));
         aptosFormsDemoMainFormState.setFr_6f68(aptosFormsDemoMainForm.getFr_6f68());
-        aptosFormsDemoMainFormState.setFr_47yy(DomainBeanUtils.toStringRange(aptosFormsDemoMainForm.getFr_47yy()));
+        aptosFormsDemoMainFormState.setFr_47yy(DomainBeanUtils.toTimeRange(aptosFormsDemoMainForm.getFr_47yy()));
         aptosFormsDemoMainFormState.setFr_gh3o(new HashSet<>(Arrays.asList(aptosFormsDemoMainForm.getFr_gh3o())));
         aptosFormsDemoMainFormState.setFr_fbba(new HashSet<>(Arrays.asList(aptosFormsDemoMainForm.getFr_fbba())));
-        aptosFormsDemoMainFormState.setFr_hhzp(aptosFormsDemoMainForm.getFr_hhzp());
+        aptosFormsDemoMainFormState.setFr_hhzp(DomainBeanUtils.toXRenderFormDate(aptosFormsDemoMainForm.getFr_hhzp()));
         aptosFormsDemoMainFormState.setSingle_text1(aptosFormsDemoMainForm.getSingle_text1());
         return aptosFormsDemoMainFormState;
     }

@@ -99,26 +99,26 @@ public class AptosFormsDemoMainFormStateDto {
         this.fr_1z7o = fr_1z7o;
     }
 
-    private StringRange fr_d8rw;
+    private DateRange fr_d8rw;
 
-    public StringRange getFr_d8rw()
+    public DateRange getFr_d8rw()
     {
         return this.fr_d8rw;
     }
 
-    public void setFr_d8rw(StringRange fr_d8rw)
+    public void setFr_d8rw(DateRange fr_d8rw)
     {
         this.fr_d8rw = fr_d8rw;
     }
 
-    private StringRange fr_dy3l;
+    private DateRange fr_dy3l;
 
-    public StringRange getFr_dy3l()
+    public DateRange getFr_dy3l()
     {
         return this.fr_dy3l;
     }
 
-    public void setFr_dy3l(StringRange fr_dy3l)
+    public void setFr_dy3l(DateRange fr_dy3l)
     {
         this.fr_dy3l = fr_dy3l;
     }
@@ -135,26 +135,26 @@ public class AptosFormsDemoMainFormStateDto {
         this.fr_6f68 = fr_6f68;
     }
 
-    private StringRange fr_47yy;
+    private TimeRange fr_47yy;
 
-    public StringRange getFr_47yy()
+    public TimeRange getFr_47yy()
     {
         return this.fr_47yy;
     }
 
-    public void setFr_47yy(StringRange fr_47yy)
+    public void setFr_47yy(TimeRange fr_47yy)
     {
         this.fr_47yy = fr_47yy;
     }
 
-    private String fr_hhzp;
+    private XRenderFormDate fr_hhzp;
 
-    public String getFr_hhzp()
+    public XRenderFormDate getFr_hhzp()
     {
         return this.fr_hhzp;
     }
 
-    public void setFr_hhzp(String fr_hhzp)
+    public void setFr_hhzp(XRenderFormDate fr_hhzp)
     {
         this.fr_hhzp = fr_hhzp;
     }

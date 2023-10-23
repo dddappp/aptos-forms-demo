@@ -7,8 +7,56 @@ typeDefinitions:
       properties:
         Start:
           type: String
-          length: 50
+          length: 500
         End:
           type: String
-          length: 50
+          length: 500
+
+  DateRange:
+    moveType: "xrender_form_utils::date_range::DateRange"
+    moveEntryFunType: "vector<u16>"
+    moveEntryFunTypeDeserializeFun: "xrender_form_utils::date_range::value_of"
+    dataStruct:
+      properties:
+        Start:
+          type: XRenderFormDate
+        End:
+          type: XRenderFormDate
+
+  TimeRange:
+    moveType: "xrender_form_utils::time_range::TimeRange"
+    moveEntryFunType: "vector<u8>"
+    moveEntryFunTypeDeserializeFun: "xrender_form_utils::time_range::value_of"
+    dataStruct:
+      properties:
+        Start:
+          type: XRenderFormTime
+        End:
+          type: XRenderFormTime
+
+  XRenderFormDate:
+    moveType: "xrender_form_utils::date::Date"
+    moveEntryFunType: "vector<u16>"
+    moveEntryFunTypeDeserializeFun: "xrender_form_utils::date::value_of"
+    dataStruct:
+      properties:
+        Year:
+          type: u16
+        Month:
+          type: u8
+        Day:
+          type: u8
+
+  XRenderFormTime:
+    moveType: "xrender_form_utils::time::Time"
+    moveEntryFunType: "vector<u8>"
+    moveEntryFunTypeDeserializeFun: "xrender_form_utils::time::value_of"
+    dataStruct:
+      properties:
+        Hour:
+          type: u8
+        Minute:
+          type: u8
+        Second:
+          type: u8
 

@@ -85,23 +85,23 @@ public abstract class AbstractAptosFormsDemoMainFormState implements AptosFormsD
         this.fr_1z7o = fr_1z7o;
     }
 
-    private StringRange fr_d8rw;
+    private DateRange fr_d8rw;
 
-    public StringRange getFr_d8rw() {
+    public DateRange getFr_d8rw() {
         return this.fr_d8rw;
     }
 
-    public void setFr_d8rw(StringRange fr_d8rw) {
+    public void setFr_d8rw(DateRange fr_d8rw) {
         this.fr_d8rw = fr_d8rw;
     }
 
-    private StringRange fr_dy3l;
+    private DateRange fr_dy3l;
 
-    public StringRange getFr_dy3l() {
+    public DateRange getFr_dy3l() {
         return this.fr_dy3l;
     }
 
-    public void setFr_dy3l(StringRange fr_dy3l) {
+    public void setFr_dy3l(DateRange fr_dy3l) {
         this.fr_dy3l = fr_dy3l;
     }
 
@@ -115,23 +115,23 @@ public abstract class AbstractAptosFormsDemoMainFormState implements AptosFormsD
         this.fr_6f68 = fr_6f68;
     }
 
-    private StringRange fr_47yy;
+    private TimeRange fr_47yy;
 
-    public StringRange getFr_47yy() {
+    public TimeRange getFr_47yy() {
         return this.fr_47yy;
     }
 
-    public void setFr_47yy(StringRange fr_47yy) {
+    public void setFr_47yy(TimeRange fr_47yy) {
         this.fr_47yy = fr_47yy;
     }
 
-    private String fr_hhzp;
+    private XRenderFormDate fr_hhzp;
 
-    public String getFr_hhzp() {
+    public XRenderFormDate getFr_hhzp() {
         return this.fr_hhzp;
     }
 
-    public void setFr_hhzp(String fr_hhzp) {
+    public void setFr_hhzp(XRenderFormDate fr_hhzp) {
         this.fr_hhzp = fr_hhzp;
     }
 
@@ -379,20 +379,20 @@ public abstract class AbstractAptosFormsDemoMainFormState implements AptosFormsD
         String Fr_b3ub = fr_b3ub;
         BigInteger fr_1z7o = e.getFr_1z7o();
         BigInteger Fr_1z7o = fr_1z7o;
-        StringRange fr_d8rw = e.getFr_d8rw();
-        StringRange Fr_d8rw = fr_d8rw;
-        StringRange fr_dy3l = e.getFr_dy3l();
-        StringRange Fr_dy3l = fr_dy3l;
+        DateRange fr_d8rw = e.getFr_d8rw();
+        DateRange Fr_d8rw = fr_d8rw;
+        DateRange fr_dy3l = e.getFr_dy3l();
+        DateRange Fr_dy3l = fr_dy3l;
         BigInteger fr_6f68 = e.getFr_6f68();
         BigInteger Fr_6f68 = fr_6f68;
-        StringRange fr_47yy = e.getFr_47yy();
-        StringRange Fr_47yy = fr_47yy;
+        TimeRange fr_47yy = e.getFr_47yy();
+        TimeRange Fr_47yy = fr_47yy;
         String[] fr_gh3o = e.getFr_gh3o();
         String[] Fr_gh3o = fr_gh3o;
         String[] fr_fbba = e.getFr_fbba();
         String[] Fr_fbba = fr_fbba;
-        String fr_hhzp = e.getFr_hhzp();
-        String Fr_hhzp = fr_hhzp;
+        XRenderFormDate fr_hhzp = e.getFr_hhzp();
+        XRenderFormDate Fr_hhzp = fr_hhzp;
         String single_text1 = e.getSingle_text1();
         String Single_text1 = single_text1;
         BigInteger aptosEventVersion = e.getAptosEventVersion();
@@ -418,14 +418,14 @@ public abstract class AbstractAptosFormsDemoMainFormState implements AptosFormsD
         AptosFormsDemoMainFormState updatedAptosFormsDemoMainFormState = (AptosFormsDemoMainFormState) ReflectUtils.invokeStaticMethod(
                     "org.test.aptosformsdemo.domain.aptosformsdemomainform.SubmitLogic",
                     "mutate",
-                    new Class[]{AptosFormsDemoMainFormState.class, BigInteger.class, String[].class, String[].class, String.class, String.class, BigInteger.class, String.class, BigInteger.class, StringRange.class, StringRange.class, BigInteger.class, StringRange.class, String[].class, String[].class, String.class, String.class, BigInteger.class, BigInteger.class, String.class, AptosEventGuid.class, String.class, MutationContext.class},
+                    new Class[]{AptosFormsDemoMainFormState.class, BigInteger.class, String[].class, String[].class, String.class, String.class, BigInteger.class, String.class, BigInteger.class, DateRange.class, DateRange.class, BigInteger.class, TimeRange.class, String[].class, String[].class, XRenderFormDate.class, String.class, BigInteger.class, BigInteger.class, String.class, AptosEventGuid.class, String.class, MutationContext.class},
                     new Object[]{this, fr_5pqi, fr_duif, fr_6i34, fr_8xjs, fr_9c3f, fr_4ok6, fr_b3ub, fr_1z7o, fr_d8rw, fr_dy3l, fr_6f68, fr_47yy, fr_gh3o, fr_fbba, fr_hhzp, single_text1, aptosEventVersion, aptosEventSequenceNumber, aptosEventType, aptosEventGuid, status, MutationContext.forEvent(e, s -> {if (s == this) {return this;} else {throw new UnsupportedOperationException();}})}
             );
 
 //package org.test.aptosformsdemo.domain.aptosformsdemomainform;
 //
 //public class SubmitLogic {
-//    public static AptosFormsDemoMainFormState mutate(AptosFormsDemoMainFormState aptosFormsDemoMainFormState, BigInteger fr_5pqi, String[] fr_duif, String[] fr_6i34, String fr_8xjs, String fr_9c3f, BigInteger fr_4ok6, String fr_b3ub, BigInteger fr_1z7o, StringRange fr_d8rw, StringRange fr_dy3l, BigInteger fr_6f68, StringRange fr_47yy, String[] fr_gh3o, String[] fr_fbba, String fr_hhzp, String single_text1, BigInteger aptosEventVersion, BigInteger aptosEventSequenceNumber, String aptosEventType, AptosEventGuid aptosEventGuid, String status, MutationContext<AptosFormsDemoMainFormState, AptosFormsDemoMainFormState.MutableAptosFormsDemoMainFormState> mutationContext) {
+//    public static AptosFormsDemoMainFormState mutate(AptosFormsDemoMainFormState aptosFormsDemoMainFormState, BigInteger fr_5pqi, String[] fr_duif, String[] fr_6i34, String fr_8xjs, String fr_9c3f, BigInteger fr_4ok6, String fr_b3ub, BigInteger fr_1z7o, DateRange fr_d8rw, DateRange fr_dy3l, BigInteger fr_6f68, TimeRange fr_47yy, String[] fr_gh3o, String[] fr_fbba, XRenderFormDate fr_hhzp, String single_text1, BigInteger aptosEventVersion, BigInteger aptosEventSequenceNumber, String aptosEventType, AptosEventGuid aptosEventGuid, String status, MutationContext<AptosFormsDemoMainFormState, AptosFormsDemoMainFormState.MutableAptosFormsDemoMainFormState> mutationContext) {
 //    }
 //}
 

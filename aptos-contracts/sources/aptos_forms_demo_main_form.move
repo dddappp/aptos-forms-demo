@@ -10,7 +10,9 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
     use aptos_framework::event;
     use aptos_std::table::{Self, Table};
     use std::string::String;
-    use xrender_form_utils::string_range::StringRange;
+    use xrender_form_utils::date::Date;
+    use xrender_form_utils::date_range::DateRange;
+    use xrender_form_utils::time_range::TimeRange;
     friend aptos_forms_demo::aptos_forms_demo_main_form_submit_logic;
     friend aptos_forms_demo::aptos_forms_demo_main_form_aggregate;
 
@@ -56,13 +58,13 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         fr_4ok6: u128,
         fr_b3ub: String,
         fr_1z7o: u128,
-        fr_d8rw: StringRange,
-        fr_dy3l: StringRange,
+        fr_d8rw: DateRange,
+        fr_dy3l: DateRange,
         fr_6f68: u128,
-        fr_47yy: StringRange,
+        fr_47yy: TimeRange,
         fr_gh3o: vector<String>,
         fr_fbba: vector<String>,
-        fr_hhzp: String,
+        fr_hhzp: Date,
         single_text1: String,
     }
 
@@ -144,19 +146,19 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         aptos_forms_demo_main_form.fr_1z7o = fr_1z7o;
     }
 
-    public fun fr_d8rw(aptos_forms_demo_main_form: &AptosFormsDemoMainForm): StringRange {
+    public fun fr_d8rw(aptos_forms_demo_main_form: &AptosFormsDemoMainForm): DateRange {
         aptos_forms_demo_main_form.fr_d8rw
     }
 
-    public(friend) fun set_fr_d8rw(aptos_forms_demo_main_form: &mut AptosFormsDemoMainForm, fr_d8rw: StringRange) {
+    public(friend) fun set_fr_d8rw(aptos_forms_demo_main_form: &mut AptosFormsDemoMainForm, fr_d8rw: DateRange) {
         aptos_forms_demo_main_form.fr_d8rw = fr_d8rw;
     }
 
-    public fun fr_dy3l(aptos_forms_demo_main_form: &AptosFormsDemoMainForm): StringRange {
+    public fun fr_dy3l(aptos_forms_demo_main_form: &AptosFormsDemoMainForm): DateRange {
         aptos_forms_demo_main_form.fr_dy3l
     }
 
-    public(friend) fun set_fr_dy3l(aptos_forms_demo_main_form: &mut AptosFormsDemoMainForm, fr_dy3l: StringRange) {
+    public(friend) fun set_fr_dy3l(aptos_forms_demo_main_form: &mut AptosFormsDemoMainForm, fr_dy3l: DateRange) {
         aptos_forms_demo_main_form.fr_dy3l = fr_dy3l;
     }
 
@@ -168,11 +170,11 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         aptos_forms_demo_main_form.fr_6f68 = fr_6f68;
     }
 
-    public fun fr_47yy(aptos_forms_demo_main_form: &AptosFormsDemoMainForm): StringRange {
+    public fun fr_47yy(aptos_forms_demo_main_form: &AptosFormsDemoMainForm): TimeRange {
         aptos_forms_demo_main_form.fr_47yy
     }
 
-    public(friend) fun set_fr_47yy(aptos_forms_demo_main_form: &mut AptosFormsDemoMainForm, fr_47yy: StringRange) {
+    public(friend) fun set_fr_47yy(aptos_forms_demo_main_form: &mut AptosFormsDemoMainForm, fr_47yy: TimeRange) {
         aptos_forms_demo_main_form.fr_47yy = fr_47yy;
     }
 
@@ -194,12 +196,11 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         aptos_forms_demo_main_form.fr_fbba = fr_fbba;
     }
 
-    public fun fr_hhzp(aptos_forms_demo_main_form: &AptosFormsDemoMainForm): String {
+    public fun fr_hhzp(aptos_forms_demo_main_form: &AptosFormsDemoMainForm): Date {
         aptos_forms_demo_main_form.fr_hhzp
     }
 
-    public(friend) fun set_fr_hhzp(aptos_forms_demo_main_form: &mut AptosFormsDemoMainForm, fr_hhzp: String) {
-        assert!(std::string::length(&fr_hhzp) <= 255, EDataTooLong);
+    public(friend) fun set_fr_hhzp(aptos_forms_demo_main_form: &mut AptosFormsDemoMainForm, fr_hhzp: Date) {
         aptos_forms_demo_main_form.fr_hhzp = fr_hhzp;
     }
 
@@ -222,13 +223,13 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         fr_4ok6: u128,
         fr_b3ub: String,
         fr_1z7o: u128,
-        fr_d8rw: StringRange,
-        fr_dy3l: StringRange,
+        fr_d8rw: DateRange,
+        fr_dy3l: DateRange,
         fr_6f68: u128,
-        fr_47yy: StringRange,
+        fr_47yy: TimeRange,
         fr_gh3o: vector<String>,
         fr_fbba: vector<String>,
-        fr_hhzp: String,
+        fr_hhzp: Date,
         single_text1: String,
     ): AptosFormsDemoMainForm {
         assert!(aptos_forms_demo::aptos_forms_demo_fr_duif::are_all_valid(&fr_duif), EInvalidEnumValue);
@@ -239,7 +240,6 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         assert!(std::string::length(&fr_b3ub) <= 255, EDataTooLong);
         assert!(aptos_forms_demo::aptos_forms_demo_fr_gh3o::are_all_valid(&fr_gh3o), EInvalidEnumValue);
         assert!(aptos_forms_demo::aptos_forms_demo_fr_fbba::are_all_valid(&fr_fbba), EInvalidEnumValue);
-        assert!(std::string::length(&fr_hhzp) <= 255, EDataTooLong);
         assert!(std::string::length(&single_text1) <= 50, EDataTooLong);
         AptosFormsDemoMainForm {
             signer_address,
@@ -273,13 +273,13 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         fr_4ok6: u128,
         fr_b3ub: String,
         fr_1z7o: u128,
-        fr_d8rw: StringRange,
-        fr_dy3l: StringRange,
+        fr_d8rw: DateRange,
+        fr_dy3l: DateRange,
         fr_6f68: u128,
-        fr_47yy: StringRange,
+        fr_47yy: TimeRange,
         fr_gh3o: vector<String>,
         fr_fbba: vector<String>,
-        fr_hhzp: String,
+        fr_hhzp: Date,
         single_text1: String,
     }
 
@@ -319,11 +319,11 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         aptos_forms_demo_main_form_submitted.fr_1z7o
     }
 
-    public fun aptos_forms_demo_main_form_submitted_fr_d8rw(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): StringRange {
+    public fun aptos_forms_demo_main_form_submitted_fr_d8rw(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): DateRange {
         aptos_forms_demo_main_form_submitted.fr_d8rw
     }
 
-    public fun aptos_forms_demo_main_form_submitted_fr_dy3l(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): StringRange {
+    public fun aptos_forms_demo_main_form_submitted_fr_dy3l(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): DateRange {
         aptos_forms_demo_main_form_submitted.fr_dy3l
     }
 
@@ -331,7 +331,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         aptos_forms_demo_main_form_submitted.fr_6f68
     }
 
-    public fun aptos_forms_demo_main_form_submitted_fr_47yy(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): StringRange {
+    public fun aptos_forms_demo_main_form_submitted_fr_47yy(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): TimeRange {
         aptos_forms_demo_main_form_submitted.fr_47yy
     }
 
@@ -343,7 +343,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         aptos_forms_demo_main_form_submitted.fr_fbba
     }
 
-    public fun aptos_forms_demo_main_form_submitted_fr_hhzp(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): String {
+    public fun aptos_forms_demo_main_form_submitted_fr_hhzp(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): Date {
         aptos_forms_demo_main_form_submitted.fr_hhzp
     }
 
@@ -361,13 +361,13 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         fr_4ok6: u128,
         fr_b3ub: String,
         fr_1z7o: u128,
-        fr_d8rw: StringRange,
-        fr_dy3l: StringRange,
+        fr_d8rw: DateRange,
+        fr_dy3l: DateRange,
         fr_6f68: u128,
-        fr_47yy: StringRange,
+        fr_47yy: TimeRange,
         fr_gh3o: vector<String>,
         fr_fbba: vector<String>,
-        fr_hhzp: String,
+        fr_hhzp: Date,
         single_text1: String,
     ): AptosFormsDemoMainFormSubmitted {
         AptosFormsDemoMainFormSubmitted {
@@ -402,13 +402,13 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         fr_4ok6: u128,
         fr_b3ub: String,
         fr_1z7o: u128,
-        fr_d8rw: StringRange,
-        fr_dy3l: StringRange,
+        fr_d8rw: DateRange,
+        fr_dy3l: DateRange,
         fr_6f68: u128,
-        fr_47yy: StringRange,
+        fr_47yy: TimeRange,
         fr_gh3o: vector<String>,
         fr_fbba: vector<String>,
-        fr_hhzp: String,
+        fr_hhzp: Date,
         single_text1: String,
     ): AptosFormsDemoMainForm acquires Tables {
         asset_aptos_forms_demo_main_form_not_exists(signer_address);

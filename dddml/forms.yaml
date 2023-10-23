@@ -66,12 +66,12 @@
       Fr_d8rw:
         name: Fr_d8rw
         optional: false
-        type: StringRange
+        type: DateRange
         sequenceNumber: 8
       Fr_dy3l:
         name: Fr_dy3l
         optional: false
-        type: StringRange
+        type: DateRange
         sequenceNumber: 9
       Fr_6f68:
         name: Fr_6f68
@@ -81,7 +81,7 @@
       Fr_47yy:
         name: Fr_47yy
         optional: false
-        type: StringRange
+        type: TimeRange
         sequenceNumber: 11
       Fr_gh3o:
         name: Fr_gh3o
@@ -105,7 +105,7 @@
         name: Fr_hhzp
         optional: false
         length: 255
-        type: String
+        type: XRenderFormDate
         sequenceNumber: 14
       Single_text1:
         name: Single_text1

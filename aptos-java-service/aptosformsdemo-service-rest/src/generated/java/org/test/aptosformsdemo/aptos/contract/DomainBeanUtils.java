@@ -30,6 +30,16 @@ public class DomainBeanUtils {
         return coin;
     }
 
+    public static org.test.aptosformsdemo.domain.DateRange toDateRange(DateRange contractDateRange) {
+        if (contractDateRange == null) {
+            return null;
+        }
+        org.test.aptosformsdemo.domain.DateRange dateRange = new org.test.aptosformsdemo.domain.DateRange();
+        dateRange.setStart(toXRenderFormDate(contractDateRange.getStart()));
+        dateRange.setEnd(toXRenderFormDate(contractDateRange.getEnd()));
+        return dateRange;
+    }
+
     public static org.test.aptosformsdemo.domain.StringRange toStringRange(StringRange contractStringRange) {
         if (contractStringRange == null) {
             return null;
@@ -38,6 +48,38 @@ public class DomainBeanUtils {
         stringRange.setStart(contractStringRange.getStart());
         stringRange.setEnd(contractStringRange.getEnd());
         return stringRange;
+    }
+
+    public static org.test.aptosformsdemo.domain.TimeRange toTimeRange(TimeRange contractTimeRange) {
+        if (contractTimeRange == null) {
+            return null;
+        }
+        org.test.aptosformsdemo.domain.TimeRange timeRange = new org.test.aptosformsdemo.domain.TimeRange();
+        timeRange.setStart(toXRenderFormTime(contractTimeRange.getStart()));
+        timeRange.setEnd(toXRenderFormTime(contractTimeRange.getEnd()));
+        return timeRange;
+    }
+
+    public static org.test.aptosformsdemo.domain.XRenderFormDate toXRenderFormDate(XRenderFormDate contractXRenderFormDate) {
+        if (contractXRenderFormDate == null) {
+            return null;
+        }
+        org.test.aptosformsdemo.domain.XRenderFormDate xRenderFormDate = new org.test.aptosformsdemo.domain.XRenderFormDate();
+        xRenderFormDate.setYear(contractXRenderFormDate.getYear());
+        xRenderFormDate.setMonth(contractXRenderFormDate.getMonth());
+        xRenderFormDate.setDay(contractXRenderFormDate.getDay());
+        return xRenderFormDate;
+    }
+
+    public static org.test.aptosformsdemo.domain.XRenderFormTime toXRenderFormTime(XRenderFormTime contractXRenderFormTime) {
+        if (contractXRenderFormTime == null) {
+            return null;
+        }
+        org.test.aptosformsdemo.domain.XRenderFormTime xRenderFormTime = new org.test.aptosformsdemo.domain.XRenderFormTime();
+        xRenderFormTime.setHour(contractXRenderFormTime.getHour());
+        xRenderFormTime.setMinute(contractXRenderFormTime.getMinute());
+        xRenderFormTime.setSecond(contractXRenderFormTime.getSecond());
+        return xRenderFormTime;
     }
 
 
@@ -54,13 +96,13 @@ public class DomainBeanUtils {
         aptosFormsDemoMainFormSubmitted.setFr_4ok6(contractEvent.getFr_4ok6());
         aptosFormsDemoMainFormSubmitted.setFr_b3ub(contractEvent.getFr_b3ub());
         aptosFormsDemoMainFormSubmitted.setFr_1z7o(contractEvent.getFr_1z7o());
-        aptosFormsDemoMainFormSubmitted.setFr_d8rw(DomainBeanUtils.toStringRange(contractEvent.getFr_d8rw()));
-        aptosFormsDemoMainFormSubmitted.setFr_dy3l(DomainBeanUtils.toStringRange(contractEvent.getFr_dy3l()));
+        aptosFormsDemoMainFormSubmitted.setFr_d8rw(DomainBeanUtils.toDateRange(contractEvent.getFr_d8rw()));
+        aptosFormsDemoMainFormSubmitted.setFr_dy3l(DomainBeanUtils.toDateRange(contractEvent.getFr_dy3l()));
         aptosFormsDemoMainFormSubmitted.setFr_6f68(contractEvent.getFr_6f68());
-        aptosFormsDemoMainFormSubmitted.setFr_47yy(DomainBeanUtils.toStringRange(contractEvent.getFr_47yy()));
+        aptosFormsDemoMainFormSubmitted.setFr_47yy(DomainBeanUtils.toTimeRange(contractEvent.getFr_47yy()));
         aptosFormsDemoMainFormSubmitted.setFr_gh3o(contractEvent.getFr_gh3o());
         aptosFormsDemoMainFormSubmitted.setFr_fbba(contractEvent.getFr_fbba());
-        aptosFormsDemoMainFormSubmitted.setFr_hhzp(contractEvent.getFr_hhzp());
+        aptosFormsDemoMainFormSubmitted.setFr_hhzp(DomainBeanUtils.toXRenderFormDate(contractEvent.getFr_hhzp()));
         aptosFormsDemoMainFormSubmitted.setSingle_text1(contractEvent.getSingle_text1());
         aptosFormsDemoMainFormSubmitted.setVersion(BigInteger.valueOf(-1));
 

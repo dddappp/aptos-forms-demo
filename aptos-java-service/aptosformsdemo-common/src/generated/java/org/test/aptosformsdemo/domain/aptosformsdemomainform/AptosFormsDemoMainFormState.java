@@ -32,15 +32,15 @@ public interface AptosFormsDemoMainFormState extends VersionedAptosMoveObject
 
     BigInteger getFr_1z7o();
 
-    StringRange getFr_d8rw();
+    DateRange getFr_d8rw();
 
-    StringRange getFr_dy3l();
+    DateRange getFr_dy3l();
 
     BigInteger getFr_6f68();
 
-    StringRange getFr_47yy();
+    TimeRange getFr_47yy();
 
-    String getFr_hhzp();
+    XRenderFormDate getFr_hhzp();
 
     String getSingle_text1();
 
@@ -81,15 +81,15 @@ public interface AptosFormsDemoMainFormState extends VersionedAptosMoveObject
 
         void setFr_1z7o(BigInteger fr_1z7o);
 
-        void setFr_d8rw(StringRange fr_d8rw);
+        void setFr_d8rw(DateRange fr_d8rw);
 
-        void setFr_dy3l(StringRange fr_dy3l);
+        void setFr_dy3l(DateRange fr_dy3l);
 
         void setFr_6f68(BigInteger fr_6f68);
 
-        void setFr_47yy(StringRange fr_47yy);
+        void setFr_47yy(TimeRange fr_47yy);
 
-        void setFr_hhzp(String fr_hhzp);
+        void setFr_hhzp(XRenderFormDate fr_hhzp);
 
         void setSingle_text1(String single_text1);
 

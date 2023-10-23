@@ -47,7 +47,7 @@ public abstract class AbstractAptosFormsDemoMainFormAggregate extends AbstractAg
         }
 
         @Override
-        public void submit(BigInteger fr_5pqi, String[] fr_duif, String[] fr_6i34, String fr_8xjs, String fr_9c3f, BigInteger fr_4ok6, String fr_b3ub, BigInteger fr_1z7o, StringRange fr_d8rw, StringRange fr_dy3l, BigInteger fr_6f68, StringRange fr_47yy, String[] fr_gh3o, String[] fr_fbba, String fr_hhzp, String single_text1, Long offChainVersion, String commandId, String requesterId, AptosFormsDemoMainFormCommands.Submit c) {
+        public void submit(BigInteger fr_5pqi, String[] fr_duif, String[] fr_6i34, String fr_8xjs, String fr_9c3f, BigInteger fr_4ok6, String fr_b3ub, BigInteger fr_1z7o, DateRange fr_d8rw, DateRange fr_dy3l, BigInteger fr_6f68, TimeRange fr_47yy, String[] fr_gh3o, String[] fr_fbba, XRenderFormDate fr_hhzp, String single_text1, Long offChainVersion, String commandId, String requesterId, AptosFormsDemoMainFormCommands.Submit c) {
             try {
                 verifySubmit(fr_5pqi, fr_duif, fr_6i34, fr_8xjs, fr_9c3f, fr_4ok6, fr_b3ub, fr_1z7o, fr_d8rw, fr_dy3l, fr_6f68, fr_47yy, fr_gh3o, fr_fbba, fr_hhzp, single_text1, c);
             } catch (Exception ex) {
@@ -58,7 +58,7 @@ public abstract class AbstractAptosFormsDemoMainFormAggregate extends AbstractAg
             apply(e);
         }
 
-        protected void verifySubmit(BigInteger fr_5pqi, String[] fr_duif, String[] fr_6i34, String fr_8xjs, String fr_9c3f, BigInteger fr_4ok6, String fr_b3ub, BigInteger fr_1z7o, StringRange fr_d8rw, StringRange fr_dy3l, BigInteger fr_6f68, StringRange fr_47yy, String[] fr_gh3o, String[] fr_fbba, String fr_hhzp, String single_text1, AptosFormsDemoMainFormCommands.Submit c) {
+        protected void verifySubmit(BigInteger fr_5pqi, String[] fr_duif, String[] fr_6i34, String fr_8xjs, String fr_9c3f, BigInteger fr_4ok6, String fr_b3ub, BigInteger fr_1z7o, DateRange fr_d8rw, DateRange fr_dy3l, BigInteger fr_6f68, TimeRange fr_47yy, String[] fr_gh3o, String[] fr_fbba, XRenderFormDate fr_hhzp, String single_text1, AptosFormsDemoMainFormCommands.Submit c) {
             BigInteger Fr_5pqi = fr_5pqi;
             String[] Fr_duif = fr_duif;
             String[] Fr_6i34 = fr_6i34;
@@ -67,33 +67,33 @@ public abstract class AbstractAptosFormsDemoMainFormAggregate extends AbstractAg
             BigInteger Fr_4ok6 = fr_4ok6;
             String Fr_b3ub = fr_b3ub;
             BigInteger Fr_1z7o = fr_1z7o;
-            StringRange Fr_d8rw = fr_d8rw;
-            StringRange Fr_dy3l = fr_dy3l;
+            DateRange Fr_d8rw = fr_d8rw;
+            DateRange Fr_dy3l = fr_dy3l;
             BigInteger Fr_6f68 = fr_6f68;
-            StringRange Fr_47yy = fr_47yy;
+            TimeRange Fr_47yy = fr_47yy;
             String[] Fr_gh3o = fr_gh3o;
             String[] Fr_fbba = fr_fbba;
-            String Fr_hhzp = fr_hhzp;
+            XRenderFormDate Fr_hhzp = fr_hhzp;
             String Single_text1 = single_text1;
 
             ReflectUtils.invokeStaticMethod(
                     "org.test.aptosformsdemo.domain.aptosformsdemomainform.SubmitLogic",
                     "verify",
-                    new Class[]{AptosFormsDemoMainFormState.class, BigInteger.class, String[].class, String[].class, String.class, String.class, BigInteger.class, String.class, BigInteger.class, StringRange.class, StringRange.class, BigInteger.class, StringRange.class, String[].class, String[].class, String.class, String.class, VerificationContext.class},
+                    new Class[]{AptosFormsDemoMainFormState.class, BigInteger.class, String[].class, String[].class, String.class, String.class, BigInteger.class, String.class, BigInteger.class, DateRange.class, DateRange.class, BigInteger.class, TimeRange.class, String[].class, String[].class, XRenderFormDate.class, String.class, VerificationContext.class},
                     new Object[]{getState(), fr_5pqi, fr_duif, fr_6i34, fr_8xjs, fr_9c3f, fr_4ok6, fr_b3ub, fr_1z7o, fr_d8rw, fr_dy3l, fr_6f68, fr_47yy, fr_gh3o, fr_fbba, fr_hhzp, single_text1, VerificationContext.forCommand(c)}
             );
 
 //package org.test.aptosformsdemo.domain.aptosformsdemomainform;
 //
 //public class SubmitLogic {
-//    public static void verify(AptosFormsDemoMainFormState aptosFormsDemoMainFormState, BigInteger fr_5pqi, String[] fr_duif, String[] fr_6i34, String fr_8xjs, String fr_9c3f, BigInteger fr_4ok6, String fr_b3ub, BigInteger fr_1z7o, StringRange fr_d8rw, StringRange fr_dy3l, BigInteger fr_6f68, StringRange fr_47yy, String[] fr_gh3o, String[] fr_fbba, String fr_hhzp, String single_text1, VerificationContext verificationContext) {
+//    public static void verify(AptosFormsDemoMainFormState aptosFormsDemoMainFormState, BigInteger fr_5pqi, String[] fr_duif, String[] fr_6i34, String fr_8xjs, String fr_9c3f, BigInteger fr_4ok6, String fr_b3ub, BigInteger fr_1z7o, DateRange fr_d8rw, DateRange fr_dy3l, BigInteger fr_6f68, TimeRange fr_47yy, String[] fr_gh3o, String[] fr_fbba, XRenderFormDate fr_hhzp, String single_text1, VerificationContext verificationContext) {
 //    }
 //}
 
         }
            
 
-        protected AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted newAptosFormsDemoMainFormSubmitted(BigInteger fr_5pqi, String[] fr_duif, String[] fr_6i34, String fr_8xjs, String fr_9c3f, BigInteger fr_4ok6, String fr_b3ub, BigInteger fr_1z7o, StringRange fr_d8rw, StringRange fr_dy3l, BigInteger fr_6f68, StringRange fr_47yy, String[] fr_gh3o, String[] fr_fbba, String fr_hhzp, String single_text1, Long offChainVersion, String commandId, String requesterId) {
+        protected AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted newAptosFormsDemoMainFormSubmitted(BigInteger fr_5pqi, String[] fr_duif, String[] fr_6i34, String fr_8xjs, String fr_9c3f, BigInteger fr_4ok6, String fr_b3ub, BigInteger fr_1z7o, DateRange fr_d8rw, DateRange fr_dy3l, BigInteger fr_6f68, TimeRange fr_47yy, String[] fr_gh3o, String[] fr_fbba, XRenderFormDate fr_hhzp, String single_text1, Long offChainVersion, String commandId, String requesterId) {
             AptosFormsDemoMainFormEventId eventId = new AptosFormsDemoMainFormEventId(getState().getSignerAddress(), null);
             AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted e = new AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted();
 
