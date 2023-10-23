@@ -329,13 +329,13 @@ Our contracts use a separate resource account to hold data of form.
 You can get the address of this resource account by using the following command:
 
 ```shell
-curl https://fullnode.devnet.aptoslabs.com/v1/accounts/{ACCOUNT_ADDRESS}/resource/{ACCOUNT_ADDRESS}::resource_account::ResourceAccount
+curl https://fullnode.devnet.aptoslabs.com/v1/accounts/{ACCOUNT_ADDRESS}/resource/{ACCOUNT_ADDRESS}::aptos_forms_demo_resource_account::ResourceAccount
 ```
 
 The output is similar to the following:
 
 ```json
-{"type":"{ACCOUNT_ADDRESS}::resource_account::ResourceAccount","data":{"cap":{"account":"{RESOURCE_ACCOUNT_ADDRESS}"}}}
+{"type":"{ACCOUNT_ADDRESS}::aptos_forms_demo_resource_account::ResourceAccount","data":{"cap":{"account":"{RESOURCE_ACCOUNT_ADDRESS}"}}}
 ```
 
 In the location `{RESOURCE_ACCOUNT_ADDRESS}` above, the address of the resource account will be displayed.
