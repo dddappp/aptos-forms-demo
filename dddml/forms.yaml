@@ -1,6 +1,6 @@
 ﻿aggregates:
-  MainForm:
-    name: MainForm
+  AptosFormsDemoMainForm:
+    name: AptosFormsDemoMainForm
     id:
       generator:
         class: signer
@@ -13,23 +13,23 @@
         name: Fr_5pqi
         optional: false
         type: u128
-      Fr_duif:
-        name: Fr_duif
+      AptosFormsDemo_fr_duif:
+        name: AptosFormsDemo_fr_duif
         displayName: 下拉多选
         optional: false
         itemLength: 1
         size:
           max: 2
-        itemType: Fr_duif
+        itemType: AptosFormsDemo_fr_duif
         sequenceNumber: 1
-      Fr_6i34:
-        name: Fr_6i34
+      AptosFormsDemo_fr_6i34:
+        name: AptosFormsDemo_fr_6i34
         displayName: 点击多选
         optional: false
         itemLength: 1
         size:
           max: 3
-        itemType: Fr_6i34
+        itemType: AptosFormsDemo_fr_6i34
         sequenceNumber: 2
       Fr_8xjs:
         name: Fr_8xjs
@@ -37,12 +37,12 @@
         length: 255
         type: String
         sequenceNumber: 3
-      Fr_9c3f:
-        name: Fr_9c3f
+      AptosFormsDemo_fr_9c3f:
+        name: AptosFormsDemo_fr_9c3f
         displayName: 下拉单选
         optional: false
         length: 1
-        type: Fr_9c3f
+        type: AptosFormsDemo_fr_9c3f
         sequenceNumber: 4
       Fr_4ok6:
         name: Fr_4ok6
@@ -83,23 +83,23 @@
         optional: false
         type: StringRange
         sequenceNumber: 11
-      Fr_gh3o:
-        name: Fr_gh3o
+      AptosFormsDemo_fr_gh3o:
+        name: AptosFormsDemo_fr_gh3o
         displayName: 下拉多选
         optional: false
         itemLength: 1
         size:
           max: 2
-        itemType: Fr_gh3o
+        itemType: AptosFormsDemo_fr_gh3o
         sequenceNumber: 12
-      Fr_fbba:
-        name: Fr_fbba
+      AptosFormsDemo_fr_fbba:
+        name: AptosFormsDemo_fr_fbba
         displayName: 点击多选
         optional: false
         itemLength: 1
         size:
           max: 3
-        itemType: Fr_fbba
+        itemType: AptosFormsDemo_fr_fbba
         sequenceNumber: 13
       Fr_hhzp:
         name: Fr_hhzp
@@ -118,7 +118,7 @@
         name: Submit
         metadata: {}
         event:
-          name: MainFormSubmitted
+          name: AptosFormsDemoMainFormSubmitted
     metadata:
       Preprocessors:
       - MOVE_CRUD_IT
@@ -126,7 +126,7 @@
       CRUD_IT_NO_DELETE: true
       CRUD_IT_CREATE_METHOD_NAME: Submit
 enumObjects:
-  Fr_duif:
+  AptosFormsDemo_fr_duif:
     baseType: String
     values:
       A:
@@ -139,9 +139,9 @@ enumObjects:
         displayName: B
         value: B
         stringValue: B
-    name: Fr_duif
+    name: AptosFormsDemo_fr_duif
     displayName: 下拉多选
-  Fr_6i34:
+  AptosFormsDemo_fr_6i34:
     baseType: String
     values:
       A:
@@ -159,9 +159,9 @@ enumObjects:
         displayName: C
         value: C
         stringValue: C
-    name: Fr_6i34
+    name: AptosFormsDemo_fr_6i34
     displayName: 点击多选
-  Fr_9c3f:
+  AptosFormsDemo_fr_9c3f:
     baseType: String
     values:
       Option_1:
@@ -182,9 +182,9 @@ enumObjects:
         value: 3
         intValue: 3
         stringValue: 3
-    name: Fr_9c3f
+    name: AptosFormsDemo_fr_9c3f
     displayName: 下拉单选
-  Fr_gh3o:
+  AptosFormsDemo_fr_gh3o:
     baseType: String
     values:
       A:
@@ -197,9 +197,9 @@ enumObjects:
         displayName: B
         value: B
         stringValue: B
-    name: Fr_gh3o
+    name: AptosFormsDemo_fr_gh3o
     displayName: 下拉多选
-  Fr_fbba:
+  AptosFormsDemo_fr_fbba:
     baseType: String
     values:
       Option_1:
@@ -220,7 +220,7 @@ enumObjects:
         value: 3
         intValue: 3
         stringValue: 3
-    name: Fr_fbba
+    name: AptosFormsDemo_fr_fbba
     displayName: 点击多选
 configuration:
   defaultUserIdType: string

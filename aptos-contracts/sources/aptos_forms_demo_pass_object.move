@@ -5,7 +5,7 @@
 
 module aptos_forms_demo::aptos_forms_demo_pass_object {
 
-    friend aptos_forms_demo::main_form;
+    friend aptos_forms_demo::aptos_forms_demo_main_form;
 
     /// read-only 'hot potato' wrapper.
     struct PassObject<T: store> {
