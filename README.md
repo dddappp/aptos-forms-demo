@@ -120,6 +120,8 @@ After executing above command successfully, a directory `aptos-contracts` should
 
 ## Test Example
 
+If you modify the code's generation command, take care to replace `aptos_forms_demo` with the actual value in the shell command lines used for the following tests.
+
 ### Compile Aptos Move contracts
 
 #### Some preparatory work that may need to be done
@@ -206,11 +208,6 @@ Initialize the contract first:
 ```shell
 aptos move run --function-id 'default::aptos_forms_demo_init::initialize' --assume-yes
 ```
-
-> **Tip**
-> 
-> Once the contract is published, you can use Aptos Explorer's Modules | Run feature to test it.
-> Here is an example form we've already deployed on testnet: https://explorer.aptoslabs.com/account/0xf0ee3187beaa48e56def59dbe52d7e932c3e559c28ae26568fa91ff9ae85e145/modules/run/aptos_forms_demo_main_form_aggregate/submit?network=testnet
 
 ### Generate submission page from schema
 
