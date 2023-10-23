@@ -208,7 +208,7 @@ aptos move run --function-id 'default::aptos_forms_demo_init::initialize' --assu
 > **Tip**
 > 
 > Once the contract is published, you can use Aptos Explorer's Modules | Run feature to test it.
-> Here is an example form we've already deployed on testnet: https://explorer.aptoslabs.com/account/0xf0ee3187beaa48e56def59dbe52d7e932c3e559c28ae26568fa91ff9ae85e145/modules/run/main_form_aggregate/create?network=testnet
+> Here is an example form we've already deployed on testnet: https://explorer.aptoslabs.com/account/0xf0ee3187beaa48e56def59dbe52d7e932c3e559c28ae26568fa91ff9ae85e145/modules/run/aptos_forms_demo_main_form_aggregate/submit?network=testnet
 
 ### Generate submission page from schema
 
@@ -344,7 +344,7 @@ Execute the following command, noting the replacement of the placeholders `{RESO
 
 ```shell
 curl --request GET \
-  --url 'https://fullnode.testnet.aptoslabs.com/v1/accounts/{RESOURCE_ACCOUNT_ADDRESS}/events/{ACCOUNT_ADDRESS}::main_form::Events/main_form_created_handle?start=0&limit=10' \
+  --url 'https://fullnode.testnet.aptoslabs.com/v1/accounts/{RESOURCE_ACCOUNT_ADDRESS}/events/{ACCOUNT_ADDRESS}::aptos_forms_demo_main_form::Events/aptos_forms_demo_main_form_submitted_handle?start=0&limit=10' \
   --header 'Accept: application/json'
 ```
 
@@ -352,20 +352,20 @@ For example:
 
 ```shell
 curl --request GET \
-  --url 'https://fullnode.testnet.aptoslabs.com/v1/accounts/0xd2700787f8440e63143653a734cd42bde662e201fca7d5754acd269e6e79ff96/events/0xf0ee3187beaa48e56def59dbe52d7e932c3e559c28ae26568fa91ff9ae85e145::main_form::Events/main_form_created_handle?start=0&limit=10' \
+  --url 'https://fullnode.testnet.aptoslabs.com/v1/accounts/0xd2700787f8440e63143653a734cd42bde662e201fca7d5754acd269e6e79ff96/events/0xf0ee3187beaa48e56def59dbe52d7e932c3e559c28ae26568fa91ff9ae85e145::aptos_forms_demo_main_form::Events/aptos_forms_demo_main_form_submitted_handle?start=0&limit=10' \
   --header 'Accept: application/json'
 ```
 
 ### Get Form Table Handle
 
 ```shell
-curl 'https://fullnode.devnet.aptoslabs.com/v1/accounts/{RESOURCE_ACCOUNT_ADDRESS}/resource/{ACCOUNT_ADDRESS}::main_form::Tables'
+curl 'https://fullnode.devnet.aptoslabs.com/v1/accounts/{RESOURCE_ACCOUNT_ADDRESS}/resource/{ACCOUNT_ADDRESS}::aptos_forms_demo_main_form::Tables'
 ```
 
 The output is similar to the following:
 
 ```json
-{"type":"{ACCOUNT_ADDRESS}::main_form::Tables","data":{"main_form_table":{"handle":"{FORM_TABLE_HANDLE}"}}}
+{"type":"{ACCOUNT_ADDRESS}::aptos_forms_demo_main_form::Tables","data":{"aptos_forms_demo_main_form_table":{"handle":"{FORM_TABLE_HANDLE}"}}}
 ```
 
 In the location `{FORM_TABLE_HANDLE}` above, the form table handle will be displayed.

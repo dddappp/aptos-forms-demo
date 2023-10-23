@@ -49,10 +49,10 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         signer_address: address,
         version: u64,
         fr_5pqi: u128,
-        aptos_forms_demo_fr_duif: vector<String>,
-        aptos_forms_demo_fr_6i34: vector<String>,
+        fr_duif: vector<String>,
+        fr_6i34: vector<String>,
         fr_8xjs: String,
-        aptos_forms_demo_fr_9c3f: String,
+        fr_9c3f: String,
         fr_4ok6: u128,
         fr_b3ub: String,
         fr_1z7o: u128,
@@ -60,8 +60,8 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         fr_dy3l: StringRange,
         fr_6f68: u128,
         fr_47yy: StringRange,
-        aptos_forms_demo_fr_gh3o: vector<String>,
-        aptos_forms_demo_fr_fbba: vector<String>,
+        fr_gh3o: vector<String>,
+        fr_fbba: vector<String>,
         fr_hhzp: String,
         single_text1: String,
     }
@@ -82,22 +82,22 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         aptos_forms_demo_main_form.fr_5pqi = fr_5pqi;
     }
 
-    public fun aptos_forms_demo_fr_duif(aptos_forms_demo_main_form: &AptosFormsDemoMainForm): vector<String> {
-        aptos_forms_demo_main_form.aptos_forms_demo_fr_duif
+    public fun fr_duif(aptos_forms_demo_main_form: &AptosFormsDemoMainForm): vector<String> {
+        aptos_forms_demo_main_form.fr_duif
     }
 
-    public(friend) fun set_aptos_forms_demo_fr_duif(aptos_forms_demo_main_form: &mut AptosFormsDemoMainForm, aptos_forms_demo_fr_duif: vector<String>) {
-        assert!(aptos_forms_demo::aptos_forms_demo_fr_duif::are_all_valid(&aptos_forms_demo_fr_duif), EInvalidEnumValue);
-        aptos_forms_demo_main_form.aptos_forms_demo_fr_duif = aptos_forms_demo_fr_duif;
+    public(friend) fun set_fr_duif(aptos_forms_demo_main_form: &mut AptosFormsDemoMainForm, fr_duif: vector<String>) {
+        assert!(aptos_forms_demo::aptos_forms_demo_fr_duif::are_all_valid(&fr_duif), EInvalidEnumValue);
+        aptos_forms_demo_main_form.fr_duif = fr_duif;
     }
 
-    public fun aptos_forms_demo_fr_6i34(aptos_forms_demo_main_form: &AptosFormsDemoMainForm): vector<String> {
-        aptos_forms_demo_main_form.aptos_forms_demo_fr_6i34
+    public fun fr_6i34(aptos_forms_demo_main_form: &AptosFormsDemoMainForm): vector<String> {
+        aptos_forms_demo_main_form.fr_6i34
     }
 
-    public(friend) fun set_aptos_forms_demo_fr_6i34(aptos_forms_demo_main_form: &mut AptosFormsDemoMainForm, aptos_forms_demo_fr_6i34: vector<String>) {
-        assert!(aptos_forms_demo::aptos_forms_demo_fr_6i34::are_all_valid(&aptos_forms_demo_fr_6i34), EInvalidEnumValue);
-        aptos_forms_demo_main_form.aptos_forms_demo_fr_6i34 = aptos_forms_demo_fr_6i34;
+    public(friend) fun set_fr_6i34(aptos_forms_demo_main_form: &mut AptosFormsDemoMainForm, fr_6i34: vector<String>) {
+        assert!(aptos_forms_demo::aptos_forms_demo_fr_6i34::are_all_valid(&fr_6i34), EInvalidEnumValue);
+        aptos_forms_demo_main_form.fr_6i34 = fr_6i34;
     }
 
     public fun fr_8xjs(aptos_forms_demo_main_form: &AptosFormsDemoMainForm): String {
@@ -109,14 +109,14 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         aptos_forms_demo_main_form.fr_8xjs = fr_8xjs;
     }
 
-    public fun aptos_forms_demo_fr_9c3f(aptos_forms_demo_main_form: &AptosFormsDemoMainForm): String {
-        aptos_forms_demo_main_form.aptos_forms_demo_fr_9c3f
+    public fun fr_9c3f(aptos_forms_demo_main_form: &AptosFormsDemoMainForm): String {
+        aptos_forms_demo_main_form.fr_9c3f
     }
 
-    public(friend) fun set_aptos_forms_demo_fr_9c3f(aptos_forms_demo_main_form: &mut AptosFormsDemoMainForm, aptos_forms_demo_fr_9c3f: String) {
-        assert!(std::string::length(&aptos_forms_demo_fr_9c3f) <= 1, EDataTooLong);
-        assert!(aptos_forms_demo::aptos_forms_demo_fr_9c3f::is_valid(aptos_forms_demo_fr_9c3f), EInvalidEnumValue);
-        aptos_forms_demo_main_form.aptos_forms_demo_fr_9c3f = aptos_forms_demo_fr_9c3f;
+    public(friend) fun set_fr_9c3f(aptos_forms_demo_main_form: &mut AptosFormsDemoMainForm, fr_9c3f: String) {
+        assert!(std::string::length(&fr_9c3f) <= 1, EDataTooLong);
+        assert!(aptos_forms_demo::aptos_forms_demo_fr_9c3f::is_valid(fr_9c3f), EInvalidEnumValue);
+        aptos_forms_demo_main_form.fr_9c3f = fr_9c3f;
     }
 
     public fun fr_4ok6(aptos_forms_demo_main_form: &AptosFormsDemoMainForm): u128 {
@@ -176,22 +176,22 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         aptos_forms_demo_main_form.fr_47yy = fr_47yy;
     }
 
-    public fun aptos_forms_demo_fr_gh3o(aptos_forms_demo_main_form: &AptosFormsDemoMainForm): vector<String> {
-        aptos_forms_demo_main_form.aptos_forms_demo_fr_gh3o
+    public fun fr_gh3o(aptos_forms_demo_main_form: &AptosFormsDemoMainForm): vector<String> {
+        aptos_forms_demo_main_form.fr_gh3o
     }
 
-    public(friend) fun set_aptos_forms_demo_fr_gh3o(aptos_forms_demo_main_form: &mut AptosFormsDemoMainForm, aptos_forms_demo_fr_gh3o: vector<String>) {
-        assert!(aptos_forms_demo::aptos_forms_demo_fr_gh3o::are_all_valid(&aptos_forms_demo_fr_gh3o), EInvalidEnumValue);
-        aptos_forms_demo_main_form.aptos_forms_demo_fr_gh3o = aptos_forms_demo_fr_gh3o;
+    public(friend) fun set_fr_gh3o(aptos_forms_demo_main_form: &mut AptosFormsDemoMainForm, fr_gh3o: vector<String>) {
+        assert!(aptos_forms_demo::aptos_forms_demo_fr_gh3o::are_all_valid(&fr_gh3o), EInvalidEnumValue);
+        aptos_forms_demo_main_form.fr_gh3o = fr_gh3o;
     }
 
-    public fun aptos_forms_demo_fr_fbba(aptos_forms_demo_main_form: &AptosFormsDemoMainForm): vector<String> {
-        aptos_forms_demo_main_form.aptos_forms_demo_fr_fbba
+    public fun fr_fbba(aptos_forms_demo_main_form: &AptosFormsDemoMainForm): vector<String> {
+        aptos_forms_demo_main_form.fr_fbba
     }
 
-    public(friend) fun set_aptos_forms_demo_fr_fbba(aptos_forms_demo_main_form: &mut AptosFormsDemoMainForm, aptos_forms_demo_fr_fbba: vector<String>) {
-        assert!(aptos_forms_demo::aptos_forms_demo_fr_fbba::are_all_valid(&aptos_forms_demo_fr_fbba), EInvalidEnumValue);
-        aptos_forms_demo_main_form.aptos_forms_demo_fr_fbba = aptos_forms_demo_fr_fbba;
+    public(friend) fun set_fr_fbba(aptos_forms_demo_main_form: &mut AptosFormsDemoMainForm, fr_fbba: vector<String>) {
+        assert!(aptos_forms_demo::aptos_forms_demo_fr_fbba::are_all_valid(&fr_fbba), EInvalidEnumValue);
+        aptos_forms_demo_main_form.fr_fbba = fr_fbba;
     }
 
     public fun fr_hhzp(aptos_forms_demo_main_form: &AptosFormsDemoMainForm): String {
@@ -215,10 +215,10 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
     fun new_aptos_forms_demo_main_form(
         signer_address: address,
         fr_5pqi: u128,
-        aptos_forms_demo_fr_duif: vector<String>,
-        aptos_forms_demo_fr_6i34: vector<String>,
+        fr_duif: vector<String>,
+        fr_6i34: vector<String>,
         fr_8xjs: String,
-        aptos_forms_demo_fr_9c3f: String,
+        fr_9c3f: String,
         fr_4ok6: u128,
         fr_b3ub: String,
         fr_1z7o: u128,
@@ -226,29 +226,29 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         fr_dy3l: StringRange,
         fr_6f68: u128,
         fr_47yy: StringRange,
-        aptos_forms_demo_fr_gh3o: vector<String>,
-        aptos_forms_demo_fr_fbba: vector<String>,
+        fr_gh3o: vector<String>,
+        fr_fbba: vector<String>,
         fr_hhzp: String,
         single_text1: String,
     ): AptosFormsDemoMainForm {
-        assert!(aptos_forms_demo::aptos_forms_demo_fr_duif::are_all_valid(&aptos_forms_demo_fr_duif), EInvalidEnumValue);
-        assert!(aptos_forms_demo::aptos_forms_demo_fr_6i34::are_all_valid(&aptos_forms_demo_fr_6i34), EInvalidEnumValue);
+        assert!(aptos_forms_demo::aptos_forms_demo_fr_duif::are_all_valid(&fr_duif), EInvalidEnumValue);
+        assert!(aptos_forms_demo::aptos_forms_demo_fr_6i34::are_all_valid(&fr_6i34), EInvalidEnumValue);
         assert!(std::string::length(&fr_8xjs) <= 255, EDataTooLong);
-        assert!(std::string::length(&aptos_forms_demo_fr_9c3f) <= 1, EDataTooLong);
-        assert!(aptos_forms_demo::aptos_forms_demo_fr_9c3f::is_valid(aptos_forms_demo_fr_9c3f), EInvalidEnumValue);
+        assert!(std::string::length(&fr_9c3f) <= 1, EDataTooLong);
+        assert!(aptos_forms_demo::aptos_forms_demo_fr_9c3f::is_valid(fr_9c3f), EInvalidEnumValue);
         assert!(std::string::length(&fr_b3ub) <= 255, EDataTooLong);
-        assert!(aptos_forms_demo::aptos_forms_demo_fr_gh3o::are_all_valid(&aptos_forms_demo_fr_gh3o), EInvalidEnumValue);
-        assert!(aptos_forms_demo::aptos_forms_demo_fr_fbba::are_all_valid(&aptos_forms_demo_fr_fbba), EInvalidEnumValue);
+        assert!(aptos_forms_demo::aptos_forms_demo_fr_gh3o::are_all_valid(&fr_gh3o), EInvalidEnumValue);
+        assert!(aptos_forms_demo::aptos_forms_demo_fr_fbba::are_all_valid(&fr_fbba), EInvalidEnumValue);
         assert!(std::string::length(&fr_hhzp) <= 255, EDataTooLong);
         assert!(std::string::length(&single_text1) <= 50, EDataTooLong);
         AptosFormsDemoMainForm {
             signer_address,
             version: 0,
             fr_5pqi,
-            aptos_forms_demo_fr_duif,
-            aptos_forms_demo_fr_6i34,
+            fr_duif,
+            fr_6i34,
             fr_8xjs,
-            aptos_forms_demo_fr_9c3f,
+            fr_9c3f,
             fr_4ok6,
             fr_b3ub,
             fr_1z7o,
@@ -256,8 +256,8 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
             fr_dy3l,
             fr_6f68,
             fr_47yy,
-            aptos_forms_demo_fr_gh3o,
-            aptos_forms_demo_fr_fbba,
+            fr_gh3o,
+            fr_fbba,
             fr_hhzp,
             single_text1,
         }
@@ -266,10 +266,10 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
     struct AptosFormsDemoMainFormSubmitted has store, drop {
         signer_address: address,
         fr_5pqi: u128,
-        aptos_forms_demo_fr_duif: vector<String>,
-        aptos_forms_demo_fr_6i34: vector<String>,
+        fr_duif: vector<String>,
+        fr_6i34: vector<String>,
         fr_8xjs: String,
-        aptos_forms_demo_fr_9c3f: String,
+        fr_9c3f: String,
         fr_4ok6: u128,
         fr_b3ub: String,
         fr_1z7o: u128,
@@ -277,8 +277,8 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         fr_dy3l: StringRange,
         fr_6f68: u128,
         fr_47yy: StringRange,
-        aptos_forms_demo_fr_gh3o: vector<String>,
-        aptos_forms_demo_fr_fbba: vector<String>,
+        fr_gh3o: vector<String>,
+        fr_fbba: vector<String>,
         fr_hhzp: String,
         single_text1: String,
     }
@@ -291,20 +291,20 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         aptos_forms_demo_main_form_submitted.fr_5pqi
     }
 
-    public fun aptos_forms_demo_main_form_submitted_aptos_forms_demo_fr_duif(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): vector<String> {
-        aptos_forms_demo_main_form_submitted.aptos_forms_demo_fr_duif
+    public fun aptos_forms_demo_main_form_submitted_fr_duif(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): vector<String> {
+        aptos_forms_demo_main_form_submitted.fr_duif
     }
 
-    public fun aptos_forms_demo_main_form_submitted_aptos_forms_demo_fr_6i34(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): vector<String> {
-        aptos_forms_demo_main_form_submitted.aptos_forms_demo_fr_6i34
+    public fun aptos_forms_demo_main_form_submitted_fr_6i34(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): vector<String> {
+        aptos_forms_demo_main_form_submitted.fr_6i34
     }
 
     public fun aptos_forms_demo_main_form_submitted_fr_8xjs(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): String {
         aptos_forms_demo_main_form_submitted.fr_8xjs
     }
 
-    public fun aptos_forms_demo_main_form_submitted_aptos_forms_demo_fr_9c3f(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): String {
-        aptos_forms_demo_main_form_submitted.aptos_forms_demo_fr_9c3f
+    public fun aptos_forms_demo_main_form_submitted_fr_9c3f(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): String {
+        aptos_forms_demo_main_form_submitted.fr_9c3f
     }
 
     public fun aptos_forms_demo_main_form_submitted_fr_4ok6(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): u128 {
@@ -335,12 +335,12 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         aptos_forms_demo_main_form_submitted.fr_47yy
     }
 
-    public fun aptos_forms_demo_main_form_submitted_aptos_forms_demo_fr_gh3o(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): vector<String> {
-        aptos_forms_demo_main_form_submitted.aptos_forms_demo_fr_gh3o
+    public fun aptos_forms_demo_main_form_submitted_fr_gh3o(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): vector<String> {
+        aptos_forms_demo_main_form_submitted.fr_gh3o
     }
 
-    public fun aptos_forms_demo_main_form_submitted_aptos_forms_demo_fr_fbba(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): vector<String> {
-        aptos_forms_demo_main_form_submitted.aptos_forms_demo_fr_fbba
+    public fun aptos_forms_demo_main_form_submitted_fr_fbba(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): vector<String> {
+        aptos_forms_demo_main_form_submitted.fr_fbba
     }
 
     public fun aptos_forms_demo_main_form_submitted_fr_hhzp(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): String {
@@ -354,10 +354,10 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
     public(friend) fun new_aptos_forms_demo_main_form_submitted(
         signer_address: address,
         fr_5pqi: u128,
-        aptos_forms_demo_fr_duif: vector<String>,
-        aptos_forms_demo_fr_6i34: vector<String>,
+        fr_duif: vector<String>,
+        fr_6i34: vector<String>,
         fr_8xjs: String,
-        aptos_forms_demo_fr_9c3f: String,
+        fr_9c3f: String,
         fr_4ok6: u128,
         fr_b3ub: String,
         fr_1z7o: u128,
@@ -365,18 +365,18 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         fr_dy3l: StringRange,
         fr_6f68: u128,
         fr_47yy: StringRange,
-        aptos_forms_demo_fr_gh3o: vector<String>,
-        aptos_forms_demo_fr_fbba: vector<String>,
+        fr_gh3o: vector<String>,
+        fr_fbba: vector<String>,
         fr_hhzp: String,
         single_text1: String,
     ): AptosFormsDemoMainFormSubmitted {
         AptosFormsDemoMainFormSubmitted {
             signer_address,
             fr_5pqi,
-            aptos_forms_demo_fr_duif,
-            aptos_forms_demo_fr_6i34,
+            fr_duif,
+            fr_6i34,
             fr_8xjs,
-            aptos_forms_demo_fr_9c3f,
+            fr_9c3f,
             fr_4ok6,
             fr_b3ub,
             fr_1z7o,
@@ -384,8 +384,8 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
             fr_dy3l,
             fr_6f68,
             fr_47yy,
-            aptos_forms_demo_fr_gh3o,
-            aptos_forms_demo_fr_fbba,
+            fr_gh3o,
+            fr_fbba,
             fr_hhzp,
             single_text1,
         }
@@ -395,10 +395,10 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
     public(friend) fun create_aptos_forms_demo_main_form(
         signer_address: address,
         fr_5pqi: u128,
-        aptos_forms_demo_fr_duif: vector<String>,
-        aptos_forms_demo_fr_6i34: vector<String>,
+        fr_duif: vector<String>,
+        fr_6i34: vector<String>,
         fr_8xjs: String,
-        aptos_forms_demo_fr_9c3f: String,
+        fr_9c3f: String,
         fr_4ok6: u128,
         fr_b3ub: String,
         fr_1z7o: u128,
@@ -406,8 +406,8 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         fr_dy3l: StringRange,
         fr_6f68: u128,
         fr_47yy: StringRange,
-        aptos_forms_demo_fr_gh3o: vector<String>,
-        aptos_forms_demo_fr_fbba: vector<String>,
+        fr_gh3o: vector<String>,
+        fr_fbba: vector<String>,
         fr_hhzp: String,
         single_text1: String,
     ): AptosFormsDemoMainForm acquires Tables {
@@ -415,10 +415,10 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         let aptos_forms_demo_main_form = new_aptos_forms_demo_main_form(
             signer_address,
             fr_5pqi,
-            aptos_forms_demo_fr_duif,
-            aptos_forms_demo_fr_6i34,
+            fr_duif,
+            fr_6i34,
             fr_8xjs,
-            aptos_forms_demo_fr_9c3f,
+            fr_9c3f,
             fr_4ok6,
             fr_b3ub,
             fr_1z7o,
@@ -426,8 +426,8 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
             fr_dy3l,
             fr_6f68,
             fr_47yy,
-            aptos_forms_demo_fr_gh3o,
-            aptos_forms_demo_fr_fbba,
+            fr_gh3o,
+            fr_fbba,
             fr_hhzp,
             single_text1,
         );
@@ -480,10 +480,10 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
             version: _version,
             signer_address: _signer_address,
             fr_5pqi: _fr_5pqi,
-            aptos_forms_demo_fr_duif: _aptos_forms_demo_fr_duif,
-            aptos_forms_demo_fr_6i34: _aptos_forms_demo_fr_6i34,
+            fr_duif: _fr_duif,
+            fr_6i34: _fr_6i34,
             fr_8xjs: _fr_8xjs,
-            aptos_forms_demo_fr_9c3f: _aptos_forms_demo_fr_9c3f,
+            fr_9c3f: _fr_9c3f,
             fr_4ok6: _fr_4ok6,
             fr_b3ub: _fr_b3ub,
             fr_1z7o: _fr_1z7o,
@@ -491,8 +491,8 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
             fr_dy3l: _fr_dy3l,
             fr_6f68: _fr_6f68,
             fr_47yy: _fr_47yy,
-            aptos_forms_demo_fr_gh3o: _aptos_forms_demo_fr_gh3o,
-            aptos_forms_demo_fr_fbba: _aptos_forms_demo_fr_fbba,
+            fr_gh3o: _fr_gh3o,
+            fr_fbba: _fr_fbba,
             fr_hhzp: _fr_hhzp,
             single_text1: _single_text1,
         } = aptos_forms_demo_main_form;

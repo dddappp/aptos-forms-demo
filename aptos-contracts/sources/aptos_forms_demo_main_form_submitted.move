@@ -17,20 +17,20 @@ module aptos_forms_demo::aptos_forms_demo_main_form_submitted {
         aptos_forms_demo_main_form::aptos_forms_demo_main_form_submitted_fr_5pqi(aptos_forms_demo_main_form_submitted)
     }
 
-    public fun aptos_forms_demo_fr_duif(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): vector<String> {
-        aptos_forms_demo_main_form::aptos_forms_demo_main_form_submitted_aptos_forms_demo_fr_duif(aptos_forms_demo_main_form_submitted)
+    public fun fr_duif(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): vector<String> {
+        aptos_forms_demo_main_form::aptos_forms_demo_main_form_submitted_fr_duif(aptos_forms_demo_main_form_submitted)
     }
 
-    public fun aptos_forms_demo_fr_6i34(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): vector<String> {
-        aptos_forms_demo_main_form::aptos_forms_demo_main_form_submitted_aptos_forms_demo_fr_6i34(aptos_forms_demo_main_form_submitted)
+    public fun fr_6i34(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): vector<String> {
+        aptos_forms_demo_main_form::aptos_forms_demo_main_form_submitted_fr_6i34(aptos_forms_demo_main_form_submitted)
     }
 
     public fun fr_8xjs(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): String {
         aptos_forms_demo_main_form::aptos_forms_demo_main_form_submitted_fr_8xjs(aptos_forms_demo_main_form_submitted)
     }
 
-    public fun aptos_forms_demo_fr_9c3f(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): String {
-        aptos_forms_demo_main_form::aptos_forms_demo_main_form_submitted_aptos_forms_demo_fr_9c3f(aptos_forms_demo_main_form_submitted)
+    public fun fr_9c3f(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): String {
+        aptos_forms_demo_main_form::aptos_forms_demo_main_form_submitted_fr_9c3f(aptos_forms_demo_main_form_submitted)
     }
 
     public fun fr_4ok6(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): u128 {
@@ -61,12 +61,12 @@ module aptos_forms_demo::aptos_forms_demo_main_form_submitted {
         aptos_forms_demo_main_form::aptos_forms_demo_main_form_submitted_fr_47yy(aptos_forms_demo_main_form_submitted)
     }
 
-    public fun aptos_forms_demo_fr_gh3o(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): vector<String> {
-        aptos_forms_demo_main_form::aptos_forms_demo_main_form_submitted_aptos_forms_demo_fr_gh3o(aptos_forms_demo_main_form_submitted)
+    public fun fr_gh3o(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): vector<String> {
+        aptos_forms_demo_main_form::aptos_forms_demo_main_form_submitted_fr_gh3o(aptos_forms_demo_main_form_submitted)
     }
 
-    public fun aptos_forms_demo_fr_fbba(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): vector<String> {
-        aptos_forms_demo_main_form::aptos_forms_demo_main_form_submitted_aptos_forms_demo_fr_fbba(aptos_forms_demo_main_form_submitted)
+    public fun fr_fbba(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): vector<String> {
+        aptos_forms_demo_main_form::aptos_forms_demo_main_form_submitted_fr_fbba(aptos_forms_demo_main_form_submitted)
     }
 
     public fun fr_hhzp(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): String {

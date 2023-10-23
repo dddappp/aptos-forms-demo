@@ -13,8 +13,8 @@
         name: Fr_5pqi
         optional: false
         type: u128
-      AptosFormsDemo_fr_duif:
-        name: AptosFormsDemo_fr_duif
+      Fr_duif:
+        name: Fr_duif
         displayName: 下拉多选
         optional: false
         itemLength: 1
@@ -22,8 +22,8 @@
           max: 2
         itemType: AptosFormsDemo_fr_duif
         sequenceNumber: 1
-      AptosFormsDemo_fr_6i34:
-        name: AptosFormsDemo_fr_6i34
+      Fr_6i34:
+        name: Fr_6i34
         displayName: 点击多选
         optional: false
         itemLength: 1
@@ -37,8 +37,8 @@
         length: 255
         type: String
         sequenceNumber: 3
-      AptosFormsDemo_fr_9c3f:
-        name: AptosFormsDemo_fr_9c3f
+      Fr_9c3f:
+        name: Fr_9c3f
         displayName: 下拉单选
         optional: false
         length: 1
@@ -83,8 +83,8 @@
         optional: false
         type: StringRange
         sequenceNumber: 11
-      AptosFormsDemo_fr_gh3o:
-        name: AptosFormsDemo_fr_gh3o
+      Fr_gh3o:
+        name: Fr_gh3o
         displayName: 下拉多选
         optional: false
         itemLength: 1
@@ -92,8 +92,8 @@
           max: 2
         itemType: AptosFormsDemo_fr_gh3o
         sequenceNumber: 12
-      AptosFormsDemo_fr_fbba:
-        name: AptosFormsDemo_fr_fbba
+      Fr_fbba:
+        name: Fr_fbba
         displayName: 点击多选
         optional: false
         itemLength: 1
