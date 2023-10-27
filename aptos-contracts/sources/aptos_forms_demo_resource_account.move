@@ -18,10 +18,10 @@ module aptos_forms_demo::aptos_forms_demo_resource_account {
     public(friend) fun initialize(genisis_account: &signer) {
         let seed = bcs::to_bytes(&signer::address_of(genisis_account));
         vector::append(&mut seed, b"AptosFormsDemo");
-        let (_resource_account_signer, resouce_account_signer_cap) = account::create_resource_account(
+        let (_resource_account_signer, resource_account_signer_cap) = account::create_resource_account(
             genisis_account, seed);
         move_to(genisis_account, ResourceAccount {
-            cap: resouce_account_signer_cap,
+            cap: resource_account_signer_cap,
         });
     }
 

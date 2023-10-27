@@ -437,8 +437,8 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
     public(friend) fun asset_aptos_forms_demo_main_form_not_exists(
         signer_address: address,
     ) acquires Tables {
-        assert!(exists<Tables>(genesis_account::resouce_account_address()), ENotInitialized);
-        let tables = borrow_global_mut<Tables>(genesis_account::resouce_account_address());
+        assert!(exists<Tables>(genesis_account::resource_account_address()), ENotInitialized);
+        let tables = borrow_global_mut<Tables>(genesis_account::resource_account_address());
         assert!(!table::contains(&tables.aptos_forms_demo_main_form_table, signer_address), EIdAlreadyExists);
     }
 
@@ -454,15 +454,15 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
     }
 
     public(friend) fun remove_aptos_forms_demo_main_form(signer_address: address): AptosFormsDemoMainForm acquires Tables {
-        assert!(exists<Tables>(genesis_account::resouce_account_address()), ENotInitialized);
-        let tables = borrow_global_mut<Tables>(genesis_account::resouce_account_address());
+        assert!(exists<Tables>(genesis_account::resource_account_address()), ENotInitialized);
+        let tables = borrow_global_mut<Tables>(genesis_account::resource_account_address());
         table::remove(&mut tables.aptos_forms_demo_main_form_table, signer_address)
     }
 
     fun private_add_aptos_forms_demo_main_form(aptos_forms_demo_main_form: AptosFormsDemoMainForm) acquires Tables {
-        assert!(exists<Tables>(genesis_account::resouce_account_address()), ENotInitialized);
-        let tables = borrow_global_mut<Tables>(genesis_account::resouce_account_address());
-        table::add(&mut tables.aptos_forms_demo_main_form_table, signer_address(&aptos_forms_demo_main_form), aptos_forms_demo_main_form);
+        assert!(exists<Tables>(genesis_account::resource_account_address()), ENotInitialized);
+        let tables = borrow_global_mut<Tables>(genesis_account::resource_account_address());
+        table::add(&mut tables.aptos_forms_demo_main_form_table, aptos_forms_demo_main_form.signer_address, aptos_forms_demo_main_form);
     }
 
     public fun get_aptos_forms_demo_main_form(signer_address: address): pass_object::PassObject<AptosFormsDemoMainForm> acquires Tables {
@@ -498,9 +498,14 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         } = aptos_forms_demo_main_form;
     }
 
+    public fun contains_aptos_forms_demo_main_form(signer_address: address): bool acquires Tables {
+        let tables = borrow_global<Tables>(genesis_account::resource_account_address());
+        table::contains(&tables.aptos_forms_demo_main_form_table, signer_address)
+    }
+
     public(friend) fun emit_aptos_forms_demo_main_form_submitted(aptos_forms_demo_main_form_submitted: AptosFormsDemoMainFormSubmitted) acquires Events {
-        assert!(exists<Events>(genesis_account::resouce_account_address()), ENotInitialized);
-        let events = borrow_global_mut<Events>(genesis_account::resouce_account_address());
+        assert!(exists<Events>(genesis_account::resource_account_address()), ENotInitialized);
+        let events = borrow_global_mut<Events>(genesis_account::resource_account_address());
         event::emit_event(&mut events.aptos_forms_demo_main_form_submitted_handle, aptos_forms_demo_main_form_submitted);
     }
 
