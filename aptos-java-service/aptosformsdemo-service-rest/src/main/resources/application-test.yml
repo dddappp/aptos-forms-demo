@@ -19,11 +19,14 @@ server:
 
 aptos:
   contract:
+    # TestNet
+#    address:
+#      "0xf0ee3187beaa48e56def59dbe52d7e932c3e559c28ae26568fa91ff9ae85e145"
     address:
-      "0xf0ee3187beaa48e56def59dbe52d7e932c3e559c28ae26568fa91ff9ae85e145"
+      "0x56c01bfdfae128e57544f59f52be70bb883ea2d1fb97ba5774741996f77b4eb7"
     node-api:
-      #base-url: "https://fullnode.devnet.aptoslabs.com/v1"
-      base-url: "https://fullnode.testnet.aptoslabs.com/v1"
+      #base-url: "https://fullnode.testnet.aptoslabs.com/v1"
+      base-url: "https://fullnode.devnet.aptoslabs.com/v1"
 #    pull-day-summary-events:
 #      day-summary-created:
 #        fixed-delay: 6000
