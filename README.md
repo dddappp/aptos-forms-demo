@@ -252,6 +252,18 @@ Use a MySQL client to connect to the local MySQL server and execute the followin
 CREATE SCHEMA `test2` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 ```
 
+For PostgreSQL:
+
+```sql
+CREATE DATABASE test2
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LOCALE_PROVIDER = 'libc'
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
+```
+
 Go to the `aptos-java-service` directory and package the Java project:
 
 ```shell
@@ -262,6 +274,12 @@ Then, run a command-line tool to initialize the database:
 
 ```shell
 java -jar ./{form_id}-service-cli/target/{form_id}-service-cli-0.0.1-SNAPSHOT.jar ddl -d "./scripts" -c "jdbc:mysql://127.0.0.1:3306/test2?enabledTLSProtocols=TLSv1.2&characterEncoding=utf8&serverTimezone=GMT%2b0&useLegacyDatetimeCode=false" -u root -p 123456
+```
+
+For PostgreSQL:
+
+```shell
+java -jar ./{form_id}-service-cli/target/{form_id}-service-cli-0.0.1-SNAPSHOT.jar ddl -d "./scripts" -c "jdbc:postgresql://127.0.0.1/test2" -u postgres -p 123456
 ```
 
 ### Configuring Off-Chain Service

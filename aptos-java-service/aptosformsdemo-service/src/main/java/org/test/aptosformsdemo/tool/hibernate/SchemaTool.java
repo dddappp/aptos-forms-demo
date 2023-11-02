@@ -83,8 +83,10 @@ public class SchemaTool {
 
     private static Properties getDefaultHibernateProperties() {
         Properties props = new Properties();
-        props.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
-        props.setProperty("hibernate.connection.driver_class", "com.mysql.cj.jdbc.Driver");
+//        props.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
+//        props.setProperty("hibernate.connection.driver_class", "com.mysql.cj.jdbc.Driver");
+        props.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL10Dialect");
+        props.setProperty("hibernate.connection.driver_class", "org.postgresql.Driver");
         props.setProperty("hibernate.cache.region.factory_class", "org.hibernate.cache.EhCacheProvider");
         props.setProperty("hibernate.cache.use_second_level_cache", "false");
         return props;
@@ -276,10 +278,14 @@ public class SchemaTool {
 
     private org.hibernate.cfg.Configuration getHibernateConfiguration() {
         String connString = getConnectionUrl();
-        String connAllowMQOpt = "allowMultiQueries=true";
-        if (!connString.toLowerCase().contains((connAllowMQOpt).toLowerCase())) {
-            connString = connString + (connString.endsWith("&") ? "" : "&") + connAllowMQOpt;
-        }
+        //
+        // For MySQL (jdbc:mysql). If using PostgreSQL, comment out the following lines
+        //String connAllowMQOpt = "allowMultiQueries=true";
+        //if (!connString.toLowerCase().contains((connAllowMQOpt).toLowerCase())) {
+        //    connString = connString + (connString.endsWith("&") ? "" : "&") + connAllowMQOpt;
+        //}
+        //
+
         org.hibernate.cfg.Configuration cfg = new org.hibernate.cfg.Configuration();
         cfg.setProperty("hibernate.connection.url", connString);
         cfg.setProperty("hibernate.connection.username", getConnectionUsername());
