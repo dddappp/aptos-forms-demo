@@ -169,6 +169,8 @@ In the directory `aptos-contracts`, execute the compilation, which should now su
 
 ```shell
 aptos move compile --named-addresses aptos_forms_demo=default,xrender_form_utils=0x71df3ab1b6cf015aa5870a8a6e8ee0951c54e8d7d79bb59fa3b737c3a38fb93b
+# Unit test:
+# aptos move test --named-addresses aptos_forms_demo=default,xrender_form_utils=0x71df3ab1b6cf015aa5870a8a6e8ee0951c54e8d7d79bb59fa3b737c3a38fb93b
 ```
 
 At this point, the coding phase of the application development is complete! Isn't it very simple?
@@ -207,6 +209,17 @@ Initialize the contract first:
 
 ```shell
 aptos move run --function-id 'default::aptos_forms_demo_init::initialize' --assume-yes
+```
+
+
+### Test submitting form
+
+You can do a test of submitting the form using the default account:
+
+```shell
+aptos move run --function-id 'default::aptos_forms_demo_main_form_aggregate::submit' \
+--args u128:12 'string:["A","B"]' 'string:["A","B"]' 'string:fr_8xjs' 'string:1' u128:1 'string:fr_b3ub' u128:1 'u16:[2022,1,1,2022,1,2]' 'u16:[2022,1,1,2022,1,2]' u128:1 'u8:[1,1,1,1,1,2]' 'string:["A","B"]' 'string:["1","2"]' 'u16:[2022,1,1]' 'string:single_text1' \
+--assume-yes
 ```
 
 ### Generate submission page from schema
