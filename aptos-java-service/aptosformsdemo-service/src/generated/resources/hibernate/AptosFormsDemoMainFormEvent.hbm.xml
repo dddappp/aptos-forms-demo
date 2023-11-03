@@ -36,8 +36,11 @@
     </property>
     <property name="commandType" column="command_type" length="50" />
     <subclass name="AbstractAptosFormsDemoMainFormEvent$AptosFormsDemoMainFormClobEvent" discriminator-value="AptosFormsDemoMainFormClobEvent">
-      <property name="DynamicPropertiesLob">
-        <column name="dynamic_properties_lob" sql-type="VARCHAR(2000)" />
+      <property name="dynamicProperties" >
+        <column name="dynamic_properties" sql-type="jsonb" />
+        <type name="io.hypersistence.utils.hibernate.type.json.JsonBinaryType">
+          <param name="org.hibernate.type.ParameterType">java.util.HashMap</param>
+        </type>
       </property>
       <subclass name="AbstractAptosFormsDemoMainFormEvent$AptosFormsDemoMainFormSubmitted" discriminator-value="AptosFormsDemoMainFormSubmitted" />
     </subclass>

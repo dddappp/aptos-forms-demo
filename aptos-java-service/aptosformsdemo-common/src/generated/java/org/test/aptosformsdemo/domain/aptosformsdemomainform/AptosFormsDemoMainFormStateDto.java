@@ -27,148 +27,16 @@ public class AptosFormsDemoMainFormStateDto {
         this.signerAddress = signerAddress;
     }
 
-    private BigInteger fr_5pqi;
+    private Map<String, Object> dynamicProperties;
 
-    public BigInteger getFr_5pqi()
+    public Map<String, Object> getDynamicProperties()
     {
-        return this.fr_5pqi;
+        return this.dynamicProperties;
     }
 
-    public void setFr_5pqi(BigInteger fr_5pqi)
+    public void setDynamicProperties(Map<String, Object> dynamicProperties)
     {
-        this.fr_5pqi = fr_5pqi;
-    }
-
-    private String fr_8xjs;
-
-    public String getFr_8xjs()
-    {
-        return this.fr_8xjs;
-    }
-
-    public void setFr_8xjs(String fr_8xjs)
-    {
-        this.fr_8xjs = fr_8xjs;
-    }
-
-    private String fr_9c3f;
-
-    public String getFr_9c3f()
-    {
-        return this.fr_9c3f;
-    }
-
-    public void setFr_9c3f(String fr_9c3f)
-    {
-        this.fr_9c3f = fr_9c3f;
-    }
-
-    private BigInteger fr_4ok6;
-
-    public BigInteger getFr_4ok6()
-    {
-        return this.fr_4ok6;
-    }
-
-    public void setFr_4ok6(BigInteger fr_4ok6)
-    {
-        this.fr_4ok6 = fr_4ok6;
-    }
-
-    private String fr_b3ub;
-
-    public String getFr_b3ub()
-    {
-        return this.fr_b3ub;
-    }
-
-    public void setFr_b3ub(String fr_b3ub)
-    {
-        this.fr_b3ub = fr_b3ub;
-    }
-
-    private BigInteger fr_1z7o;
-
-    public BigInteger getFr_1z7o()
-    {
-        return this.fr_1z7o;
-    }
-
-    public void setFr_1z7o(BigInteger fr_1z7o)
-    {
-        this.fr_1z7o = fr_1z7o;
-    }
-
-    private DateRange fr_d8rw;
-
-    public DateRange getFr_d8rw()
-    {
-        return this.fr_d8rw;
-    }
-
-    public void setFr_d8rw(DateRange fr_d8rw)
-    {
-        this.fr_d8rw = fr_d8rw;
-    }
-
-    private DateRange fr_dy3l;
-
-    public DateRange getFr_dy3l()
-    {
-        return this.fr_dy3l;
-    }
-
-    public void setFr_dy3l(DateRange fr_dy3l)
-    {
-        this.fr_dy3l = fr_dy3l;
-    }
-
-    private BigInteger fr_6f68;
-
-    public BigInteger getFr_6f68()
-    {
-        return this.fr_6f68;
-    }
-
-    public void setFr_6f68(BigInteger fr_6f68)
-    {
-        this.fr_6f68 = fr_6f68;
-    }
-
-    private TimeRange fr_47yy;
-
-    public TimeRange getFr_47yy()
-    {
-        return this.fr_47yy;
-    }
-
-    public void setFr_47yy(TimeRange fr_47yy)
-    {
-        this.fr_47yy = fr_47yy;
-    }
-
-    private XRenderFormDate fr_hhzp;
-
-    public XRenderFormDate getFr_hhzp()
-    {
-        return this.fr_hhzp;
-    }
-
-    public void setFr_hhzp(XRenderFormDate fr_hhzp)
-    {
-        this.fr_hhzp = fr_hhzp;
-    }
-
-    private String single_text1;
-
-    public String getSingle_text1()
-    {
-        return this.single_text1;
-    }
-
-    public void setSingle_text1(String single_text1)
-    {
-        this.single_text1 = single_text1;
+        this.dynamicProperties = dynamicProperties;
     }
 
     private BigInteger version;
@@ -255,47 +123,6 @@ public class AptosFormsDemoMainFormStateDto {
         this.updatedAt = updatedAt;
     }
 
-    private String[] fr_duif;
-
-    public String[] getFr_duif() {
-        return this.fr_duif;
-    }
-
-    public void setFr_duif(String[] fr_duif) {
-        this.fr_duif = fr_duif;
-    }
-
-    private String[] fr_6i34;
-
-    public String[] getFr_6i34() {
-        return this.fr_6i34;
-    }
-
-    public void setFr_6i34(String[] fr_6i34) {
-        this.fr_6i34 = fr_6i34;
-    }
-
-    private String[] fr_gh3o;
-
-    public String[] getFr_gh3o() {
-        return this.fr_gh3o;
-    }
-
-    public void setFr_gh3o(String[] fr_gh3o) {
-        this.fr_gh3o = fr_gh3o;
-    }
-
-    private String[] fr_fbba;
-
-    public String[] getFr_fbba() {
-        return this.fr_fbba;
-    }
-
-    public void setFr_fbba(String[] fr_fbba) {
-        this.fr_fbba = fr_fbba;
-    }
-
-
     public static class DtoConverter extends AbstractStateDtoConverter
     {
         public static Collection<String> collectionFieldNames = Arrays.asList(new String[]{});
@@ -327,42 +154,9 @@ public class AptosFormsDemoMainFormStateDto {
             if (returnedFieldsContains("SignerAddress")) {
                 dto.setSignerAddress(state.getSignerAddress());
             }
-            if (returnedFieldsContains("Fr_5pqi")) {
-                dto.setFr_5pqi(state.getFr_5pqi());
-            }
-            if (returnedFieldsContains("Fr_8xjs")) {
-                dto.setFr_8xjs(state.getFr_8xjs());
-            }
-            if (returnedFieldsContains("Fr_9c3f")) {
-                dto.setFr_9c3f(state.getFr_9c3f());
-            }
-            if (returnedFieldsContains("Fr_4ok6")) {
-                dto.setFr_4ok6(state.getFr_4ok6());
-            }
-            if (returnedFieldsContains("Fr_b3ub")) {
-                dto.setFr_b3ub(state.getFr_b3ub());
-            }
-            if (returnedFieldsContains("Fr_1z7o")) {
-                dto.setFr_1z7o(state.getFr_1z7o());
-            }
-            if (returnedFieldsContains("Fr_d8rw")) {
-                dto.setFr_d8rw(state.getFr_d8rw());
-            }
-            if (returnedFieldsContains("Fr_dy3l")) {
-                dto.setFr_dy3l(state.getFr_dy3l());
-            }
-            if (returnedFieldsContains("Fr_6f68")) {
-                dto.setFr_6f68(state.getFr_6f68());
-            }
-            if (returnedFieldsContains("Fr_47yy")) {
-                dto.setFr_47yy(state.getFr_47yy());
-            }
-            if (returnedFieldsContains("Fr_hhzp")) {
-                dto.setFr_hhzp(state.getFr_hhzp());
-            }
-            if (returnedFieldsContains("Single_text1")) {
-                dto.setSingle_text1(state.getSingle_text1());
-            }
+
+            dto.setDynamicProperties(state.getDynamicProperties());
+
             if (returnedFieldsContains("Version")) {
                 dto.setVersion(state.getVersion());
             }
@@ -384,42 +178,7 @@ public class AptosFormsDemoMainFormStateDto {
             if (returnedFieldsContains("UpdatedAt")) {
                 dto.setUpdatedAt(state.getUpdatedAt());
             }
-            if (returnedFieldsContains("Fr_duif")) {
-                ArrayList<String> arrayList = new ArrayList();
-                if (state.getFr_duif() != null) {
-                    for (String s : state.getFr_duif()) {
-                        arrayList.add(s);
-                    }
-                }
-                dto.setFr_duif(arrayList.toArray(new String[0]));
-            }
-            if (returnedFieldsContains("Fr_6i34")) {
-                ArrayList<String> arrayList = new ArrayList();
-                if (state.getFr_6i34() != null) {
-                    for (String s : state.getFr_6i34()) {
-                        arrayList.add(s);
-                    }
-                }
-                dto.setFr_6i34(arrayList.toArray(new String[0]));
-            }
-            if (returnedFieldsContains("Fr_gh3o")) {
-                ArrayList<String> arrayList = new ArrayList();
-                if (state.getFr_gh3o() != null) {
-                    for (String s : state.getFr_gh3o()) {
-                        arrayList.add(s);
-                    }
-                }
-                dto.setFr_gh3o(arrayList.toArray(new String[0]));
-            }
-            if (returnedFieldsContains("Fr_fbba")) {
-                ArrayList<String> arrayList = new ArrayList();
-                if (state.getFr_fbba() != null) {
-                    for (String s : state.getFr_fbba()) {
-                        arrayList.add(s);
-                    }
-                }
-                dto.setFr_fbba(arrayList.toArray(new String[0]));
-            }
+
             return dto;
         }
 

@@ -75,22 +75,7 @@ public class AptosAptosFormsDemoMainFormStateRetriever {
     private AptosFormsDemoMainFormState toAptosFormsDemoMainFormState(AptosFormsDemoMainForm aptosFormsDemoMainForm) {
         AptosFormsDemoMainFormState.MutableAptosFormsDemoMainFormState aptosFormsDemoMainFormState = aptosFormsDemoMainFormStateFactory.apply(aptosFormsDemoMainForm.getSignerAddress());
         aptosFormsDemoMainFormState.setVersion(aptosFormsDemoMainForm.getVersion());
-        aptosFormsDemoMainFormState.setFr_5pqi(aptosFormsDemoMainForm.getFr_5pqi());
-        aptosFormsDemoMainFormState.setFr_duif(new HashSet<>(Arrays.asList(aptosFormsDemoMainForm.getFr_duif())));
-        aptosFormsDemoMainFormState.setFr_6i34(new HashSet<>(Arrays.asList(aptosFormsDemoMainForm.getFr_6i34())));
-        aptosFormsDemoMainFormState.setFr_8xjs(aptosFormsDemoMainForm.getFr_8xjs());
-        aptosFormsDemoMainFormState.setFr_9c3f(aptosFormsDemoMainForm.getFr_9c3f());
-        aptosFormsDemoMainFormState.setFr_4ok6(aptosFormsDemoMainForm.getFr_4ok6());
-        aptosFormsDemoMainFormState.setFr_b3ub(aptosFormsDemoMainForm.getFr_b3ub());
-        aptosFormsDemoMainFormState.setFr_1z7o(aptosFormsDemoMainForm.getFr_1z7o());
-        aptosFormsDemoMainFormState.setFr_d8rw(DomainBeanUtils.toDateRange(aptosFormsDemoMainForm.getFr_d8rw()));
-        aptosFormsDemoMainFormState.setFr_dy3l(DomainBeanUtils.toDateRange(aptosFormsDemoMainForm.getFr_dy3l()));
-        aptosFormsDemoMainFormState.setFr_6f68(aptosFormsDemoMainForm.getFr_6f68());
-        aptosFormsDemoMainFormState.setFr_47yy(DomainBeanUtils.toTimeRange(aptosFormsDemoMainForm.getFr_47yy()));
-        aptosFormsDemoMainFormState.setFr_gh3o(new HashSet<>(Arrays.asList(aptosFormsDemoMainForm.getFr_gh3o())));
-        aptosFormsDemoMainFormState.setFr_fbba(new HashSet<>(Arrays.asList(aptosFormsDemoMainForm.getFr_fbba())));
-        aptosFormsDemoMainFormState.setFr_hhzp(DomainBeanUtils.toXRenderFormDate(aptosFormsDemoMainForm.getFr_hhzp()));
-        aptosFormsDemoMainFormState.setSingle_text1(aptosFormsDemoMainForm.getSingle_text1());
+        aptosFormsDemoMainFormState.setDynamicProperties(aptosFormsDemoMainForm.getDynamicProperties());
         return aptosFormsDemoMainFormState;
     }
 

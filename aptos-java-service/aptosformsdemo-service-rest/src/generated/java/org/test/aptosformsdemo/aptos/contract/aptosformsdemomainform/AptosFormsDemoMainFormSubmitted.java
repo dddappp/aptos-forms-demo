@@ -18,37 +18,8 @@ public class AptosFormsDemoMainFormSubmitted {
 
     private String signerAddress;
 
-    private BigInteger fr_5pqi;
+    private Map<String, Object> dynamicProperties = new HashMap<>();
 
-    private String[] fr_duif;
-
-    private String[] fr_6i34;
-
-    private String fr_8xjs;
-
-    private String fr_9c3f;
-
-    private BigInteger fr_4ok6;
-
-    private String fr_b3ub;
-
-    private BigInteger fr_1z7o;
-
-    private DateRange fr_d8rw;
-
-    private DateRange fr_dy3l;
-
-    private BigInteger fr_6f68;
-
-    private TimeRange fr_47yy;
-
-    private String[] fr_gh3o;
-
-    private String[] fr_fbba;
-
-    private XRenderFormDate fr_hhzp;
-
-    private String single_text1;
 
     public String getSignerAddress() {
         return signerAddress;
@@ -58,154 +29,25 @@ public class AptosFormsDemoMainFormSubmitted {
         this.signerAddress = signerAddress;
     }
 
-    public BigInteger getFr_5pqi() {
-        return fr_5pqi;
+    @com.fasterxml.jackson.annotation.JsonAnyGetter
+    public Map<String, Object> getDynamicProperties() {
+        return dynamicProperties;
     }
 
-    public void setFr_5pqi(BigInteger fr_5pqi) {
-        this.fr_5pqi = fr_5pqi;
+    public void setDynamicProperties(Map<String, Object> dynamicProperties) {
+        this.dynamicProperties = dynamicProperties;
     }
 
-    public String[] getFr_duif() {
-        return fr_duif;
-    }
-
-    public void setFr_duif(String[] fr_duif) {
-        this.fr_duif = fr_duif;
-    }
-
-    public String[] getFr_6i34() {
-        return fr_6i34;
-    }
-
-    public void setFr_6i34(String[] fr_6i34) {
-        this.fr_6i34 = fr_6i34;
-    }
-
-    public String getFr_8xjs() {
-        return fr_8xjs;
-    }
-
-    public void setFr_8xjs(String fr_8xjs) {
-        this.fr_8xjs = fr_8xjs;
-    }
-
-    public String getFr_9c3f() {
-        return fr_9c3f;
-    }
-
-    public void setFr_9c3f(String fr_9c3f) {
-        this.fr_9c3f = fr_9c3f;
-    }
-
-    public BigInteger getFr_4ok6() {
-        return fr_4ok6;
-    }
-
-    public void setFr_4ok6(BigInteger fr_4ok6) {
-        this.fr_4ok6 = fr_4ok6;
-    }
-
-    public String getFr_b3ub() {
-        return fr_b3ub;
-    }
-
-    public void setFr_b3ub(String fr_b3ub) {
-        this.fr_b3ub = fr_b3ub;
-    }
-
-    public BigInteger getFr_1z7o() {
-        return fr_1z7o;
-    }
-
-    public void setFr_1z7o(BigInteger fr_1z7o) {
-        this.fr_1z7o = fr_1z7o;
-    }
-
-    public DateRange getFr_d8rw() {
-        return fr_d8rw;
-    }
-
-    public void setFr_d8rw(DateRange fr_d8rw) {
-        this.fr_d8rw = fr_d8rw;
-    }
-
-    public DateRange getFr_dy3l() {
-        return fr_dy3l;
-    }
-
-    public void setFr_dy3l(DateRange fr_dy3l) {
-        this.fr_dy3l = fr_dy3l;
-    }
-
-    public BigInteger getFr_6f68() {
-        return fr_6f68;
-    }
-
-    public void setFr_6f68(BigInteger fr_6f68) {
-        this.fr_6f68 = fr_6f68;
-    }
-
-    public TimeRange getFr_47yy() {
-        return fr_47yy;
-    }
-
-    public void setFr_47yy(TimeRange fr_47yy) {
-        this.fr_47yy = fr_47yy;
-    }
-
-    public String[] getFr_gh3o() {
-        return fr_gh3o;
-    }
-
-    public void setFr_gh3o(String[] fr_gh3o) {
-        this.fr_gh3o = fr_gh3o;
-    }
-
-    public String[] getFr_fbba() {
-        return fr_fbba;
-    }
-
-    public void setFr_fbba(String[] fr_fbba) {
-        this.fr_fbba = fr_fbba;
-    }
-
-    public XRenderFormDate getFr_hhzp() {
-        return fr_hhzp;
-    }
-
-    public void setFr_hhzp(XRenderFormDate fr_hhzp) {
-        this.fr_hhzp = fr_hhzp;
-    }
-
-    public String getSingle_text1() {
-        return single_text1;
-    }
-
-    public void setSingle_text1(String single_text1) {
-        this.single_text1 = single_text1;
+    @com.fasterxml.jackson.annotation.JsonAnySetter
+    public void addDynamicProperty(String property, Object value) {
+        this.dynamicProperties.put(property, value);
     }
 
     @Override
     public String toString() {
         return "AptosFormsDemoMainFormSubmitted{" +
                 "signerAddress=" + '\'' + signerAddress + '\'' +
-                ", fr_5pqi=" + fr_5pqi +
-                ", fr_duif=" + Arrays.toString(fr_duif) +
-                ", fr_6i34=" + Arrays.toString(fr_6i34) +
-                ", fr_8xjs=" + '\'' + fr_8xjs + '\'' +
-                ", fr_9c3f=" + '\'' + fr_9c3f + '\'' +
-                ", fr_4ok6=" + fr_4ok6 +
-                ", fr_b3ub=" + '\'' + fr_b3ub + '\'' +
-                ", fr_1z7o=" + fr_1z7o +
-                ", fr_d8rw=" + fr_d8rw +
-                ", fr_dy3l=" + fr_dy3l +
-                ", fr_6f68=" + fr_6f68 +
-                ", fr_47yy=" + fr_47yy +
-                ", fr_gh3o=" + Arrays.toString(fr_gh3o) +
-                ", fr_fbba=" + Arrays.toString(fr_fbba) +
-                ", fr_hhzp=" + fr_hhzp +
-                ", single_text1=" + '\'' + single_text1 + '\'' +
+                ", dynamicProperties=" + dynamicProperties +
                 '}';
     }
 

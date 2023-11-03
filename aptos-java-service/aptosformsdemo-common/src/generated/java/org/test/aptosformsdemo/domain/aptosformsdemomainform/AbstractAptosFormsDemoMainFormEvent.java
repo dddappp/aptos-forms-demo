@@ -148,11 +148,11 @@ public abstract class AbstractAptosFormsDemoMainFormEvent extends AbstractEvent 
 
     public static class AptosFormsDemoMainFormClobEvent extends  AbstractAptosFormsDemoMainFormEvent {
 
-        protected Map<String, Object> getDynamicProperties() {
+        public Map<String, Object> getDynamicProperties() {
             return dynamicProperties;
         }
 
-        protected void setDynamicProperties(Map<String, Object> dynamicProperties) {
+        public void setDynamicProperties(Map<String, Object> dynamicProperties) {
             if (dynamicProperties == null) {
                 throw new IllegalArgumentException("dynamicProperties is null.");
             }
@@ -161,19 +161,19 @@ public abstract class AbstractAptosFormsDemoMainFormEvent extends AbstractEvent 
 
         private Map<String, Object> dynamicProperties = new HashMap<>();
 
-        protected String getDynamicPropertiesLob() {
-            return ApplicationContext.current.getClobConverter().toString(getDynamicProperties());
-        }
-
-        protected void setDynamicPropertiesLob(String text) {
-            getDynamicProperties().clear();
-            Map<String, Object> ps = ApplicationContext.current.getClobConverter().parseLobProperties(text);
-            if (ps != null) {
-                for (Map.Entry<String, Object> kv : ps.entrySet()) {
-                    getDynamicProperties().put(kv.getKey(), kv.getValue());
-                }
-            }
-        }
+//        protected String getDynamicPropertiesLob() {
+//            return ApplicationContext.current.getClobConverter().toString(getDynamicProperties());
+//        }
+//
+//        protected void setDynamicPropertiesLob(String text) {
+//            getDynamicProperties().clear();
+//            Map<String, Object> ps = ApplicationContext.current.getClobConverter().parseLobProperties(text);
+//            if (ps != null) {
+//                for (Map.Entry<String, Object> kv : ps.entrySet()) {
+//                    getDynamicProperties().put(kv.getKey(), kv.getValue());
+//                }
+//            }
+//        }
 
         @Override
         public String getEventClass() {
@@ -187,198 +187,6 @@ public abstract class AbstractAptosFormsDemoMainFormEvent extends AbstractEvent 
         @Override
         public String getEventClass() {
             return "AptosFormsDemoMainFormSubmitted";
-        }
-
-        public BigInteger getFr_5pqi() {
-            Object val = getDynamicProperties().get("fr_5pqi");
-            if (val instanceof BigInteger) {
-                return (BigInteger) val;
-            }
-            return ApplicationContext.current.getTypeConverter().convertValue(val, BigInteger.class);
-        }
-
-        public void setFr_5pqi(BigInteger value) {
-            getDynamicProperties().put("fr_5pqi", value);
-        }
-
-        public String[] getFr_duif() {
-            Object val = getDynamicProperties().get("fr_duif");
-            if (val instanceof String[]) {
-                return (String[]) val;
-            }
-            return ApplicationContext.current.getTypeConverter().convertValue(val, String[].class);
-        }
-
-        public void setFr_duif(String[] value) {
-            getDynamicProperties().put("fr_duif", value);
-        }
-
-        public String[] getFr_6i34() {
-            Object val = getDynamicProperties().get("fr_6i34");
-            if (val instanceof String[]) {
-                return (String[]) val;
-            }
-            return ApplicationContext.current.getTypeConverter().convertValue(val, String[].class);
-        }
-
-        public void setFr_6i34(String[] value) {
-            getDynamicProperties().put("fr_6i34", value);
-        }
-
-        public String getFr_8xjs() {
-            Object val = getDynamicProperties().get("fr_8xjs");
-            if (val instanceof String) {
-                return (String) val;
-            }
-            return ApplicationContext.current.getTypeConverter().convertValue(val, String.class);
-        }
-
-        public void setFr_8xjs(String value) {
-            getDynamicProperties().put("fr_8xjs", value);
-        }
-
-        public String getFr_9c3f() {
-            Object val = getDynamicProperties().get("fr_9c3f");
-            if (val instanceof String) {
-                return (String) val;
-            }
-            return ApplicationContext.current.getTypeConverter().convertValue(val, String.class);
-        }
-
-        public void setFr_9c3f(String value) {
-            getDynamicProperties().put("fr_9c3f", value);
-        }
-
-        public BigInteger getFr_4ok6() {
-            Object val = getDynamicProperties().get("fr_4ok6");
-            if (val instanceof BigInteger) {
-                return (BigInteger) val;
-            }
-            return ApplicationContext.current.getTypeConverter().convertValue(val, BigInteger.class);
-        }
-
-        public void setFr_4ok6(BigInteger value) {
-            getDynamicProperties().put("fr_4ok6", value);
-        }
-
-        public String getFr_b3ub() {
-            Object val = getDynamicProperties().get("fr_b3ub");
-            if (val instanceof String) {
-                return (String) val;
-            }
-            return ApplicationContext.current.getTypeConverter().convertValue(val, String.class);
-        }
-
-        public void setFr_b3ub(String value) {
-            getDynamicProperties().put("fr_b3ub", value);
-        }
-
-        public BigInteger getFr_1z7o() {
-            Object val = getDynamicProperties().get("fr_1z7o");
-            if (val instanceof BigInteger) {
-                return (BigInteger) val;
-            }
-            return ApplicationContext.current.getTypeConverter().convertValue(val, BigInteger.class);
-        }
-
-        public void setFr_1z7o(BigInteger value) {
-            getDynamicProperties().put("fr_1z7o", value);
-        }
-
-        public DateRange getFr_d8rw() {
-            Object val = getDynamicProperties().get("fr_d8rw");
-            if (val instanceof DateRange) {
-                return (DateRange) val;
-            }
-            return ApplicationContext.current.getTypeConverter().convertValue(val, DateRange.class);
-        }
-
-        public void setFr_d8rw(DateRange value) {
-            getDynamicProperties().put("fr_d8rw", value);
-        }
-
-        public DateRange getFr_dy3l() {
-            Object val = getDynamicProperties().get("fr_dy3l");
-            if (val instanceof DateRange) {
-                return (DateRange) val;
-            }
-            return ApplicationContext.current.getTypeConverter().convertValue(val, DateRange.class);
-        }
-
-        public void setFr_dy3l(DateRange value) {
-            getDynamicProperties().put("fr_dy3l", value);
-        }
-
-        public BigInteger getFr_6f68() {
-            Object val = getDynamicProperties().get("fr_6f68");
-            if (val instanceof BigInteger) {
-                return (BigInteger) val;
-            }
-            return ApplicationContext.current.getTypeConverter().convertValue(val, BigInteger.class);
-        }
-
-        public void setFr_6f68(BigInteger value) {
-            getDynamicProperties().put("fr_6f68", value);
-        }
-
-        public TimeRange getFr_47yy() {
-            Object val = getDynamicProperties().get("fr_47yy");
-            if (val instanceof TimeRange) {
-                return (TimeRange) val;
-            }
-            return ApplicationContext.current.getTypeConverter().convertValue(val, TimeRange.class);
-        }
-
-        public void setFr_47yy(TimeRange value) {
-            getDynamicProperties().put("fr_47yy", value);
-        }
-
-        public String[] getFr_gh3o() {
-            Object val = getDynamicProperties().get("fr_gh3o");
-            if (val instanceof String[]) {
-                return (String[]) val;
-            }
-            return ApplicationContext.current.getTypeConverter().convertValue(val, String[].class);
-        }
-
-        public void setFr_gh3o(String[] value) {
-            getDynamicProperties().put("fr_gh3o", value);
-        }
-
-        public String[] getFr_fbba() {
-            Object val = getDynamicProperties().get("fr_fbba");
-            if (val instanceof String[]) {
-                return (String[]) val;
-            }
-            return ApplicationContext.current.getTypeConverter().convertValue(val, String[].class);
-        }
-
-        public void setFr_fbba(String[] value) {
-            getDynamicProperties().put("fr_fbba", value);
-        }
-
-        public XRenderFormDate getFr_hhzp() {
-            Object val = getDynamicProperties().get("fr_hhzp");
-            if (val instanceof XRenderFormDate) {
-                return (XRenderFormDate) val;
-            }
-            return ApplicationContext.current.getTypeConverter().convertValue(val, XRenderFormDate.class);
-        }
-
-        public void setFr_hhzp(XRenderFormDate value) {
-            getDynamicProperties().put("fr_hhzp", value);
-        }
-
-        public String getSingle_text1() {
-            Object val = getDynamicProperties().get("single_text1");
-            if (val instanceof String) {
-                return (String) val;
-            }
-            return ApplicationContext.current.getTypeConverter().convertValue(val, String.class);
-        }
-
-        public void setSingle_text1(String value) {
-            getDynamicProperties().put("single_text1", value);
         }
 
     }

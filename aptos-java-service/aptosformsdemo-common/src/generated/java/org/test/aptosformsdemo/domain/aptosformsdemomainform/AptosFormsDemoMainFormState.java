@@ -20,29 +20,7 @@ public interface AptosFormsDemoMainFormState extends VersionedAptosMoveObject
 
     String getSignerAddress();
 
-    BigInteger getFr_5pqi();
-
-    String getFr_8xjs();
-
-    String getFr_9c3f();
-
-    BigInteger getFr_4ok6();
-
-    String getFr_b3ub();
-
-    BigInteger getFr_1z7o();
-
-    DateRange getFr_d8rw();
-
-    DateRange getFr_dy3l();
-
-    BigInteger getFr_6f68();
-
-    TimeRange getFr_47yy();
-
-    XRenderFormDate getFr_hhzp();
-
-    String getSingle_text1();
+    Map<String, Object> getDynamicProperties();
 
     Long getOffChainVersion();
 
@@ -58,40 +36,10 @@ public interface AptosFormsDemoMainFormState extends VersionedAptosMoveObject
 
     Boolean getDeleted();
 
-    Set<String> getFr_duif();
-
-    Set<String> getFr_6i34();
-
-    Set<String> getFr_gh3o();
-
-    Set<String> getFr_fbba();
-
     interface MutableAptosFormsDemoMainFormState extends AptosFormsDemoMainFormState, VersionedAptosMoveObject.MutableVersionedAptosMoveObject {
         void setSignerAddress(String signerAddress);
 
-        void setFr_5pqi(BigInteger fr_5pqi);
-
-        void setFr_8xjs(String fr_8xjs);
-
-        void setFr_9c3f(String fr_9c3f);
-
-        void setFr_4ok6(BigInteger fr_4ok6);
-
-        void setFr_b3ub(String fr_b3ub);
-
-        void setFr_1z7o(BigInteger fr_1z7o);
-
-        void setFr_d8rw(DateRange fr_d8rw);
-
-        void setFr_dy3l(DateRange fr_dy3l);
-
-        void setFr_6f68(BigInteger fr_6f68);
-
-        void setFr_47yy(TimeRange fr_47yy);
-
-        void setFr_hhzp(XRenderFormDate fr_hhzp);
-
-        void setSingle_text1(String single_text1);
+        void setDynamicProperties(Map<String, Object> dynamicProperties);
 
         void setOffChainVersion(Long offChainVersion);
 
@@ -107,16 +55,7 @@ public interface AptosFormsDemoMainFormState extends VersionedAptosMoveObject
 
         void setDeleted(Boolean deleted);
 
-        void setFr_duif(Set<String> fr_duif);
-
-        void setFr_6i34(Set<String> fr_6i34);
-
-        void setFr_gh3o(Set<String> fr_gh3o);
-
-        void setFr_fbba(Set<String> fr_fbba);
-
-
-        void mutate(Event e);
+        //void mutate(Event e);
 
         //void when(AptosFormsDemoMainFormEvent.AptosFormsDemoMainFormStateCreated e);
 

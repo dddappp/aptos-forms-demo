@@ -88,22 +88,7 @@ public class DomainBeanUtils {
 
         AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted aptosFormsDemoMainFormSubmitted = new AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted();
         aptosFormsDemoMainFormSubmitted.setSignerAddress(contractEvent.getSignerAddress());
-        aptosFormsDemoMainFormSubmitted.setFr_5pqi(contractEvent.getFr_5pqi());
-        aptosFormsDemoMainFormSubmitted.setFr_duif(contractEvent.getFr_duif());
-        aptosFormsDemoMainFormSubmitted.setFr_6i34(contractEvent.getFr_6i34());
-        aptosFormsDemoMainFormSubmitted.setFr_8xjs(contractEvent.getFr_8xjs());
-        aptosFormsDemoMainFormSubmitted.setFr_9c3f(contractEvent.getFr_9c3f());
-        aptosFormsDemoMainFormSubmitted.setFr_4ok6(contractEvent.getFr_4ok6());
-        aptosFormsDemoMainFormSubmitted.setFr_b3ub(contractEvent.getFr_b3ub());
-        aptosFormsDemoMainFormSubmitted.setFr_1z7o(contractEvent.getFr_1z7o());
-        aptosFormsDemoMainFormSubmitted.setFr_d8rw(DomainBeanUtils.toDateRange(contractEvent.getFr_d8rw()));
-        aptosFormsDemoMainFormSubmitted.setFr_dy3l(DomainBeanUtils.toDateRange(contractEvent.getFr_dy3l()));
-        aptosFormsDemoMainFormSubmitted.setFr_6f68(contractEvent.getFr_6f68());
-        aptosFormsDemoMainFormSubmitted.setFr_47yy(DomainBeanUtils.toTimeRange(contractEvent.getFr_47yy()));
-        aptosFormsDemoMainFormSubmitted.setFr_gh3o(contractEvent.getFr_gh3o());
-        aptosFormsDemoMainFormSubmitted.setFr_fbba(contractEvent.getFr_fbba());
-        aptosFormsDemoMainFormSubmitted.setFr_hhzp(DomainBeanUtils.toXRenderFormDate(contractEvent.getFr_hhzp()));
-        aptosFormsDemoMainFormSubmitted.setSingle_text1(contractEvent.getSingle_text1());
+        aptosFormsDemoMainFormSubmitted.setDynamicProperties(contractEvent.getDynamicProperties());
         aptosFormsDemoMainFormSubmitted.setVersion(BigInteger.valueOf(-1));
 
         setAptosEventProperties(aptosFormsDemoMainFormSubmitted, eventEnvelope);
