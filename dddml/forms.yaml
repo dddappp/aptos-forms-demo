@@ -227,6 +227,10 @@ configuration:
   move:
     defaultUserIdType: address
     isModuleNamePackagePrefixEnabled: true
+  java:
+    eventLobPropertiesEnabled: true
+    stateLobPropertiesEnabled: true
+    noGeneratingMutateStateByEventMethods: true
   sequenceNumber: 100
   defaultStringLength: 250
   defaultStringIdLength: 50
