@@ -224,13 +224,13 @@ enumObjects:
     displayName: 点击多选
 configuration:
   defaultUserIdType: string
-  move:
-    defaultUserIdType: address
-    isModuleNamePackagePrefixEnabled: true
   java:
     eventLobPropertiesEnabled: true
     stateLobPropertiesEnabled: true
     noGeneratingMutateStateByEventMethods: true
+  move:
+    defaultUserIdType: address
+    isModuleNamePackagePrefixEnabled: true
   sequenceNumber: 100
   defaultStringLength: 250
   defaultStringIdLength: 50
@@ -239,7 +239,7 @@ configuration:
   valueObjectBaseTypes: {}
   sqlTypes: {}
   metadata:
-    AlwaysGeneratingClobEventProperties: false
+    AlwaysGeneratingEventClobProperties: false
   commandIdName: CommandId
   requesterIdName: RequesterId
   commandContextName: CommandContext
