@@ -18,9 +18,6 @@ public class AptosFormsDemoMainFormSubmitted {
 
     private String signerAddress;
 
-    private Map<String, Object> dynamicProperties = new HashMap<>();
-
-
     public String getSignerAddress() {
         return signerAddress;
     }
@@ -29,9 +26,11 @@ public class AptosFormsDemoMainFormSubmitted {
         this.signerAddress = signerAddress;
     }
 
+    private Map<String, Object> dynamicProperties = new HashMap<>();
+
     @com.fasterxml.jackson.annotation.JsonAnyGetter
     public Map<String, Object> getDynamicProperties() {
-        return dynamicProperties;
+        return this.dynamicProperties;
     }
 
     public void setDynamicProperties(Map<String, Object> dynamicProperties) {

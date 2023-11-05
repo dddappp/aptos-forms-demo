@@ -18,8 +18,6 @@ public class AptosFormsDemoMainForm {
 
     private String signerAddress;
 
-    private Map<String, Object> dynamicProperties = new HashMap<>();
-
     private Long offChainVersion;
 
     private BigInteger version;
@@ -30,20 +28,6 @@ public class AptosFormsDemoMainForm {
 
     public void setSignerAddress(String signerAddress) {
         this.signerAddress = signerAddress;
-    }
-
-    @com.fasterxml.jackson.annotation.JsonAnyGetter
-    public Map<String, Object> getDynamicProperties() {
-        return dynamicProperties;
-    }
-
-    public void setDynamicProperties(Map<String, Object> dynamicProperties) {
-        this.dynamicProperties = dynamicProperties;
-    }
-
-    @com.fasterxml.jackson.annotation.JsonAnySetter
-    public void addDynamicProperty(String property, Object value) {
-        this.dynamicProperties.put(property, value);
     }
 
     public Long getOffChainVersion() {
@@ -62,13 +46,29 @@ public class AptosFormsDemoMainForm {
         this.version = version;
     }
 
+    private Map<String, Object> dynamicProperties = new HashMap<>();
+
+    @com.fasterxml.jackson.annotation.JsonAnyGetter
+    public Map<String, Object> getDynamicProperties() {
+        return this.dynamicProperties;
+    }
+
+    public void setDynamicProperties(Map<String, Object> dynamicProperties) {
+        this.dynamicProperties = dynamicProperties;
+    }
+
+    @com.fasterxml.jackson.annotation.JsonAnySetter
+    public void addDynamicProperty(String property, Object value) {
+        this.dynamicProperties.put(property, value);
+    }
+
     @Override
     public String toString() {
         return "AptosFormsDemoMainForm{" +
                 ", signerAddress=" + '\'' + signerAddress + '\'' +
                 ", offChainVersion=" + offChainVersion +
-                ", dynamicProperties=" + dynamicProperties +
                 ", version=" + version +
+                ", dynamicProperties=" + dynamicProperties +
                 '}';
     }
 
