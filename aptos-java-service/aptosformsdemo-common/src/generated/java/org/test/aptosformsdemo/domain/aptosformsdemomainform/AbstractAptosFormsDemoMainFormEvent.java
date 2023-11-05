@@ -146,7 +146,7 @@ public abstract class AbstractAptosFormsDemoMainFormEvent extends AbstractEvent 
 
     public abstract String getEventClass();
 
-    public static class AptosFormsDemoMainFormClobEvent extends  AbstractAptosFormsDemoMainFormEvent {
+    public static class AptosFormsDemoMainFormLobEvent extends  AbstractAptosFormsDemoMainFormEvent {
 
         public Map<String, Object> getDynamicProperties() {
             return dynamicProperties;
@@ -161,28 +161,14 @@ public abstract class AbstractAptosFormsDemoMainFormEvent extends AbstractEvent 
 
         private Map<String, Object> dynamicProperties = new HashMap<>();
 
-//        protected String getDynamicPropertiesLob() {
-//            return ApplicationContext.current.getClobConverter().toString(getDynamicProperties());
-//        }
-//
-//        protected void setDynamicPropertiesLob(String text) {
-//            getDynamicProperties().clear();
-//            Map<String, Object> ps = ApplicationContext.current.getClobConverter().parseLobProperties(text);
-//            if (ps != null) {
-//                for (Map.Entry<String, Object> kv : ps.entrySet()) {
-//                    getDynamicProperties().put(kv.getKey(), kv.getValue());
-//                }
-//            }
-//        }
-
         @Override
         public String getEventClass() {
-            return "AptosFormsDemoMainFormClobEvent";
+            return "AptosFormsDemoMainFormLobEvent";
         }
 
     }
 
-    public static class AptosFormsDemoMainFormSubmitted extends AptosFormsDemoMainFormClobEvent {
+    public static class AptosFormsDemoMainFormSubmitted extends AptosFormsDemoMainFormLobEvent {
 
         @Override
         public String getEventClass() {

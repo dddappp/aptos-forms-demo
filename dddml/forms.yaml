@@ -238,7 +238,8 @@ configuration:
   defaultDiscriminatorSuffix: Class
   valueObjectBaseTypes: {}
   sqlTypes: {}
-  metadata: {}
+  metadata:
+    AlwaysGeneratingClobEventProperties: false
   commandIdName: CommandId
   requesterIdName: RequesterId
   commandContextName: CommandContext

@@ -97,22 +97,6 @@ public abstract class AbstractAptosFormsDemoMainFormAggregate extends AbstractAg
             AptosFormsDemoMainFormEventId eventId = new AptosFormsDemoMainFormEventId(getState().getSignerAddress(), null);
             AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted e = new AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted();
 
-//            e.setFr_5pqi(fr_5pqi);
-//            e.setFr_duif(fr_duif);
-//            e.setFr_6i34(fr_6i34);
-//            e.setFr_8xjs(fr_8xjs);
-//            e.setFr_9c3f(fr_9c3f);
-//            e.setFr_4ok6(fr_4ok6);
-//            e.setFr_b3ub(fr_b3ub);
-//            e.setFr_1z7o(fr_1z7o);
-//            e.setFr_d8rw(fr_d8rw);
-//            e.setFr_dy3l(fr_dy3l);
-//            e.setFr_6f68(fr_6f68);
-//            e.setFr_47yy(fr_47yy);
-//            e.setFr_gh3o(fr_gh3o);
-//            e.setFr_fbba(fr_fbba);
-//            e.setFr_hhzp(fr_hhzp);
-//            e.setSingle_text1(single_text1);
             e.setAptosEventVersion(null); // todo Need to update 'verify' method to return event properties.
             e.setAptosEventSequenceNumber(null); // todo Need to update 'verify' method to return event properties.
             e.setAptosEventType(null); // todo Need to update 'verify' method to return event properties.

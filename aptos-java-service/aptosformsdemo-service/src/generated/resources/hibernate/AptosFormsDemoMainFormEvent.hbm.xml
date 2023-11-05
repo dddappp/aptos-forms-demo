@@ -35,8 +35,8 @@
       <column name="status" sql-type="CHAR(1)" />
     </property>
     <property name="commandType" column="command_type" length="50" />
-    <subclass name="AbstractAptosFormsDemoMainFormEvent$AptosFormsDemoMainFormClobEvent" discriminator-value="AptosFormsDemoMainFormClobEvent">
-      <property name="dynamicProperties" >
+    <subclass name="AbstractAptosFormsDemoMainFormEvent$AptosFormsDemoMainFormLobEvent" discriminator-value="AptosFormsDemoMainFormLobEvent">
+      <property name="dynamicProperties">
         <column name="dynamic_properties" sql-type="jsonb" />
         <type name="io.hypersistence.utils.hibernate.type.json.JsonBinaryType">
           <param name="org.hibernate.type.ParameterType">java.util.HashMap</param>

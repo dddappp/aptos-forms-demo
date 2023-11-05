@@ -20,8 +20,6 @@ public interface AptosFormsDemoMainFormState extends VersionedAptosMoveObject
 
     String getSignerAddress();
 
-    Map<String, Object> getDynamicProperties();
-
     Long getOffChainVersion();
 
     String getCreatedBy();
@@ -36,10 +34,10 @@ public interface AptosFormsDemoMainFormState extends VersionedAptosMoveObject
 
     Boolean getDeleted();
 
+    Map<String, Object> getDynamicProperties();
+
     interface MutableAptosFormsDemoMainFormState extends AptosFormsDemoMainFormState, VersionedAptosMoveObject.MutableVersionedAptosMoveObject {
         void setSignerAddress(String signerAddress);
-
-        void setDynamicProperties(Map<String, Object> dynamicProperties);
 
         void setOffChainVersion(Long offChainVersion);
 
@@ -54,6 +52,9 @@ public interface AptosFormsDemoMainFormState extends VersionedAptosMoveObject
         void setActive(Boolean active);
 
         void setDeleted(Boolean deleted);
+
+        void setDynamicProperties(Map<String, Object> dynamicProperties);
+
 
         //void mutate(Event e);
 
