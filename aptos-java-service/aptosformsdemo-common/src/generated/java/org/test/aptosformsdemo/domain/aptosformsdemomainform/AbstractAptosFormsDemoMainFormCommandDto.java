@@ -7,7 +7,7 @@ package org.test.aptosformsdemo.domain.aptosformsdemomainform;
 
 import java.math.BigInteger;
 import org.test.aptosformsdemo.domain.*;
-import java.util.Date;
+import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.domain.AbstractCommand;
 
 public abstract class AbstractAptosFormsDemoMainFormCommandDto extends AbstractCommand {

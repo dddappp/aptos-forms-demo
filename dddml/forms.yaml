@@ -224,7 +224,12 @@ enumObjects:
     displayName: 点击多选
 configuration:
   defaultUserIdType: string
+  defaultTimestampType: OffsetDateTime
   java:
+    typeMappings:
+      OffsetDateTime: OffsetDateTime
+    typePackages:
+      OffsetDateTime: java.time
     eventLobPropertiesEnabled: true
     stateLobPropertiesEnabled: true
     noGeneratingMutateStateByEventMethods: true
@@ -240,6 +245,7 @@ configuration:
   sqlTypes: {}
   metadata:
     AlwaysGeneratingEventClobProperties: false
+    AlwaysGeneratingClobEventProperties: false
   commandIdName: CommandId
   requesterIdName: RequesterId
   commandContextName: CommandContext

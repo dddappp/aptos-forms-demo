@@ -11,7 +11,7 @@ import org.test.aptosformsdemo.specialization.VerificationContext;
 import org.test.aptosformsdemo.domain.aptosformsdemomainform.*;
 import java.math.BigInteger;
 import org.test.aptosformsdemo.domain.*;
-import java.util.Date;
+import java.time.OffsetDateTime;
 
 public class StaticMethodConstraints {
 

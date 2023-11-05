@@ -8,7 +8,7 @@ package org.test.aptosformsdemo.domain.aptosformsdemomainform;
 import java.util.*;
 import java.math.BigInteger;
 import org.test.aptosformsdemo.domain.*;
-import java.util.Date;
+import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.specialization.*;
 import org.test.aptosformsdemo.domain.AbstractEvent;
 
@@ -105,13 +105,13 @@ public abstract class AbstractAptosFormsDemoMainFormEvent extends AbstractEvent 
         this.createdBy = createdBy;
     }
 
-    private Date createdAt;
+    private OffsetDateTime createdAt;
 
-    public Date getCreatedAt() {
+    public OffsetDateTime getCreatedAt() {
         return this.createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(OffsetDateTime createdAt) {
         this.createdAt = createdAt;
     }
 

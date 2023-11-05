@@ -9,7 +9,7 @@ import java.util.*;
 import java.math.*;
 import java.math.BigInteger;
 import org.test.aptosformsdemo.domain.*;
-import java.util.Date;
+import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.specialization.Event;
 
 public interface AptosFormsDemoMainFormState extends VersionedAptosMoveObject
@@ -24,11 +24,11 @@ public interface AptosFormsDemoMainFormState extends VersionedAptosMoveObject
 
     String getCreatedBy();
 
-    Date getCreatedAt();
+    OffsetDateTime getCreatedAt();
 
     String getUpdatedBy();
 
-    Date getUpdatedAt();
+    OffsetDateTime getUpdatedAt();
 
     Boolean getActive();
 
@@ -43,11 +43,11 @@ public interface AptosFormsDemoMainFormState extends VersionedAptosMoveObject
 
         void setCreatedBy(String createdBy);
 
-        void setCreatedAt(Date createdAt);
+        void setCreatedAt(OffsetDateTime createdAt);
 
         void setUpdatedBy(String updatedBy);
 
-        void setUpdatedAt(Date updatedAt);
+        void setUpdatedAt(OffsetDateTime updatedAt);
 
         void setActive(Boolean active);
 

@@ -8,7 +8,7 @@ package org.test.aptosformsdemo.domain.aptosformsdemomainform.hibernate;
 import java.util.*;
 import java.math.BigInteger;
 import org.test.aptosformsdemo.domain.*;
-import java.util.Date;
+import java.time.OffsetDateTime;
 import org.hibernate.Session;
 import org.hibernate.Criteria;
 //import org.hibernate.criterion.Order;

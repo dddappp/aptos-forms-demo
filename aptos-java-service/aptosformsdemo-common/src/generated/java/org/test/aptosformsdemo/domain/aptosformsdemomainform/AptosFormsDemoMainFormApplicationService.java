@@ -10,7 +10,7 @@ import java.util.List;
 import org.dddml.support.criterion.Criterion;
 import java.math.BigInteger;
 import org.test.aptosformsdemo.domain.*;
-import java.util.Date;
+import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.specialization.Event;
 import org.test.aptosformsdemo.domain.Command;
 

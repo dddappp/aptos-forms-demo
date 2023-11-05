@@ -10,7 +10,7 @@ import java.util.List;
 import org.dddml.support.criterion.Criterion;
 import java.math.BigInteger;
 import org.test.aptosformsdemo.domain.*;
-import java.util.Date;
+import java.time.OffsetDateTime;
 
 public interface AptosFormsDemoMainFormStateQueryRepository {
     AptosFormsDemoMainFormState get(String id);

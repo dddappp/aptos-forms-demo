@@ -9,7 +9,7 @@ import java.util.*;
 import java.math.*;
 import java.math.BigInteger;
 import org.test.aptosformsdemo.domain.*;
-import java.util.Date;
+import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.specialization.*;
 
 
@@ -75,14 +75,14 @@ public class AptosFormsDemoMainFormStateDto {
         this.createdBy = createdBy;
     }
 
-    private Date createdAt;
+    private OffsetDateTime createdAt;
 
-    public Date getCreatedAt()
+    public OffsetDateTime getCreatedAt()
     {
         return this.createdAt;
     }
 
-    public void setCreatedAt(Date createdAt)
+    public void setCreatedAt(OffsetDateTime createdAt)
     {
         this.createdAt = createdAt;
     }
@@ -99,14 +99,14 @@ public class AptosFormsDemoMainFormStateDto {
         this.updatedBy = updatedBy;
     }
 
-    private Date updatedAt;
+    private OffsetDateTime updatedAt;
 
-    public Date getUpdatedAt()
+    public OffsetDateTime getUpdatedAt()
     {
         return this.updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt)
+    public void setUpdatedAt(OffsetDateTime updatedAt)
     {
         this.updatedAt = updatedAt;
     }

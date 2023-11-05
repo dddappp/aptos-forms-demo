@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.*;
 import java.math.BigInteger;
 import org.test.aptosformsdemo.domain.*;
-import java.util.Date;
+import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.specialization.*;
 import org.test.aptosformsdemo.specialization.hibernate.AbstractHibernateEventStore;
 import org.hibernate.*;

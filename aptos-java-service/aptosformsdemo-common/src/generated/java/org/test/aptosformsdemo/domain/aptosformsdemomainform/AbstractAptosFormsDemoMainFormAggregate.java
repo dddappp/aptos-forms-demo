@@ -8,7 +8,7 @@ package org.test.aptosformsdemo.domain.aptosformsdemomainform;
 import java.util.*;
 import java.math.BigInteger;
 import org.test.aptosformsdemo.domain.*;
-import java.util.Date;
+import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.specialization.*;
 
 public abstract class AbstractAptosFormsDemoMainFormAggregate extends AbstractAggregate implements AptosFormsDemoMainFormAggregate {
@@ -105,7 +105,7 @@ public abstract class AbstractAptosFormsDemoMainFormAggregate extends AbstractAg
 
             e.setCommandId(commandId);
             e.setCreatedBy(requesterId);
-            e.setCreatedAt((java.util.Date)ApplicationContext.current.getTimestampService().now(java.util.Date.class));
+            e.setCreatedAt((OffsetDateTime)ApplicationContext.current.getTimestampService().now(OffsetDateTime.class));
 
             e.setAptosFormsDemoMainFormEventId(eventId);
             return e;
