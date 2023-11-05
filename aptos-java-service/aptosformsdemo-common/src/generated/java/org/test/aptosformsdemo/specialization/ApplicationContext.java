@@ -7,6 +7,7 @@ package org.test.aptosformsdemo.specialization;
 public class ApplicationContext {
 
     protected static final TypeConverter DEFAULT_TYPE_CONVERTER = new DefaultTypeConverter();
+
     protected static final TimestampService DEFAULT_TIMESTAMP_SERVICE = new TimestampService() {
         @Override
         public Object now(Class type) {
@@ -25,6 +26,7 @@ public class ApplicationContext {
             }
         }
     };
+
     public static volatile ApplicationContext current;
 
     public static void setCurrent(ApplicationContext context) {
