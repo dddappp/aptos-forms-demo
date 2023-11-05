@@ -25,16 +25,6 @@ public abstract class AbstractAptosFormsDemoMainFormState implements AptosFormsD
         this.signerAddress = signerAddress;
     }
 
-    private Map<String, Object> dynamicProperties = new HashMap<>();
-
-    public Map<String, Object> getDynamicProperties() {
-        return this.dynamicProperties;
-    }
-
-    public void setDynamicProperties(Map<String, Object> dynamicProperties) {
-        this.dynamicProperties = dynamicProperties;
-    }
-
     private BigInteger version;
 
     public BigInteger getVersion() {
@@ -115,6 +105,16 @@ public abstract class AbstractAptosFormsDemoMainFormState implements AptosFormsD
         this.deleted = deleted;
     }
 
+    private Map<String, Object> dynamicProperties = new HashMap<>();
+
+    public Map<String, Object> getDynamicProperties() {
+        return this.dynamicProperties;
+    }
+
+    public void setDynamicProperties(Map<String, Object> dynamicProperties) {
+        this.dynamicProperties = dynamicProperties;
+    }
+
     public boolean isStateUnsaved() {
         return this.getOffChainVersion() == null;
     }
@@ -174,18 +174,6 @@ public abstract class AbstractAptosFormsDemoMainFormState implements AptosFormsD
         return false;
     }
 
-
-//    public void mutate(Event e) {
-//        setStateReadOnly(false);
-//        if (false) {
-//            ;
-//        } else if (e instanceof AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted) {
-//            when((AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted)e);
-//        } else {
-//            throw new UnsupportedOperationException(String.format("Unsupported event type: %1$s", e.getClass().getName()));
-//        }
-//    }
-
     protected void merge(AptosFormsDemoMainFormState s) {
         if (s == this) {
             return;
@@ -194,79 +182,6 @@ public abstract class AbstractAptosFormsDemoMainFormState implements AptosFormsD
         this.setVersion(s.getVersion());
         this.setActive(s.getActive());
     }
-//
-//    public void when(AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted e) {
-//        throwOnWrongEvent(e);
-//
-//        BigInteger fr_5pqi = e.getFr_5pqi();
-//        BigInteger Fr_5pqi = fr_5pqi;
-//        String[] fr_duif = e.getFr_duif();
-//        String[] Fr_duif = fr_duif;
-//        String[] fr_6i34 = e.getFr_6i34();
-//        String[] Fr_6i34 = fr_6i34;
-//        String fr_8xjs = e.getFr_8xjs();
-//        String Fr_8xjs = fr_8xjs;
-//        String fr_9c3f = e.getFr_9c3f();
-//        String Fr_9c3f = fr_9c3f;
-//        BigInteger fr_4ok6 = e.getFr_4ok6();
-//        BigInteger Fr_4ok6 = fr_4ok6;
-//        String fr_b3ub = e.getFr_b3ub();
-//        String Fr_b3ub = fr_b3ub;
-//        BigInteger fr_1z7o = e.getFr_1z7o();
-//        BigInteger Fr_1z7o = fr_1z7o;
-//        DateRange fr_d8rw = e.getFr_d8rw();
-//        DateRange Fr_d8rw = fr_d8rw;
-//        DateRange fr_dy3l = e.getFr_dy3l();
-//        DateRange Fr_dy3l = fr_dy3l;
-//        BigInteger fr_6f68 = e.getFr_6f68();
-//        BigInteger Fr_6f68 = fr_6f68;
-//        TimeRange fr_47yy = e.getFr_47yy();
-//        TimeRange Fr_47yy = fr_47yy;
-//        String[] fr_gh3o = e.getFr_gh3o();
-//        String[] Fr_gh3o = fr_gh3o;
-//        String[] fr_fbba = e.getFr_fbba();
-//        String[] Fr_fbba = fr_fbba;
-//        XRenderFormDate fr_hhzp = e.getFr_hhzp();
-//        XRenderFormDate Fr_hhzp = fr_hhzp;
-//        String single_text1 = e.getSingle_text1();
-//        String Single_text1 = single_text1;
-//        BigInteger aptosEventVersion = e.getAptosEventVersion();
-//        BigInteger AptosEventVersion = aptosEventVersion;
-//        BigInteger aptosEventSequenceNumber = e.getAptosEventSequenceNumber();
-//        BigInteger AptosEventSequenceNumber = aptosEventSequenceNumber;
-//        String aptosEventType = e.getAptosEventType();
-//        String AptosEventType = aptosEventType;
-//        AptosEventGuid aptosEventGuid = e.getAptosEventGuid();
-//        AptosEventGuid AptosEventGuid = aptosEventGuid;
-//        String status = e.getStatus();
-//        String Status = status;
-//
-//        if (this.getCreatedBy() == null){
-//            this.setCreatedBy(e.getCreatedBy());
-//        }
-//        if (this.getCreatedAt() == null){
-//            this.setCreatedAt(e.getCreatedAt());
-//        }
-//        this.setUpdatedBy(e.getCreatedBy());
-//        this.setUpdatedAt(e.getCreatedAt());
-//
-//        AptosFormsDemoMainFormState updatedAptosFormsDemoMainFormState = (AptosFormsDemoMainFormState) ReflectUtils.invokeStaticMethod(
-//                    "org.test.aptosformsdemo.domain.aptosformsdemomainform.SubmitLogic",
-//                    "mutate",
-//                    new Class[]{AptosFormsDemoMainFormState.class, BigInteger.class, String[].class, String[].class, String.class, String.class, BigInteger.class, String.class, BigInteger.class, DateRange.class, DateRange.class, BigInteger.class, TimeRange.class, String[].class, String[].class, XRenderFormDate.class, String.class, BigInteger.class, BigInteger.class, String.class, AptosEventGuid.class, String.class, MutationContext.class},
-//                    new Object[]{this, fr_5pqi, fr_duif, fr_6i34, fr_8xjs, fr_9c3f, fr_4ok6, fr_b3ub, fr_1z7o, fr_d8rw, fr_dy3l, fr_6f68, fr_47yy, fr_gh3o, fr_fbba, fr_hhzp, single_text1, aptosEventVersion, aptosEventSequenceNumber, aptosEventType, aptosEventGuid, status, MutationContext.forEvent(e, s -> {if (s == this) {return this;} else {throw new UnsupportedOperationException();}})}
-//            );
-//
-////package org.test.aptosformsdemo.domain.aptosformsdemomainform;
-////
-////public class SubmitLogic {
-////    public static AptosFormsDemoMainFormState mutate(AptosFormsDemoMainFormState aptosFormsDemoMainFormState, BigInteger fr_5pqi, String[] fr_duif, String[] fr_6i34, String fr_8xjs, String fr_9c3f, BigInteger fr_4ok6, String fr_b3ub, BigInteger fr_1z7o, DateRange fr_d8rw, DateRange fr_dy3l, BigInteger fr_6f68, TimeRange fr_47yy, String[] fr_gh3o, String[] fr_fbba, XRenderFormDate fr_hhzp, String single_text1, BigInteger aptosEventVersion, BigInteger aptosEventSequenceNumber, String aptosEventType, AptosEventGuid aptosEventGuid, String status, MutationContext<AptosFormsDemoMainFormState, AptosFormsDemoMainFormState.MutableAptosFormsDemoMainFormState> mutationContext) {
-////    }
-////}
-//
-//        if (this != updatedAptosFormsDemoMainFormState) { merge(updatedAptosFormsDemoMainFormState); } //else do nothing
-//
-//    }
 
     public void save() {
     }

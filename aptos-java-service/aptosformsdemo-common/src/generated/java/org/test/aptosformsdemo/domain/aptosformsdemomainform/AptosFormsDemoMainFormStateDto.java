@@ -27,18 +27,6 @@ public class AptosFormsDemoMainFormStateDto {
         this.signerAddress = signerAddress;
     }
 
-    private Map<String, Object> dynamicProperties;
-
-    public Map<String, Object> getDynamicProperties()
-    {
-        return this.dynamicProperties;
-    }
-
-    public void setDynamicProperties(Map<String, Object> dynamicProperties)
-    {
-        this.dynamicProperties = dynamicProperties;
-    }
-
     private BigInteger version;
 
     public BigInteger getVersion()
@@ -123,6 +111,17 @@ public class AptosFormsDemoMainFormStateDto {
         this.updatedAt = updatedAt;
     }
 
+    private Map<String, Object> dynamicProperties = new HashMap<>();
+
+    public Map<String, Object> getDynamicProperties() {
+        return this.dynamicProperties;
+    }
+
+    public void setDynamicProperties(Map<String, Object> dynamicProperties) {
+        this.dynamicProperties = dynamicProperties;
+    }
+
+
     public static class DtoConverter extends AbstractStateDtoConverter
     {
         public static Collection<String> collectionFieldNames = Arrays.asList(new String[]{});
@@ -154,9 +153,6 @@ public class AptosFormsDemoMainFormStateDto {
             if (returnedFieldsContains("SignerAddress")) {
                 dto.setSignerAddress(state.getSignerAddress());
             }
-
-            dto.setDynamicProperties(state.getDynamicProperties());
-
             if (returnedFieldsContains("Version")) {
                 dto.setVersion(state.getVersion());
             }
@@ -178,7 +174,7 @@ public class AptosFormsDemoMainFormStateDto {
             if (returnedFieldsContains("UpdatedAt")) {
                 dto.setUpdatedAt(state.getUpdatedAt());
             }
-
+            dto.setDynamicProperties(state.getDynamicProperties());
             return dto;
         }
 
