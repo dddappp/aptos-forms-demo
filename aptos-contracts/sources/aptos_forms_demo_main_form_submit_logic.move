@@ -31,8 +31,8 @@ module aptos_forms_demo::aptos_forms_demo_main_form_submit_logic {
         single_text1: String,
     ): aptos_forms_demo_main_form::AptosFormsDemoMainFormSubmitted {
         let signer_address = std::signer::address_of(account);
-        assert!(aptos_framework::timestamp::now_seconds() >= 1699256214000, EFormNotOpen); // Open at: 2023-11-06T07:36:54Z
-        assert!(aptos_framework::timestamp::now_seconds() <= 3908475414000, EFormCutOff); // Cutoff at: 2093-11-08T07:36:54+08:00
+        assert!(aptos_framework::timestamp::now_seconds() >= 1699256214, EFormNotOpen); // Open at: 2023-11-06T07:36:54Z
+        assert!(aptos_framework::timestamp::now_seconds() <= 3908475414, EFormCutOff); // Cutoff at: 2093-11-08T07:36:54+08:00
         aptos_forms_demo_main_form::asset_aptos_forms_demo_main_form_not_exists(signer_address);
         aptos_forms_demo_main_form::new_aptos_forms_demo_main_form_submitted(
             signer_address,
