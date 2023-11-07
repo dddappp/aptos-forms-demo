@@ -177,6 +177,15 @@ public abstract class AbstractAptosFormsDemoMainFormEvent extends AbstractEvent 
 
     }
 
+    public static class AptosFormsDemoMainFormUpdated extends AptosFormsDemoMainFormLobEvent {
+
+        @Override
+        public String getEventClass() {
+            return "AptosFormsDemoMainFormUpdated";
+        }
+
+    }
+
 
 }
 

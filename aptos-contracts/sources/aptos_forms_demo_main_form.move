@@ -14,6 +14,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
     use xrender_form_utils::date_range::DateRange;
     use xrender_form_utils::time_range::TimeRange;
     friend aptos_forms_demo::aptos_forms_demo_main_form_submit_logic;
+    friend aptos_forms_demo::aptos_forms_demo_main_form_update_logic;
     friend aptos_forms_demo::aptos_forms_demo_main_form_aggregate;
 
     const EIdAlreadyExists: u64 = 101;
@@ -24,6 +25,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
 
     struct Events has key {
         aptos_forms_demo_main_form_submitted_handle: event::EventHandle<AptosFormsDemoMainFormSubmitted>,
+        aptos_forms_demo_main_form_updated_handle: event::EventHandle<AptosFormsDemoMainFormUpdated>,
     }
 
     struct Tables has key {
@@ -36,6 +38,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         let res_account = genesis_account::resource_account_signer();
         move_to(&res_account, Events {
             aptos_forms_demo_main_form_submitted_handle: account::new_event_handle<AptosFormsDemoMainFormSubmitted>(&res_account),
+            aptos_forms_demo_main_form_updated_handle: account::new_event_handle<AptosFormsDemoMainFormUpdated>(&res_account),
         });
 
         move_to(
@@ -391,6 +394,136 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         }
     }
 
+    struct AptosFormsDemoMainFormUpdated has store, drop {
+        signer_address: address,
+        version: u64,
+        fr_5pqi: u128,
+        fr_duif: vector<String>,
+        fr_6i34: vector<String>,
+        fr_8xjs: String,
+        fr_9c3f: String,
+        fr_4ok6: u128,
+        fr_b3ub: String,
+        fr_1z7o: u128,
+        fr_d8rw: DateRange,
+        fr_dy3l: DateRange,
+        fr_6f68: u128,
+        fr_47yy: TimeRange,
+        fr_gh3o: vector<String>,
+        fr_fbba: vector<String>,
+        fr_hhzp: Date,
+        single_text1: String,
+    }
+
+    public fun aptos_forms_demo_main_form_updated_signer_address(aptos_forms_demo_main_form_updated: &AptosFormsDemoMainFormUpdated): address {
+        aptos_forms_demo_main_form_updated.signer_address
+    }
+
+    public fun aptos_forms_demo_main_form_updated_fr_5pqi(aptos_forms_demo_main_form_updated: &AptosFormsDemoMainFormUpdated): u128 {
+        aptos_forms_demo_main_form_updated.fr_5pqi
+    }
+
+    public fun aptos_forms_demo_main_form_updated_fr_duif(aptos_forms_demo_main_form_updated: &AptosFormsDemoMainFormUpdated): vector<String> {
+        aptos_forms_demo_main_form_updated.fr_duif
+    }
+
+    public fun aptos_forms_demo_main_form_updated_fr_6i34(aptos_forms_demo_main_form_updated: &AptosFormsDemoMainFormUpdated): vector<String> {
+        aptos_forms_demo_main_form_updated.fr_6i34
+    }
+
+    public fun aptos_forms_demo_main_form_updated_fr_8xjs(aptos_forms_demo_main_form_updated: &AptosFormsDemoMainFormUpdated): String {
+        aptos_forms_demo_main_form_updated.fr_8xjs
+    }
+
+    public fun aptos_forms_demo_main_form_updated_fr_9c3f(aptos_forms_demo_main_form_updated: &AptosFormsDemoMainFormUpdated): String {
+        aptos_forms_demo_main_form_updated.fr_9c3f
+    }
+
+    public fun aptos_forms_demo_main_form_updated_fr_4ok6(aptos_forms_demo_main_form_updated: &AptosFormsDemoMainFormUpdated): u128 {
+        aptos_forms_demo_main_form_updated.fr_4ok6
+    }
+
+    public fun aptos_forms_demo_main_form_updated_fr_b3ub(aptos_forms_demo_main_form_updated: &AptosFormsDemoMainFormUpdated): String {
+        aptos_forms_demo_main_form_updated.fr_b3ub
+    }
+
+    public fun aptos_forms_demo_main_form_updated_fr_1z7o(aptos_forms_demo_main_form_updated: &AptosFormsDemoMainFormUpdated): u128 {
+        aptos_forms_demo_main_form_updated.fr_1z7o
+    }
+
+    public fun aptos_forms_demo_main_form_updated_fr_d8rw(aptos_forms_demo_main_form_updated: &AptosFormsDemoMainFormUpdated): DateRange {
+        aptos_forms_demo_main_form_updated.fr_d8rw
+    }
+
+    public fun aptos_forms_demo_main_form_updated_fr_dy3l(aptos_forms_demo_main_form_updated: &AptosFormsDemoMainFormUpdated): DateRange {
+        aptos_forms_demo_main_form_updated.fr_dy3l
+    }
+
+    public fun aptos_forms_demo_main_form_updated_fr_6f68(aptos_forms_demo_main_form_updated: &AptosFormsDemoMainFormUpdated): u128 {
+        aptos_forms_demo_main_form_updated.fr_6f68
+    }
+
+    public fun aptos_forms_demo_main_form_updated_fr_47yy(aptos_forms_demo_main_form_updated: &AptosFormsDemoMainFormUpdated): TimeRange {
+        aptos_forms_demo_main_form_updated.fr_47yy
+    }
+
+    public fun aptos_forms_demo_main_form_updated_fr_gh3o(aptos_forms_demo_main_form_updated: &AptosFormsDemoMainFormUpdated): vector<String> {
+        aptos_forms_demo_main_form_updated.fr_gh3o
+    }
+
+    public fun aptos_forms_demo_main_form_updated_fr_fbba(aptos_forms_demo_main_form_updated: &AptosFormsDemoMainFormUpdated): vector<String> {
+        aptos_forms_demo_main_form_updated.fr_fbba
+    }
+
+    public fun aptos_forms_demo_main_form_updated_fr_hhzp(aptos_forms_demo_main_form_updated: &AptosFormsDemoMainFormUpdated): Date {
+        aptos_forms_demo_main_form_updated.fr_hhzp
+    }
+
+    public fun aptos_forms_demo_main_form_updated_single_text1(aptos_forms_demo_main_form_updated: &AptosFormsDemoMainFormUpdated): String {
+        aptos_forms_demo_main_form_updated.single_text1
+    }
+
+    public(friend) fun new_aptos_forms_demo_main_form_updated(
+        aptos_forms_demo_main_form: &AptosFormsDemoMainForm,
+        fr_5pqi: u128,
+        fr_duif: vector<String>,
+        fr_6i34: vector<String>,
+        fr_8xjs: String,
+        fr_9c3f: String,
+        fr_4ok6: u128,
+        fr_b3ub: String,
+        fr_1z7o: u128,
+        fr_d8rw: DateRange,
+        fr_dy3l: DateRange,
+        fr_6f68: u128,
+        fr_47yy: TimeRange,
+        fr_gh3o: vector<String>,
+        fr_fbba: vector<String>,
+        fr_hhzp: Date,
+        single_text1: String,
+    ): AptosFormsDemoMainFormUpdated {
+        AptosFormsDemoMainFormUpdated {
+            signer_address: signer_address(aptos_forms_demo_main_form),
+            version: version(aptos_forms_demo_main_form),
+            fr_5pqi,
+            fr_duif,
+            fr_6i34,
+            fr_8xjs,
+            fr_9c3f,
+            fr_4ok6,
+            fr_b3ub,
+            fr_1z7o,
+            fr_d8rw,
+            fr_dy3l,
+            fr_6f68,
+            fr_47yy,
+            fr_gh3o,
+            fr_fbba,
+            fr_hhzp,
+            single_text1,
+        }
+    }
+
 
     public(friend) fun create_aptos_forms_demo_main_form(
         signer_address: address,
@@ -507,6 +640,12 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         assert!(exists<Events>(genesis_account::resource_account_address()), ENotInitialized);
         let events = borrow_global_mut<Events>(genesis_account::resource_account_address());
         event::emit_event(&mut events.aptos_forms_demo_main_form_submitted_handle, aptos_forms_demo_main_form_submitted);
+    }
+
+    public(friend) fun emit_aptos_forms_demo_main_form_updated(aptos_forms_demo_main_form_updated: AptosFormsDemoMainFormUpdated) acquires Events {
+        assert!(exists<Events>(genesis_account::resource_account_address()), ENotInitialized);
+        let events = borrow_global_mut<Events>(genesis_account::resource_account_address());
+        event::emit_event(&mut events.aptos_forms_demo_main_form_updated_handle, aptos_forms_demo_main_form_updated);
     }
 
 }

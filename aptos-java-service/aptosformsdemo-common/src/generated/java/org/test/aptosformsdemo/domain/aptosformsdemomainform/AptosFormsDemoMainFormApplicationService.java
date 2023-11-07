@@ -17,6 +17,8 @@ import org.test.aptosformsdemo.domain.Command;
 public interface AptosFormsDemoMainFormApplicationService {
     void when(AptosFormsDemoMainFormCommands.Submit c);
 
+    void when(AptosFormsDemoMainFormCommands.Update c);
+
     AptosFormsDemoMainFormState get(String id);
 
     Iterable<AptosFormsDemoMainFormState> getAll(Integer firstResult, Integer maxResults);

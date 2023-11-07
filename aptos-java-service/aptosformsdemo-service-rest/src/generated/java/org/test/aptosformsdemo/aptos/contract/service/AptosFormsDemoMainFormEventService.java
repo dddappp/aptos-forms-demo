@@ -14,6 +14,7 @@ import org.test.aptosformsdemo.aptos.contract.DomainBeanUtils;
 import org.test.aptosformsdemo.aptos.contract.AptosAccount;
 
 import org.test.aptosformsdemo.aptos.contract.aptosformsdemomainform.AptosFormsDemoMainFormSubmitted;
+import org.test.aptosformsdemo.aptos.contract.aptosformsdemomainform.AptosFormsDemoMainFormUpdated;
 import org.test.aptosformsdemo.aptos.contract.repository.AptosFormsDemoMainFormEventRepository;
 import org.test.aptosformsdemo.aptos.contract.repository.AptosAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,6 +96,56 @@ public class AptosFormsDemoMainFormEventService {
             return;
         }
         aptosFormsDemoMainFormEventRepository.save(aptosFormsDemoMainFormSubmitted);
+    }
+
+    @Transactional
+    public void pullAptosFormsDemoMainFormUpdatedEvents() {
+        String resourceAccountAddress = getResourceAccountAddress();
+        if (resourceAccountAddress == null) {
+            return;
+        }
+        int limit = 1;
+        BigInteger cursor = getAptosFormsDemoMainFormUpdatedEventNextCursor();
+        if (cursor == null) {
+            cursor = BigInteger.ZERO;
+        }
+        while (true) {
+            List<Event<AptosFormsDemoMainFormUpdated>> eventPage;
+            try {
+                eventPage = aptosNodeApiClient.getEventsByEventHandle(
+                        resourceAccountAddress,
+                        this.aptosContractAddress + "::" + ContractConstants.APTOS_FORMS_DEMO_MAIN_FORM_MODULE_EVENTS,
+                        ContractConstants.APTOS_FORMS_DEMO_MAIN_FORM_MODULE_APTOS_FORMS_DEMO_MAIN_FORM_UPDATED_HANDLE_FIELD,
+                        AptosFormsDemoMainFormUpdated.class,
+                        cursor.longValue(),
+                        limit
+                );
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            if (eventPage != null && eventPage.size() > 0) {
+                cursor = cursor.add(BigInteger.ONE);
+                for (Event<AptosFormsDemoMainFormUpdated> eventEnvelope : eventPage) {
+                    saveAptosFormsDemoMainFormUpdated(eventEnvelope);
+                }
+            } else {
+                break;
+            }
+        }
+    }
+
+    private BigInteger getAptosFormsDemoMainFormUpdatedEventNextCursor() {
+        AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormUpdated lastEvent = aptosFormsDemoMainFormEventRepository.findFirstAptosFormsDemoMainFormUpdatedByOrderByAptosEventSequenceNumber();
+        return lastEvent != null ? lastEvent.getAptosEventSequenceNumber() : null;
+    }
+
+    private void saveAptosFormsDemoMainFormUpdated(Event<AptosFormsDemoMainFormUpdated> eventEnvelope) {
+        AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormUpdated aptosFormsDemoMainFormUpdated = DomainBeanUtils.toAptosFormsDemoMainFormUpdated(eventEnvelope);
+        if (aptosFormsDemoMainFormEventRepository.findById(aptosFormsDemoMainFormUpdated.getAptosFormsDemoMainFormEventId()).isPresent()) {
+            return;
+        }
+        aptosFormsDemoMainFormEventRepository.save(aptosFormsDemoMainFormUpdated);
     }
 
     private String getResourceAccountAddress() {

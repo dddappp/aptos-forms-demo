@@ -13,6 +13,7 @@ import org.test.aptosformsdemo.domain.AptosEvent;
 import org.test.aptosformsdemo.domain.AptosEventGuid;
 import org.test.aptosformsdemo.domain.aptosformsdemomainform.AbstractAptosFormsDemoMainFormEvent;
 import org.test.aptosformsdemo.aptos.contract.aptosformsdemomainform.AptosFormsDemoMainFormSubmitted;
+import org.test.aptosformsdemo.aptos.contract.aptosformsdemomainform.AptosFormsDemoMainFormUpdated;
 
 /**
  * Utils that convert beans in the contract package to domain beans.
@@ -94,6 +95,19 @@ public class DomainBeanUtils {
         setAptosEventProperties(aptosFormsDemoMainFormSubmitted, eventEnvelope);
 
         return aptosFormsDemoMainFormSubmitted;
+    }
+
+    public static AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormUpdated toAptosFormsDemoMainFormUpdated(Event<AptosFormsDemoMainFormUpdated> eventEnvelope) {
+        AptosFormsDemoMainFormUpdated contractEvent = eventEnvelope.getData();
+
+        AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormUpdated aptosFormsDemoMainFormUpdated = new AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormUpdated();
+        aptosFormsDemoMainFormUpdated.setSignerAddress(contractEvent.getSignerAddress());
+        aptosFormsDemoMainFormUpdated.setDynamicProperties(contractEvent.getDynamicProperties());
+        aptosFormsDemoMainFormUpdated.setVersion(contractEvent.getVersion());
+
+        setAptosEventProperties(aptosFormsDemoMainFormUpdated, eventEnvelope);
+
+        return aptosFormsDemoMainFormUpdated;
     }
 
     public static void setAptosEventProperties(AptosEvent.MutableAptosEvent domainAptosEvent, Event<?> eventEnvelope) {

@@ -21,4 +21,9 @@ public class PullAptosFormsDemoMainFormEventsTaskService {
         aptosFormsDemoMainFormEventService.pullAptosFormsDemoMainFormSubmittedEvents();
     }
 
+    @Scheduled(fixedDelayString = "${aptos.contract.pull-aptos-forms-demo-main-form-events.aptos-forms-demo-main-form-updated.fixed-delay:5000}")
+    public void pullAptosFormsDemoMainFormUpdatedEvents() {
+        aptosFormsDemoMainFormEventService.pullAptosFormsDemoMainFormUpdatedEvents();
+    }
+
 }

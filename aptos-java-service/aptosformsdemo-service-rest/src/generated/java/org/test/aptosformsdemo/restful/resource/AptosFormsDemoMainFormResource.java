@@ -188,6 +188,24 @@ public class AptosFormsDemoMainFormResource {
         } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
     }
 
+
+    @PutMapping("{signerAddress}/_commands/Update")
+    public void update(@PathVariable("signerAddress") String signerAddress, @RequestBody AptosFormsDemoMainFormCommands.Update content) {
+        try {
+
+            AptosFormsDemoMainFormCommands.Update cmd = content;//.toUpdate();
+            String idObj = signerAddress;
+            if (cmd.getSignerAddress() == null) {
+                cmd.setSignerAddress(idObj);
+            } else if (!cmd.getSignerAddress().equals(idObj)) {
+                throw DomainError.named("inconsistentId", "Argument Id %1$s NOT equals body Id %2$s", signerAddress, cmd.getSignerAddress());
+            }
+            cmd.setRequesterId(SecurityContextUtil.getRequesterId());
+            aptosFormsDemoMainFormApplicationService.when(cmd);
+
+        } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
+    }
+
     @GetMapping("_metadata/filteringFields")
     public List<PropertyMetadataDto> getMetadataFilteringFields() {
         try {

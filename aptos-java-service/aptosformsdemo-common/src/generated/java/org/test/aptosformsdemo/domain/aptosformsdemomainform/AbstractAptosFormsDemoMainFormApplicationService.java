@@ -54,6 +54,10 @@ public abstract class AbstractAptosFormsDemoMainFormApplicationService implement
         update(c, ar -> ar.submit(c.getFr_5pqi(), c.getFr_duif(), c.getFr_6i34(), c.getFr_8xjs(), c.getFr_9c3f(), c.getFr_4ok6(), c.getFr_b3ub(), c.getFr_1z7o(), c.getFr_d8rw(), c.getFr_dy3l(), c.getFr_6f68(), c.getFr_47yy(), c.getFr_gh3o(), c.getFr_fbba(), c.getFr_hhzp(), c.getSingle_text1(), c.getOffChainVersion(), c.getCommandId(), c.getRequesterId(), c));
     }
 
+    public void when(AptosFormsDemoMainFormCommands.Update c) {
+        update(c, ar -> ar.update(c.getFr_5pqi(), c.getFr_duif(), c.getFr_6i34(), c.getFr_8xjs(), c.getFr_9c3f(), c.getFr_4ok6(), c.getFr_b3ub(), c.getFr_1z7o(), c.getFr_d8rw(), c.getFr_dy3l(), c.getFr_6f68(), c.getFr_47yy(), c.getFr_gh3o(), c.getFr_fbba(), c.getFr_hhzp(), c.getSingle_text1(), c.getOffChainVersion(), c.getCommandId(), c.getRequesterId(), c));
+    }
+
     public AptosFormsDemoMainFormState get(String id) {
         AptosFormsDemoMainFormState state = getStateRepository().get(id, true);
         return state;

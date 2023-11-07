@@ -15,4 +15,6 @@ public interface AptosFormsDemoMainFormEventRepository extends JpaRepository<Abs
 
     AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted findFirstAptosFormsDemoMainFormSubmittedByOrderByAptosEventSequenceNumber();
 
+    AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormUpdated findFirstAptosFormsDemoMainFormUpdatedByOrderByAptosEventSequenceNumber();
+
 }

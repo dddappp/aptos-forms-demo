@@ -43,6 +43,7 @@
         </type>
       </property>
       <subclass name="AbstractAptosFormsDemoMainFormEvent$AptosFormsDemoMainFormSubmitted" discriminator-value="AptosFormsDemoMainFormSubmitted" />
+      <subclass name="AbstractAptosFormsDemoMainFormEvent$AptosFormsDemoMainFormUpdated" discriminator-value="AptosFormsDemoMainFormUpdated" />
     </subclass>
   </class>
 </hibernate-mapping>

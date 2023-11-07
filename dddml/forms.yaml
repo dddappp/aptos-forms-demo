@@ -117,14 +117,49 @@
       Submit:
         name: Submit
         metadata: {}
+        verificationLogic:
+          Move: >-
+            assert!(aptos_framework::timestamp::now_seconds() >= 1699256214000, EFormNotOpen); // Open at: 2023-11-06T07:36:54Z
+                    assert!(aptos_framework::timestamp::now_seconds() <= 3908475414000, EFormCutOff); // Cutoff at: 2093-11-08T07:36:54+08:00
         event:
           name: AptosFormsDemoMainFormSubmitted
+        constants:
+          EFormNotOpen:
+            name: EFormNotOpen
+            constantExpression:
+              Move: 111
+            type: u64
+          EFormCutOff:
+            name: EFormCutOff
+            constantExpression:
+              Move: 112
+            type: u64
+      Update:
+        name: Update
+        metadata: {}
+        verificationLogic:
+          Move: >-
+            assert!(aptos_framework::timestamp::now_seconds() >= 1699256214000, EFormNotOpen); // Open at: 2023-11-06T07:36:54Z
+                    assert!(aptos_framework::timestamp::now_seconds() <= 3908475414000, EFormCutOff); // Cutoff at: 2093-11-08T07:36:54+08:00
+        event:
+          name: AptosFormsDemoMainFormUpdated
+        constants:
+          EFormNotOpen:
+            name: EFormNotOpen
+            constantExpression:
+              Move: 111
+            type: u64
+          EFormCutOff:
+            name: EFormCutOff
+            constantExpression:
+              Move: 112
+            type: u64
     metadata:
       Preprocessors:
       - MOVE_CRUD_IT
-      CRUD_IT_NO_UPDATE: true
       CRUD_IT_NO_DELETE: true
       CRUD_IT_CREATE_METHOD_NAME: Submit
+      CRUD_IT_UPDATE_METHOD_NAME: Update
 enumObjects:
   AptosFormsDemo_fr_duif:
     baseType: String
