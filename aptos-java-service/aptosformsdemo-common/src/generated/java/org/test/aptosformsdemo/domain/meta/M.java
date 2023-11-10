@@ -34,6 +34,7 @@ public class M {
         Map<String, String> typeToAggMap = new HashMap<>();
 
         typeToAggMap.put("AptosFormsDemoMainForm", "AptosFormsDemoMainForm");
+        typeToAggMap.put("FormDefinition", "FormDefinition");
         TYPE_NAME_TO_AGGREGATE_NAME_MAP = typeToAggMap;
 
         Map<String, Class<?>> clsMap = new HashMap<>();
@@ -132,10 +133,19 @@ public class M {
     public static final String PROPERTY_NAME_UPDATED_BY   = "updatedBy";
     public static final String PROPERTY_NAME_UPDATED_AT   = "updatedAt";
 
-    public static final Class ID_CLASS = String.class;
+    public static final String URL_ID_FIELD_SEPARATOR = ",";
+
+    public static final TextFormatter<org.test.aptosformsdemo.domain.FormSequenceIdAndAddress> URL_ID_TEXT_FORMATTER =
+                    new AbstractValueObjectTextFormatter<org.test.aptosformsdemo.domain.FormSequenceIdAndAddress>(org.test.aptosformsdemo.domain.FormSequenceIdAndAddress.class, URL_ID_FIELD_SEPARATOR) {
+                        @Override
+                        protected Class<?> getClassByTypeName(String type) {
+                            return BoundedContextMetadata.CLASS_MAP.get(type);
+                        }
+                    };
+
+    public static final Class ID_CLASS = org.test.aptosformsdemo.domain.FormSequenceIdAndAddress.class;
 
     public static final String[] propertyNames = new String[] {
-            "signerAddress",
             "fr_5pqi",
             "fr_8xjs",
             "fr_9c3f",
@@ -152,6 +162,8 @@ public class M {
             "updatedAt",
             "active",
             "deleted",
+            "formSequenceIdAndSignerAddress.formSequenceId",
+            "formSequenceIdAndSignerAddress.signerAddress",
             "fr_d8rw.startYear",
             "fr_d8rw.startMonth",
             "fr_d8rw.startDay",
@@ -176,7 +188,6 @@ public class M {
     };
 
     public static final String[] propertyTypes = new String[] {
-            "String",
             "BigInteger",
             "String",
             "String",
@@ -193,6 +204,8 @@ public class M {
             "OffsetDateTime",
             "Boolean",
             "Boolean",
+            "Long",
+            "String",
             "Integer",
             "Integer",
             "Integer",
@@ -228,8 +241,6 @@ public class M {
     }
 
     private static  void initAliasMap() {
-        aliasMap.put("signerAddress", "signerAddress");
-        aliasMap.put("SignerAddress", "signerAddress");
         aliasMap.put("fr_5pqi", "fr_5pqi");
         aliasMap.put("Fr_5pqi", "fr_5pqi");
         aliasMap.put("fr_8xjs", "fr_8xjs");
@@ -262,6 +273,10 @@ public class M {
         aliasMap.put("Active", "active");
         aliasMap.put("deleted", "deleted");
         aliasMap.put("Deleted", "deleted");
+        aliasMap.put("formSequenceIdAndSignerAddress.formSequenceId", "formSequenceIdAndSignerAddress.formSequenceId");
+        aliasMap.put("FormSequenceIdAndSignerAddress.FormSequenceId", "formSequenceIdAndSignerAddress.formSequenceId");
+        aliasMap.put("formSequenceIdAndSignerAddress.signerAddress", "formSequenceIdAndSignerAddress.signerAddress");
+        aliasMap.put("FormSequenceIdAndSignerAddress.SignerAddress", "formSequenceIdAndSignerAddress.signerAddress");
         aliasMap.put("fr_d8rw.startYear", "fr_d8rw.startYear");
         aliasMap.put("Fr_d8rw.StartYear", "fr_d8rw.startYear");
         aliasMap.put("fr_d8rw.start.year", "fr_d8rw.startYear");
@@ -340,6 +355,103 @@ public class M {
         aliasMap.put("Fr_hhzp.Month", "fr_hhzp.month");
         aliasMap.put("fr_hhzp.day", "fr_hhzp.day");
         aliasMap.put("Fr_hhzp.Day", "fr_hhzp.day");
+    }
+
+    private static void initPropertyTypeMap() {
+        for (int i = 0; i < propertyNames.length; i++ ) {
+            propertyTypeMap.put(propertyNames[i], propertyTypes[i]);
+        }
+    }
+
+  }
+
+
+  // /////////////////////////////////////////////////////////  
+  public static class FormDefinitionMetadata {
+
+    private FormDefinitionMetadata() {
+    }
+
+    public static final String PROPERTY_NAME_VERSION      = "offChainVersion";
+    public static final String PROPERTY_NAME_ACTIVE       = "active";
+    public static final String PROPERTY_NAME_DELETED      = "deleted";
+    public static final String PROPERTY_NAME_CREATED_BY   = "createdBy";
+    public static final String PROPERTY_NAME_CREATED_AT   = "createdAt";
+    public static final String PROPERTY_NAME_UPDATED_BY   = "updatedBy";
+    public static final String PROPERTY_NAME_UPDATED_AT   = "updatedAt";
+
+    public static final Class ID_CLASS = Long.class;
+
+    public static final String[] propertyNames = new String[] {
+            "formSequenceId",
+            "formId",
+            "contractAddress",
+            "resourceAccountAddress",
+            "startPageName",
+            "version",
+            "offChainVersion",
+            "createdBy",
+            "createdAt",
+            "updatedBy",
+            "updatedAt",
+            "active",
+            "deleted",
+    };
+
+    public static final String[] propertyTypes = new String[] {
+            "Long",
+            "String",
+            "String",
+            "String",
+            "String",
+            "BigInteger",
+            "Long",
+            "String",
+            "OffsetDateTime",
+            "String",
+            "OffsetDateTime",
+            "Boolean",
+            "Boolean",
+    };
+
+    public static final Map<String, String> propertyTypeMap;
+
+    public static final Map<String, String> aliasMap;
+
+    static {
+        propertyTypeMap = new HashMap<String, String>();
+        initPropertyTypeMap();
+        aliasMap = new HashMap<String, String>();
+        initAliasMap();
+    }
+
+    private static  void initAliasMap() {
+        aliasMap.put("formSequenceId", "formSequenceId");
+        aliasMap.put("FormSequenceId", "formSequenceId");
+        aliasMap.put("formId", "formId");
+        aliasMap.put("FormId", "formId");
+        aliasMap.put("contractAddress", "contractAddress");
+        aliasMap.put("ContractAddress", "contractAddress");
+        aliasMap.put("resourceAccountAddress", "resourceAccountAddress");
+        aliasMap.put("ResourceAccountAddress", "resourceAccountAddress");
+        aliasMap.put("startPageName", "startPageName");
+        aliasMap.put("StartPageName", "startPageName");
+        aliasMap.put("version", "version");
+        aliasMap.put("Version", "version");
+        aliasMap.put("offChainVersion", "offChainVersion");
+        aliasMap.put("OffChainVersion", "offChainVersion");
+        aliasMap.put("createdBy", "createdBy");
+        aliasMap.put("CreatedBy", "createdBy");
+        aliasMap.put("createdAt", "createdAt");
+        aliasMap.put("CreatedAt", "createdAt");
+        aliasMap.put("updatedBy", "updatedBy");
+        aliasMap.put("UpdatedBy", "updatedBy");
+        aliasMap.put("updatedAt", "updatedAt");
+        aliasMap.put("UpdatedAt", "updatedAt");
+        aliasMap.put("active", "active");
+        aliasMap.put("Active", "active");
+        aliasMap.put("deleted", "deleted");
+        aliasMap.put("Deleted", "deleted");
     }
 
     private static void initPropertyTypeMap() {

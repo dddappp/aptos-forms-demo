@@ -7,8 +7,8 @@ package org.test.aptosformsdemo.domain.aptosformsdemomainform.hibernate;
 
 import java.io.Serializable;
 import java.util.*;
-import java.math.BigInteger;
 import org.test.aptosformsdemo.domain.*;
+import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.specialization.*;
 import org.test.aptosformsdemo.specialization.hibernate.AbstractHibernateEventStore;
@@ -21,7 +21,7 @@ public class HibernateAptosFormsDemoMainFormEventStore extends AbstractHibernate
     @Override
     protected Serializable getEventId(EventStoreAggregateId eventStoreAggregateId, long version)
     {
-        return new AptosFormsDemoMainFormEventId((String) eventStoreAggregateId.getId(), BigInteger.valueOf(version));
+        return new AptosFormsDemoMainFormEventId((FormSequenceIdAndAddress) eventStoreAggregateId.getId(), BigInteger.valueOf(version));
     }
 
     @Override
@@ -37,9 +37,10 @@ public class HibernateAptosFormsDemoMainFormEventStore extends AbstractHibernate
         if (!eventType.isAssignableFrom(supportedEventType)) {
             throw new UnsupportedOperationException();
         }
-        String idObj = (String) eventStoreAggregateId.getId();
+        FormSequenceIdAndAddress idObj = (FormSequenceIdAndAddress) eventStoreAggregateId.getId();
         Criteria criteria = getCurrentSession().createCriteria(AbstractAptosFormsDemoMainFormEvent.class);
-        criteria.add(Restrictions.eq("aptosFormsDemoMainFormEventId.signerAddress", idObj));
+        criteria.add(Restrictions.eq("aptosFormsDemoMainFormEventId.formSequenceIdAndSignerAddressFormSequenceId", idObj.getFormSequenceId()));
+        criteria.add(Restrictions.eq("aptosFormsDemoMainFormEventId.formSequenceIdAndSignerAddressSignerAddress", idObj.getSignerAddress()));
         criteria.add(Restrictions.le("aptosFormsDemoMainFormEventId.offChainVersion", version));
         criteria.addOrder(Order.asc("aptosFormsDemoMainFormEventId.offChainVersion"));
         List es = criteria.list();

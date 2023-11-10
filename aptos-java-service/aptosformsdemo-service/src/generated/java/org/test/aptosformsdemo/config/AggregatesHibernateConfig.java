@@ -8,6 +8,9 @@ package org.test.aptosformsdemo.config;
 import org.test.aptosformsdemo.domain.aptosformsdemomainform.*;
 import org.test.aptosformsdemo.domain.*;
 import org.test.aptosformsdemo.domain.aptosformsdemomainform.hibernate.*;
+import org.test.aptosformsdemo.domain.formdefinition.*;
+import org.test.aptosformsdemo.domain.*;
+import org.test.aptosformsdemo.domain.formdefinition.hibernate.*;
 import org.test.aptosformsdemo.specialization.AggregateEventListener;
 import org.test.aptosformsdemo.specialization.EventStore;
 import org.test.aptosformsdemo.specialization.IdGenerator;
@@ -60,6 +63,51 @@ public class AggregatesHibernateConfig {
                 aptosFormsDemoMainFormEventStore,
                 aptosFormsDemoMainFormStateRepository,
                 aptosFormsDemoMainFormStateQueryRepository
+        );
+        return applicationService;
+    }
+
+
+
+    @Bean
+    public FormDefinitionStateRepository formDefinitionStateRepository(
+            SessionFactory hibernateSessionFactory,
+            ReadOnlyProxyGenerator stateReadOnlyProxyGenerator
+    ) {
+        HibernateFormDefinitionStateRepository repository = new HibernateFormDefinitionStateRepository();
+        repository.setSessionFactory(hibernateSessionFactory);
+        repository.setReadOnlyProxyGenerator(stateReadOnlyProxyGenerator);
+        return repository;
+    }
+
+    @Bean
+    public FormDefinitionStateQueryRepository formDefinitionStateQueryRepository(
+            SessionFactory hibernateSessionFactory,
+            ReadOnlyProxyGenerator stateReadOnlyProxyGenerator
+    ) {
+        HibernateFormDefinitionStateQueryRepository repository = new HibernateFormDefinitionStateQueryRepository();
+        repository.setSessionFactory(hibernateSessionFactory);
+        repository.setReadOnlyProxyGenerator(stateReadOnlyProxyGenerator);
+        return repository;
+    }
+
+    @Bean
+    public HibernateFormDefinitionEventStore formDefinitionEventStore(SessionFactory hibernateSessionFactory) {
+        HibernateFormDefinitionEventStore eventStore = new HibernateFormDefinitionEventStore();
+        eventStore.setSessionFactory(hibernateSessionFactory);
+        return eventStore;
+    }
+
+    @Bean
+    public AbstractFormDefinitionApplicationService.SimpleFormDefinitionApplicationService formDefinitionApplicationService(
+            @Qualifier("formDefinitionEventStore") EventStore formDefinitionEventStore,
+            FormDefinitionStateRepository formDefinitionStateRepository,
+            FormDefinitionStateQueryRepository formDefinitionStateQueryRepository
+    ) {
+        AbstractFormDefinitionApplicationService.SimpleFormDefinitionApplicationService applicationService = new AbstractFormDefinitionApplicationService.SimpleFormDefinitionApplicationService(
+                formDefinitionEventStore,
+                formDefinitionStateRepository,
+                formDefinitionStateQueryRepository
         );
         return applicationService;
     }

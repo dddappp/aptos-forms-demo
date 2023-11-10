@@ -1,13 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"[]>
-<hibernate-mapping package="org.test.aptosformsdemo.domain.aptosformsdemomainform">
-  <class name="AbstractAptosFormsDemoMainFormEvent" table="aptos_forms_demo_main_form_event" abstract="true">
-    <composite-id name="aptosFormsDemoMainFormEventId" class="org.test.aptosformsdemo.domain.aptosformsdemomainform.AptosFormsDemoMainFormEventId">
-      <key-property name="formSequenceIdAndSignerAddressFormSequenceId">
+<hibernate-mapping package="org.test.aptosformsdemo.domain.formdefinition">
+  <class name="AbstractFormDefinitionEvent" table="form_definition_event" abstract="true">
+    <composite-id name="formDefinitionEventId" class="org.test.aptosformsdemo.domain.formdefinition.FormDefinitionEventId">
+      <key-property name="formSequenceId">
         <column name="form_sequence_id" />
-      </key-property>
-      <key-property name="formSequenceIdAndSignerAddressSignerAddress">
-        <column name="signer_address" sql-type="VARCHAR(66)" />
       </key-property>
       <key-property name="version">
         <column name="version" sql-type="DECIMAL(20,0)" />
@@ -38,15 +35,13 @@
       <column name="status" sql-type="CHAR(1)" />
     </property>
     <property name="commandType" column="command_type" length="50" />
-    <subclass name="AbstractAptosFormsDemoMainFormEvent$AptosFormsDemoMainFormLobEvent" discriminator-value="AptosFormsDemoMainFormLobEvent">
+    <subclass name="AbstractFormDefinitionEvent$FormDefinitionLobEvent" discriminator-value="FormDefinitionLobEvent">
       <property name="dynamicProperties">
         <column name="dynamic_properties" sql-type="jsonb" />
         <type name="io.hypersistence.utils.hibernate.type.json.JsonBinaryType">
           <param name="org.hibernate.type.ParameterType">java.util.HashMap</param>
         </type>
       </property>
-      <subclass name="AbstractAptosFormsDemoMainFormEvent$AptosFormsDemoMainFormSubmitted" discriminator-value="AptosFormsDemoMainFormSubmitted" />
-      <subclass name="AbstractAptosFormsDemoMainFormEvent$AptosFormsDemoMainFormUpdated" discriminator-value="AptosFormsDemoMainFormUpdated" />
     </subclass>
   </class>
 </hibernate-mapping>

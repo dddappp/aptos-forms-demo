@@ -8,12 +8,12 @@ package org.test.aptosformsdemo.domain.aptosformsdemomainform;
 import java.util.Map;
 import java.util.List;
 import org.dddml.support.criterion.Criterion;
-import java.math.BigInteger;
 import org.test.aptosformsdemo.domain.*;
+import java.math.BigInteger;
 import java.time.OffsetDateTime;
 
 public interface AptosFormsDemoMainFormStateQueryRepository {
-    AptosFormsDemoMainFormState get(String id);
+    AptosFormsDemoMainFormState get(FormSequenceIdAndAddress id);
 
     Iterable<AptosFormsDemoMainFormState> getAll(Integer firstResult, Integer maxResults);
     

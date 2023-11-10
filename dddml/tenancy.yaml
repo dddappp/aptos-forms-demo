@@ -1,0 +1,34 @@
+aggregates:
+  FormDefinition:
+    id:
+      generator:
+        class: sequence
+      name: FormSequenceId
+      type: long
+    properties:
+      FormId:
+        type: String
+        length: 100
+      ContractAddress:
+        type: address
+      ResourceAccountAddress:
+        type: address
+      StartPageName:
+        type: String
+        length: 100
+
+configuration:
+  sequenceNumber: 20
+  aptos:
+    offChainObjectNames: [ "FormDefinition" ]
+  tenantizedIdTemplate:
+    properties:
+      FormSequenceId:
+        type: long
+      "{_ORIGINAL_ID_NAME_}":
+        type: "{_ORIGINAL_ID_TYPE_}"
+    columnNames:
+      - "form_sequence_id"
+      - "{_ORIGINAL_ID_COLUMN_NAMES_}"
+    idNameFormat: "FormSequenceIdAnd{_ORIGINAL_ID_NAME_}"
+    idTypeFormat: "FormSequenceIdAnd{_ORIGINAL_ID_TYPE_}"

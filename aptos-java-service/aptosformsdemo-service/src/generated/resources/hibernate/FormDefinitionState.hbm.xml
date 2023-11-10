@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"[]>
-<hibernate-mapping package="org.test.aptosformsdemo.domain.aptosformsdemomainform">
-  <class name="org.test.aptosformsdemo.domain.aptosformsdemomainform.AbstractAptosFormsDemoMainFormState$SimpleAptosFormsDemoMainFormState" table="aptos_forms_demo_main_form">
-    <composite-id name="formSequenceIdAndSignerAddress" class="org.test.aptosformsdemo.domain.FormSequenceIdAndAddress">
-      <key-property name="formSequenceId">
-        <column name="form_sequence_id" />
-      </key-property>
-      <key-property name="signerAddress">
-        <column name="signer_address" sql-type="VARCHAR(66)" />
-      </key-property>
-    </composite-id>
+<hibernate-mapping package="org.test.aptosformsdemo.domain.formdefinition">
+  <class name="org.test.aptosformsdemo.domain.formdefinition.AbstractFormDefinitionState$SimpleFormDefinitionState" table="form_definition">
+    <id name="formSequenceId" column="form_sequence_id">
+      <generator class="enhanced-table">
+        <param name="segment_value">form_definition</param>
+        <param name="initial_value">1</param>
+        <param name="increment_size">10</param>
+        <param name="optimizer">pooled-lo</param>
+      </generator>
+    </id>
     <version name="offChainVersion" column="off_chain_version" type="long" />
     <property name="dynamicProperties">
       <column name="dynamic_properties" sql-type="jsonb" />

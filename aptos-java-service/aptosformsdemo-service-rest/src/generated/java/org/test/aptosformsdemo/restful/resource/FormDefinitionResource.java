@@ -14,11 +14,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.transaction.annotation.Transactional;
 import org.dddml.support.criterion.*;
-import org.test.aptosformsdemo.domain.*;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
+import org.test.aptosformsdemo.domain.*;
 import org.test.aptosformsdemo.specialization.*;
-import org.test.aptosformsdemo.domain.aptosformsdemomainform.*;
+import org.test.aptosformsdemo.domain.formdefinition.*;
 import static org.test.aptosformsdemo.domain.meta.M.*;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -27,23 +27,23 @@ import org.dddml.support.criterion.TypeConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@RequestMapping(path = "AptosFormsDemoMainForms", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "FormDefinitions", produces = MediaType.APPLICATION_JSON_VALUE)
 @RestController
-public class AptosFormsDemoMainFormResource {
+public class FormDefinitionResource {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 
     @Autowired
-    private AptosFormsDemoMainFormApplicationService aptosFormsDemoMainFormApplicationService;
+    private FormDefinitionApplicationService formDefinitionApplicationService;
 
 
     /**
      * Retrieve.
-     * Retrieve AptosFormsDemoMainForms
+     * Retrieve FormDefinitions
      */
     @GetMapping
     @Transactional(readOnly = true)
-    public AptosFormsDemoMainFormStateDto[] getAll( HttpServletRequest request,
+    public FormDefinitionStateDto[] getAll( HttpServletRequest request,
                     @RequestParam(value = "sort", required = false) String sort,
                     @RequestParam(value = "fields", required = false) String fields,
                     @RequestParam(value = "firstResult", defaultValue = "0") Integer firstResult,
@@ -53,40 +53,40 @@ public class AptosFormsDemoMainFormResource {
         if (firstResult < 0) { firstResult = 0; }
         if (maxResults == null || maxResults < 1) { maxResults = Integer.MAX_VALUE; }
 
-            Iterable<AptosFormsDemoMainFormState> states = null; 
+            Iterable<FormDefinitionState> states = null; 
             CriterionDto criterion = null;
             if (!StringHelper.isNullOrEmpty(filter)) {
                 criterion = new ObjectMapper().readValue(filter, CriterionDto.class);
             } else {
                 criterion = QueryParamUtils.getQueryCriterionDto(request.getParameterMap().entrySet().stream()
-                    .filter(kv -> AptosFormsDemoMainFormResourceUtils.getFilterPropertyName(kv.getKey()) != null)
+                    .filter(kv -> FormDefinitionResourceUtils.getFilterPropertyName(kv.getKey()) != null)
                     .collect(Collectors.toMap(kv -> kv.getKey(), kv -> kv.getValue())));
             }
             Criterion c = CriterionDto.toSubclass(criterion, getCriterionTypeConverter(), getPropertyTypeResolver(), 
-                n -> (AptosFormsDemoMainFormMetadata.aliasMap.containsKey(n) ? AptosFormsDemoMainFormMetadata.aliasMap.get(n) : n));
-            states = aptosFormsDemoMainFormApplicationService.get(
+                n -> (FormDefinitionMetadata.aliasMap.containsKey(n) ? FormDefinitionMetadata.aliasMap.get(n) : n));
+            states = formDefinitionApplicationService.get(
                 c,
-                AptosFormsDemoMainFormResourceUtils.getQuerySorts(request.getParameterMap()),
+                FormDefinitionResourceUtils.getQuerySorts(request.getParameterMap()),
                 firstResult, maxResults);
 
-            AptosFormsDemoMainFormStateDto.DtoConverter dtoConverter = new AptosFormsDemoMainFormStateDto.DtoConverter();
+            FormDefinitionStateDto.DtoConverter dtoConverter = new FormDefinitionStateDto.DtoConverter();
             if (StringHelper.isNullOrEmpty(fields)) {
                 dtoConverter.setAllFieldsReturned(true);
             } else {
                 dtoConverter.setReturnedFieldsString(fields);
             }
-            return dtoConverter.toAptosFormsDemoMainFormStateDtoArray(states);
+            return dtoConverter.toFormDefinitionStateDtoArray(states);
 
         } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
     }
 
     /**
      * Retrieve in pages.
-     * Retrieve AptosFormsDemoMainForms in pages.
+     * Retrieve FormDefinitions in pages.
      */
     @GetMapping("_page")
     @Transactional(readOnly = true)
-    public Page<AptosFormsDemoMainFormStateDto> getPage( HttpServletRequest request,
+    public Page<FormDefinitionStateDto> getPage( HttpServletRequest request,
                     @RequestParam(value = "fields", required = false) String fields,
                     @RequestParam(value = "page", defaultValue = "0") Integer page,
                     @RequestParam(value = "size", defaultValue = "20") Integer size,
@@ -94,30 +94,30 @@ public class AptosFormsDemoMainFormResource {
         try {
             Integer firstResult = (page == null ? 0 : page) * (size == null ? 20 : size);
             Integer maxResults = (size == null ? 20 : size);
-            Iterable<AptosFormsDemoMainFormState> states = null; 
+            Iterable<FormDefinitionState> states = null; 
             CriterionDto criterion = null;
             if (!StringHelper.isNullOrEmpty(filter)) {
                 criterion = new ObjectMapper().readValue(filter, CriterionDto.class);
             } else {
                 criterion = QueryParamUtils.getQueryCriterionDto(request.getParameterMap().entrySet().stream()
-                    .filter(kv -> AptosFormsDemoMainFormResourceUtils.getFilterPropertyName(kv.getKey()) != null)
+                    .filter(kv -> FormDefinitionResourceUtils.getFilterPropertyName(kv.getKey()) != null)
                     .collect(Collectors.toMap(kv -> kv.getKey(), kv -> kv.getValue())));
             }
             Criterion c = CriterionDto.toSubclass(criterion, getCriterionTypeConverter(), getPropertyTypeResolver(), 
-                n -> (AptosFormsDemoMainFormMetadata.aliasMap.containsKey(n) ? AptosFormsDemoMainFormMetadata.aliasMap.get(n) : n));
-            states = aptosFormsDemoMainFormApplicationService.get(
+                n -> (FormDefinitionMetadata.aliasMap.containsKey(n) ? FormDefinitionMetadata.aliasMap.get(n) : n));
+            states = formDefinitionApplicationService.get(
                 c,
-                AptosFormsDemoMainFormResourceUtils.getQuerySorts(request.getParameterMap()),
+                FormDefinitionResourceUtils.getQuerySorts(request.getParameterMap()),
                 firstResult, maxResults);
-            long count = aptosFormsDemoMainFormApplicationService.getCount(c);
+            long count = formDefinitionApplicationService.getCount(c);
 
-            AptosFormsDemoMainFormStateDto.DtoConverter dtoConverter = new AptosFormsDemoMainFormStateDto.DtoConverter();
+            FormDefinitionStateDto.DtoConverter dtoConverter = new FormDefinitionStateDto.DtoConverter();
             if (StringHelper.isNullOrEmpty(fields)) {
                 dtoConverter.setAllFieldsReturned(true);
             } else {
                 dtoConverter.setReturnedFieldsString(fields);
             }
-            Page.PageImpl<AptosFormsDemoMainFormStateDto> statePage =  new Page.PageImpl<>(dtoConverter.toAptosFormsDemoMainFormStateDtoList(states), count);
+            Page.PageImpl<FormDefinitionStateDto> statePage =  new Page.PageImpl<>(dtoConverter.toFormDefinitionStateDtoList(states), count);
             statePage.setSize(size);
             statePage.setNumber(page);
             return statePage;
@@ -127,23 +127,23 @@ public class AptosFormsDemoMainFormResource {
 
     /**
      * Retrieve.
-     * Retrieves AptosFormsDemoMainForm with the specified ID.
+     * Retrieves FormDefinition with the specified ID.
      */
-    @GetMapping("{formSequenceIdAndSignerAddress}")
+    @GetMapping("{formSequenceId}")
     @Transactional(readOnly = true)
-    public AptosFormsDemoMainFormStateDto get(@PathVariable("formSequenceIdAndSignerAddress") String formSequenceIdAndSignerAddress, @RequestParam(value = "fields", required = false) String fields) {
+    public FormDefinitionStateDto get(@PathVariable("formSequenceId") Long formSequenceId, @RequestParam(value = "fields", required = false) String fields) {
         try {
-            FormSequenceIdAndAddress idObj = AptosFormsDemoMainFormResourceUtils.parseIdString(formSequenceIdAndSignerAddress);
-            AptosFormsDemoMainFormState state = aptosFormsDemoMainFormApplicationService.get(idObj);
+            Long idObj = formSequenceId;
+            FormDefinitionState state = formDefinitionApplicationService.get(idObj);
             if (state == null) { return null; }
 
-            AptosFormsDemoMainFormStateDto.DtoConverter dtoConverter = new AptosFormsDemoMainFormStateDto.DtoConverter();
+            FormDefinitionStateDto.DtoConverter dtoConverter = new FormDefinitionStateDto.DtoConverter();
             if (StringHelper.isNullOrEmpty(fields)) {
                 dtoConverter.setAllFieldsReturned(true);
             } else {
                 dtoConverter.setReturnedFieldsString(fields);
             }
-            return dtoConverter.toAptosFormsDemoMainFormStateDto(state);
+            return dtoConverter.toFormDefinitionStateDto(state);
 
         } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
     }
@@ -163,45 +163,9 @@ public class AptosFormsDemoMainFormResource {
             Criterion c = CriterionDto.toSubclass(criterion,
                 getCriterionTypeConverter(), 
                 getPropertyTypeResolver(), 
-                n -> (AptosFormsDemoMainFormMetadata.aliasMap.containsKey(n) ? AptosFormsDemoMainFormMetadata.aliasMap.get(n) : n));
-            count = aptosFormsDemoMainFormApplicationService.getCount(c);
+                n -> (FormDefinitionMetadata.aliasMap.containsKey(n) ? FormDefinitionMetadata.aliasMap.get(n) : n));
+            count = formDefinitionApplicationService.getCount(c);
             return count;
-
-        } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
-    }
-
-
-    @PutMapping("{formSequenceIdAndSignerAddress}/_commands/Submit")
-    public void submit(@PathVariable("formSequenceIdAndSignerAddress") String formSequenceIdAndSignerAddress, @RequestBody AptosFormsDemoMainFormCommands.Submit content) {
-        try {
-
-            AptosFormsDemoMainFormCommands.Submit cmd = content;//.toSubmit();
-            FormSequenceIdAndAddress idObj = AptosFormsDemoMainFormResourceUtils.parseIdString(formSequenceIdAndSignerAddress);
-            if (cmd.getFormSequenceIdAndSignerAddress() == null) {
-                cmd.setFormSequenceIdAndSignerAddress(idObj);
-            } else if (!cmd.getFormSequenceIdAndSignerAddress().equals(idObj)) {
-                throw DomainError.named("inconsistentId", "Argument Id %1$s NOT equals body Id %2$s", formSequenceIdAndSignerAddress, cmd.getFormSequenceIdAndSignerAddress());
-            }
-            cmd.setRequesterId(SecurityContextUtil.getRequesterId());
-            aptosFormsDemoMainFormApplicationService.when(cmd);
-
-        } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
-    }
-
-
-    @PutMapping("{formSequenceIdAndSignerAddress}/_commands/Update")
-    public void update(@PathVariable("formSequenceIdAndSignerAddress") String formSequenceIdAndSignerAddress, @RequestBody AptosFormsDemoMainFormCommands.Update content) {
-        try {
-
-            AptosFormsDemoMainFormCommands.Update cmd = content;//.toUpdate();
-            FormSequenceIdAndAddress idObj = AptosFormsDemoMainFormResourceUtils.parseIdString(formSequenceIdAndSignerAddress);
-            if (cmd.getFormSequenceIdAndSignerAddress() == null) {
-                cmd.setFormSequenceIdAndSignerAddress(idObj);
-            } else if (!cmd.getFormSequenceIdAndSignerAddress().equals(idObj)) {
-                throw DomainError.named("inconsistentId", "Argument Id %1$s NOT equals body Id %2$s", formSequenceIdAndSignerAddress, cmd.getFormSequenceIdAndSignerAddress());
-            }
-            cmd.setRequesterId(SecurityContextUtil.getRequesterId());
-            aptosFormsDemoMainFormApplicationService.when(cmd);
 
         } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
     }
@@ -211,7 +175,7 @@ public class AptosFormsDemoMainFormResource {
         try {
 
             List<PropertyMetadataDto> filtering = new ArrayList<>();
-            AptosFormsDemoMainFormMetadata.propertyTypeMap.forEach((key, value) -> {
+            FormDefinitionMetadata.propertyTypeMap.forEach((key, value) -> {
                 filtering.add(new PropertyMetadataDto(key, value, true));
             });
             return filtering;
@@ -219,39 +183,39 @@ public class AptosFormsDemoMainFormResource {
         } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
     }
 
-    @GetMapping("{formSequenceIdAndSignerAddress}/_events/{version}")
+    @GetMapping("{formSequenceId}/_events/{version}")
     @Transactional(readOnly = true)
-    public AptosFormsDemoMainFormEvent getEvent(@PathVariable("formSequenceIdAndSignerAddress") String formSequenceIdAndSignerAddress, @PathVariable("version") long version) {
+    public FormDefinitionEvent getEvent(@PathVariable("formSequenceId") Long formSequenceId, @PathVariable("version") long version) {
         try {
 
-            FormSequenceIdAndAddress idObj = AptosFormsDemoMainFormResourceUtils.parseIdString(formSequenceIdAndSignerAddress);
-            //AptosFormsDemoMainFormStateEventDtoConverter dtoConverter = getAptosFormsDemoMainFormStateEventDtoConverter();
-            return aptosFormsDemoMainFormApplicationService.getEvent(idObj, version);
+            Long idObj = formSequenceId;
+            //FormDefinitionStateEventDtoConverter dtoConverter = getFormDefinitionStateEventDtoConverter();
+            return formDefinitionApplicationService.getEvent(idObj, version);
 
         } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
     }
 
-    @GetMapping("{formSequenceIdAndSignerAddress}/_historyStates/{version}")
+    @GetMapping("{formSequenceId}/_historyStates/{version}")
     @Transactional(readOnly = true)
-    public AptosFormsDemoMainFormStateDto getHistoryState(@PathVariable("formSequenceIdAndSignerAddress") String formSequenceIdAndSignerAddress, @PathVariable("version") long version, @RequestParam(value = "fields", required = false) String fields) {
+    public FormDefinitionStateDto getHistoryState(@PathVariable("formSequenceId") Long formSequenceId, @PathVariable("version") long version, @RequestParam(value = "fields", required = false) String fields) {
         try {
 
-            FormSequenceIdAndAddress idObj = AptosFormsDemoMainFormResourceUtils.parseIdString(formSequenceIdAndSignerAddress);
-            AptosFormsDemoMainFormStateDto.DtoConverter dtoConverter = new AptosFormsDemoMainFormStateDto.DtoConverter();
+            Long idObj = formSequenceId;
+            FormDefinitionStateDto.DtoConverter dtoConverter = new FormDefinitionStateDto.DtoConverter();
             if (StringHelper.isNullOrEmpty(fields)) {
                 dtoConverter.setAllFieldsReturned(true);
             } else {
                 dtoConverter.setReturnedFieldsString(fields);
             }
-            return dtoConverter.toAptosFormsDemoMainFormStateDto(aptosFormsDemoMainFormApplicationService.getHistoryState(idObj, version));
+            return dtoConverter.toFormDefinitionStateDto(formDefinitionApplicationService.getHistoryState(idObj, version));
 
         } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
     }
 
 
 
-    //protected  AptosFormsDemoMainFormStateEventDtoConverter getAptosFormsDemoMainFormStateEventDtoConverter() {
-    //    return new AptosFormsDemoMainFormStateEventDtoConverter();
+    //protected  FormDefinitionStateEventDtoConverter getFormDefinitionStateEventDtoConverter() {
+    //    return new FormDefinitionStateEventDtoConverter();
     //}
 
     protected TypeConverter getCriterionTypeConverter() {
@@ -262,36 +226,31 @@ public class AptosFormsDemoMainFormResource {
         return new PropertyTypeResolver() {
             @Override
             public Class resolveTypeByPropertyName(String propertyName) {
-                return AptosFormsDemoMainFormResourceUtils.getFilterPropertyType(propertyName);
+                return FormDefinitionResourceUtils.getFilterPropertyType(propertyName);
             }
         };
     }
 
     // ////////////////////////////////
  
-    public static class AptosFormsDemoMainFormResourceUtils {
+    public static class FormDefinitionResourceUtils {
 
-        public static FormSequenceIdAndAddress parseIdString(String idString) {
-            TextFormatter<FormSequenceIdAndAddress> formatter = AptosFormsDemoMainFormMetadata.URL_ID_TEXT_FORMATTER;
-            return formatter.parse(idString);
-        }
-
-        public static void setNullIdOrThrowOnInconsistentIds(String formSequenceIdAndSignerAddress, AptosFormsDemoMainFormCommand value) {
-            FormSequenceIdAndAddress idObj = parseIdString(formSequenceIdAndSignerAddress);
-            if (value.getFormSequenceIdAndSignerAddress() == null) {
-                value.setFormSequenceIdAndSignerAddress(idObj);
-            } else if (!value.getFormSequenceIdAndSignerAddress().equals(idObj)) {
-                throw DomainError.named("inconsistentId", "Argument Id %1$s NOT equals body Id %2$s", formSequenceIdAndSignerAddress, value.getFormSequenceIdAndSignerAddress());
+        public static void setNullIdOrThrowOnInconsistentIds(Long formSequenceId, FormDefinitionCommand value) {
+            Long idObj = formSequenceId;
+            if (value.getFormSequenceId() == null) {
+                value.setFormSequenceId(idObj);
+            } else if (!value.getFormSequenceId().equals(idObj)) {
+                throw DomainError.named("inconsistentId", "Argument Id %1$s NOT equals body Id %2$s", formSequenceId, value.getFormSequenceId());
             }
         }
     
         public static List<String> getQueryOrders(String str, String separator) {
-            return QueryParamUtils.getQueryOrders(str, separator, AptosFormsDemoMainFormMetadata.aliasMap);
+            return QueryParamUtils.getQueryOrders(str, separator, FormDefinitionMetadata.aliasMap);
         }
 
         public static List<String> getQuerySorts(Map<String, String[]> queryNameValuePairs) {
             String[] values = queryNameValuePairs.get("sort");
-            return QueryParamUtils.getQuerySorts(values, AptosFormsDemoMainFormMetadata.aliasMap);
+            return QueryParamUtils.getQuerySorts(values, FormDefinitionMetadata.aliasMap);
         }
 
         public static String getFilterPropertyName(String fieldName) {
@@ -301,15 +260,15 @@ public class AptosFormsDemoMainFormResource {
                     || "fields".equalsIgnoreCase(fieldName)) {
                 return null;
             }
-            if (AptosFormsDemoMainFormMetadata.aliasMap.containsKey(fieldName)) {
-                return AptosFormsDemoMainFormMetadata.aliasMap.get(fieldName);
+            if (FormDefinitionMetadata.aliasMap.containsKey(fieldName)) {
+                return FormDefinitionMetadata.aliasMap.get(fieldName);
             }
             return null;
         }
 
         public static Class getFilterPropertyType(String propertyName) {
-            if (AptosFormsDemoMainFormMetadata.propertyTypeMap.containsKey(propertyName)) {
-                String propertyType = AptosFormsDemoMainFormMetadata.propertyTypeMap.get(propertyName);
+            if (FormDefinitionMetadata.propertyTypeMap.containsKey(propertyName)) {
+                String propertyType = FormDefinitionMetadata.propertyTypeMap.get(propertyName);
                 if (!StringHelper.isNullOrEmpty(propertyType)) {
                     if (BoundedContextMetadata.CLASS_MAP.containsKey(propertyType)) {
                         return BoundedContextMetadata.CLASS_MAP.get(propertyType);
@@ -333,14 +292,14 @@ public class AptosFormsDemoMainFormResource {
             return filter.entrySet();
         }
 
-        public static AptosFormsDemoMainFormStateDto[] toAptosFormsDemoMainFormStateDtoArray(Iterable<FormSequenceIdAndAddress> ids) {
-            List<AptosFormsDemoMainFormStateDto> states = new ArrayList<>();
+        public static FormDefinitionStateDto[] toFormDefinitionStateDtoArray(Iterable<Long> ids) {
+            List<FormDefinitionStateDto> states = new ArrayList<>();
             ids.forEach(i -> {
-                AptosFormsDemoMainFormStateDto dto = new AptosFormsDemoMainFormStateDto();
-                dto.setFormSequenceIdAndSignerAddress(i);
+                FormDefinitionStateDto dto = new FormDefinitionStateDto();
+                dto.setFormSequenceId(i);
                 states.add(dto);
             });
-            return states.toArray(new AptosFormsDemoMainFormStateDto[0]);
+            return states.toArray(new FormDefinitionStateDto[0]);
         }
 
     }
