@@ -22,7 +22,7 @@
     <modules>
         <module>aptosformsdemo-common</module>
         <module>aptosformsdemo-service</module>
-<!--        <module>aptosformsdemo-service-rest</module>-->
+        <module>aptosformsdemo-service-rest</module>
         <module>aptosformsdemo-service-cli</module>
     </modules>
 

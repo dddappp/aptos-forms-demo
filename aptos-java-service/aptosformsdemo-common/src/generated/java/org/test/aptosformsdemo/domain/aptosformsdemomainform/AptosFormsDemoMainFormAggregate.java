@@ -6,8 +6,8 @@
 package org.test.aptosformsdemo.domain.aptosformsdemomainform;
 
 import java.util.List;
-import org.test.aptosformsdemo.domain.*;
 import java.math.BigInteger;
+import org.test.aptosformsdemo.domain.*;
 import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.specialization.Event;
 import org.test.aptosformsdemo.domain.Command;

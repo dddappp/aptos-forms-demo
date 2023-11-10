@@ -6,8 +6,8 @@
 package org.test.aptosformsdemo.domain.aptosformsdemomainform;
 
 import java.util.*;
-import org.test.aptosformsdemo.domain.*;
 import java.math.BigInteger;
+import org.test.aptosformsdemo.domain.*;
 import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.specialization.*;
 import org.test.aptosformsdemo.domain.AbstractEvent;
@@ -23,12 +23,12 @@ public abstract class AbstractAptosFormsDemoMainFormEvent extends AbstractEvent 
         this.aptosFormsDemoMainFormEventId = eventId;
     }
     
-    public FormSequenceIdAndAddress getFormSequenceIdAndSignerAddress() {
-        return getAptosFormsDemoMainFormEventId().getFormSequenceIdAndSignerAddress();
+    public String getSignerAddress() {
+        return getAptosFormsDemoMainFormEventId().getSignerAddress();
     }
 
-    public void setFormSequenceIdAndSignerAddress(FormSequenceIdAndAddress formSequenceIdAndSignerAddress) {
-        getAptosFormsDemoMainFormEventId().setFormSequenceIdAndSignerAddress(formSequenceIdAndSignerAddress);
+    public void setSignerAddress(String signerAddress) {
+        getAptosFormsDemoMainFormEventId().setSignerAddress(signerAddress);
     }
 
     private boolean eventReadOnly;

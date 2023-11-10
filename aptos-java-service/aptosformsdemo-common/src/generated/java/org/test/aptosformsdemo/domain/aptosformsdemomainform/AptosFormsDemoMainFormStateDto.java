@@ -7,24 +7,24 @@ package org.test.aptosformsdemo.domain.aptosformsdemomainform;
 
 import java.util.*;
 import java.math.*;
-import org.test.aptosformsdemo.domain.*;
 import java.math.BigInteger;
+import org.test.aptosformsdemo.domain.*;
 import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.specialization.*;
 
 
 public class AptosFormsDemoMainFormStateDto {
 
-    private FormSequenceIdAndAddress formSequenceIdAndSignerAddress;
+    private String signerAddress;
 
-    public FormSequenceIdAndAddress getFormSequenceIdAndSignerAddress()
+    public String getSignerAddress()
     {
-        return this.formSequenceIdAndSignerAddress;
+        return this.signerAddress;
     }
 
-    public void setFormSequenceIdAndSignerAddress(FormSequenceIdAndAddress formSequenceIdAndSignerAddress)
+    public void setSignerAddress(String signerAddress)
     {
-        this.formSequenceIdAndSignerAddress = formSequenceIdAndSignerAddress;
+        this.signerAddress = signerAddress;
     }
 
     private BigInteger version;
@@ -150,8 +150,8 @@ public class AptosFormsDemoMainFormStateDto {
                 return null;
             }
             AptosFormsDemoMainFormStateDto dto = new AptosFormsDemoMainFormStateDto();
-            if (returnedFieldsContains("FormSequenceIdAndSignerAddress")) {
-                dto.setFormSequenceIdAndSignerAddress(state.getFormSequenceIdAndSignerAddress());
+            if (returnedFieldsContains("SignerAddress")) {
+                dto.setSignerAddress(state.getSignerAddress());
             }
             if (returnedFieldsContains("Version")) {
                 dto.setVersion(state.getVersion());

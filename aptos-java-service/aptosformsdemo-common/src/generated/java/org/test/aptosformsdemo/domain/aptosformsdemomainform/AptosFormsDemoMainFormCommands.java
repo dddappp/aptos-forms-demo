@@ -6,8 +6,8 @@
 package org.test.aptosformsdemo.domain.aptosformsdemomainform;
 
 import java.util.*;
-import org.test.aptosformsdemo.domain.*;
 import java.math.BigInteger;
+import org.test.aptosformsdemo.domain.*;
 import java.time.OffsetDateTime;
 
 public class AptosFormsDemoMainFormCommands {
@@ -25,16 +25,16 @@ public class AptosFormsDemoMainFormCommands {
         }
 
         /**
-         * Form Sequence Id And Signer Address
+         * Signer Address
          */
-        private FormSequenceIdAndAddress formSequenceIdAndSignerAddress;
+        private String signerAddress;
 
-        public FormSequenceIdAndAddress getFormSequenceIdAndSignerAddress() {
-            return this.formSequenceIdAndSignerAddress;
+        public String getSignerAddress() {
+            return this.signerAddress;
         }
 
-        public void setFormSequenceIdAndSignerAddress(FormSequenceIdAndAddress formSequenceIdAndSignerAddress) {
-            this.formSequenceIdAndSignerAddress = formSequenceIdAndSignerAddress;
+        public void setSignerAddress(String signerAddress) {
+            this.signerAddress = signerAddress;
         }
 
         /**
@@ -271,16 +271,16 @@ public class AptosFormsDemoMainFormCommands {
         }
 
         /**
-         * Form Sequence Id And Signer Address
+         * Signer Address
          */
-        private FormSequenceIdAndAddress formSequenceIdAndSignerAddress;
+        private String signerAddress;
 
-        public FormSequenceIdAndAddress getFormSequenceIdAndSignerAddress() {
-            return this.formSequenceIdAndSignerAddress;
+        public String getSignerAddress() {
+            return this.signerAddress;
         }
 
-        public void setFormSequenceIdAndSignerAddress(FormSequenceIdAndAddress formSequenceIdAndSignerAddress) {
-            this.formSequenceIdAndSignerAddress = formSequenceIdAndSignerAddress;
+        public void setSignerAddress(String signerAddress) {
+            this.signerAddress = signerAddress;
         }
 
         /**

@@ -133,19 +133,10 @@ public class M {
     public static final String PROPERTY_NAME_UPDATED_BY   = "updatedBy";
     public static final String PROPERTY_NAME_UPDATED_AT   = "updatedAt";
 
-    public static final String URL_ID_FIELD_SEPARATOR = ",";
-
-    public static final TextFormatter<org.test.aptosformsdemo.domain.FormSequenceIdAndAddress> URL_ID_TEXT_FORMATTER =
-                    new AbstractValueObjectTextFormatter<org.test.aptosformsdemo.domain.FormSequenceIdAndAddress>(org.test.aptosformsdemo.domain.FormSequenceIdAndAddress.class, URL_ID_FIELD_SEPARATOR) {
-                        @Override
-                        protected Class<?> getClassByTypeName(String type) {
-                            return BoundedContextMetadata.CLASS_MAP.get(type);
-                        }
-                    };
-
-    public static final Class ID_CLASS = org.test.aptosformsdemo.domain.FormSequenceIdAndAddress.class;
+    public static final Class ID_CLASS = String.class;
 
     public static final String[] propertyNames = new String[] {
+            "signerAddress",
             "fr_5pqi",
             "fr_8xjs",
             "fr_9c3f",
@@ -162,8 +153,6 @@ public class M {
             "updatedAt",
             "active",
             "deleted",
-            "formSequenceIdAndSignerAddress.formSequenceId",
-            "formSequenceIdAndSignerAddress.signerAddress",
             "fr_d8rw.startYear",
             "fr_d8rw.startMonth",
             "fr_d8rw.startDay",
@@ -188,6 +177,7 @@ public class M {
     };
 
     public static final String[] propertyTypes = new String[] {
+            "String",
             "BigInteger",
             "String",
             "String",
@@ -204,8 +194,6 @@ public class M {
             "OffsetDateTime",
             "Boolean",
             "Boolean",
-            "Long",
-            "String",
             "Integer",
             "Integer",
             "Integer",
@@ -241,6 +229,8 @@ public class M {
     }
 
     private static  void initAliasMap() {
+        aliasMap.put("signerAddress", "signerAddress");
+        aliasMap.put("SignerAddress", "signerAddress");
         aliasMap.put("fr_5pqi", "fr_5pqi");
         aliasMap.put("Fr_5pqi", "fr_5pqi");
         aliasMap.put("fr_8xjs", "fr_8xjs");
@@ -273,10 +263,6 @@ public class M {
         aliasMap.put("Active", "active");
         aliasMap.put("deleted", "deleted");
         aliasMap.put("Deleted", "deleted");
-        aliasMap.put("formSequenceIdAndSignerAddress.formSequenceId", "formSequenceIdAndSignerAddress.formSequenceId");
-        aliasMap.put("FormSequenceIdAndSignerAddress.FormSequenceId", "formSequenceIdAndSignerAddress.formSequenceId");
-        aliasMap.put("formSequenceIdAndSignerAddress.signerAddress", "formSequenceIdAndSignerAddress.signerAddress");
-        aliasMap.put("FormSequenceIdAndSignerAddress.SignerAddress", "formSequenceIdAndSignerAddress.signerAddress");
         aliasMap.put("fr_d8rw.startYear", "fr_d8rw.startYear");
         aliasMap.put("Fr_d8rw.StartYear", "fr_d8rw.startYear");
         aliasMap.put("fr_d8rw.start.year", "fr_d8rw.startYear");

@@ -8,8 +8,8 @@ package org.test.aptosformsdemo.domain.aptosformsdemomainform;
 import java.util.Map;
 import java.util.List;
 import org.dddml.support.criterion.Criterion;
-import org.test.aptosformsdemo.domain.*;
 import java.math.BigInteger;
+import org.test.aptosformsdemo.domain.*;
 import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.specialization.Event;
 import org.test.aptosformsdemo.domain.Command;
@@ -19,7 +19,7 @@ public interface AptosFormsDemoMainFormApplicationService {
 
     void when(AptosFormsDemoMainFormCommands.Update c);
 
-    AptosFormsDemoMainFormState get(FormSequenceIdAndAddress id);
+    AptosFormsDemoMainFormState get(String id);
 
     Iterable<AptosFormsDemoMainFormState> getAll(Integer firstResult, Integer maxResults);
 
@@ -33,9 +33,9 @@ public interface AptosFormsDemoMainFormApplicationService {
 
     long getCount(Criterion filter);
 
-    AptosFormsDemoMainFormEvent getEvent(FormSequenceIdAndAddress formSequenceIdAndSignerAddress, long version);
+    AptosFormsDemoMainFormEvent getEvent(String signerAddress, long version);
 
-    AptosFormsDemoMainFormState getHistoryState(FormSequenceIdAndAddress formSequenceIdAndSignerAddress, long version);
+    AptosFormsDemoMainFormState getHistoryState(String signerAddress, long version);
 
 }
 

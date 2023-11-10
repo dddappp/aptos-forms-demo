@@ -6,21 +6,20 @@
 package org.test.aptosformsdemo.domain.aptosformsdemomainform;
 
 import java.io.Serializable;
-import org.test.aptosformsdemo.domain.FormSequenceIdAndAddress;
 import java.math.BigInteger;
 import org.test.aptosformsdemo.domain.*;
 
 public class AptosFormsDemoMainFormEventId implements Serializable {
-    private FormSequenceIdAndAddress formSequenceIdAndSignerAddress = new FormSequenceIdAndAddress();
+    private String signerAddress;
 
-    public FormSequenceIdAndAddress getFormSequenceIdAndSignerAddress()
+    public String getSignerAddress()
     {
-        return this.formSequenceIdAndSignerAddress;
+        return this.signerAddress;
     }
 
-    public void setFormSequenceIdAndSignerAddress(FormSequenceIdAndAddress formSequenceIdAndSignerAddress)
+    public void setSignerAddress(String signerAddress)
     {
-        this.formSequenceIdAndSignerAddress = formSequenceIdAndSignerAddress;
+        this.signerAddress = signerAddress;
     }
 
     private BigInteger version;
@@ -35,33 +34,13 @@ public class AptosFormsDemoMainFormEventId implements Serializable {
         this.version = version;
     }
 
-    protected Long getFormSequenceIdAndSignerAddressFormSequenceId()
-    {
-        return getFormSequenceIdAndSignerAddress().getFormSequenceId();
-    }
-
-    protected void setFormSequenceIdAndSignerAddressFormSequenceId(Long formSequenceIdAndSignerAddressFormSequenceId)
-    {
-        getFormSequenceIdAndSignerAddress().setFormSequenceId(formSequenceIdAndSignerAddressFormSequenceId);
-    }
-
-    protected String getFormSequenceIdAndSignerAddressSignerAddress()
-    {
-        return getFormSequenceIdAndSignerAddress().getSignerAddress();
-    }
-
-    protected void setFormSequenceIdAndSignerAddressSignerAddress(String formSequenceIdAndSignerAddressSignerAddress)
-    {
-        getFormSequenceIdAndSignerAddress().setSignerAddress(formSequenceIdAndSignerAddressSignerAddress);
-    }
-
     public AptosFormsDemoMainFormEventId()
     {
     }
 
-    public AptosFormsDemoMainFormEventId(FormSequenceIdAndAddress formSequenceIdAndSignerAddress, BigInteger version)
+    public AptosFormsDemoMainFormEventId(String signerAddress, BigInteger version)
     {
-        this.formSequenceIdAndSignerAddress = formSequenceIdAndSignerAddress;
+        this.signerAddress = signerAddress;
         this.version = version;
     }
 
@@ -77,7 +56,7 @@ public class AptosFormsDemoMainFormEventId implements Serializable {
 
         AptosFormsDemoMainFormEventId other = (AptosFormsDemoMainFormEventId)obj;
         return true 
-            && (formSequenceIdAndSignerAddress == other.formSequenceIdAndSignerAddress || (formSequenceIdAndSignerAddress != null && formSequenceIdAndSignerAddress.equals(other.formSequenceIdAndSignerAddress)))
+            && (signerAddress == other.signerAddress || (signerAddress != null && signerAddress.equals(other.signerAddress)))
             && (version == other.version || (version != null && version.equals(other.version)))
             ;
     }
@@ -86,8 +65,8 @@ public class AptosFormsDemoMainFormEventId implements Serializable {
     public int hashCode()
     {
         int hash = 0;
-        if (this.formSequenceIdAndSignerAddress != null) {
-            hash += 13 * this.formSequenceIdAndSignerAddress.hashCode();
+        if (this.signerAddress != null) {
+            hash += 13 * this.signerAddress.hashCode();
         }
         if (this.version != null) {
             hash += 13 * this.version.hashCode();
@@ -98,19 +77,17 @@ public class AptosFormsDemoMainFormEventId implements Serializable {
     @Override
     public String toString() {
         return "AptosFormsDemoMainFormEventId{" +
-                "formSequenceIdAndSignerAddress=" + formSequenceIdAndSignerAddress +
+                "signerAddress=" + '\'' + signerAddress + '\'' +
                 ", version=" + version +
                 '}';
     }
 
     protected static final String[] FLATTENED_PROPERTY_NAMES = new String[]{
-            "formSequenceIdAndSignerAddressFormSequenceId",
-            "formSequenceIdAndSignerAddressSignerAddress",
+            "signerAddress",
             "version",
     };
 
     protected static final String[] FLATTENED_PROPERTY_TYPES = new String[]{
-            "Long",
             "String",
             "BigInteger",
     };

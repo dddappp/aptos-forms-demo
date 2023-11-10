@@ -7,12 +7,12 @@ package org.test.aptosformsdemo.domain.aptosformsdemomainform;
 
 import java.util.*;
 import org.dddml.support.criterion.Criterion;
-import org.test.aptosformsdemo.domain.*;
 import java.math.BigInteger;
+import org.test.aptosformsdemo.domain.*;
 import java.time.OffsetDateTime;
 
 public interface AptosFormsDemoMainFormStateRepository {
-    AptosFormsDemoMainFormState get(FormSequenceIdAndAddress id, boolean nullAllowed);
+    AptosFormsDemoMainFormState get(String id, boolean nullAllowed);
 
     void save(AptosFormsDemoMainFormState state);
 

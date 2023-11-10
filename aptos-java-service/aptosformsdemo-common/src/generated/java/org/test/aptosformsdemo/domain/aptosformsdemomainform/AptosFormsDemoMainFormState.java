@@ -7,8 +7,8 @@ package org.test.aptosformsdemo.domain.aptosformsdemomainform;
 
 import java.util.*;
 import java.math.*;
-import org.test.aptosformsdemo.domain.*;
 import java.math.BigInteger;
+import org.test.aptosformsdemo.domain.*;
 import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.specialization.Event;
 
@@ -18,7 +18,7 @@ public interface AptosFormsDemoMainFormState extends VersionedAptosMoveObject
 
     Long VERSION_NULL = VERSION_ZERO - 1;
 
-    FormSequenceIdAndAddress getFormSequenceIdAndSignerAddress();
+    String getSignerAddress();
 
     Long getOffChainVersion();
 
@@ -37,7 +37,7 @@ public interface AptosFormsDemoMainFormState extends VersionedAptosMoveObject
     Map<String, Object> getDynamicProperties();
 
     interface MutableAptosFormsDemoMainFormState extends AptosFormsDemoMainFormState, VersionedAptosMoveObject.MutableVersionedAptosMoveObject {
-        void setFormSequenceIdAndSignerAddress(FormSequenceIdAndAddress formSequenceIdAndSignerAddress);
+        void setSignerAddress(String signerAddress);
 
         void setOffChainVersion(Long offChainVersion);
 

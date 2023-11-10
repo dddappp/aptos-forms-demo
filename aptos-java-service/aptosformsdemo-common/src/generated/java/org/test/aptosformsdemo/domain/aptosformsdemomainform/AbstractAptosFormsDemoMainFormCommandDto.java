@@ -5,26 +5,26 @@
 
 package org.test.aptosformsdemo.domain.aptosformsdemomainform;
 
-import org.test.aptosformsdemo.domain.*;
 import java.math.BigInteger;
+import org.test.aptosformsdemo.domain.*;
 import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.domain.AbstractCommand;
 
 public abstract class AbstractAptosFormsDemoMainFormCommandDto extends AbstractCommand {
 
     /**
-     * Form Sequence Id And Signer Address
+     * Signer Address
      */
-    private FormSequenceIdAndAddress formSequenceIdAndSignerAddress;
+    private String signerAddress;
 
-    public FormSequenceIdAndAddress getFormSequenceIdAndSignerAddress()
+    public String getSignerAddress()
     {
-        return this.formSequenceIdAndSignerAddress;
+        return this.signerAddress;
     }
 
-    public void setFormSequenceIdAndSignerAddress(FormSequenceIdAndAddress formSequenceIdAndSignerAddress)
+    public void setSignerAddress(String signerAddress)
     {
-        this.formSequenceIdAndSignerAddress = formSequenceIdAndSignerAddress;
+        this.signerAddress = signerAddress;
     }
 
     /**
@@ -44,7 +44,7 @@ public abstract class AbstractAptosFormsDemoMainFormCommandDto extends AbstractC
 
 
     public void copyTo(AptosFormsDemoMainFormCommand command) {
-        command.setFormSequenceIdAndSignerAddress(this.getFormSequenceIdAndSignerAddress());
+        command.setSignerAddress(this.getSignerAddress());
         command.setOffChainVersion(this.getOffChainVersion());
         
         command.setRequesterId(this.getRequesterId());

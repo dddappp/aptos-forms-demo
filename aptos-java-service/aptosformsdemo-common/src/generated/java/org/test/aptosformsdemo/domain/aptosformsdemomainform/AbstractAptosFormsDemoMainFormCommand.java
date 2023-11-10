@@ -6,23 +6,23 @@
 package org.test.aptosformsdemo.domain.aptosformsdemomainform;
 
 import java.util.*;
-import org.test.aptosformsdemo.domain.*;
 import java.math.BigInteger;
+import org.test.aptosformsdemo.domain.*;
 import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.domain.AbstractCommand;
 
 public abstract class AbstractAptosFormsDemoMainFormCommand extends AbstractCommand implements AptosFormsDemoMainFormCommand {
 
-    private FormSequenceIdAndAddress formSequenceIdAndSignerAddress;
+    private String signerAddress;
 
-    public FormSequenceIdAndAddress getFormSequenceIdAndSignerAddress()
+    public String getSignerAddress()
     {
-        return this.formSequenceIdAndSignerAddress;
+        return this.signerAddress;
     }
 
-    public void setFormSequenceIdAndSignerAddress(FormSequenceIdAndAddress formSequenceIdAndSignerAddress)
+    public void setSignerAddress(String signerAddress)
     {
-        this.formSequenceIdAndSignerAddress = formSequenceIdAndSignerAddress;
+        this.signerAddress = signerAddress;
     }
 
     private Long offChainVersion;
