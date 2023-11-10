@@ -9,6 +9,8 @@ import com.github.wubuku.aptos.utils.NodeApiClient;
 import org.test.aptosformsdemo.domain.*;
 import org.test.aptosformsdemo.domain.aptosformsdemomainform.*;
 import org.test.aptosformsdemo.aptos.contract.repository.*;
+import org.test.aptosformsdemo.aptos.contract.ContractModuleNameProvider;
+import org.test.aptosformsdemo.aptos.contract.DefaultContractModuleNameProvider;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,6 +27,7 @@ public class AptosAptosFormsDemoMainFormService {
     @Autowired
     private AptosFormsDemoMainFormStateRepository aptosFormsDemoMainFormStateRepository;
 
+    private ContractModuleNameProvider contractModuleNameProvider = new DefaultContractModuleNameProvider();
 
     private AptosAptosFormsDemoMainFormStateRetriever aptosAptosFormsDemoMainFormStateRetriever;
 
@@ -36,6 +39,7 @@ public class AptosAptosFormsDemoMainFormService {
         AptosAccountRepository aptosAccountRepository
     ) {
         this.aptosAptosFormsDemoMainFormStateRetriever = new AptosAptosFormsDemoMainFormStateRetriever(
+                contractModuleNameProvider,
                 aptosNodeApiClient,
                 aptosContractAddress,
                 aptosAccountRepository,

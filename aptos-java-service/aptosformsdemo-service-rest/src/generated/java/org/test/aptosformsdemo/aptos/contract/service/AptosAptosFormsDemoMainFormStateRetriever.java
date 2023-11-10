@@ -15,6 +15,8 @@ import org.test.aptosformsdemo.aptos.contract.repository.AptosAccountRepository;
 import org.test.aptosformsdemo.domain.aptosformsdemomainform.*;
 import org.test.aptosformsdemo.domain.*;
 import org.test.aptosformsdemo.aptos.contract.AptosFormsDemoMainForm;
+import org.test.aptosformsdemo.aptos.contract.ContractModuleNameProvider;
+import org.test.aptosformsdemo.aptos.contract.DefaultContractModuleNameProvider;
 
 import java.io.IOException;
 import java.math.*;
@@ -32,12 +34,14 @@ public class AptosAptosFormsDemoMainFormStateRetriever {
 
     private Function<String, AptosFormsDemoMainFormState.MutableAptosFormsDemoMainFormState> aptosFormsDemoMainFormStateFactory;
 
+    private ContractModuleNameProvider contractModuleNameProvider = new DefaultContractModuleNameProvider();
 
-    public AptosAptosFormsDemoMainFormStateRetriever(NodeApiClient aptosNodeApiClient,
+    public AptosAptosFormsDemoMainFormStateRetriever(ContractModuleNameProvider contractModuleNameProvider, NodeApiClient aptosNodeApiClient,
                                     String aptosContractAddress,
                                     AptosAccountRepository aptosAccountRepository,
                                     Function<String, AptosFormsDemoMainFormState.MutableAptosFormsDemoMainFormState> aptosFormsDemoMainFormStateFactory
     ) {
+        this.contractModuleNameProvider = contractModuleNameProvider;
         this.aptosNodeApiClient = aptosNodeApiClient;
         this.aptosContractAddress = aptosContractAddress;
         this.aptosAccountRepository = aptosAccountRepository;
@@ -49,19 +53,19 @@ public class AptosAptosFormsDemoMainFormStateRetriever {
         AccountResource<AptosFormsDemoMainForm.Tables> accountResource;
         try {
             accountResource = aptosNodeApiClient.getAccountResource(resourceAccountAddress,
-                    this.aptosContractAddress + "::" + ContractConstants.APTOS_FORMS_DEMO_MAIN_FORM_MODULE_TABLES,
-                    AptosFormsDemoMainForm.Tables.class,
+                    this.aptosContractAddress + "::" + contractModuleNameProvider.getModuleQualifiedTablesStructName(),
+                    AptosFormsDemoMainForm.Tables.class, //todo generalize this!!!
                     null);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        String tableHandle = accountResource.getData().getAptosFormsDemoMainFormTable().getHandle();
+        String tableHandle = accountResource.getData().getAptosFormsDemoMainFormTable().getHandle(); //todo generalize this!!!
         AptosFormsDemoMainForm aptosFormsDemoMainForm;
         try {
             aptosFormsDemoMainForm = aptosNodeApiClient.getTableItem(
                     tableHandle,
                     ContractConstants.toNumericalAddressType(ContractConstants.APTOS_FORMS_DEMO_MAIN_FORM_ID_TYPE, this.aptosContractAddress),
-                    this.aptosContractAddress + "::" + ContractConstants.APTOS_FORMS_DEMO_MAIN_FORM_MODULE_APTOS_FORMS_DEMO_MAIN_FORM,
+                    this.aptosContractAddress + "::" + contractModuleNameProvider.getModuleQualifiedEntityStateStructName(),
                     signerAddress,
                     AptosFormsDemoMainForm.class,
                     null

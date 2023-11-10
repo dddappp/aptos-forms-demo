@@ -11,19 +11,7 @@ public class ContractConstants {
 
     public static final String CONTRACT_NAMED_ADDRESS = "aptos_forms_demo";
 
-    public static final String APTOS_FORMS_DEMO_MAIN_FORM_MODULE_APTOS_FORMS_DEMO_MAIN_FORM_SUBMITTED = "aptos_forms_demo_main_form::AptosFormsDemoMainFormSubmitted";
-    public static final String APTOS_FORMS_DEMO_MAIN_FORM_MODULE_APTOS_FORMS_DEMO_MAIN_FORM_SUBMITTED_HANDLE_FIELD = "aptos_forms_demo_main_form_submitted_handle";
-
-    public static final String APTOS_FORMS_DEMO_MAIN_FORM_MODULE_APTOS_FORMS_DEMO_MAIN_FORM_UPDATED = "aptos_forms_demo_main_form::AptosFormsDemoMainFormUpdated";
-    public static final String APTOS_FORMS_DEMO_MAIN_FORM_MODULE_APTOS_FORMS_DEMO_MAIN_FORM_UPDATED_HANDLE_FIELD = "aptos_forms_demo_main_form_updated_handle";
-
-    public static final String APTOS_FORMS_DEMO_MAIN_FORM_MODULE_APTOS_FORMS_DEMO_MAIN_FORM = "aptos_forms_demo_main_form::AptosFormsDemoMainForm";
-
     public static final String APTOS_FORMS_DEMO_MAIN_FORM_ID_TYPE = "address";
-
-    public static final String APTOS_FORMS_DEMO_MAIN_FORM_MODULE_TABLES = "aptos_forms_demo_main_form::Tables";
-
-    public static final String APTOS_FORMS_DEMO_MAIN_FORM_MODULE_EVENTS = "aptos_forms_demo_main_form::Events";
 
     public static String toNumericalAddressType(String type, String contractAddress) {
         if (type.startsWith(CONTRACT_NAMED_ADDRESS + "::")) {
@@ -31,5 +19,6 @@ public class ContractConstants {
         }
         return type;
     }
+
 
 }

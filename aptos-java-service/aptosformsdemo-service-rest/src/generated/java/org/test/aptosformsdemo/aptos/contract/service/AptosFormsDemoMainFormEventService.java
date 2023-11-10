@@ -12,6 +12,8 @@ import org.test.aptosformsdemo.domain.aptosformsdemomainform.AbstractAptosFormsD
 import org.test.aptosformsdemo.aptos.contract.ContractConstants;
 import org.test.aptosformsdemo.aptos.contract.DomainBeanUtils;
 import org.test.aptosformsdemo.aptos.contract.AptosAccount;
+import org.test.aptosformsdemo.aptos.contract.ContractModuleNameProvider;
+import org.test.aptosformsdemo.aptos.contract.DefaultContractModuleNameProvider;
 
 import org.test.aptosformsdemo.aptos.contract.aptosformsdemomainform.AptosFormsDemoMainFormSubmitted;
 import org.test.aptosformsdemo.aptos.contract.aptosformsdemomainform.AptosFormsDemoMainFormUpdated;
@@ -42,6 +44,8 @@ public class AptosFormsDemoMainFormEventService {
     @Autowired
     private AptosFormsDemoMainFormEventRepository aptosFormsDemoMainFormEventRepository;
 
+    private ContractModuleNameProvider contractModuleNameProvider = new DefaultContractModuleNameProvider();
+
     @Transactional
     public void updateStatusToProcessed(AbstractAptosFormsDemoMainFormEvent event) {
         event.setStatus("D");
@@ -64,8 +68,8 @@ public class AptosFormsDemoMainFormEventService {
             try {
                 eventPage = aptosNodeApiClient.getEventsByEventHandle(
                         resourceAccountAddress,
-                        this.aptosContractAddress + "::" + ContractConstants.APTOS_FORMS_DEMO_MAIN_FORM_MODULE_EVENTS,
-                        ContractConstants.APTOS_FORMS_DEMO_MAIN_FORM_MODULE_APTOS_FORMS_DEMO_MAIN_FORM_SUBMITTED_HANDLE_FIELD,
+                        this.aptosContractAddress + "::" + contractModuleNameProvider.getModuleQualifiedEventsStructName(),
+                        contractModuleNameProvider.getModuleQualifiedEventStructName("AptosFormsDemoMainFormSubmitted"),
                         AptosFormsDemoMainFormSubmitted.class,
                         cursor.longValue(),
                         limit
@@ -114,8 +118,8 @@ public class AptosFormsDemoMainFormEventService {
             try {
                 eventPage = aptosNodeApiClient.getEventsByEventHandle(
                         resourceAccountAddress,
-                        this.aptosContractAddress + "::" + ContractConstants.APTOS_FORMS_DEMO_MAIN_FORM_MODULE_EVENTS,
-                        ContractConstants.APTOS_FORMS_DEMO_MAIN_FORM_MODULE_APTOS_FORMS_DEMO_MAIN_FORM_UPDATED_HANDLE_FIELD,
+                        this.aptosContractAddress + "::" + contractModuleNameProvider.getModuleQualifiedEventsStructName(),
+                        contractModuleNameProvider.getModuleQualifiedEventStructName("AptosFormsDemoMainFormUpdated"),
                         AptosFormsDemoMainFormUpdated.class,
                         cursor.longValue(),
                         limit
