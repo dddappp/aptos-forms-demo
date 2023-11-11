@@ -10,7 +10,6 @@ import org.test.aptosformsdemo.domain.*;
 import org.test.aptosformsdemo.domain.aptosformsdemomainform.*;
 import org.test.aptosformsdemo.aptos.contract.repository.*;
 import org.test.aptosformsdemo.aptos.contract.ContractModuleNameProvider;
-import org.test.aptosformsdemo.aptos.contract.DefaultContractModuleNameProvider;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,8 +26,6 @@ public class AptosAptosFormsDemoMainFormService {
     @Autowired
     private AptosFormsDemoMainFormStateRepository aptosFormsDemoMainFormStateRepository;
 
-    private ContractModuleNameProvider contractModuleNameProvider = new DefaultContractModuleNameProvider();
-
     private AptosAptosFormsDemoMainFormStateRetriever aptosAptosFormsDemoMainFormStateRetriever;
 
     @Autowired
@@ -39,7 +36,6 @@ public class AptosAptosFormsDemoMainFormService {
         AptosAccountRepository aptosAccountRepository
     ) {
         this.aptosAptosFormsDemoMainFormStateRetriever = new AptosAptosFormsDemoMainFormStateRetriever(
-                contractModuleNameProvider,
                 aptosNodeApiClient,
                 aptosContractAddress,
                 aptosAccountRepository,
@@ -52,8 +48,8 @@ public class AptosAptosFormsDemoMainFormService {
     }
 
     @Transactional
-    public void updateAptosFormsDemoMainFormState(String signerAddress) {
-        AptosFormsDemoMainFormState aptosFormsDemoMainFormState = aptosAptosFormsDemoMainFormStateRetriever.retrieveAptosFormsDemoMainFormState(signerAddress);
+    public void updateAptosFormsDemoMainFormState(ContractModuleNameProvider contractModuleNameProvider, String signerAddress) {
+        AptosFormsDemoMainFormState aptosFormsDemoMainFormState = aptosAptosFormsDemoMainFormStateRetriever.retrieveAptosFormsDemoMainFormState(contractModuleNameProvider, signerAddress);
         if (aptosFormsDemoMainFormState == null) {
             return;
         }

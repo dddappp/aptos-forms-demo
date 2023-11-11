@@ -10,20 +10,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import org.test.aptosformsdemo.aptos.contract.ContractModuleNameProvider;
+import org.test.aptosformsdemo.aptos.contract.DefaultContractModuleNameProvider;
+
+
 @Service
 public class PullAptosFormsDemoMainFormEventsTaskService {
+    private ContractModuleNameProvider contractModuleNameProvider = new DefaultContractModuleNameProvider();
 
     @Autowired
     private AptosFormsDemoMainFormEventService aptosFormsDemoMainFormEventService;
 
     @Scheduled(fixedDelayString = "${aptos.contract.pull-aptos-forms-demo-main-form-events.aptos-forms-demo-main-form-submitted.fixed-delay:5000}")
     public void pullAptosFormsDemoMainFormSubmittedEvents() {
-        aptosFormsDemoMainFormEventService.pullAptosFormsDemoMainFormSubmittedEvents();
+        aptosFormsDemoMainFormEventService.pullAptosFormsDemoMainFormSubmittedEvents(contractModuleNameProvider);
     }
 
     @Scheduled(fixedDelayString = "${aptos.contract.pull-aptos-forms-demo-main-form-events.aptos-forms-demo-main-form-updated.fixed-delay:5000}")
     public void pullAptosFormsDemoMainFormUpdatedEvents() {
-        aptosFormsDemoMainFormEventService.pullAptosFormsDemoMainFormUpdatedEvents();
+        aptosFormsDemoMainFormEventService.pullAptosFormsDemoMainFormUpdatedEvents(contractModuleNameProvider);
     }
 
 }

@@ -16,7 +16,6 @@ import org.test.aptosformsdemo.domain.aptosformsdemomainform.*;
 import org.test.aptosformsdemo.domain.*;
 import org.test.aptosformsdemo.aptos.contract.AptosFormsDemoMainForm;
 import org.test.aptosformsdemo.aptos.contract.ContractModuleNameProvider;
-import org.test.aptosformsdemo.aptos.contract.DefaultContractModuleNameProvider;
 
 import java.io.IOException;
 import java.math.*;
@@ -34,21 +33,18 @@ public class AptosAptosFormsDemoMainFormStateRetriever {
 
     private Function<String, AptosFormsDemoMainFormState.MutableAptosFormsDemoMainFormState> aptosFormsDemoMainFormStateFactory;
 
-    private ContractModuleNameProvider contractModuleNameProvider = new DefaultContractModuleNameProvider();
-
-    public AptosAptosFormsDemoMainFormStateRetriever(ContractModuleNameProvider contractModuleNameProvider, NodeApiClient aptosNodeApiClient,
+    public AptosAptosFormsDemoMainFormStateRetriever(NodeApiClient aptosNodeApiClient,
                                     String aptosContractAddress,
                                     AptosAccountRepository aptosAccountRepository,
                                     Function<String, AptosFormsDemoMainFormState.MutableAptosFormsDemoMainFormState> aptosFormsDemoMainFormStateFactory
     ) {
-        this.contractModuleNameProvider = contractModuleNameProvider;
         this.aptosNodeApiClient = aptosNodeApiClient;
         this.aptosContractAddress = aptosContractAddress;
         this.aptosAccountRepository = aptosAccountRepository;
         this.aptosFormsDemoMainFormStateFactory = aptosFormsDemoMainFormStateFactory;
     }
 
-    public AptosFormsDemoMainFormState retrieveAptosFormsDemoMainFormState(String signerAddress) {
+    public AptosFormsDemoMainFormState retrieveAptosFormsDemoMainFormState(ContractModuleNameProvider contractModuleNameProvider, String signerAddress) {
         String resourceAccountAddress = getResourceAccountAddress();
         AccountResource<AptosFormsDemoMainForm.Tables> accountResource;
         try {

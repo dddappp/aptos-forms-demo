@@ -13,7 +13,6 @@ import org.test.aptosformsdemo.aptos.contract.ContractConstants;
 import org.test.aptosformsdemo.aptos.contract.DomainBeanUtils;
 import org.test.aptosformsdemo.aptos.contract.AptosAccount;
 import org.test.aptosformsdemo.aptos.contract.ContractModuleNameProvider;
-import org.test.aptosformsdemo.aptos.contract.DefaultContractModuleNameProvider;
 
 import org.test.aptosformsdemo.aptos.contract.aptosformsdemomainform.AptosFormsDemoMainFormSubmitted;
 import org.test.aptosformsdemo.aptos.contract.aptosformsdemomainform.AptosFormsDemoMainFormUpdated;
@@ -44,8 +43,6 @@ public class AptosFormsDemoMainFormEventService {
     @Autowired
     private AptosFormsDemoMainFormEventRepository aptosFormsDemoMainFormEventRepository;
 
-    private ContractModuleNameProvider contractModuleNameProvider = new DefaultContractModuleNameProvider();
-
     @Transactional
     public void updateStatusToProcessed(AbstractAptosFormsDemoMainFormEvent event) {
         event.setStatus("D");
@@ -53,7 +50,7 @@ public class AptosFormsDemoMainFormEventService {
     }
 
     @Transactional
-    public void pullAptosFormsDemoMainFormSubmittedEvents() {
+    public void pullAptosFormsDemoMainFormSubmittedEvents(ContractModuleNameProvider contractModuleNameProvider) {
         String resourceAccountAddress = getResourceAccountAddress();
         if (resourceAccountAddress == null) {
             return;
@@ -103,7 +100,7 @@ public class AptosFormsDemoMainFormEventService {
     }
 
     @Transactional
-    public void pullAptosFormsDemoMainFormUpdatedEvents() {
+    public void pullAptosFormsDemoMainFormUpdatedEvents(ContractModuleNameProvider contractModuleNameProvider) {
         String resourceAccountAddress = getResourceAccountAddress();
         if (resourceAccountAddress == null) {
             return;

@@ -12,6 +12,9 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import org.test.aptosformsdemo.aptos.contract.ContractModuleNameProvider;
+import org.test.aptosformsdemo.aptos.contract.DefaultContractModuleNameProvider;
+
 @Service
 public class UpdateAptosFormsDemoMainFormStateTaskService {
 
@@ -24,11 +27,13 @@ public class UpdateAptosFormsDemoMainFormStateTaskService {
     @Autowired
     private AptosFormsDemoMainFormEventService aptosFormsDemoMainFormEventService;
 
+    private ContractModuleNameProvider contractModuleNameProvider = new DefaultContractModuleNameProvider();
+
     @Scheduled(fixedDelayString = "${aptos.contract.update-aptos-forms-demo-main-form-states.fixed-delay:5000}")
     @Transactional
     public void updateAptosFormsDemoMainFormStates() {
         aptosFormsDemoMainFormEventRepository.findByStatusIsNull().forEach(e -> {
-            aptosAptosFormsDemoMainFormService.updateAptosFormsDemoMainFormState(e.getSignerAddress());
+            aptosAptosFormsDemoMainFormService.updateAptosFormsDemoMainFormState(contractModuleNameProvider, e.getSignerAddress());
             aptosFormsDemoMainFormEventService.updateStatusToProcessed(e);
         });
     }
