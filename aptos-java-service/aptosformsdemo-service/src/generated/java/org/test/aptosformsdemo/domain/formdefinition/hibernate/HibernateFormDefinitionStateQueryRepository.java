@@ -31,7 +31,7 @@ public class HibernateFormDefinitionStateQueryRepository implements FormDefiniti
         return this.sessionFactory.getCurrentSession();
     }
     
-    private static final Set<String> readOnlyPropertyPascalCaseNames = new HashSet<String>(Arrays.asList("FormSequenceId", "FormId", "ContractAddress", "ResourceAccountAddress", "StartPageName", "Version", "OffChainVersion", "CreatedBy", "CreatedAt", "UpdatedBy", "UpdatedAt", "Active", "Deleted"));
+    private static final Set<String> readOnlyPropertyPascalCaseNames = new HashSet<String>(Arrays.asList("FormSequenceId", "FormId", "ContractAddress", "StoreAccountAddress", "StartPageName", "Version", "OffChainVersion", "CreatedBy", "CreatedAt", "UpdatedBy", "UpdatedAt", "Active", "Deleted"));
     
     private ReadOnlyProxyGenerator readOnlyProxyGenerator;
     

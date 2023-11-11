@@ -11,7 +11,7 @@ aggregates:
         length: 100
       ContractAddress:
         type: address
-      ResourceAccountAddress:
+      StoreAccountAddress:
         type: address
       StartPageName:
         type: String

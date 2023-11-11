@@ -372,7 +372,7 @@ public class M {
             "formSequenceId",
             "formId",
             "contractAddress",
-            "resourceAccountAddress",
+            "storeAccountAddress",
             "startPageName",
             "version",
             "offChainVersion",
@@ -418,8 +418,8 @@ public class M {
         aliasMap.put("FormId", "formId");
         aliasMap.put("contractAddress", "contractAddress");
         aliasMap.put("ContractAddress", "contractAddress");
-        aliasMap.put("resourceAccountAddress", "resourceAccountAddress");
-        aliasMap.put("ResourceAccountAddress", "resourceAccountAddress");
+        aliasMap.put("storeAccountAddress", "storeAccountAddress");
+        aliasMap.put("StoreAccountAddress", "storeAccountAddress");
         aliasMap.put("startPageName", "startPageName");
         aliasMap.put("StartPageName", "startPageName");
         aliasMap.put("version", "version");
