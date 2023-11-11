@@ -7,22 +7,22 @@ package org.test.aptosformsdemo.domain.aptosformsdemomainform;
 
 import java.util.*;
 import java.math.*;
-import java.math.BigInteger;
 import org.test.aptosformsdemo.domain.*;
+import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.specialization.*;
 import org.test.aptosformsdemo.domain.aptosformsdemomainform.AptosFormsDemoMainFormEvent.*;
 
 public abstract class AbstractAptosFormsDemoMainFormState implements AptosFormsDemoMainFormState.SqlAptosFormsDemoMainFormState {
 
-    private String signerAddress;
+    private FormSequenceIdAndAddress formSequenceIdAndSignerAddress;
 
-    public String getSignerAddress() {
-        return this.signerAddress;
+    public FormSequenceIdAndAddress getFormSequenceIdAndSignerAddress() {
+        return this.formSequenceIdAndSignerAddress;
     }
 
-    public void setSignerAddress(String signerAddress) {
-        this.signerAddress = signerAddress;
+    public void setFormSequenceIdAndSignerAddress(FormSequenceIdAndAddress formSequenceIdAndSignerAddress) {
+        this.formSequenceIdAndSignerAddress = formSequenceIdAndSignerAddress;
     }
 
     private BigInteger version;
@@ -138,7 +138,7 @@ public abstract class AbstractAptosFormsDemoMainFormState implements AptosFormsD
     public AbstractAptosFormsDemoMainFormState(List<Event> events) {
         initializeForReapplying();
         if (events != null && events.size() > 0) {
-            this.setSignerAddress(((AptosFormsDemoMainFormEvent.SqlAptosFormsDemoMainFormEvent) events.get(0)).getAptosFormsDemoMainFormEventId().getSignerAddress());
+            this.setFormSequenceIdAndSignerAddress(((AptosFormsDemoMainFormEvent.SqlAptosFormsDemoMainFormEvent) events.get(0)).getAptosFormsDemoMainFormEventId().getFormSequenceIdAndSignerAddress());
             for (Event e : events) {
                 //mutate(e);
                 this.setOffChainVersion((this.getOffChainVersion() == null ? AptosFormsDemoMainFormState.VERSION_NULL : this.getOffChainVersion()) + 1);
@@ -162,14 +162,14 @@ public abstract class AbstractAptosFormsDemoMainFormState implements AptosFormsD
 
     @Override
     public int hashCode() {
-        return getSignerAddress().hashCode();
+        return getFormSequenceIdAndSignerAddress().hashCode();
     }
 
     @Override
     public boolean equals(Object obj) {
         if (this == obj) { return true; }
         if (obj instanceof AptosFormsDemoMainFormState) {
-            return Objects.equals(this.getSignerAddress(), ((AptosFormsDemoMainFormState)obj).getSignerAddress());
+            return Objects.equals(this.getFormSequenceIdAndSignerAddress(), ((AptosFormsDemoMainFormState)obj).getFormSequenceIdAndSignerAddress());
         }
         return false;
     }
@@ -187,8 +187,8 @@ public abstract class AbstractAptosFormsDemoMainFormState implements AptosFormsD
     }
 
     protected void throwOnWrongEvent(AptosFormsDemoMainFormEvent event) {
-        String stateEntityId = this.getSignerAddress(); // Aggregate Id
-        String eventEntityId = ((AptosFormsDemoMainFormEvent.SqlAptosFormsDemoMainFormEvent)event).getAptosFormsDemoMainFormEventId().getSignerAddress(); // EntityBase.Aggregate.GetEventIdPropertyIdName();
+        FormSequenceIdAndAddress stateEntityId = this.getFormSequenceIdAndSignerAddress(); // Aggregate Id
+        FormSequenceIdAndAddress eventEntityId = ((AptosFormsDemoMainFormEvent.SqlAptosFormsDemoMainFormEvent)event).getAptosFormsDemoMainFormEventId().getFormSequenceIdAndSignerAddress(); // EntityBase.Aggregate.GetEventIdPropertyIdName();
         if (!stateEntityId.equals(eventEntityId)) {
             throw DomainError.named("mutateWrongEntity", "Entity Id %1$s in state but entity id %2$s in event", stateEntityId, eventEntityId);
         }

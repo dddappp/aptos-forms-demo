@@ -2,10 +2,14 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"[]>
 <hibernate-mapping package="org.test.aptosformsdemo.domain.aptosformsdemomainform">
   <class name="org.test.aptosformsdemo.domain.aptosformsdemomainform.AbstractAptosFormsDemoMainFormState$SimpleAptosFormsDemoMainFormState" table="aptos_forms_demo_main_form">
-    <id name="signerAddress" length="66">
-      <column name="signer_address" sql-type="VARCHAR(66)" />
-      <generator class="assigned" />
-    </id>
+    <composite-id name="formSequenceIdAndSignerAddress" class="org.test.aptosformsdemo.domain.FormSequenceIdAndAddress">
+      <key-property name="formSequenceId">
+        <column name="form_sequence_id" />
+      </key-property>
+      <key-property name="signerAddress">
+        <column name="signer_address" sql-type="VARCHAR(66)" />
+      </key-property>
+    </composite-id>
     <version name="offChainVersion" column="off_chain_version" type="long" />
     <property name="dynamicProperties">
       <column name="dynamic_properties" sql-type="jsonb" />

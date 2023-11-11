@@ -6,8 +6,8 @@
 package org.test.aptosformsdemo.domain.aptosformsdemomainform;
 
 import java.util.*;
-import java.math.BigInteger;
 import org.test.aptosformsdemo.domain.*;
+import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.specialization.Event;
 
@@ -21,9 +21,9 @@ public interface AptosFormsDemoMainFormEvent extends Event, AptosEvent, HasStatu
         void setEventReadOnly(boolean readOnly);
     }
 
-    String getSignerAddress();
+    FormSequenceIdAndAddress getFormSequenceIdAndSignerAddress();
 
-    //void setSignerAddress(String signerAddress);
+    //void setFormSequenceIdAndSignerAddress(FormSequenceIdAndAddress formSequenceIdAndSignerAddress);
 
     BigInteger getVersion();
     
