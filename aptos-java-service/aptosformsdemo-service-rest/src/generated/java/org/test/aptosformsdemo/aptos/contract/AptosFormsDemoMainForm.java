@@ -72,24 +72,24 @@ public class AptosFormsDemoMainForm {
                 '}';
     }
 
-    public static class Tables {
-        @JsonProperty("aptos_forms_demo_main_form_table")
-        private Table aptosFormsDemoMainFormTable;
-
-        public Table getAptosFormsDemoMainFormTable() {
-            return aptosFormsDemoMainFormTable;
-        }
-
-        public void setAptosFormsDemoMainFormTable(Table aptosFormsDemoMainFormTable) {
-            this.aptosFormsDemoMainFormTable = aptosFormsDemoMainFormTable;
-        }
-
-        @Override
-        public String toString() {
-            return "AptosFormsDemoMainForm.Tables{" +
-                    "aptosFormsDemoMainFormTable=" + aptosFormsDemoMainFormTable +
-                    '}';
-        }
+    public static class Tables extends HashMap<String, Table> {
+//        @JsonProperty("aptos_forms_demo_main_form_table")
+//        private Table aptosFormsDemoMainFormTable;
+//
+//        public Table getAptosFormsDemoMainFormTable() {
+//            return aptosFormsDemoMainFormTable;
+//        }
+//
+//        public void setAptosFormsDemoMainFormTable(Table aptosFormsDemoMainFormTable) {
+//            this.aptosFormsDemoMainFormTable = aptosFormsDemoMainFormTable;
+//        }
+//
+//        @Override
+//        public String toString() {
+//            return "AptosFormsDemoMainForm.Tables{" +
+//                    "aptosFormsDemoMainFormTable=" + aptosFormsDemoMainFormTable +
+//                    '}';
+//        }
     }
 
 }

@@ -24,6 +24,11 @@ public class DefaultContractModuleNameProvider implements ContractModuleNameProv
     }
 
     @Override
+    public String getTableFieldName() {
+        return "aptos_forms_demo_main_form_table";
+    }
+
+    @Override
     public String getModuleQualifiedEntityStateStructName() {
         return MODULE_NAME + "::AptosFormsDemoMainForm";
     }

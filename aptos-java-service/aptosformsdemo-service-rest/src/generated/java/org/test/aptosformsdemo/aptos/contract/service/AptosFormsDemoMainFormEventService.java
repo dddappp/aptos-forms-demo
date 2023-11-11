@@ -69,7 +69,7 @@ public class AptosFormsDemoMainFormEventService {
                 eventPage = aptosNodeApiClient.getEventsByEventHandle(
                         resourceAccountAddress,
                         this.aptosContractAddress + "::" + contractModuleNameProvider.getModuleQualifiedEventsStructName(),
-                        contractModuleNameProvider.getModuleQualifiedEventStructName("AptosFormsDemoMainFormSubmitted"),
+                        contractModuleNameProvider.getEventHandleFieldName("AptosFormsDemoMainFormSubmitted"),
                         AptosFormsDemoMainFormSubmitted.class,
                         cursor.longValue(),
                         limit
@@ -119,7 +119,7 @@ public class AptosFormsDemoMainFormEventService {
                 eventPage = aptosNodeApiClient.getEventsByEventHandle(
                         resourceAccountAddress,
                         this.aptosContractAddress + "::" + contractModuleNameProvider.getModuleQualifiedEventsStructName(),
-                        contractModuleNameProvider.getModuleQualifiedEventStructName("AptosFormsDemoMainFormUpdated"),
+                        contractModuleNameProvider.getEventHandleFieldName("AptosFormsDemoMainFormUpdated"),
                         AptosFormsDemoMainFormUpdated.class,
                         cursor.longValue(),
                         limit

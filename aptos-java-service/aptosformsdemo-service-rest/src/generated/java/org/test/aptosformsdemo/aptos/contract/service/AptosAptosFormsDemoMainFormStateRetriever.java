@@ -54,12 +54,12 @@ public class AptosAptosFormsDemoMainFormStateRetriever {
         try {
             accountResource = aptosNodeApiClient.getAccountResource(resourceAccountAddress,
                     this.aptosContractAddress + "::" + contractModuleNameProvider.getModuleQualifiedTablesStructName(),
-                    AptosFormsDemoMainForm.Tables.class, //todo generalize this!!!
+                    AptosFormsDemoMainForm.Tables.class,
                     null);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        String tableHandle = accountResource.getData().getAptosFormsDemoMainFormTable().getHandle(); //todo generalize this!!!
+        String tableHandle = accountResource.getData().get(contractModuleNameProvider.getTableFieldName()).getHandle();
         AptosFormsDemoMainForm aptosFormsDemoMainForm;
         try {
             aptosFormsDemoMainForm = aptosNodeApiClient.getTableItem(
