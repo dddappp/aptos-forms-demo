@@ -26,19 +26,16 @@ public class AptosAptosFormsDemoMainFormService {
     @Autowired
     private AptosFormsDemoMainFormStateRepository aptosFormsDemoMainFormStateRepository;
 
+
     private AptosAptosFormsDemoMainFormStateRetriever aptosAptosFormsDemoMainFormStateRetriever;
 
     @Autowired
     public AptosAptosFormsDemoMainFormService(
-        @Value("${aptos.contract.address}")
-        String aptosContractAddress,
         NodeApiClient aptosNodeApiClient,
         AptosAccountRepository aptosAccountRepository
     ) {
         this.aptosAptosFormsDemoMainFormStateRetriever = new AptosAptosFormsDemoMainFormStateRetriever(
                 aptosNodeApiClient,
-                aptosContractAddress,
-                aptosAccountRepository,
                 signerAddress -> {
                     AptosFormsDemoMainFormState.MutableAptosFormsDemoMainFormState s = new AbstractAptosFormsDemoMainFormState.SimpleAptosFormsDemoMainFormState();
                     s.setSignerAddress(signerAddress);

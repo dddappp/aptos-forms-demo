@@ -20,5 +20,4 @@ public class ContractConstants {
         return type;
     }
 
-
 }

@@ -8,10 +8,8 @@ package org.test.aptosformsdemo.aptos.contract.service;
 
 import com.github.wubuku.aptos.bean.AccountResource;
 import com.github.wubuku.aptos.utils.*;
-import org.test.aptosformsdemo.aptos.contract.AptosAccount;
 import org.test.aptosformsdemo.aptos.contract.ContractConstants;
 import org.test.aptosformsdemo.aptos.contract.DomainBeanUtils;
-import org.test.aptosformsdemo.aptos.contract.repository.AptosAccountRepository;
 import org.test.aptosformsdemo.domain.aptosformsdemomainform.*;
 import org.test.aptosformsdemo.domain.*;
 import org.test.aptosformsdemo.aptos.contract.AptosFormsDemoMainForm;
@@ -27,41 +25,35 @@ public class AptosAptosFormsDemoMainFormStateRetriever {
 
     private NodeApiClient aptosNodeApiClient;
 
-    private String aptosContractAddress;
-
-    private AptosAccountRepository aptosAccountRepository;
-
     private Function<String, AptosFormsDemoMainFormState.MutableAptosFormsDemoMainFormState> aptosFormsDemoMainFormStateFactory;
 
+
     public AptosAptosFormsDemoMainFormStateRetriever(NodeApiClient aptosNodeApiClient,
-                                    String aptosContractAddress,
-                                    AptosAccountRepository aptosAccountRepository,
                                     Function<String, AptosFormsDemoMainFormState.MutableAptosFormsDemoMainFormState> aptosFormsDemoMainFormStateFactory
     ) {
         this.aptosNodeApiClient = aptosNodeApiClient;
-        this.aptosContractAddress = aptosContractAddress;
-        this.aptosAccountRepository = aptosAccountRepository;
         this.aptosFormsDemoMainFormStateFactory = aptosFormsDemoMainFormStateFactory;
     }
 
     public AptosFormsDemoMainFormState retrieveAptosFormsDemoMainFormState(ContractModuleNameProvider contractModuleNameProvider, String signerAddress) {
-        String resourceAccountAddress = getResourceAccountAddress();
+        String resourceAccountAddress = contractModuleNameProvider.getStoreAccountAddress();
         AccountResource<AptosFormsDemoMainForm.Tables> accountResource;
         try {
             accountResource = aptosNodeApiClient.getAccountResource(resourceAccountAddress,
-                    this.aptosContractAddress + "::" + contractModuleNameProvider.getModuleQualifiedTablesStructName(),
+                    contractModuleNameProvider.getContractAddress() + "::" + contractModuleNameProvider.getModuleQualifiedTablesStructName(),
                     AptosFormsDemoMainForm.Tables.class,
                     null);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
         String tableHandle = accountResource.getData().get(contractModuleNameProvider.getTableFieldName()).getHandle();
         AptosFormsDemoMainForm aptosFormsDemoMainForm;
         try {
             aptosFormsDemoMainForm = aptosNodeApiClient.getTableItem(
                     tableHandle,
-                    ContractConstants.toNumericalAddressType(ContractConstants.APTOS_FORMS_DEMO_MAIN_FORM_ID_TYPE, this.aptosContractAddress),
-                    this.aptosContractAddress + "::" + contractModuleNameProvider.getModuleQualifiedEntityStateStructName(),
+                    ContractConstants.toNumericalAddressType(ContractConstants.APTOS_FORMS_DEMO_MAIN_FORM_ID_TYPE, contractModuleNameProvider.getContractAddress()),
+                    contractModuleNameProvider.getContractAddress() + "::" + contractModuleNameProvider.getModuleQualifiedEntityStateStructName(),
                     signerAddress,
                     AptosFormsDemoMainForm.class,
                     null
@@ -77,11 +69,6 @@ public class AptosAptosFormsDemoMainFormStateRetriever {
         aptosFormsDemoMainFormState.setVersion(aptosFormsDemoMainForm.getVersion());
         aptosFormsDemoMainFormState.setDynamicProperties(aptosFormsDemoMainForm.getDynamicProperties());
         return aptosFormsDemoMainFormState;
-    }
-
-    private String getResourceAccountAddress() {
-        return aptosAccountRepository.findById(ContractConstants.RESOURCE_ACCOUNT_ADDRESS)
-                .map(AptosAccount::getAddress).orElse(null);
     }
 
 }

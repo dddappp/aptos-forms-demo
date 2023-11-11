@@ -31,12 +31,6 @@ import java.util.*;
 @Service
 public class AptosFormsDemoMainFormEventService {
 
-    @Value("${aptos.contract.address}")
-    private String aptosContractAddress;
-
-    @Autowired
-    private AptosAccountRepository aptosAccountRepository;
-
     @Autowired
     private NodeApiClient aptosNodeApiClient;
 
@@ -51,7 +45,7 @@ public class AptosFormsDemoMainFormEventService {
 
     @Transactional
     public void pullAptosFormsDemoMainFormSubmittedEvents(ContractModuleNameProvider contractModuleNameProvider) {
-        String resourceAccountAddress = getResourceAccountAddress();
+        String resourceAccountAddress = contractModuleNameProvider.getStoreAccountAddress();
         if (resourceAccountAddress == null) {
             return;
         }
@@ -65,7 +59,7 @@ public class AptosFormsDemoMainFormEventService {
             try {
                 eventPage = aptosNodeApiClient.getEventsByEventHandle(
                         resourceAccountAddress,
-                        this.aptosContractAddress + "::" + contractModuleNameProvider.getModuleQualifiedEventsStructName(),
+                        contractModuleNameProvider.getContractAddress() + "::" + contractModuleNameProvider.getModuleQualifiedEventsStructName(),
                         contractModuleNameProvider.getEventHandleFieldName("AptosFormsDemoMainFormSubmitted"),
                         AptosFormsDemoMainFormSubmitted.class,
                         cursor.longValue(),
@@ -101,7 +95,7 @@ public class AptosFormsDemoMainFormEventService {
 
     @Transactional
     public void pullAptosFormsDemoMainFormUpdatedEvents(ContractModuleNameProvider contractModuleNameProvider) {
-        String resourceAccountAddress = getResourceAccountAddress();
+        String resourceAccountAddress = contractModuleNameProvider.getStoreAccountAddress();
         if (resourceAccountAddress == null) {
             return;
         }
@@ -115,7 +109,7 @@ public class AptosFormsDemoMainFormEventService {
             try {
                 eventPage = aptosNodeApiClient.getEventsByEventHandle(
                         resourceAccountAddress,
-                        this.aptosContractAddress + "::" + contractModuleNameProvider.getModuleQualifiedEventsStructName(),
+                        contractModuleNameProvider.getContractAddress() + "::" + contractModuleNameProvider.getModuleQualifiedEventsStructName(),
                         contractModuleNameProvider.getEventHandleFieldName("AptosFormsDemoMainFormUpdated"),
                         AptosFormsDemoMainFormUpdated.class,
                         cursor.longValue(),
@@ -149,8 +143,4 @@ public class AptosFormsDemoMainFormEventService {
         aptosFormsDemoMainFormEventRepository.save(aptosFormsDemoMainFormUpdated);
     }
 
-    private String getResourceAccountAddress() {
-        return aptosAccountRepository.findById(ContractConstants.RESOURCE_ACCOUNT_ADDRESS)
-                .map(AptosAccount::getAddress).orElse(null);
-    }
 }

@@ -2,6 +2,8 @@ package org.test.aptosformsdemo.aptos.contract;
 
 public class DefaultContractModuleNameProvider implements ContractModuleNameProvider {
     private static final String MODULE_NAME = "aptos_forms_demo_main_form";
+    private String contractAddress;
+    private String storeAccountAddress;
 
     @Override
     public String getModuleQualifiedEventStructName(String eventCategory) {
@@ -42,4 +44,23 @@ public class DefaultContractModuleNameProvider implements ContractModuleNameProv
     public String getModuleQualifiedEventsStructName() {
         return MODULE_NAME + "::Events";
     }
+
+    @Override
+    public String getContractAddress() {
+        return contractAddress;
+    }
+
+    public void setContractAddress(String contractAddress) {
+        this.contractAddress = contractAddress;
+    }
+
+    @Override
+    public String getStoreAccountAddress() {
+        return storeAccountAddress;
+    }
+
+    public void setStoreAccountAddress(String storeAccountAddress) {
+        this.storeAccountAddress = storeAccountAddress;
+    }
+
 }

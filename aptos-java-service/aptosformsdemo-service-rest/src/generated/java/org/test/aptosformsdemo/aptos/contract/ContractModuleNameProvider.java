@@ -12,4 +12,8 @@ public interface ContractModuleNameProvider {
     String getModuleQualifiedTablesStructName();
 
     String getModuleQualifiedEventsStructName();
+
+    String getContractAddress();
+
+    String getStoreAccountAddress();
 }
