@@ -5,21 +5,21 @@
 
 package org.test.aptosformsdemo.aptos.contract.taskservice;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.test.aptosformsdemo.aptos.contract.ContractConstants;
-import org.test.aptosformsdemo.aptos.contract.AptosAccount;
-import org.test.aptosformsdemo.aptos.contract.repository.AptosAccountRepository;
 import org.test.aptosformsdemo.aptos.contract.service.AptosFormsDemoMainFormEventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.test.aptosformsdemo.aptos.contract.ContractConstants;
+import org.test.aptosformsdemo.aptos.contract.AptosAccount;
+import org.test.aptosformsdemo.aptos.contract.repository.AptosAccountRepository;
 import org.test.aptosformsdemo.aptos.contract.ContractModuleNameProvider;
 import org.test.aptosformsdemo.aptos.contract.DefaultContractModuleNameProvider;
 
-
 @Service
 public class PullAptosFormsDemoMainFormEventsTaskService {
+
     @Value("${aptos.contract.address}")
     private String aptosContractAddress;
 
@@ -50,5 +50,4 @@ public class PullAptosFormsDemoMainFormEventsTaskService {
         return aptosAccountRepository.findById(ContractConstants.RESOURCE_ACCOUNT_ADDRESS)
                 .map(AptosAccount::getAddress).orElse(null);
     }
-
 }

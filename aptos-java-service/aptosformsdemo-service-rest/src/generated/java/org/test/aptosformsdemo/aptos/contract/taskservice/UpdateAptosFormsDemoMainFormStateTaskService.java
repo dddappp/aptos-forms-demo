@@ -5,21 +5,21 @@
 
 package org.test.aptosformsdemo.aptos.contract.taskservice;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.test.aptosformsdemo.aptos.contract.AptosAccount;
-import org.test.aptosformsdemo.aptos.contract.ContractConstants;
 import org.test.aptosformsdemo.aptos.contract.repository.*;
 import org.test.aptosformsdemo.aptos.contract.service.*;
+import org.test.aptosformsdemo.aptos.contract.ContractConstants;
+import org.test.aptosformsdemo.aptos.contract.AptosAccount;
+import org.test.aptosformsdemo.aptos.contract.ContractModuleNameProvider;
+import org.test.aptosformsdemo.aptos.contract.DefaultContractModuleNameProvider;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import org.test.aptosformsdemo.aptos.contract.ContractModuleNameProvider;
-import org.test.aptosformsdemo.aptos.contract.DefaultContractModuleNameProvider;
-
 @Service
 public class UpdateAptosFormsDemoMainFormStateTaskService {
+
     @Value("${aptos.contract.address}")
     private String aptosContractAddress;
 
@@ -43,7 +43,6 @@ public class UpdateAptosFormsDemoMainFormStateTaskService {
             aptosFormsDemoMainFormEventService.updateStatusToProcessed(e);
         });
     }
-
 
     private ContractModuleNameProvider getContractModuleNameProvider() {
         DefaultContractModuleNameProvider contractModuleNameProvider = new DefaultContractModuleNameProvider();
