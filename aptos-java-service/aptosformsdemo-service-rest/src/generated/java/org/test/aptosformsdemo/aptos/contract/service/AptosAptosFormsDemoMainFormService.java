@@ -31,8 +31,7 @@ public class AptosAptosFormsDemoMainFormService {
 
     @Autowired
     public AptosAptosFormsDemoMainFormService(
-        NodeApiClient aptosNodeApiClient,
-        AptosAccountRepository aptosAccountRepository
+        NodeApiClient aptosNodeApiClient
     ) {
         this.aptosAptosFormsDemoMainFormStateRetriever = new AptosAptosFormsDemoMainFormStateRetriever(
                 aptosNodeApiClient,
