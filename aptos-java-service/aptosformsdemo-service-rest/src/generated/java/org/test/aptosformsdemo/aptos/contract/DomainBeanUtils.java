@@ -11,6 +11,7 @@ import com.github.wubuku.aptos.bean.Event;
 import com.github.wubuku.aptos.bean.Option;
 import org.test.aptosformsdemo.domain.AptosEvent;
 import org.test.aptosformsdemo.domain.AptosEventGuid;
+import org.test.aptosformsdemo.domain.FormSequenceIdAndAddress;
 import org.test.aptosformsdemo.domain.aptosformsdemomainform.AbstractAptosFormsDemoMainFormEvent;
 import org.test.aptosformsdemo.aptos.contract.aptosformsdemomainform.AptosFormsDemoMainFormSubmitted;
 import org.test.aptosformsdemo.aptos.contract.aptosformsdemomainform.AptosFormsDemoMainFormUpdated;
@@ -84,11 +85,11 @@ public class DomainBeanUtils {
     }
 
 
-    public static AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted toAptosFormsDemoMainFormSubmitted(Event<AptosFormsDemoMainFormSubmitted> eventEnvelope) {
+    public static AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted toAptosFormsDemoMainFormSubmitted(java.util.function.Function<String, FormSequenceIdAndAddress> toFormSequenceIdAndAddress, Event<AptosFormsDemoMainFormSubmitted> eventEnvelope) {
         AptosFormsDemoMainFormSubmitted contractEvent = eventEnvelope.getData();
 
         AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted aptosFormsDemoMainFormSubmitted = new AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted();
-        aptosFormsDemoMainFormSubmitted.setSignerAddress(contractEvent.getSignerAddress());
+        aptosFormsDemoMainFormSubmitted.setFormSequenceIdAndSignerAddress(toFormSequenceIdAndAddress.apply(contractEvent.getSignerAddress()));
         aptosFormsDemoMainFormSubmitted.setDynamicProperties(contractEvent.getDynamicProperties());
         aptosFormsDemoMainFormSubmitted.setVersion(BigInteger.valueOf(-1));
 
@@ -97,11 +98,11 @@ public class DomainBeanUtils {
         return aptosFormsDemoMainFormSubmitted;
     }
 
-    public static AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormUpdated toAptosFormsDemoMainFormUpdated(Event<AptosFormsDemoMainFormUpdated> eventEnvelope) {
+    public static AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormUpdated toAptosFormsDemoMainFormUpdated(java.util.function.Function<String, FormSequenceIdAndAddress> toFormSequenceIdAndAddress, Event<AptosFormsDemoMainFormUpdated> eventEnvelope) {
         AptosFormsDemoMainFormUpdated contractEvent = eventEnvelope.getData();
 
         AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormUpdated aptosFormsDemoMainFormUpdated = new AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormUpdated();
-        aptosFormsDemoMainFormUpdated.setSignerAddress(contractEvent.getSignerAddress());
+        aptosFormsDemoMainFormUpdated.setFormSequenceIdAndSignerAddress(toFormSequenceIdAndAddress.apply(contractEvent.getSignerAddress()));
         aptosFormsDemoMainFormUpdated.setDynamicProperties(contractEvent.getDynamicProperties());
         aptosFormsDemoMainFormUpdated.setVersion(contractEvent.getVersion());
 

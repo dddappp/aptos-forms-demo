@@ -16,6 +16,7 @@ import org.test.aptosformsdemo.aptos.contract.AptosAccount;
 import org.test.aptosformsdemo.aptos.contract.repository.AptosAccountRepository;
 import org.test.aptosformsdemo.aptos.contract.ContractModuleNameProvider;
 import org.test.aptosformsdemo.aptos.contract.DefaultContractModuleNameProvider;
+import org.test.aptosformsdemo.domain.FormSequenceIdAndAddress;
 
 @Service
 public class PullAptosFormsDemoMainFormEventsTaskService {
@@ -31,12 +32,21 @@ public class PullAptosFormsDemoMainFormEventsTaskService {
 
     @Scheduled(fixedDelayString = "${aptos.contract.pull-aptos-forms-demo-main-form-events.aptos-forms-demo-main-form-submitted.fixed-delay:5000}")
     public void pullAptosFormsDemoMainFormSubmittedEvents() {
-        aptosFormsDemoMainFormEventService.pullAptosFormsDemoMainFormSubmittedEvents(getContractModuleNameProvider());
+        aptosFormsDemoMainFormEventService.pullAptosFormsDemoMainFormSubmittedEvents(getContractModuleNameProvider(), getToFormSequenceIdAndAddressFunction());
     }
 
     @Scheduled(fixedDelayString = "${aptos.contract.pull-aptos-forms-demo-main-form-events.aptos-forms-demo-main-form-updated.fixed-delay:5000}")
     public void pullAptosFormsDemoMainFormUpdatedEvents() {
-        aptosFormsDemoMainFormEventService.pullAptosFormsDemoMainFormUpdatedEvents(getContractModuleNameProvider());
+        aptosFormsDemoMainFormEventService.pullAptosFormsDemoMainFormUpdatedEvents(getContractModuleNameProvider(), getToFormSequenceIdAndAddressFunction());
+    }
+
+    private java.util.function.Function<String, FormSequenceIdAndAddress> getToFormSequenceIdAndAddressFunction() {
+        return (address) -> {
+            FormSequenceIdAndAddress formSequenceIdAndAddress = new FormSequenceIdAndAddress();
+            formSequenceIdAndAddress.setFormSequenceId(1L); // todo hard-coded for now
+            formSequenceIdAndAddress.setSignerAddress(address);
+            return formSequenceIdAndAddress;
+        };
     }
 
     private ContractModuleNameProvider getContractModuleNameProvider() {

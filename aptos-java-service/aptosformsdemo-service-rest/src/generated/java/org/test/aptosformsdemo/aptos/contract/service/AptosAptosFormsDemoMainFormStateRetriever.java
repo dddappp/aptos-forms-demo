@@ -25,17 +25,17 @@ public class AptosAptosFormsDemoMainFormStateRetriever {
 
     private NodeApiClient aptosNodeApiClient;
 
-    private Function<String, AptosFormsDemoMainFormState.MutableAptosFormsDemoMainFormState> aptosFormsDemoMainFormStateFactory;
+    private BiFunction<String, java.util.function.Function<String, FormSequenceIdAndAddress>, AptosFormsDemoMainFormState.MutableAptosFormsDemoMainFormState> aptosFormsDemoMainFormStateFactory;
 
 
     public AptosAptosFormsDemoMainFormStateRetriever(NodeApiClient aptosNodeApiClient,
-                                    Function<String, AptosFormsDemoMainFormState.MutableAptosFormsDemoMainFormState> aptosFormsDemoMainFormStateFactory
+                                    BiFunction<String, java.util.function.Function<String, FormSequenceIdAndAddress>, AptosFormsDemoMainFormState.MutableAptosFormsDemoMainFormState> aptosFormsDemoMainFormStateFactory
     ) {
         this.aptosNodeApiClient = aptosNodeApiClient;
         this.aptosFormsDemoMainFormStateFactory = aptosFormsDemoMainFormStateFactory;
     }
 
-    public AptosFormsDemoMainFormState retrieveAptosFormsDemoMainFormState(ContractModuleNameProvider contractModuleNameProvider, String signerAddress) {
+    public AptosFormsDemoMainFormState retrieveAptosFormsDemoMainFormState(ContractModuleNameProvider contractModuleNameProvider, java.util.function.Function<String, FormSequenceIdAndAddress> toFormSequenceIdAndAddress, String signerAddress) {
         String resourceAccountAddress = contractModuleNameProvider.getStoreAccountAddress();
         AccountResource<AptosFormsDemoMainForm.Tables> accountResource;
         try {
@@ -61,11 +61,11 @@ public class AptosAptosFormsDemoMainFormStateRetriever {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return toAptosFormsDemoMainFormState(aptosFormsDemoMainForm);
+        return toAptosFormsDemoMainFormState(toFormSequenceIdAndAddress, aptosFormsDemoMainForm);
     }
 
-    private AptosFormsDemoMainFormState toAptosFormsDemoMainFormState(AptosFormsDemoMainForm aptosFormsDemoMainForm) {
-        AptosFormsDemoMainFormState.MutableAptosFormsDemoMainFormState aptosFormsDemoMainFormState = aptosFormsDemoMainFormStateFactory.apply(aptosFormsDemoMainForm.getSignerAddress());
+    private AptosFormsDemoMainFormState toAptosFormsDemoMainFormState(java.util.function.Function<String, FormSequenceIdAndAddress> toFormSequenceIdAndAddress, AptosFormsDemoMainForm aptosFormsDemoMainForm) {
+        AptosFormsDemoMainFormState.MutableAptosFormsDemoMainFormState aptosFormsDemoMainFormState = aptosFormsDemoMainFormStateFactory.apply(aptosFormsDemoMainForm.getSignerAddress(), toFormSequenceIdAndAddress);
         aptosFormsDemoMainFormState.setVersion(aptosFormsDemoMainForm.getVersion());
         aptosFormsDemoMainFormState.setDynamicProperties(aptosFormsDemoMainForm.getDynamicProperties());
         return aptosFormsDemoMainFormState;

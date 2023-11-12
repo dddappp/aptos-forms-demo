@@ -8,6 +8,7 @@ package org.test.aptosformsdemo.aptos.contract.service;
 import com.github.wubuku.aptos.bean.Event;
 import com.github.wubuku.aptos.utils.NodeApiClient;
 
+import org.test.aptosformsdemo.domain.FormSequenceIdAndAddress;
 import org.test.aptosformsdemo.domain.aptosformsdemomainform.AbstractAptosFormsDemoMainFormEvent;
 import org.test.aptosformsdemo.aptos.contract.ContractConstants;
 import org.test.aptosformsdemo.aptos.contract.DomainBeanUtils;
@@ -42,7 +43,7 @@ public class AptosFormsDemoMainFormEventService {
     }
 
     @Transactional
-    public void pullAptosFormsDemoMainFormSubmittedEvents(ContractModuleNameProvider contractModuleNameProvider) {
+    public void pullAptosFormsDemoMainFormSubmittedEvents(ContractModuleNameProvider contractModuleNameProvider, java.util.function.Function<String, FormSequenceIdAndAddress> toFormSequenceIdAndAddress) {
         String resourceAccountAddress = contractModuleNameProvider.getStoreAccountAddress();
         if (resourceAccountAddress == null) {
             return;
@@ -70,7 +71,7 @@ public class AptosFormsDemoMainFormEventService {
             if (eventPage != null && eventPage.size() > 0) {
                 cursor = cursor.add(BigInteger.ONE);
                 for (Event<AptosFormsDemoMainFormSubmitted> eventEnvelope : eventPage) {
-                    saveAptosFormsDemoMainFormSubmitted(eventEnvelope);
+                    saveAptosFormsDemoMainFormSubmitted(toFormSequenceIdAndAddress, eventEnvelope);
                 }
             } else {
                 break;
@@ -83,8 +84,8 @@ public class AptosFormsDemoMainFormEventService {
         return lastEvent != null ? lastEvent.getAptosEventSequenceNumber() : null;
     }
 
-    private void saveAptosFormsDemoMainFormSubmitted(Event<AptosFormsDemoMainFormSubmitted> eventEnvelope) {
-        AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted aptosFormsDemoMainFormSubmitted = DomainBeanUtils.toAptosFormsDemoMainFormSubmitted(eventEnvelope);
+    private void saveAptosFormsDemoMainFormSubmitted(java.util.function.Function<String, FormSequenceIdAndAddress> toFormSequenceIdAndAddress, Event<AptosFormsDemoMainFormSubmitted> eventEnvelope) {
+        AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted aptosFormsDemoMainFormSubmitted = DomainBeanUtils.toAptosFormsDemoMainFormSubmitted(toFormSequenceIdAndAddress, eventEnvelope);
         if (aptosFormsDemoMainFormEventRepository.findById(aptosFormsDemoMainFormSubmitted.getAptosFormsDemoMainFormEventId()).isPresent()) {
             return;
         }
@@ -92,7 +93,7 @@ public class AptosFormsDemoMainFormEventService {
     }
 
     @Transactional
-    public void pullAptosFormsDemoMainFormUpdatedEvents(ContractModuleNameProvider contractModuleNameProvider) {
+    public void pullAptosFormsDemoMainFormUpdatedEvents(ContractModuleNameProvider contractModuleNameProvider, java.util.function.Function<String, FormSequenceIdAndAddress> toFormSequenceIdAndAddress) {
         String resourceAccountAddress = contractModuleNameProvider.getStoreAccountAddress();
         if (resourceAccountAddress == null) {
             return;
@@ -120,7 +121,7 @@ public class AptosFormsDemoMainFormEventService {
             if (eventPage != null && eventPage.size() > 0) {
                 cursor = cursor.add(BigInteger.ONE);
                 for (Event<AptosFormsDemoMainFormUpdated> eventEnvelope : eventPage) {
-                    saveAptosFormsDemoMainFormUpdated(eventEnvelope);
+                    saveAptosFormsDemoMainFormUpdated(toFormSequenceIdAndAddress, eventEnvelope);
                 }
             } else {
                 break;
@@ -133,8 +134,8 @@ public class AptosFormsDemoMainFormEventService {
         return lastEvent != null ? lastEvent.getAptosEventSequenceNumber() : null;
     }
 
-    private void saveAptosFormsDemoMainFormUpdated(Event<AptosFormsDemoMainFormUpdated> eventEnvelope) {
-        AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormUpdated aptosFormsDemoMainFormUpdated = DomainBeanUtils.toAptosFormsDemoMainFormUpdated(eventEnvelope);
+    private void saveAptosFormsDemoMainFormUpdated(java.util.function.Function<String, FormSequenceIdAndAddress> toFormSequenceIdAndAddress, Event<AptosFormsDemoMainFormUpdated> eventEnvelope) {
+        AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormUpdated aptosFormsDemoMainFormUpdated = DomainBeanUtils.toAptosFormsDemoMainFormUpdated(toFormSequenceIdAndAddress, eventEnvelope);
         if (aptosFormsDemoMainFormEventRepository.findById(aptosFormsDemoMainFormUpdated.getAptosFormsDemoMainFormEventId()).isPresent()) {
             return;
         }
