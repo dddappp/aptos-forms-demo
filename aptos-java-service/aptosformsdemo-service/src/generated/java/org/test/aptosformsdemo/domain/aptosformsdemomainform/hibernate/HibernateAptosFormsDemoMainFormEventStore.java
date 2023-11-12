@@ -40,7 +40,7 @@ public class HibernateAptosFormsDemoMainFormEventStore extends AbstractHibernate
         FormSequenceIdAndAddress idObj = (FormSequenceIdAndAddress) eventStoreAggregateId.getId();
         Criteria criteria = getCurrentSession().createCriteria(AbstractAptosFormsDemoMainFormEvent.class);
         criteria.add(Restrictions.eq("aptosFormsDemoMainFormEventId.formSequenceIdAndSignerAddressFormSequenceId", idObj.getFormSequenceId()));
-        criteria.add(Restrictions.eq("aptosFormsDemoMainFormEventId.formSequenceIdAndSignerAddressSignerAddress", idObj.getSignerAddress()));
+        criteria.add(Restrictions.eq("aptosFormsDemoMainFormEventId.formSequenceIdAndSignerAddressAddress", idObj.getAddress()));
         criteria.add(Restrictions.le("aptosFormsDemoMainFormEventId.offChainVersion", version));
         criteria.addOrder(Order.asc("aptosFormsDemoMainFormEventId.offChainVersion"));
         List es = criteria.list();

@@ -6,7 +6,7 @@
       <key-property name="formSequenceIdAndSignerAddressFormSequenceId">
         <column name="form_sequence_id" />
       </key-property>
-      <key-property name="formSequenceIdAndSignerAddressSignerAddress">
+      <key-property name="formSequenceIdAndSignerAddressAddress">
         <column name="signer_address" sql-type="VARCHAR(66)" />
       </key-property>
       <key-property name="version">

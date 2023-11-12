@@ -163,7 +163,7 @@ public class M {
             "active",
             "deleted",
             "formSequenceIdAndSignerAddress.formSequenceId",
-            "formSequenceIdAndSignerAddress.signerAddress",
+            "formSequenceIdAndSignerAddress.address",
             "fr_d8rw.startYear",
             "fr_d8rw.startMonth",
             "fr_d8rw.startDay",
@@ -275,8 +275,8 @@ public class M {
         aliasMap.put("Deleted", "deleted");
         aliasMap.put("formSequenceIdAndSignerAddress.formSequenceId", "formSequenceIdAndSignerAddress.formSequenceId");
         aliasMap.put("FormSequenceIdAndSignerAddress.FormSequenceId", "formSequenceIdAndSignerAddress.formSequenceId");
-        aliasMap.put("formSequenceIdAndSignerAddress.signerAddress", "formSequenceIdAndSignerAddress.signerAddress");
-        aliasMap.put("FormSequenceIdAndSignerAddress.SignerAddress", "formSequenceIdAndSignerAddress.signerAddress");
+        aliasMap.put("formSequenceIdAndSignerAddress.address", "formSequenceIdAndSignerAddress.address");
+        aliasMap.put("FormSequenceIdAndSignerAddress.Address", "formSequenceIdAndSignerAddress.address");
         aliasMap.put("fr_d8rw.startYear", "fr_d8rw.startYear");
         aliasMap.put("Fr_d8rw.StartYear", "fr_d8rw.startYear");
         aliasMap.put("fr_d8rw.start.year", "fr_d8rw.startYear");

@@ -25,10 +25,11 @@ configuration:
     properties:
       FormSequenceId:
         type: long
-      "{_ORIGINAL_ID_NAME_}":
-        type: "{_ORIGINAL_ID_TYPE_}"
+      "__ORIGINAL_ID__":
+        type: "__OMITTED__"
     columnNames:
       - "form_sequence_id"
-      - "{_ORIGINAL_ID_COLUMN_NAMES_}"
+      - "__ORIGINAL_ID_COLUMN_NAMES__"
     idNameFormat: "FormSequenceIdAnd{_ORIGINAL_ID_NAME_}"
     idTypeFormat: "FormSequenceIdAnd{_ORIGINAL_ID_TYPE_}"
+    originalIdPropertyNameFormat: "{_ORIGINAL_ID_TYPE_}"

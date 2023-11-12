@@ -40,7 +40,7 @@ public class UpdateAptosFormsDemoMainFormStateTaskService {
     @Transactional
     public void updateAptosFormsDemoMainFormStates() {
         aptosFormsDemoMainFormEventRepository.findByStatusIsNull().forEach(e -> {
-            aptosAptosFormsDemoMainFormService.updateAptosFormsDemoMainFormState(getContractModuleNameProvider(), getToFormSequenceIdAndAddressFunction(), e.getFormSequenceIdAndSignerAddress().getSignerAddress());
+            aptosAptosFormsDemoMainFormService.updateAptosFormsDemoMainFormState(getContractModuleNameProvider(), getToFormSequenceIdAndAddressFunction(), e.getFormSequenceIdAndSignerAddress().getAddress());
             aptosFormsDemoMainFormEventService.updateStatusToProcessed(e);
         });
     }
@@ -49,7 +49,7 @@ public class UpdateAptosFormsDemoMainFormStateTaskService {
         return (address) -> {
             FormSequenceIdAndAddress formSequenceIdAndAddress = new FormSequenceIdAndAddress();
             formSequenceIdAndAddress.setFormSequenceId(1L); // todo hard-coded for now
-            formSequenceIdAndAddress.setSignerAddress(address);
+            formSequenceIdAndAddress.setAddress(address);
             return formSequenceIdAndAddress;
         };
     }

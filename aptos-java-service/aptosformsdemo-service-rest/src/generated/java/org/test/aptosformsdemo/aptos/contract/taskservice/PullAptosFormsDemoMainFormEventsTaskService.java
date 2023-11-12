@@ -44,7 +44,7 @@ public class PullAptosFormsDemoMainFormEventsTaskService {
         return (address) -> {
             FormSequenceIdAndAddress formSequenceIdAndAddress = new FormSequenceIdAndAddress();
             formSequenceIdAndAddress.setFormSequenceId(1L); // todo hard-coded for now
-            formSequenceIdAndAddress.setSignerAddress(address);
+            formSequenceIdAndAddress.setAddress(address);
             return formSequenceIdAndAddress;
         };
     }

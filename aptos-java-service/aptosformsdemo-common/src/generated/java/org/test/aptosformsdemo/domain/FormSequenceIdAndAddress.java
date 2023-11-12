@@ -21,26 +21,26 @@ public class FormSequenceIdAndAddress implements Serializable {
         this.formSequenceId = formSequenceId;
     }
 
-    private String signerAddress;
+    private String address;
 
-    public String getSignerAddress()
+    public String getAddress()
     {
-        return this.signerAddress;
+        return this.address;
     }
 
-    public void setSignerAddress(String signerAddress)
+    public void setAddress(String address)
     {
-        this.signerAddress = signerAddress;
+        this.address = address;
     }
 
     public FormSequenceIdAndAddress()
     {
     }
 
-    public FormSequenceIdAndAddress(Long formSequenceId, String signerAddress)
+    public FormSequenceIdAndAddress(Long formSequenceId, String address)
     {
         this.formSequenceId = formSequenceId;
-        this.signerAddress = signerAddress;
+        this.address = address;
     }
 
     @Override
@@ -56,7 +56,7 @@ public class FormSequenceIdAndAddress implements Serializable {
         FormSequenceIdAndAddress other = (FormSequenceIdAndAddress)obj;
         return true 
             && (formSequenceId == other.formSequenceId || (formSequenceId != null && formSequenceId.equals(other.formSequenceId)))
-            && (signerAddress == other.signerAddress || (signerAddress != null && signerAddress.equals(other.signerAddress)))
+            && (address == other.address || (address != null && address.equals(other.address)))
             ;
     }
 
@@ -67,8 +67,8 @@ public class FormSequenceIdAndAddress implements Serializable {
         if (this.formSequenceId != null) {
             hash += 13 * this.formSequenceId.hashCode();
         }
-        if (this.signerAddress != null) {
-            hash += 13 * this.signerAddress.hashCode();
+        if (this.address != null) {
+            hash += 13 * this.address.hashCode();
         }
         return hash;
     }
@@ -77,13 +77,13 @@ public class FormSequenceIdAndAddress implements Serializable {
     public String toString() {
         return "FormSequenceIdAndAddress{" +
                 "formSequenceId=" + formSequenceId +
-                ", signerAddress=" + '\'' + signerAddress + '\'' +
+                ", address=" + '\'' + address + '\'' +
                 '}';
     }
 
     protected static final String[] FLATTENED_PROPERTY_NAMES = new String[]{
             "formSequenceId",
-            "signerAddress",
+            "address",
     };
 
     protected static final String[] FLATTENED_PROPERTY_TYPES = new String[]{

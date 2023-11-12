@@ -45,14 +45,14 @@ public class AptosFormsDemoMainFormEventId implements Serializable {
         getFormSequenceIdAndSignerAddress().setFormSequenceId(formSequenceIdAndSignerAddressFormSequenceId);
     }
 
-    protected String getFormSequenceIdAndSignerAddressSignerAddress()
+    protected String getFormSequenceIdAndSignerAddressAddress()
     {
-        return getFormSequenceIdAndSignerAddress().getSignerAddress();
+        return getFormSequenceIdAndSignerAddress().getAddress();
     }
 
-    protected void setFormSequenceIdAndSignerAddressSignerAddress(String formSequenceIdAndSignerAddressSignerAddress)
+    protected void setFormSequenceIdAndSignerAddressAddress(String formSequenceIdAndSignerAddressAddress)
     {
-        getFormSequenceIdAndSignerAddress().setSignerAddress(formSequenceIdAndSignerAddressSignerAddress);
+        getFormSequenceIdAndSignerAddress().setAddress(formSequenceIdAndSignerAddressAddress);
     }
 
     public AptosFormsDemoMainFormEventId()
@@ -105,7 +105,7 @@ public class AptosFormsDemoMainFormEventId implements Serializable {
 
     protected static final String[] FLATTENED_PROPERTY_NAMES = new String[]{
             "formSequenceIdAndSignerAddressFormSequenceId",
-            "formSequenceIdAndSignerAddressSignerAddress",
+            "formSequenceIdAndSignerAddressAddress",
             "version",
     };
 
