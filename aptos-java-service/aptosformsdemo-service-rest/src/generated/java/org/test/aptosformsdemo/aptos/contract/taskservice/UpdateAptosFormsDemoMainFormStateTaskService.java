@@ -51,6 +51,7 @@ public class UpdateAptosFormsDemoMainFormStateTaskService {
     }
 
     private ContractModuleNameProvider getContractModuleNameProvider() {
+        // Note: This 'Default' implementation contains hard-coded names. A truly generalized service may not be appropriate to use it.
         DefaultAptosFormsDemoMainFormModuleNameProvider contractModuleNameProvider = new DefaultAptosFormsDemoMainFormModuleNameProvider();
         contractModuleNameProvider.setContractAddress(aptosContractAddress);
         contractModuleNameProvider.setStoreAccountAddress(getResourceAccountAddress());
