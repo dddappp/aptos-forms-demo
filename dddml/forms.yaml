@@ -176,6 +176,7 @@ enumObjects:
         stringValue: B
     name: AptosFormsDemo_fr_duif
     displayName: 下拉多选
+    metadata: {}
   AptosFormsDemo_fr_6i34:
     baseType: String
     values:
@@ -196,6 +197,7 @@ enumObjects:
         stringValue: C
     name: AptosFormsDemo_fr_6i34
     displayName: 点击多选
+    metadata: {}
   AptosFormsDemo_fr_9c3f:
     baseType: String
     values:
@@ -219,6 +221,7 @@ enumObjects:
         stringValue: 3
     name: AptosFormsDemo_fr_9c3f
     displayName: 下拉单选
+    metadata: {}
   AptosFormsDemo_fr_gh3o:
     baseType: String
     values:
@@ -234,6 +237,7 @@ enumObjects:
         stringValue: B
     name: AptosFormsDemo_fr_gh3o
     displayName: 下拉多选
+    metadata: {}
   AptosFormsDemo_fr_fbba:
     baseType: String
     values:
@@ -257,6 +261,7 @@ enumObjects:
         stringValue: 3
     name: AptosFormsDemo_fr_fbba
     displayName: 点击多选
+    metadata: {}
 configuration:
   defaultUserIdType: string
   defaultTimestampType: OffsetDateTime
