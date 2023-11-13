@@ -15,7 +15,7 @@ import org.test.aptosformsdemo.aptos.contract.ContractConstants;
 import org.test.aptosformsdemo.aptos.contract.AptosAccount;
 import org.test.aptosformsdemo.aptos.contract.repository.AptosAccountRepository;
 import org.test.aptosformsdemo.aptos.contract.ContractModuleNameProvider;
-import org.test.aptosformsdemo.aptos.contract.DefaultContractModuleNameProvider;
+import org.test.aptosformsdemo.aptos.contract.DefaultAptosFormsDemoMainFormModuleNameProvider;
 import org.test.aptosformsdemo.domain.FormSequenceIdAndAddress;
 import org.test.aptosformsdemo.aptos.contract.TestTenantizedIdFunctions;
 
@@ -46,7 +46,7 @@ public class PullAptosFormsDemoMainFormEventsTaskService {
     }
 
     private ContractModuleNameProvider getContractModuleNameProvider() {
-        DefaultContractModuleNameProvider contractModuleNameProvider = new DefaultContractModuleNameProvider();
+        DefaultAptosFormsDemoMainFormModuleNameProvider contractModuleNameProvider = new DefaultAptosFormsDemoMainFormModuleNameProvider();
         contractModuleNameProvider.setContractAddress(aptosContractAddress);
         contractModuleNameProvider.setStoreAccountAddress(getResourceAccountAddress());
         return contractModuleNameProvider;

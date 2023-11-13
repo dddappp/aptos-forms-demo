@@ -10,7 +10,7 @@ import org.test.aptosformsdemo.aptos.contract.service.*;
 import org.test.aptosformsdemo.aptos.contract.ContractConstants;
 import org.test.aptosformsdemo.aptos.contract.AptosAccount;
 import org.test.aptosformsdemo.aptos.contract.ContractModuleNameProvider;
-import org.test.aptosformsdemo.aptos.contract.DefaultContractModuleNameProvider;
+import org.test.aptosformsdemo.aptos.contract.DefaultAptosFormsDemoMainFormModuleNameProvider;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -51,7 +51,7 @@ public class UpdateAptosFormsDemoMainFormStateTaskService {
     }
 
     private ContractModuleNameProvider getContractModuleNameProvider() {
-        DefaultContractModuleNameProvider contractModuleNameProvider = new DefaultContractModuleNameProvider();
+        DefaultAptosFormsDemoMainFormModuleNameProvider contractModuleNameProvider = new DefaultAptosFormsDemoMainFormModuleNameProvider();
         contractModuleNameProvider.setContractAddress(aptosContractAddress);
         contractModuleNameProvider.setStoreAccountAddress(getResourceAccountAddress());
         return contractModuleNameProvider;

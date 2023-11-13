@@ -1,6 +1,6 @@
 package org.test.aptosformsdemo.aptos.contract;
 
-public class DefaultContractModuleNameProvider implements ContractModuleNameProvider {
+public class DefaultAptosFormsDemoMainFormModuleNameProvider implements ContractModuleNameProvider {
     private static final String MODULE_NAME = "aptos_forms_demo_main_form";
     private String contractAddress;
     private String storeAccountAddress;
