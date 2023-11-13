@@ -42,7 +42,7 @@ public class PullAptosFormsDemoMainFormEventsTaskService {
     }
 
     private java.util.function.Function<String, FormSequenceIdAndAddress> getToFormSequenceIdAndAddressFunction() {
-       return TestTenantizedIdFunctions.toFormSequenceIdAndAddressFunction(); // todo only for test
+        return TestTenantizedIdFunctions.toFormSequenceIdAndAddressFunction(); // todo only for test
     }
 
     private ContractModuleNameProvider getContractModuleNameProvider() {
