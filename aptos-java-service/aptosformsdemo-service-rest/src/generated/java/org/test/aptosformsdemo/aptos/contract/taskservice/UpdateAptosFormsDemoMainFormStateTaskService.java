@@ -17,6 +17,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.test.aptosformsdemo.domain.FormSequenceIdAndAddress;
+import org.test.aptosformsdemo.aptos.contract.TestTenantizedIdFunctions;
 
 @Service
 public class UpdateAptosFormsDemoMainFormStateTaskService {
@@ -46,12 +47,7 @@ public class UpdateAptosFormsDemoMainFormStateTaskService {
     }
 
     private java.util.function.Function<String, FormSequenceIdAndAddress> getToFormSequenceIdAndAddressFunction() {
-        return (address) -> {
-            FormSequenceIdAndAddress formSequenceIdAndAddress = new FormSequenceIdAndAddress();
-            formSequenceIdAndAddress.setFormSequenceId(1L); // todo hard-coded for now
-            formSequenceIdAndAddress.setAddress(address);
-            return formSequenceIdAndAddress;
-        };
+        return TestTenantizedIdFunctions.toFormSequenceIdAndAddressFunction(); // todo only for test
     }
 
     private ContractModuleNameProvider getContractModuleNameProvider() {

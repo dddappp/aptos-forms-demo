@@ -17,6 +17,7 @@ import org.test.aptosformsdemo.aptos.contract.repository.AptosAccountRepository;
 import org.test.aptosformsdemo.aptos.contract.ContractModuleNameProvider;
 import org.test.aptosformsdemo.aptos.contract.DefaultContractModuleNameProvider;
 import org.test.aptosformsdemo.domain.FormSequenceIdAndAddress;
+import org.test.aptosformsdemo.aptos.contract.TestTenantizedIdFunctions;
 
 @Service
 public class PullAptosFormsDemoMainFormEventsTaskService {
@@ -41,12 +42,7 @@ public class PullAptosFormsDemoMainFormEventsTaskService {
     }
 
     private java.util.function.Function<String, FormSequenceIdAndAddress> getToFormSequenceIdAndAddressFunction() {
-        return (address) -> {
-            FormSequenceIdAndAddress formSequenceIdAndAddress = new FormSequenceIdAndAddress();
-            formSequenceIdAndAddress.setFormSequenceId(1L); // todo hard-coded for now
-            formSequenceIdAndAddress.setAddress(address);
-            return formSequenceIdAndAddress;
-        };
+       return TestTenantizedIdFunctions.toFormSequenceIdAndAddressFunction(); // todo only for test
     }
 
     private ContractModuleNameProvider getContractModuleNameProvider() {
