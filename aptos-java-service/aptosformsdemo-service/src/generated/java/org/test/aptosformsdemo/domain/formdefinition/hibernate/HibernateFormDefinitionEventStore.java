@@ -21,7 +21,7 @@ public class HibernateFormDefinitionEventStore extends AbstractHibernateEventSto
     @Override
     protected Serializable getEventId(EventStoreAggregateId eventStoreAggregateId, long version)
     {
-        return new FormDefinitionEventId((Long) eventStoreAggregateId.getId(), BigInteger.valueOf(version));
+        return new FormDefinitionEventId((Long) eventStoreAggregateId.getId(), Long.valueOf(version));
     }
 
     @Override
@@ -48,7 +48,7 @@ public class HibernateFormDefinitionEventStore extends AbstractHibernateEventSto
         }
         EventStream eventStream = new EventStream();
         if (es.size() > 0) {
-            eventStream.setSteamVersion(((AbstractFormDefinitionEvent) es.get(es.size() - 1)).getFormDefinitionEventId().getVersion().longValue());
+            eventStream.setSteamVersion(((AbstractFormDefinitionEvent) es.get(es.size() - 1)).getFormDefinitionEventId().getOffChainVersion());
         } else {
             //todo?
         }

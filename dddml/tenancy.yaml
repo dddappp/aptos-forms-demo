@@ -1,5 +1,12 @@
 aggregates:
   FormDefinition:
+    metadata:
+      StateLobPropertiesEnabled: false
+      NoGeneratingMutateStateByEventMethods: false
+      AutoGeneratingCrUDCommandsDisabled: false
+    eventVersionProperty:
+      name: OffChainVersion
+      type: long
     id:
       generator:
         class: sequence

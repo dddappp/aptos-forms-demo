@@ -25,6 +25,46 @@ public abstract class AbstractFormDefinitionState implements FormDefinitionState
         this.formSequenceId = formSequenceId;
     }
 
+    private String formId;
+
+    public String getFormId() {
+        return this.formId;
+    }
+
+    public void setFormId(String formId) {
+        this.formId = formId;
+    }
+
+    private String contractAddress;
+
+    public String getContractAddress() {
+        return this.contractAddress;
+    }
+
+    public void setContractAddress(String contractAddress) {
+        this.contractAddress = contractAddress;
+    }
+
+    private String storeAccountAddress;
+
+    public String getStoreAccountAddress() {
+        return this.storeAccountAddress;
+    }
+
+    public void setStoreAccountAddress(String storeAccountAddress) {
+        this.storeAccountAddress = storeAccountAddress;
+    }
+
+    private String startPageName;
+
+    public String getStartPageName() {
+        return this.startPageName;
+    }
+
+    public void setStartPageName(String startPageName) {
+        this.startPageName = startPageName;
+    }
+
     private BigInteger version;
 
     public BigInteger getVersion() {
@@ -105,16 +145,6 @@ public abstract class AbstractFormDefinitionState implements FormDefinitionState
         this.deleted = deleted;
     }
 
-    private Map<String, Object> dynamicProperties = new HashMap<>();
-
-    public Map<String, Object> getDynamicProperties() {
-        return this.dynamicProperties;
-    }
-
-    public void setDynamicProperties(Map<String, Object> dynamicProperties) {
-        this.dynamicProperties = dynamicProperties;
-    }
-
     public boolean isStateUnsaved() {
         return this.getOffChainVersion() == null;
     }
@@ -140,7 +170,7 @@ public abstract class AbstractFormDefinitionState implements FormDefinitionState
         if (events != null && events.size() > 0) {
             this.setFormSequenceId(((FormDefinitionEvent.SqlFormDefinitionEvent) events.get(0)).getFormDefinitionEventId().getFormSequenceId());
             for (Event e : events) {
-                //mutate(e);
+                mutate(e);
                 this.setOffChainVersion((this.getOffChainVersion() == null ? FormDefinitionState.VERSION_NULL : this.getOffChainVersion()) + 1);
             }
         }
@@ -174,13 +204,107 @@ public abstract class AbstractFormDefinitionState implements FormDefinitionState
         return false;
     }
 
+
+    public void mutate(Event e) {
+        setStateReadOnly(false);
+        if (e instanceof FormDefinitionStateCreated) {
+            when((FormDefinitionStateCreated) e);
+        } else if (e instanceof FormDefinitionStateMergePatched) {
+            when((FormDefinitionStateMergePatched) e);
+        } else if (e instanceof FormDefinitionStateDeleted) {
+            when((FormDefinitionStateDeleted) e);
+        } else {
+            throw new UnsupportedOperationException(String.format("Unsupported event type: %1$s", e.getClass().getName()));
+        }
+    }
+
+    public void when(FormDefinitionStateCreated e) {
+        throwOnWrongEvent(e);
+
+        this.setFormId(e.getFormId());
+        this.setContractAddress(e.getContractAddress());
+        this.setStoreAccountAddress(e.getStoreAccountAddress());
+        this.setStartPageName(e.getStartPageName());
+        this.setVersion(e.getVersion());
+        this.setActive(e.getActive());
+
+        this.setDeleted(false);
+
+        this.setCreatedBy(e.getCreatedBy());
+        this.setCreatedAt(e.getCreatedAt());
+
+    }
+
     protected void merge(FormDefinitionState s) {
         if (s == this) {
             return;
         }
-        this.setDynamicProperties(s.getDynamicProperties());
+        this.setFormId(s.getFormId());
+        this.setContractAddress(s.getContractAddress());
+        this.setStoreAccountAddress(s.getStoreAccountAddress());
+        this.setStartPageName(s.getStartPageName());
         this.setVersion(s.getVersion());
         this.setActive(s.getActive());
+    }
+
+    public void when(FormDefinitionStateMergePatched e) {
+        throwOnWrongEvent(e);
+
+        if (e.getFormId() == null) {
+            if (e.getIsPropertyFormIdRemoved() != null && e.getIsPropertyFormIdRemoved()) {
+                this.setFormId(null);
+            }
+        } else {
+            this.setFormId(e.getFormId());
+        }
+        if (e.getContractAddress() == null) {
+            if (e.getIsPropertyContractAddressRemoved() != null && e.getIsPropertyContractAddressRemoved()) {
+                this.setContractAddress(null);
+            }
+        } else {
+            this.setContractAddress(e.getContractAddress());
+        }
+        if (e.getStoreAccountAddress() == null) {
+            if (e.getIsPropertyStoreAccountAddressRemoved() != null && e.getIsPropertyStoreAccountAddressRemoved()) {
+                this.setStoreAccountAddress(null);
+            }
+        } else {
+            this.setStoreAccountAddress(e.getStoreAccountAddress());
+        }
+        if (e.getStartPageName() == null) {
+            if (e.getIsPropertyStartPageNameRemoved() != null && e.getIsPropertyStartPageNameRemoved()) {
+                this.setStartPageName(null);
+            }
+        } else {
+            this.setStartPageName(e.getStartPageName());
+        }
+        if (e.getVersion() == null) {
+            if (e.getIsPropertyVersionRemoved() != null && e.getIsPropertyVersionRemoved()) {
+                this.setVersion(null);
+            }
+        } else {
+            this.setVersion(e.getVersion());
+        }
+        if (e.getActive() == null) {
+            if (e.getIsPropertyActiveRemoved() != null && e.getIsPropertyActiveRemoved()) {
+                this.setActive(null);
+            }
+        } else {
+            this.setActive(e.getActive());
+        }
+
+        this.setUpdatedBy(e.getCreatedBy());
+        this.setUpdatedAt(e.getCreatedAt());
+
+    }
+
+    public void when(FormDefinitionStateDeleted e) {
+        throwOnWrongEvent(e);
+
+        this.setDeleted(true);
+        this.setUpdatedBy(e.getCreatedBy());
+        this.setUpdatedAt(e.getCreatedAt());
+
     }
 
     public void save() {
@@ -195,6 +319,13 @@ public abstract class AbstractFormDefinitionState implements FormDefinitionState
 
 
         Long stateVersion = this.getOffChainVersion();
+        Long eventVersion = ((FormDefinitionEvent.SqlFormDefinitionEvent)event).getFormDefinitionEventId().getOffChainVersion();// Event Version
+        if (eventVersion == null) {
+            throw new NullPointerException("event.getFormDefinitionEventId().getOffChainVersion() == null");
+        }
+        if (!(stateVersion == null && eventVersion.equals(FormDefinitionState.VERSION_NULL)) && !eventVersion.equals(stateVersion)) {
+            throw DomainError.named("concurrencyConflict", "Conflict between state version (%1$s) and event version (%2$s)", stateVersion, eventVersion);
+        }
 
     }
 

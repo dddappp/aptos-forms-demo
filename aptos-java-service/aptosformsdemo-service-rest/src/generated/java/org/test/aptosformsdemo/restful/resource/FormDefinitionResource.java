@@ -170,6 +170,92 @@ public class FormDefinitionResource {
         } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
     }
 
+
+    /**
+     * Create.
+     * Create FormDefinition
+     */
+    @PostMapping @ResponseStatus(HttpStatus.CREATED)
+    public Long post(@RequestBody CreateOrMergePatchFormDefinitionDto.CreateFormDefinitionDto value,  HttpServletResponse response) {
+        try {
+            FormDefinitionCommand.CreateFormDefinition cmd = value;//.toCreateFormDefinition();
+            if (cmd.getFormSequenceId() == null) {
+                throw DomainError.named("nullId", "Aggregate Id in cmd is null, aggregate name: %1$s.", "FormDefinition");
+            }
+            Long idObj = cmd.getFormSequenceId();
+            cmd.setRequesterId(SecurityContextUtil.getRequesterId());
+            formDefinitionApplicationService.when(cmd);
+
+            return idObj;
+        } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
+    }
+
+
+    /**
+     * Create or update.
+     * Create or update FormDefinition
+     */
+    @PutMapping("{formSequenceId}")
+    public void put(@PathVariable("formSequenceId") Long formSequenceId, @RequestBody CreateOrMergePatchFormDefinitionDto value) {
+        try {
+            if (value.getOffChainVersion() != null) {
+                value.setCommandType(Command.COMMAND_TYPE_MERGE_PATCH);
+                FormDefinitionCommand.MergePatchFormDefinition cmd = (FormDefinitionCommand.MergePatchFormDefinition) value.toSubclass();
+                FormDefinitionResourceUtils.setNullIdOrThrowOnInconsistentIds(formSequenceId, cmd);
+                cmd.setRequesterId(SecurityContextUtil.getRequesterId());
+                formDefinitionApplicationService.when(cmd);
+                return;
+            }
+
+            value.setCommandType(Command.COMMAND_TYPE_CREATE);
+            FormDefinitionCommand.CreateFormDefinition cmd = (FormDefinitionCommand.CreateFormDefinition) value.toSubclass();
+            FormDefinitionResourceUtils.setNullIdOrThrowOnInconsistentIds(formSequenceId, cmd);
+            cmd.setRequesterId(SecurityContextUtil.getRequesterId());
+            formDefinitionApplicationService.when(cmd);
+
+        } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
+    }
+
+
+    /**
+     * Patch.
+     * Patch FormDefinition
+     */
+    @PatchMapping("{formSequenceId}")
+    public void patch(@PathVariable("formSequenceId") Long formSequenceId, @RequestBody CreateOrMergePatchFormDefinitionDto.MergePatchFormDefinitionDto value) {
+        try {
+
+            FormDefinitionCommand.MergePatchFormDefinition cmd = value;//.toMergePatchFormDefinition();
+            FormDefinitionResourceUtils.setNullIdOrThrowOnInconsistentIds(formSequenceId, cmd);
+            cmd.setRequesterId(SecurityContextUtil.getRequesterId());
+            formDefinitionApplicationService.when(cmd);
+
+        } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
+    }
+
+    /**
+     * Delete.
+     * Delete FormDefinition
+     */
+    @DeleteMapping("{formSequenceId}")
+    public void delete(@PathVariable("formSequenceId") Long formSequenceId,
+                       @NotNull @RequestParam(value = "commandId", required = false) String commandId,
+                       @NotNull @RequestParam(value = "version", required = false) @Min(value = -1) Long version,
+                       @RequestParam(value = "requesterId", required = false) String requesterId) {
+        try {
+
+            FormDefinitionCommand.DeleteFormDefinition deleteCmd = new DeleteFormDefinitionDto();
+
+            deleteCmd.setCommandId(commandId);
+            deleteCmd.setRequesterId(requesterId);
+            deleteCmd.setOffChainVersion(version);
+            FormDefinitionResourceUtils.setNullIdOrThrowOnInconsistentIds(formSequenceId, deleteCmd);
+            deleteCmd.setRequesterId(SecurityContextUtil.getRequesterId());
+            formDefinitionApplicationService.when(deleteCmd);
+
+        } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
+    }
+
     @GetMapping("_metadata/filteringFields")
     public List<PropertyMetadataDto> getMetadataFilteringFields() {
         try {

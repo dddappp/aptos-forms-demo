@@ -6,8 +6,8 @@
       <key-property name="formSequenceId">
         <column name="form_sequence_id" />
       </key-property>
-      <key-property name="version">
-        <column name="version" sql-type="DECIMAL(20,0)" />
+      <key-property name="offChainVersion">
+        <column name="off_chain_version" />
       </key-property>
     </composite-id>
     <discriminator column="event_class" type="string" />
@@ -42,6 +42,36 @@
           <param name="org.hibernate.type.ParameterType">java.util.HashMap</param>
         </type>
       </property>
+    </subclass>
+    <subclass name="AbstractFormDefinitionEvent$AbstractFormDefinitionStateEvent" abstract="true">
+      <property name="formId">
+        <column name="form_id" length="100" />
+      </property>
+      <property name="contractAddress">
+        <column name="contract_address" sql-type="VARCHAR(66)" />
+      </property>
+      <property name="storeAccountAddress">
+        <column name="store_account_address" sql-type="VARCHAR(66)" />
+      </property>
+      <property name="startPageName">
+        <column name="start_page_name" length="100" />
+      </property>
+      <property name="version">
+        <column name="version" sql-type="DECIMAL(20,0)" />
+      </property>
+      <property name="active">
+        <column name="active" />
+      </property>
+      <subclass name="AbstractFormDefinitionEvent$SimpleFormDefinitionStateCreated" discriminator-value="Created"></subclass>
+      <subclass name="AbstractFormDefinitionEvent$SimpleFormDefinitionStateMergePatched" discriminator-value="MergePatched">
+        <property name="isPropertyFormIdRemoved" column="is_property_form_id_removed" />
+        <property name="isPropertyContractAddressRemoved" column="is_property_contract_address_removed" />
+        <property name="isPropertyStoreAccountAddressRemoved" column="is_property_store_account_address_removed" />
+        <property name="isPropertyStartPageNameRemoved" column="is_property_start_page_name_removed" />
+        <property name="isPropertyVersionRemoved" column="is_property_version_removed" />
+        <property name="isPropertyActiveRemoved" column="is_property_active_removed" />
+      </subclass>
+      <subclass name="AbstractFormDefinitionEvent$SimpleFormDefinitionStateDeleted" discriminator-value="Deleted"></subclass>
     </subclass>
   </class>
 </hibernate-mapping>

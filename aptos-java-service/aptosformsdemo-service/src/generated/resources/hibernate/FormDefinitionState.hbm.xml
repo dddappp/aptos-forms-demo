@@ -11,11 +11,17 @@
       </generator>
     </id>
     <version name="offChainVersion" column="off_chain_version" type="long" />
-    <property name="dynamicProperties">
-      <column name="dynamic_properties" sql-type="jsonb" />
-      <type name="io.hypersistence.utils.hibernate.type.json.JsonBinaryType">
-        <param name="org.hibernate.type.ParameterType">java.util.HashMap</param>
-      </type>
+    <property name="formId">
+      <column name="form_id" length="100" />
+    </property>
+    <property name="contractAddress">
+      <column name="contract_address" sql-type="VARCHAR(66)" />
+    </property>
+    <property name="storeAccountAddress">
+      <column name="store_account_address" sql-type="VARCHAR(66)" />
+    </property>
+    <property name="startPageName">
+      <column name="start_page_name" length="100" />
     </property>
     <property name="version">
       <column name="version" sql-type="DECIMAL(20,0)" />

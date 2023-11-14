@@ -17,6 +17,12 @@ public interface FormDefinitionAggregate {
 
     List<Event> getChanges();
 
+    void create(FormDefinitionCommand.CreateFormDefinition c);
+
+    void mergePatch(FormDefinitionCommand.MergePatchFormDefinition c);
+
+    void delete(FormDefinitionCommand.DeleteFormDefinition c);
+
     void throwOnInvalidStateTransition(Command c);
 }
 

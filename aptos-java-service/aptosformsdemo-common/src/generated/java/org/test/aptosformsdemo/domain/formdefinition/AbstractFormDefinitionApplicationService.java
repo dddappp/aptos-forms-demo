@@ -50,6 +50,18 @@ public abstract class AbstractFormDefinitionApplicationService implements FormDe
         this.stateQueryRepository = stateQueryRepository;
     }
 
+    public void when(FormDefinitionCommand.CreateFormDefinition c) {
+        update(c, ar -> ar.create(c));
+    }
+
+    public void when(FormDefinitionCommand.MergePatchFormDefinition c) {
+        update(c, ar -> ar.mergePatch(c));
+    }
+
+    public void when(FormDefinitionCommand.DeleteFormDefinition c) {
+        update(c, ar -> ar.delete(c));
+    }
+
     public FormDefinitionState get(Long id) {
         FormDefinitionState state = getStateRepository().get(id, true);
         return state;
@@ -125,6 +137,18 @@ public abstract class AbstractFormDefinitionApplicationService implements FormDe
         if (aggregateEventListener != null) {
             aggregateEventListener.eventAppended(new AggregateEvent<>(aggregate, state, aggregate.getChanges()));
         }
+    }
+
+    public void initialize(FormDefinitionEvent.FormDefinitionStateCreated stateCreated) {
+        Long aggregateId = ((FormDefinitionEvent.SqlFormDefinitionEvent)stateCreated).getFormDefinitionEventId().getFormSequenceId();
+        FormDefinitionState.SqlFormDefinitionState state = new AbstractFormDefinitionState.SimpleFormDefinitionState();
+        state.setFormSequenceId(aggregateId);
+
+        FormDefinitionAggregate aggregate = getFormDefinitionAggregate(state);
+        ((AbstractFormDefinitionAggregate) aggregate).apply(stateCreated);
+
+        EventStoreAggregateId eventStoreAggregateId = toEventStoreAggregateId(aggregateId);
+        persist(eventStoreAggregateId, ((FormDefinitionEvent.SqlFormDefinitionEvent)stateCreated).getFormDefinitionEventId().getOffChainVersion(), aggregate, state);
     }
 
     protected boolean isDuplicateCommand(FormDefinitionCommand command, EventStoreAggregateId eventStoreAggregateId, FormDefinitionState state) {

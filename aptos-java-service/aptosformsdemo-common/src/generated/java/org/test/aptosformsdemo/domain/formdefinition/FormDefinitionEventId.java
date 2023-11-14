@@ -6,7 +6,6 @@
 package org.test.aptosformsdemo.domain.formdefinition;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import org.test.aptosformsdemo.domain.*;
 
 public class FormDefinitionEventId implements Serializable {
@@ -22,26 +21,26 @@ public class FormDefinitionEventId implements Serializable {
         this.formSequenceId = formSequenceId;
     }
 
-    private BigInteger version;
+    private Long offChainVersion;
 
-    public BigInteger getVersion()
+    public Long getOffChainVersion()
     {
-        return this.version;
+        return this.offChainVersion;
     }
 
-    public void setVersion(BigInteger version)
+    public void setOffChainVersion(Long offChainVersion)
     {
-        this.version = version;
+        this.offChainVersion = offChainVersion;
     }
 
     public FormDefinitionEventId()
     {
     }
 
-    public FormDefinitionEventId(Long formSequenceId, BigInteger version)
+    public FormDefinitionEventId(Long formSequenceId, Long offChainVersion)
     {
         this.formSequenceId = formSequenceId;
-        this.version = version;
+        this.offChainVersion = offChainVersion;
     }
 
     @Override
@@ -57,7 +56,7 @@ public class FormDefinitionEventId implements Serializable {
         FormDefinitionEventId other = (FormDefinitionEventId)obj;
         return true 
             && (formSequenceId == other.formSequenceId || (formSequenceId != null && formSequenceId.equals(other.formSequenceId)))
-            && (version == other.version || (version != null && version.equals(other.version)))
+            && (offChainVersion == other.offChainVersion || (offChainVersion != null && offChainVersion.equals(other.offChainVersion)))
             ;
     }
 
@@ -68,8 +67,8 @@ public class FormDefinitionEventId implements Serializable {
         if (this.formSequenceId != null) {
             hash += 13 * this.formSequenceId.hashCode();
         }
-        if (this.version != null) {
-            hash += 13 * this.version.hashCode();
+        if (this.offChainVersion != null) {
+            hash += 13 * this.offChainVersion.hashCode();
         }
         return hash;
     }
@@ -78,18 +77,18 @@ public class FormDefinitionEventId implements Serializable {
     public String toString() {
         return "FormDefinitionEventId{" +
                 "formSequenceId=" + formSequenceId +
-                ", version=" + version +
+                ", offChainVersion=" + offChainVersion +
                 '}';
     }
 
     protected static final String[] FLATTENED_PROPERTY_NAMES = new String[]{
             "formSequenceId",
-            "version",
+            "offChainVersion",
     };
 
     protected static final String[] FLATTENED_PROPERTY_TYPES = new String[]{
             "Long",
-            "BigInteger",
+            "Long",
     };
 
     protected static final java.util.Map<String, String> FLATTENED_PROPERTY_TYPE_MAP;

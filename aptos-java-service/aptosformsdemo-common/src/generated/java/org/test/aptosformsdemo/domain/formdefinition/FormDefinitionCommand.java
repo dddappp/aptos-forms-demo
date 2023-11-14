@@ -37,9 +37,82 @@ public interface FormDefinitionCommand extends Command {
     }
 
     static boolean isCommandCreate(FormDefinitionCommand c) {
+        if ((c instanceof FormDefinitionCommand.CreateFormDefinition) 
+            && (COMMAND_TYPE_CREATE.equals(c.getCommandType()) || c.getOffChainVersion().equals(FormDefinitionState.VERSION_NULL)))
+            return true;
+        if ((c instanceof FormDefinitionCommand.MergePatchFormDefinition))
+            return false;
+        if ((c instanceof FormDefinitionCommand.DeleteFormDefinition))
+            return false;
         if (c.getOffChainVersion().equals(FormDefinitionState.VERSION_NULL))
             return true;
         return false;
+    }
+
+    interface CreateOrMergePatchFormDefinition extends FormDefinitionCommand
+    {
+
+        String getFormId();
+
+        void setFormId(String formId);
+
+        String getContractAddress();
+
+        void setContractAddress(String contractAddress);
+
+        String getStoreAccountAddress();
+
+        void setStoreAccountAddress(String storeAccountAddress);
+
+        String getStartPageName();
+
+        void setStartPageName(String startPageName);
+
+        BigInteger getVersion();
+
+        void setVersion(BigInteger version);
+
+        Boolean getActive();
+
+        void setActive(Boolean active);
+
+    }
+
+    interface CreateFormDefinition extends CreateOrMergePatchFormDefinition
+    {
+    }
+
+    interface MergePatchFormDefinition extends CreateOrMergePatchFormDefinition
+    {
+        Boolean getIsPropertyFormIdRemoved();
+
+        void setIsPropertyFormIdRemoved(Boolean removed);
+
+        Boolean getIsPropertyContractAddressRemoved();
+
+        void setIsPropertyContractAddressRemoved(Boolean removed);
+
+        Boolean getIsPropertyStoreAccountAddressRemoved();
+
+        void setIsPropertyStoreAccountAddressRemoved(Boolean removed);
+
+        Boolean getIsPropertyStartPageNameRemoved();
+
+        void setIsPropertyStartPageNameRemoved(Boolean removed);
+
+        Boolean getIsPropertyVersionRemoved();
+
+        void setIsPropertyVersionRemoved(Boolean removed);
+
+        Boolean getIsPropertyActiveRemoved();
+
+        void setIsPropertyActiveRemoved(Boolean removed);
+
+
+    }
+
+    interface DeleteFormDefinition extends FormDefinitionCommand
+    {
     }
 
 }

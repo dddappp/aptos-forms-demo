@@ -27,6 +27,54 @@ public class FormDefinitionStateDto {
         this.formSequenceId = formSequenceId;
     }
 
+    private String formId;
+
+    public String getFormId()
+    {
+        return this.formId;
+    }
+
+    public void setFormId(String formId)
+    {
+        this.formId = formId;
+    }
+
+    private String contractAddress;
+
+    public String getContractAddress()
+    {
+        return this.contractAddress;
+    }
+
+    public void setContractAddress(String contractAddress)
+    {
+        this.contractAddress = contractAddress;
+    }
+
+    private String storeAccountAddress;
+
+    public String getStoreAccountAddress()
+    {
+        return this.storeAccountAddress;
+    }
+
+    public void setStoreAccountAddress(String storeAccountAddress)
+    {
+        this.storeAccountAddress = storeAccountAddress;
+    }
+
+    private String startPageName;
+
+    public String getStartPageName()
+    {
+        return this.startPageName;
+    }
+
+    public void setStartPageName(String startPageName)
+    {
+        this.startPageName = startPageName;
+    }
+
     private BigInteger version;
 
     public BigInteger getVersion()
@@ -111,16 +159,6 @@ public class FormDefinitionStateDto {
         this.updatedAt = updatedAt;
     }
 
-    private Map<String, Object> dynamicProperties = new HashMap<>();
-
-    public Map<String, Object> getDynamicProperties() {
-        return this.dynamicProperties;
-    }
-
-    public void setDynamicProperties(Map<String, Object> dynamicProperties) {
-        this.dynamicProperties = dynamicProperties;
-    }
-
 
     public static class DtoConverter extends AbstractStateDtoConverter
     {
@@ -153,6 +191,18 @@ public class FormDefinitionStateDto {
             if (returnedFieldsContains("FormSequenceId")) {
                 dto.setFormSequenceId(state.getFormSequenceId());
             }
+            if (returnedFieldsContains("FormId")) {
+                dto.setFormId(state.getFormId());
+            }
+            if (returnedFieldsContains("ContractAddress")) {
+                dto.setContractAddress(state.getContractAddress());
+            }
+            if (returnedFieldsContains("StoreAccountAddress")) {
+                dto.setStoreAccountAddress(state.getStoreAccountAddress());
+            }
+            if (returnedFieldsContains("StartPageName")) {
+                dto.setStartPageName(state.getStartPageName());
+            }
             if (returnedFieldsContains("Version")) {
                 dto.setVersion(state.getVersion());
             }
@@ -174,7 +224,6 @@ public class FormDefinitionStateDto {
             if (returnedFieldsContains("UpdatedAt")) {
                 dto.setUpdatedAt(state.getUpdatedAt());
             }
-            dto.setDynamicProperties(state.getDynamicProperties());
             return dto;
         }
 

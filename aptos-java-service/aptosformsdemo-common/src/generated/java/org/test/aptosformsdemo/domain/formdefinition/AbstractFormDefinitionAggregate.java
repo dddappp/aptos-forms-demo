@@ -28,18 +28,119 @@ public abstract class AbstractFormDefinitionAggregate extends AbstractAggregate 
         return this.changes;
     }
 
+    public void create(FormDefinitionCommand.CreateFormDefinition c) {
+        if (c.getOffChainVersion() == null) { c.setOffChainVersion(FormDefinitionState.VERSION_NULL); }
+        FormDefinitionEvent e = map(c);
+        apply(e);
+    }
+
+    public void mergePatch(FormDefinitionCommand.MergePatchFormDefinition c) {
+        FormDefinitionEvent e = map(c);
+        apply(e);
+    }
+
+    public void delete(FormDefinitionCommand.DeleteFormDefinition c) {
+        FormDefinitionEvent e = map(c);
+        apply(e);
+    }
+
     public void throwOnInvalidStateTransition(Command c) {
         FormDefinitionCommand.throwOnInvalidStateTransition(this.state, c);
     }
 
     protected void apply(Event e) {
         onApplying(e);
-        //state.mutate(e);
+        state.mutate(e);
         changes.add(e);
+    }
+
+    protected FormDefinitionEvent map(FormDefinitionCommand.CreateFormDefinition c) {
+        FormDefinitionEventId stateEventId = new FormDefinitionEventId(c.getFormSequenceId(), c.getOffChainVersion());
+        FormDefinitionEvent.FormDefinitionStateCreated e = newFormDefinitionStateCreated(stateEventId);
+        e.setFormId(c.getFormId());
+        e.setContractAddress(c.getContractAddress());
+        e.setStoreAccountAddress(c.getStoreAccountAddress());
+        e.setStartPageName(c.getStartPageName());
+        e.setVersion(c.getVersion());
+        e.setActive(c.getActive());
+        ((AbstractFormDefinitionEvent)e).setCommandId(c.getCommandId());
+        e.setCreatedBy(c.getRequesterId());
+        e.setCreatedAt((OffsetDateTime)ApplicationContext.current.getTimestampService().now(OffsetDateTime.class));
+        return e;
+    }
+
+    protected FormDefinitionEvent map(FormDefinitionCommand.MergePatchFormDefinition c) {
+        FormDefinitionEventId stateEventId = new FormDefinitionEventId(c.getFormSequenceId(), c.getOffChainVersion());
+        FormDefinitionEvent.FormDefinitionStateMergePatched e = newFormDefinitionStateMergePatched(stateEventId);
+        e.setFormId(c.getFormId());
+        e.setContractAddress(c.getContractAddress());
+        e.setStoreAccountAddress(c.getStoreAccountAddress());
+        e.setStartPageName(c.getStartPageName());
+        e.setVersion(c.getVersion());
+        e.setActive(c.getActive());
+        e.setIsPropertyFormIdRemoved(c.getIsPropertyFormIdRemoved());
+        e.setIsPropertyContractAddressRemoved(c.getIsPropertyContractAddressRemoved());
+        e.setIsPropertyStoreAccountAddressRemoved(c.getIsPropertyStoreAccountAddressRemoved());
+        e.setIsPropertyStartPageNameRemoved(c.getIsPropertyStartPageNameRemoved());
+        e.setIsPropertyVersionRemoved(c.getIsPropertyVersionRemoved());
+        e.setIsPropertyActiveRemoved(c.getIsPropertyActiveRemoved());
+        ((AbstractFormDefinitionEvent)e).setCommandId(c.getCommandId());
+        e.setCreatedBy(c.getRequesterId());
+        e.setCreatedAt((OffsetDateTime)ApplicationContext.current.getTimestampService().now(OffsetDateTime.class));
+        return e;
+    }
+
+    protected FormDefinitionEvent map(FormDefinitionCommand.DeleteFormDefinition c) {
+        FormDefinitionEventId stateEventId = new FormDefinitionEventId(c.getFormSequenceId(), c.getOffChainVersion());
+        FormDefinitionEvent.FormDefinitionStateDeleted e = newFormDefinitionStateDeleted(stateEventId);
+        ((AbstractFormDefinitionEvent)e).setCommandId(c.getCommandId());
+        e.setCreatedBy(c.getRequesterId());
+        e.setCreatedAt((OffsetDateTime)ApplicationContext.current.getTimestampService().now(OffsetDateTime.class));
+        return e;
     }
 
 
     ////////////////////////
+
+    protected FormDefinitionEvent.FormDefinitionStateCreated newFormDefinitionStateCreated(Long version, String commandId, String requesterId) {
+        FormDefinitionEventId stateEventId = new FormDefinitionEventId(this.state.getFormSequenceId(), version);
+        FormDefinitionEvent.FormDefinitionStateCreated e = newFormDefinitionStateCreated(stateEventId);
+        ((AbstractFormDefinitionEvent)e).setCommandId(commandId);
+        e.setCreatedBy(requesterId);
+        e.setCreatedAt((OffsetDateTime)ApplicationContext.current.getTimestampService().now(OffsetDateTime.class));
+        return e;
+    }
+
+    protected FormDefinitionEvent.FormDefinitionStateMergePatched newFormDefinitionStateMergePatched(Long version, String commandId, String requesterId) {
+        FormDefinitionEventId stateEventId = new FormDefinitionEventId(this.state.getFormSequenceId(), version);
+        FormDefinitionEvent.FormDefinitionStateMergePatched e = newFormDefinitionStateMergePatched(stateEventId);
+        ((AbstractFormDefinitionEvent)e).setCommandId(commandId);
+        e.setCreatedBy(requesterId);
+        e.setCreatedAt((OffsetDateTime)ApplicationContext.current.getTimestampService().now(OffsetDateTime.class));
+        return e;
+    }
+
+    protected FormDefinitionEvent.FormDefinitionStateDeleted newFormDefinitionStateDeleted(Long version, String commandId, String requesterId) {
+        FormDefinitionEventId stateEventId = new FormDefinitionEventId(this.state.getFormSequenceId(), version);
+        FormDefinitionEvent.FormDefinitionStateDeleted e = newFormDefinitionStateDeleted(stateEventId);
+        ((AbstractFormDefinitionEvent)e).setCommandId(commandId);
+        e.setCreatedBy(requesterId);
+        e.setCreatedAt((OffsetDateTime)ApplicationContext.current.getTimestampService().now(OffsetDateTime.class));
+        return e;
+    }
+
+    protected FormDefinitionEvent.FormDefinitionStateCreated newFormDefinitionStateCreated(FormDefinitionEventId stateEventId) {
+        return new AbstractFormDefinitionEvent.SimpleFormDefinitionStateCreated(stateEventId);
+    }
+
+    protected FormDefinitionEvent.FormDefinitionStateMergePatched newFormDefinitionStateMergePatched(FormDefinitionEventId stateEventId) {
+        return new AbstractFormDefinitionEvent.SimpleFormDefinitionStateMergePatched(stateEventId);
+    }
+
+    protected FormDefinitionEvent.FormDefinitionStateDeleted newFormDefinitionStateDeleted(FormDefinitionEventId stateEventId) {
+        return new AbstractFormDefinitionEvent.SimpleFormDefinitionStateDeleted(stateEventId);
+    }
+
 
     public static class SimpleFormDefinitionAggregate extends AbstractFormDefinitionAggregate {
         public SimpleFormDefinitionAggregate(FormDefinitionState state) {

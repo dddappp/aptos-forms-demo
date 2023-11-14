@@ -37,12 +37,12 @@ public abstract class AbstractFormDefinitionEvent extends AbstractEvent implemen
 
     public void setEventReadOnly(boolean readOnly) { this.eventReadOnly = readOnly; }
 
-    public BigInteger getVersion() {
-        return getFormDefinitionEventId().getVersion();
+    public Long getOffChainVersion() {
+        return getFormDefinitionEventId().getOffChainVersion();
     }
     
-    public void setVersion(BigInteger version) {
-        getFormDefinitionEventId().setVersion(version);
+    public void setOffChainVersion(Long offChainVersion) {
+        getFormDefinitionEventId().setOffChainVersion(offChainVersion);
     }
 
     private BigInteger aptosEventVersion;
@@ -168,6 +168,225 @@ public abstract class AbstractFormDefinitionEvent extends AbstractEvent implemen
 
     }
 
+
+    public static abstract class AbstractFormDefinitionStateEvent extends AbstractFormDefinitionEvent implements FormDefinitionEvent.FormDefinitionStateEvent {
+        private String formId;
+
+        public String getFormId()
+        {
+            return this.formId;
+        }
+
+        public void setFormId(String formId)
+        {
+            this.formId = formId;
+        }
+
+        private String contractAddress;
+
+        public String getContractAddress()
+        {
+            return this.contractAddress;
+        }
+
+        public void setContractAddress(String contractAddress)
+        {
+            this.contractAddress = contractAddress;
+        }
+
+        private String storeAccountAddress;
+
+        public String getStoreAccountAddress()
+        {
+            return this.storeAccountAddress;
+        }
+
+        public void setStoreAccountAddress(String storeAccountAddress)
+        {
+            this.storeAccountAddress = storeAccountAddress;
+        }
+
+        private String startPageName;
+
+        public String getStartPageName()
+        {
+            return this.startPageName;
+        }
+
+        public void setStartPageName(String startPageName)
+        {
+            this.startPageName = startPageName;
+        }
+
+        private BigInteger version;
+
+        public BigInteger getVersion()
+        {
+            return this.version;
+        }
+
+        public void setVersion(BigInteger version)
+        {
+            this.version = version;
+        }
+
+        private Boolean active;
+
+        public Boolean getActive()
+        {
+            return this.active;
+        }
+
+        public void setActive(Boolean active)
+        {
+            this.active = active;
+        }
+
+        protected AbstractFormDefinitionStateEvent(FormDefinitionEventId eventId) {
+            super(eventId);
+        }
+    }
+
+    public static abstract class AbstractFormDefinitionStateCreated extends AbstractFormDefinitionStateEvent implements FormDefinitionEvent.FormDefinitionStateCreated
+    {
+        public AbstractFormDefinitionStateCreated() {
+            this(new FormDefinitionEventId());
+        }
+
+        public AbstractFormDefinitionStateCreated(FormDefinitionEventId eventId) {
+            super(eventId);
+        }
+
+        public String getEventClass() {
+            return StateEventType.CREATED;
+        }
+
+    }
+
+
+    public static abstract class AbstractFormDefinitionStateMergePatched extends AbstractFormDefinitionStateEvent implements FormDefinitionEvent.FormDefinitionStateMergePatched
+    {
+        public AbstractFormDefinitionStateMergePatched() {
+            this(new FormDefinitionEventId());
+        }
+
+        public AbstractFormDefinitionStateMergePatched(FormDefinitionEventId eventId) {
+            super(eventId);
+        }
+
+        public String getEventClass() {
+            return StateEventType.MERGE_PATCHED;
+        }
+
+        private Boolean isPropertyFormIdRemoved;
+
+        public Boolean getIsPropertyFormIdRemoved() {
+            return this.isPropertyFormIdRemoved;
+        }
+
+        public void setIsPropertyFormIdRemoved(Boolean removed) {
+            this.isPropertyFormIdRemoved = removed;
+        }
+
+        private Boolean isPropertyContractAddressRemoved;
+
+        public Boolean getIsPropertyContractAddressRemoved() {
+            return this.isPropertyContractAddressRemoved;
+        }
+
+        public void setIsPropertyContractAddressRemoved(Boolean removed) {
+            this.isPropertyContractAddressRemoved = removed;
+        }
+
+        private Boolean isPropertyStoreAccountAddressRemoved;
+
+        public Boolean getIsPropertyStoreAccountAddressRemoved() {
+            return this.isPropertyStoreAccountAddressRemoved;
+        }
+
+        public void setIsPropertyStoreAccountAddressRemoved(Boolean removed) {
+            this.isPropertyStoreAccountAddressRemoved = removed;
+        }
+
+        private Boolean isPropertyStartPageNameRemoved;
+
+        public Boolean getIsPropertyStartPageNameRemoved() {
+            return this.isPropertyStartPageNameRemoved;
+        }
+
+        public void setIsPropertyStartPageNameRemoved(Boolean removed) {
+            this.isPropertyStartPageNameRemoved = removed;
+        }
+
+        private Boolean isPropertyVersionRemoved;
+
+        public Boolean getIsPropertyVersionRemoved() {
+            return this.isPropertyVersionRemoved;
+        }
+
+        public void setIsPropertyVersionRemoved(Boolean removed) {
+            this.isPropertyVersionRemoved = removed;
+        }
+
+        private Boolean isPropertyActiveRemoved;
+
+        public Boolean getIsPropertyActiveRemoved() {
+            return this.isPropertyActiveRemoved;
+        }
+
+        public void setIsPropertyActiveRemoved(Boolean removed) {
+            this.isPropertyActiveRemoved = removed;
+        }
+
+
+    }
+
+
+    public static abstract class AbstractFormDefinitionStateDeleted extends AbstractFormDefinitionStateEvent implements FormDefinitionEvent.FormDefinitionStateDeleted
+    {
+        public AbstractFormDefinitionStateDeleted() {
+            this(new FormDefinitionEventId());
+        }
+
+        public AbstractFormDefinitionStateDeleted(FormDefinitionEventId eventId) {
+            super(eventId);
+        }
+
+        public String getEventClass() {
+            return StateEventType.DELETED;
+        }
+
+    }
+
+    public static class SimpleFormDefinitionStateCreated extends AbstractFormDefinitionStateCreated
+    {
+        public SimpleFormDefinitionStateCreated() {
+        }
+
+        public SimpleFormDefinitionStateCreated(FormDefinitionEventId eventId) {
+            super(eventId);
+        }
+    }
+
+    public static class SimpleFormDefinitionStateMergePatched extends AbstractFormDefinitionStateMergePatched
+    {
+        public SimpleFormDefinitionStateMergePatched() {
+        }
+
+        public SimpleFormDefinitionStateMergePatched(FormDefinitionEventId eventId) {
+            super(eventId);
+        }
+    }
+
+    public static class SimpleFormDefinitionStateDeleted extends AbstractFormDefinitionStateDeleted
+    {
+        public SimpleFormDefinitionStateDeleted() {
+        }
+
+        public SimpleFormDefinitionStateDeleted(FormDefinitionEventId eventId) {
+            super(eventId);
+        }
+    }
 
 }
 

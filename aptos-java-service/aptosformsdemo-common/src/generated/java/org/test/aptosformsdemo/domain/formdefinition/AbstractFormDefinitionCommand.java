@@ -38,5 +38,193 @@ public abstract class AbstractFormDefinitionCommand extends AbstractCommand impl
     }
 
 
+    public static abstract class AbstractCreateOrMergePatchFormDefinition extends AbstractFormDefinitionCommand implements CreateOrMergePatchFormDefinition
+    {
+
+        private String formId;
+
+        public String getFormId()
+        {
+            return this.formId;
+        }
+
+        public void setFormId(String formId)
+        {
+            this.formId = formId;
+        }
+
+        private String contractAddress;
+
+        public String getContractAddress()
+        {
+            return this.contractAddress;
+        }
+
+        public void setContractAddress(String contractAddress)
+        {
+            this.contractAddress = contractAddress;
+        }
+
+        private String storeAccountAddress;
+
+        public String getStoreAccountAddress()
+        {
+            return this.storeAccountAddress;
+        }
+
+        public void setStoreAccountAddress(String storeAccountAddress)
+        {
+            this.storeAccountAddress = storeAccountAddress;
+        }
+
+        private String startPageName;
+
+        public String getStartPageName()
+        {
+            return this.startPageName;
+        }
+
+        public void setStartPageName(String startPageName)
+        {
+            this.startPageName = startPageName;
+        }
+
+        private BigInteger version;
+
+        public BigInteger getVersion()
+        {
+            return this.version;
+        }
+
+        public void setVersion(BigInteger version)
+        {
+            this.version = version;
+        }
+
+        private Boolean active;
+
+        public Boolean getActive()
+        {
+            return this.active;
+        }
+
+        public void setActive(Boolean active)
+        {
+            this.active = active;
+        }
+
+    }
+
+    public static abstract class AbstractCreateFormDefinition extends AbstractCreateOrMergePatchFormDefinition implements CreateFormDefinition
+    {
+        @Override
+        public String getCommandType() {
+            return COMMAND_TYPE_CREATE;
+        }
+
+    }
+
+    public static abstract class AbstractMergePatchFormDefinition extends AbstractCreateOrMergePatchFormDefinition implements MergePatchFormDefinition
+    {
+        @Override
+        public String getCommandType() {
+            return COMMAND_TYPE_MERGE_PATCH;
+        }
+
+        private Boolean isPropertyFormIdRemoved;
+
+        public Boolean getIsPropertyFormIdRemoved()
+        {
+            return this.isPropertyFormIdRemoved;
+        }
+
+        public void setIsPropertyFormIdRemoved(Boolean removed)
+        {
+            this.isPropertyFormIdRemoved = removed;
+        }
+
+        private Boolean isPropertyContractAddressRemoved;
+
+        public Boolean getIsPropertyContractAddressRemoved()
+        {
+            return this.isPropertyContractAddressRemoved;
+        }
+
+        public void setIsPropertyContractAddressRemoved(Boolean removed)
+        {
+            this.isPropertyContractAddressRemoved = removed;
+        }
+
+        private Boolean isPropertyStoreAccountAddressRemoved;
+
+        public Boolean getIsPropertyStoreAccountAddressRemoved()
+        {
+            return this.isPropertyStoreAccountAddressRemoved;
+        }
+
+        public void setIsPropertyStoreAccountAddressRemoved(Boolean removed)
+        {
+            this.isPropertyStoreAccountAddressRemoved = removed;
+        }
+
+        private Boolean isPropertyStartPageNameRemoved;
+
+        public Boolean getIsPropertyStartPageNameRemoved()
+        {
+            return this.isPropertyStartPageNameRemoved;
+        }
+
+        public void setIsPropertyStartPageNameRemoved(Boolean removed)
+        {
+            this.isPropertyStartPageNameRemoved = removed;
+        }
+
+        private Boolean isPropertyVersionRemoved;
+
+        public Boolean getIsPropertyVersionRemoved()
+        {
+            return this.isPropertyVersionRemoved;
+        }
+
+        public void setIsPropertyVersionRemoved(Boolean removed)
+        {
+            this.isPropertyVersionRemoved = removed;
+        }
+
+        private Boolean isPropertyActiveRemoved;
+
+        public Boolean getIsPropertyActiveRemoved()
+        {
+            return this.isPropertyActiveRemoved;
+        }
+
+        public void setIsPropertyActiveRemoved(Boolean removed)
+        {
+            this.isPropertyActiveRemoved = removed;
+        }
+
+
+    }
+
+    public static class SimpleCreateFormDefinition extends AbstractCreateFormDefinition
+    {
+    }
+
+    
+    public static class SimpleMergePatchFormDefinition extends AbstractMergePatchFormDefinition
+    {
+    }
+
+    
+    public static class SimpleDeleteFormDefinition extends AbstractFormDefinitionCommand implements DeleteFormDefinition
+    {
+        @Override
+        public String getCommandType() {
+            return COMMAND_TYPE_DELETE;
+        }
+    }
+
+    
+
 }
 

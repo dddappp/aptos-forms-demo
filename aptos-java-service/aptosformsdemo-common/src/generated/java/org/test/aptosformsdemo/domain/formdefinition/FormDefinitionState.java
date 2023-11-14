@@ -20,6 +20,14 @@ public interface FormDefinitionState extends VersionedAptosMoveObject
 
     Long getFormSequenceId();
 
+    String getFormId();
+
+    String getContractAddress();
+
+    String getStoreAccountAddress();
+
+    String getStartPageName();
+
     Long getOffChainVersion();
 
     String getCreatedBy();
@@ -34,10 +42,16 @@ public interface FormDefinitionState extends VersionedAptosMoveObject
 
     Boolean getDeleted();
 
-    Map<String, Object> getDynamicProperties();
-
     interface MutableFormDefinitionState extends FormDefinitionState, VersionedAptosMoveObject.MutableVersionedAptosMoveObject {
         void setFormSequenceId(Long formSequenceId);
+
+        void setFormId(String formId);
+
+        void setContractAddress(String contractAddress);
+
+        void setStoreAccountAddress(String storeAccountAddress);
+
+        void setStartPageName(String startPageName);
 
         void setOffChainVersion(Long offChainVersion);
 
@@ -53,10 +67,8 @@ public interface FormDefinitionState extends VersionedAptosMoveObject
 
         void setDeleted(Boolean deleted);
 
-        void setDynamicProperties(Map<String, Object> dynamicProperties);
 
-
-        //void mutate(Event e);
+        void mutate(Event e);
 
         //void when(FormDefinitionEvent.FormDefinitionStateCreated e);
 

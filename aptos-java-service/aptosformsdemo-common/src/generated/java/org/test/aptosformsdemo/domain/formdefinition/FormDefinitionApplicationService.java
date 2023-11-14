@@ -15,6 +15,12 @@ import org.test.aptosformsdemo.specialization.Event;
 import org.test.aptosformsdemo.domain.Command;
 
 public interface FormDefinitionApplicationService {
+    void when(FormDefinitionCommand.CreateFormDefinition c);
+
+    void when(FormDefinitionCommand.MergePatchFormDefinition c);
+
+    void when(FormDefinitionCommand.DeleteFormDefinition c);
+
     FormDefinitionState get(Long id);
 
     Iterable<FormDefinitionState> getAll(Integer firstResult, Integer maxResults);

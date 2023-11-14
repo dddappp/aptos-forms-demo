@@ -25,9 +25,9 @@ public interface FormDefinitionEvent extends Event, AptosEvent, HasStatus {
 
     //void setFormSequenceId(Long formSequenceId);
 
-    BigInteger getVersion();
+    Long getOffChainVersion();
     
-    //void setVersion(BigInteger version);
+    //void setOffChainVersion(Long offChainVersion);
 
     String getCreatedBy();
 
@@ -40,6 +40,73 @@ public interface FormDefinitionEvent extends Event, AptosEvent, HasStatus {
     String getCommandId();
 
     void setCommandId(String commandId);
+
+    interface FormDefinitionStateEvent extends FormDefinitionEvent {
+        String getFormId();
+
+        void setFormId(String formId);
+
+        String getContractAddress();
+
+        void setContractAddress(String contractAddress);
+
+        String getStoreAccountAddress();
+
+        void setStoreAccountAddress(String storeAccountAddress);
+
+        String getStartPageName();
+
+        void setStartPageName(String startPageName);
+
+        BigInteger getVersion();
+
+        void setVersion(BigInteger version);
+
+        Boolean getActive();
+
+        void setActive(Boolean active);
+
+    }
+
+    interface FormDefinitionStateCreated extends FormDefinitionStateEvent
+    {
+    
+    }
+
+
+    interface FormDefinitionStateMergePatched extends FormDefinitionStateEvent
+    {
+        Boolean getIsPropertyFormIdRemoved();
+
+        void setIsPropertyFormIdRemoved(Boolean removed);
+
+        Boolean getIsPropertyContractAddressRemoved();
+
+        void setIsPropertyContractAddressRemoved(Boolean removed);
+
+        Boolean getIsPropertyStoreAccountAddressRemoved();
+
+        void setIsPropertyStoreAccountAddressRemoved(Boolean removed);
+
+        Boolean getIsPropertyStartPageNameRemoved();
+
+        void setIsPropertyStartPageNameRemoved(Boolean removed);
+
+        Boolean getIsPropertyVersionRemoved();
+
+        void setIsPropertyVersionRemoved(Boolean removed);
+
+        Boolean getIsPropertyActiveRemoved();
+
+        void setIsPropertyActiveRemoved(Boolean removed);
+
+
+
+    }
+
+    interface FormDefinitionStateDeleted extends FormDefinitionStateEvent
+    {
+    }
 
 
 }
