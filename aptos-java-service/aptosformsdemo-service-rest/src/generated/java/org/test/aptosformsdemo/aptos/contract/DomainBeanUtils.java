@@ -111,15 +111,6 @@ public class DomainBeanUtils {
         return aptosFormsDemoMainFormUpdated;
     }
 
-//    public static org.test.aptosformsdemo.aptos.contract.persistence.FormPageDefinitionTableItemAdded toPersistenceFormPageDefinitionTableItemAdded(Event<FormPageDefinitionTableItemAdded> eventEnvelope) {
-//        FormPageDefinitionTableItemAdded contractEvent = eventEnvelope.getData();
-//        org.test.aptosformsdemo.domain.formdefinition.FormDefinitionFormPageDefinitionId id = new org.test.aptosformsdemo.domain.formdefinition.FormDefinitionFormPageDefinitionId(contractEvent.getFormDefinitionFormSequenceId(), contractEvent.getPageNumber());
-//        org.test.aptosformsdemo.aptos.contract.persistence.FormPageDefinitionTableItemAdded e = new org.test.aptosformsdemo.aptos.contract.persistence.FormPageDefinitionTableItemAdded();
-//        e.setFormDefinitionFormPageDefinitionId(id);
-//        setAptosEventProperties(e, eventEnvelope);
-//        return e;
-//    }
-
     public static void setAptosEventProperties(AptosEvent.MutableAptosEvent domainAptosEvent, Event<?> eventEnvelope) {
         domainAptosEvent.setAptosEventGuid(toAptosEventGuid(eventEnvelope.getGuid()));
         domainAptosEvent.setAptosEventType(eventEnvelope.getType());
