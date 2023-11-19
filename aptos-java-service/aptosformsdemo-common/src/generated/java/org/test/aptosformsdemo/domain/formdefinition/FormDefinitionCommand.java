@@ -6,7 +6,6 @@
 package org.test.aptosformsdemo.domain.formdefinition;
 
 import java.util.*;
-import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.domain.*;
 import org.test.aptosformsdemo.domain.Command;
@@ -64,10 +63,6 @@ public interface FormDefinitionCommand extends Command {
 
         void setStoreAccountAddress(String storeAccountAddress);
 
-        BigInteger getVersion();
-
-        void setVersion(BigInteger version);
-
         Boolean getActive();
 
         void setActive(Boolean active);
@@ -95,10 +90,6 @@ public interface FormDefinitionCommand extends Command {
         Boolean getIsPropertyStoreAccountAddressRemoved();
 
         void setIsPropertyStoreAccountAddressRemoved(Boolean removed);
-
-        Boolean getIsPropertyVersionRemoved();
-
-        void setIsPropertyVersionRemoved(Boolean removed);
 
         Boolean getIsPropertyActiveRemoved();
 

@@ -6,7 +6,6 @@
 package org.test.aptosformsdemo.domain.formdefinition;
 
 import java.util.*;
-import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.domain.*;
 import org.test.aptosformsdemo.specialization.*;
@@ -60,7 +59,6 @@ public abstract class AbstractFormDefinitionAggregate extends AbstractAggregate 
         e.setFormId(c.getFormId());
         e.setContractAddress(c.getContractAddress());
         e.setStoreAccountAddress(c.getStoreAccountAddress());
-        e.setVersion(c.getVersion());
         e.setActive(c.getActive());
         ((AbstractFormDefinitionEvent)e).setCommandId(c.getCommandId());
         e.setCreatedBy(c.getRequesterId());
@@ -81,12 +79,10 @@ public abstract class AbstractFormDefinitionAggregate extends AbstractAggregate 
         e.setFormId(c.getFormId());
         e.setContractAddress(c.getContractAddress());
         e.setStoreAccountAddress(c.getStoreAccountAddress());
-        e.setVersion(c.getVersion());
         e.setActive(c.getActive());
         e.setIsPropertyFormIdRemoved(c.getIsPropertyFormIdRemoved());
         e.setIsPropertyContractAddressRemoved(c.getIsPropertyContractAddressRemoved());
         e.setIsPropertyStoreAccountAddressRemoved(c.getIsPropertyStoreAccountAddressRemoved());
-        e.setIsPropertyVersionRemoved(c.getIsPropertyVersionRemoved());
         e.setIsPropertyActiveRemoved(c.getIsPropertyActiveRemoved());
         ((AbstractFormDefinitionEvent)e).setCommandId(c.getCommandId());
         e.setCreatedBy(c.getRequesterId());

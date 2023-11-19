@@ -7,7 +7,6 @@ package org.test.aptosformsdemo.domain.formdefinition;
 
 import java.util.*;
 import java.math.*;
-import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.domain.*;
 import org.test.aptosformsdemo.specialization.*;
@@ -61,18 +60,6 @@ public class FormDefinitionStateDto {
     public void setStoreAccountAddress(String storeAccountAddress)
     {
         this.storeAccountAddress = storeAccountAddress;
-    }
-
-    private BigInteger version;
-
-    public BigInteger getVersion()
-    {
-        return this.version;
-    }
-
-    public void setVersion(BigInteger version)
-    {
-        this.version = version;
     }
 
     private Boolean active;
@@ -199,9 +186,6 @@ public class FormDefinitionStateDto {
             }
             if (returnedFieldsContains("StoreAccountAddress")) {
                 dto.setStoreAccountAddress(state.getStoreAccountAddress());
-            }
-            if (returnedFieldsContains("Version")) {
-                dto.setVersion(state.getVersion());
             }
             if (returnedFieldsContains("Active")) {
                 dto.setActive(state.getActive());

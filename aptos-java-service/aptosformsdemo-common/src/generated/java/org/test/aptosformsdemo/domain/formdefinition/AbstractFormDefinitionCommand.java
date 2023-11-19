@@ -6,7 +6,6 @@
 package org.test.aptosformsdemo.domain.formdefinition;
 
 import java.util.*;
-import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.domain.*;
 import org.test.aptosformsdemo.domain.AbstractCommand;
@@ -75,18 +74,6 @@ public abstract class AbstractFormDefinitionCommand extends AbstractCommand impl
         public void setStoreAccountAddress(String storeAccountAddress)
         {
             this.storeAccountAddress = storeAccountAddress;
-        }
-
-        private BigInteger version;
-
-        public BigInteger getVersion()
-        {
-            return this.version;
-        }
-
-        public void setVersion(BigInteger version)
-        {
-            this.version = version;
         }
 
         private Boolean active;
@@ -187,18 +174,6 @@ public abstract class AbstractFormDefinitionCommand extends AbstractCommand impl
         public void setIsPropertyStoreAccountAddressRemoved(Boolean removed)
         {
             this.isPropertyStoreAccountAddressRemoved = removed;
-        }
-
-        private Boolean isPropertyVersionRemoved;
-
-        public Boolean getIsPropertyVersionRemoved()
-        {
-            return this.isPropertyVersionRemoved;
-        }
-
-        public void setIsPropertyVersionRemoved(Boolean removed)
-        {
-            this.isPropertyVersionRemoved = removed;
         }
 
         private Boolean isPropertyActiveRemoved;

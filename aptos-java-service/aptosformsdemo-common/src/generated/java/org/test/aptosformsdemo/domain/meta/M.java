@@ -392,7 +392,6 @@ public class M {
             "formId",
             "contractAddress",
             "storeAccountAddress",
-            "version",
             "offChainVersion",
             "createdBy",
             "createdAt",
@@ -407,7 +406,6 @@ public class M {
             "String",
             "String",
             "String",
-            "BigInteger",
             "Long",
             "String",
             "OffsetDateTime",
@@ -437,8 +435,6 @@ public class M {
         aliasMap.put("ContractAddress", "contractAddress");
         aliasMap.put("storeAccountAddress", "storeAccountAddress");
         aliasMap.put("StoreAccountAddress", "storeAccountAddress");
-        aliasMap.put("version", "version");
-        aliasMap.put("Version", "version");
         aliasMap.put("offChainVersion", "offChainVersion");
         aliasMap.put("OffChainVersion", "offChainVersion");
         aliasMap.put("createdBy", "createdBy");

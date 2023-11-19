@@ -5,7 +5,6 @@
 
 package org.test.aptosformsdemo.domain.formdefinition;
 
-import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.domain.*;
 
@@ -54,21 +53,6 @@ public class CreateOrMergePatchFormDefinitionDto extends AbstractFormDefinitionC
     public void setStoreAccountAddress(String storeAccountAddress)
     {
         this.storeAccountAddress = storeAccountAddress;
-    }
-
-    /**
-     * Version
-     */
-    private BigInteger version;
-
-    public BigInteger getVersion()
-    {
-        return this.version;
-    }
-
-    public void setVersion(BigInteger version)
-    {
-        this.version = version;
     }
 
     /**
@@ -135,18 +119,6 @@ public class CreateOrMergePatchFormDefinitionDto extends AbstractFormDefinitionC
         this.isPropertyStoreAccountAddressRemoved = removed;
     }
 
-    private Boolean isPropertyVersionRemoved;
-
-    public Boolean getIsPropertyVersionRemoved()
-    {
-        return this.isPropertyVersionRemoved;
-    }
-
-    public void setIsPropertyVersionRemoved(Boolean removed)
-    {
-        this.isPropertyVersionRemoved = removed;
-    }
-
     private Boolean isPropertyActiveRemoved;
 
     public Boolean getIsPropertyActiveRemoved()
@@ -165,7 +137,6 @@ public class CreateOrMergePatchFormDefinitionDto extends AbstractFormDefinitionC
         command.setFormId(this.getFormId());
         command.setContractAddress(this.getContractAddress());
         command.setStoreAccountAddress(this.getStoreAccountAddress());
-        command.setVersion(this.getVersion());
         command.setActive(this.getActive());
     }
 
@@ -235,7 +206,6 @@ public class CreateOrMergePatchFormDefinitionDto extends AbstractFormDefinitionC
         command.setIsPropertyFormIdRemoved(this.getIsPropertyFormIdRemoved());
         command.setIsPropertyContractAddressRemoved(this.getIsPropertyContractAddressRemoved());
         command.setIsPropertyStoreAccountAddressRemoved(this.getIsPropertyStoreAccountAddressRemoved());
-        command.setIsPropertyVersionRemoved(this.getIsPropertyVersionRemoved());
         command.setIsPropertyActiveRemoved(this.getIsPropertyActiveRemoved());
     }
 

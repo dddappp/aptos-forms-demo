@@ -6,7 +6,6 @@
 package org.test.aptosformsdemo.domain.formdefinition.hibernate;
 
 import java.util.*;
-import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.domain.*;
 import org.hibernate.Session;
@@ -31,7 +30,7 @@ public class HibernateFormDefinitionStateQueryRepository implements FormDefiniti
         return this.sessionFactory.getCurrentSession();
     }
     
-    private static final Set<String> readOnlyPropertyPascalCaseNames = new HashSet<String>(Arrays.asList("FormSequenceId", "FormId", "ContractAddress", "StoreAccountAddress", "PageDefinitions", "Version", "OffChainVersion", "CreatedBy", "CreatedAt", "UpdatedBy", "UpdatedAt", "Active", "Deleted"));
+    private static final Set<String> readOnlyPropertyPascalCaseNames = new HashSet<String>(Arrays.asList("FormSequenceId", "FormId", "ContractAddress", "StoreAccountAddress", "PageDefinitions", "OffChainVersion", "CreatedBy", "CreatedAt", "UpdatedBy", "UpdatedAt", "Active", "Deleted"));
     
     private ReadOnlyProxyGenerator readOnlyProxyGenerator;
     

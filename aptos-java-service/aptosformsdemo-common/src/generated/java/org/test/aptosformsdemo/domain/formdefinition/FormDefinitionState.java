@@ -7,12 +7,11 @@ package org.test.aptosformsdemo.domain.formdefinition;
 
 import java.util.*;
 import java.math.*;
-import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.domain.*;
 import org.test.aptosformsdemo.specialization.Event;
 
-public interface FormDefinitionState extends VersionedAptosMoveObject
+public interface FormDefinitionState
 {
     Long VERSION_ZERO = 0L;
 
@@ -42,7 +41,7 @@ public interface FormDefinitionState extends VersionedAptosMoveObject
 
     EntityStateCollection<Integer, FormPageDefinitionState> getPageDefinitions();
 
-    interface MutableFormDefinitionState extends FormDefinitionState, VersionedAptosMoveObject.MutableVersionedAptosMoveObject {
+    interface MutableFormDefinitionState extends FormDefinitionState {
         void setFormSequenceId(Long formSequenceId);
 
         void setFormId(String formId);

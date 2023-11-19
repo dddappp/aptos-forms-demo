@@ -4,6 +4,8 @@ aggregates:
       StateLobPropertiesEnabled: false
       NoGeneratingMutateStateByEventMethods: false
       AutoGeneratingCrUDCommandsDisabled: false
+    shouldNotImplement: [ "VersionedAptosMoveObject" ]
+    eventShouldNotImplement: [ "AptosEvent", "HasStatus" ]
     eventVersionProperty:
       # The event version property has been set globally in order to generate event objects corresponding to the objects on-chain.
       #  aggregateEventVersionProperty:

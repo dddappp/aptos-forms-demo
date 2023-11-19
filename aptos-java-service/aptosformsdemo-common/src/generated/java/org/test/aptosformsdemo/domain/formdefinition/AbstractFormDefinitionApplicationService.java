@@ -8,7 +8,6 @@ package org.test.aptosformsdemo.domain.formdefinition;
 import java.util.*;
 import java.util.function.Consumer;
 import org.dddml.support.criterion.Criterion;
-import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.domain.*;
 import org.test.aptosformsdemo.specialization.*;

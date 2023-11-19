@@ -7,7 +7,6 @@ package org.test.aptosformsdemo.domain.formdefinition.hibernate;
 
 import java.io.Serializable;
 import java.util.*;
-import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.domain.*;
 import org.test.aptosformsdemo.specialization.*;

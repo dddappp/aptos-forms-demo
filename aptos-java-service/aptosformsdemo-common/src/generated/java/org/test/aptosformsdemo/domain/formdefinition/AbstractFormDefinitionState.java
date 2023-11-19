@@ -7,7 +7,6 @@ package org.test.aptosformsdemo.domain.formdefinition;
 
 import java.util.*;
 import java.math.*;
-import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.domain.*;
 import org.test.aptosformsdemo.specialization.*;
@@ -53,16 +52,6 @@ public abstract class AbstractFormDefinitionState implements FormDefinitionState
 
     public void setStoreAccountAddress(String storeAccountAddress) {
         this.storeAccountAddress = storeAccountAddress;
-    }
-
-    private BigInteger version;
-
-    public BigInteger getVersion() {
-        return this.version;
-    }
-
-    public void setVersion(BigInteger version) {
-        this.version = version;
     }
 
     private Long offChainVersion;
@@ -235,7 +224,6 @@ public abstract class AbstractFormDefinitionState implements FormDefinitionState
         this.setFormId(e.getFormId());
         this.setContractAddress(e.getContractAddress());
         this.setStoreAccountAddress(e.getStoreAccountAddress());
-        this.setVersion(e.getVersion());
         this.setActive(e.getActive());
 
         this.setDeleted(false);
@@ -256,7 +244,6 @@ public abstract class AbstractFormDefinitionState implements FormDefinitionState
         this.setFormId(s.getFormId());
         this.setContractAddress(s.getContractAddress());
         this.setStoreAccountAddress(s.getStoreAccountAddress());
-        this.setVersion(s.getVersion());
         this.setActive(s.getActive());
 
         if (s.getPageDefinitions() != null) {
@@ -317,13 +304,6 @@ public abstract class AbstractFormDefinitionState implements FormDefinitionState
             }
         } else {
             this.setStoreAccountAddress(e.getStoreAccountAddress());
-        }
-        if (e.getVersion() == null) {
-            if (e.getIsPropertyVersionRemoved() != null && e.getIsPropertyVersionRemoved()) {
-                this.setVersion(null);
-            }
-        } else {
-            this.setVersion(e.getVersion());
         }
         if (e.getActive() == null) {
             if (e.getIsPropertyActiveRemoved() != null && e.getIsPropertyActiveRemoved()) {

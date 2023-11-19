@@ -14,26 +14,6 @@
     <property name="createdBy" column="created_by" />
     <property name="createdAt" column="created_at" />
     <property name="commandId" column="command_id" />
-    <property name="aptosEventVersion">
-      <column name="aptos_event_version" sql-type="DECIMAL(20,0)" />
-    </property>
-    <property name="aptosEventSequenceNumber">
-      <column name="aptos_event_sequence_number" sql-type="DECIMAL(20,0)" />
-    </property>
-    <property name="aptosEventType">
-      <column name="aptos_event_type" length="500" />
-    </property>
-    <component name="aptosEventGuid" class="org.test.aptosformsdemo.domain.AptosEventGuid">
-      <property name="creationNumber">
-        <column name="aptos_event_guid_creation_number" sql-type="DECIMAL(20,0)" />
-      </property>
-      <property name="accountAddress">
-        <column name="aptos_event_guid_account_address" sql-type="VARCHAR(66)" />
-      </property>
-    </component>
-    <property name="status">
-      <column name="status" sql-type="CHAR(1)" />
-    </property>
     <property name="commandType" column="command_type" length="50" />
     <subclass name="AbstractFormDefinitionEvent$FormDefinitionLobEvent" discriminator-value="FormDefinitionLobEvent">
       <property name="dynamicProperties">
@@ -53,9 +33,6 @@
       <property name="storeAccountAddress">
         <column name="store_account_address" sql-type="VARCHAR(66)" />
       </property>
-      <property name="version">
-        <column name="version" sql-type="DECIMAL(20,0)" />
-      </property>
       <property name="active">
         <column name="active" />
       </property>
@@ -64,7 +41,6 @@
         <property name="isPropertyFormIdRemoved" column="is_property_form_id_removed" />
         <property name="isPropertyContractAddressRemoved" column="is_property_contract_address_removed" />
         <property name="isPropertyStoreAccountAddressRemoved" column="is_property_store_account_address_removed" />
-        <property name="isPropertyVersionRemoved" column="is_property_version_removed" />
         <property name="isPropertyActiveRemoved" column="is_property_active_removed" />
       </subclass>
       <subclass name="AbstractFormDefinitionEvent$SimpleFormDefinitionStateDeleted" discriminator-value="Deleted"></subclass>

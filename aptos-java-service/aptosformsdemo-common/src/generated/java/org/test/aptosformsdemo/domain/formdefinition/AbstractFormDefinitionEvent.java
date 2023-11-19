@@ -6,13 +6,12 @@
 package org.test.aptosformsdemo.domain.formdefinition;
 
 import java.util.*;
-import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.domain.*;
 import org.test.aptosformsdemo.specialization.*;
 import org.test.aptosformsdemo.domain.AbstractEvent;
 
-public abstract class AbstractFormDefinitionEvent extends AbstractEvent implements FormDefinitionEvent.SqlFormDefinitionEvent, AptosEvent.MutableAptosEvent, HasStatus.MutableHasStatus {
+public abstract class AbstractFormDefinitionEvent extends AbstractEvent implements FormDefinitionEvent.SqlFormDefinitionEvent {
     private FormDefinitionEventId formDefinitionEventId = new FormDefinitionEventId();
 
     public FormDefinitionEventId getFormDefinitionEventId() {
@@ -43,56 +42,6 @@ public abstract class AbstractFormDefinitionEvent extends AbstractEvent implemen
     
     public void setOffChainVersion(Long offChainVersion) {
         getFormDefinitionEventId().setOffChainVersion(offChainVersion);
-    }
-
-    private BigInteger aptosEventVersion;
-
-    public BigInteger getAptosEventVersion() {
-        return this.aptosEventVersion;
-    }
-    
-    public void setAptosEventVersion(BigInteger aptosEventVersion) {
-        this.aptosEventVersion = aptosEventVersion;
-    }
-
-    private BigInteger aptosEventSequenceNumber;
-
-    public BigInteger getAptosEventSequenceNumber() {
-        return this.aptosEventSequenceNumber;
-    }
-    
-    public void setAptosEventSequenceNumber(BigInteger aptosEventSequenceNumber) {
-        this.aptosEventSequenceNumber = aptosEventSequenceNumber;
-    }
-
-    private String aptosEventType;
-
-    public String getAptosEventType() {
-        return this.aptosEventType;
-    }
-    
-    public void setAptosEventType(String aptosEventType) {
-        this.aptosEventType = aptosEventType;
-    }
-
-    private AptosEventGuid aptosEventGuid;
-
-    public AptosEventGuid getAptosEventGuid() {
-        return this.aptosEventGuid;
-    }
-    
-    public void setAptosEventGuid(AptosEventGuid aptosEventGuid) {
-        this.aptosEventGuid = aptosEventGuid;
-    }
-
-    private String status;
-
-    public String getStatus() {
-        return this.status;
-    }
-    
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     private String createdBy;
@@ -244,18 +193,6 @@ public abstract class AbstractFormDefinitionEvent extends AbstractEvent implemen
             this.storeAccountAddress = storeAccountAddress;
         }
 
-        private BigInteger version;
-
-        public BigInteger getVersion()
-        {
-            return this.version;
-        }
-
-        public void setVersion(BigInteger version)
-        {
-            this.version = version;
-        }
-
         private Boolean active;
 
         public Boolean getActive()
@@ -380,16 +317,6 @@ public abstract class AbstractFormDefinitionEvent extends AbstractEvent implemen
 
         public void setIsPropertyStoreAccountAddressRemoved(Boolean removed) {
             this.isPropertyStoreAccountAddressRemoved = removed;
-        }
-
-        private Boolean isPropertyVersionRemoved;
-
-        public Boolean getIsPropertyVersionRemoved() {
-            return this.isPropertyVersionRemoved;
-        }
-
-        public void setIsPropertyVersionRemoved(Boolean removed) {
-            this.isPropertyVersionRemoved = removed;
         }
 
         private Boolean isPropertyActiveRemoved;
