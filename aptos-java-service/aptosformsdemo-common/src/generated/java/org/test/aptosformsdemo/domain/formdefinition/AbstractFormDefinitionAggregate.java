@@ -60,12 +60,18 @@ public abstract class AbstractFormDefinitionAggregate extends AbstractAggregate 
         e.setFormId(c.getFormId());
         e.setContractAddress(c.getContractAddress());
         e.setStoreAccountAddress(c.getStoreAccountAddress());
-        e.setStartPageName(c.getStartPageName());
         e.setVersion(c.getVersion());
         e.setActive(c.getActive());
         ((AbstractFormDefinitionEvent)e).setCommandId(c.getCommandId());
         e.setCreatedBy(c.getRequesterId());
         e.setCreatedAt((OffsetDateTime)ApplicationContext.current.getTimestampService().now(OffsetDateTime.class));
+        Long offChainVersion = c.getOffChainVersion();
+        for (FormPageDefinitionCommand.CreateFormPageDefinition innerCommand : c.getCreateFormPageDefinitionCommands()) {
+            throwOnInconsistentCommands(c, innerCommand);
+            FormPageDefinitionEvent.FormPageDefinitionStateCreated innerEvent = mapCreate(innerCommand, c, offChainVersion, this.state);
+            e.addFormPageDefinitionEvent(innerEvent);
+        }
+
         return e;
     }
 
@@ -75,18 +81,23 @@ public abstract class AbstractFormDefinitionAggregate extends AbstractAggregate 
         e.setFormId(c.getFormId());
         e.setContractAddress(c.getContractAddress());
         e.setStoreAccountAddress(c.getStoreAccountAddress());
-        e.setStartPageName(c.getStartPageName());
         e.setVersion(c.getVersion());
         e.setActive(c.getActive());
         e.setIsPropertyFormIdRemoved(c.getIsPropertyFormIdRemoved());
         e.setIsPropertyContractAddressRemoved(c.getIsPropertyContractAddressRemoved());
         e.setIsPropertyStoreAccountAddressRemoved(c.getIsPropertyStoreAccountAddressRemoved());
-        e.setIsPropertyStartPageNameRemoved(c.getIsPropertyStartPageNameRemoved());
         e.setIsPropertyVersionRemoved(c.getIsPropertyVersionRemoved());
         e.setIsPropertyActiveRemoved(c.getIsPropertyActiveRemoved());
         ((AbstractFormDefinitionEvent)e).setCommandId(c.getCommandId());
         e.setCreatedBy(c.getRequesterId());
         e.setCreatedAt((OffsetDateTime)ApplicationContext.current.getTimestampService().now(OffsetDateTime.class));
+        Long offChainVersion = c.getOffChainVersion();
+        for (FormPageDefinitionCommand innerCommand : c.getFormPageDefinitionCommands()) {
+            throwOnInconsistentCommands(c, innerCommand);
+            FormPageDefinitionEvent innerEvent = map(innerCommand, c, offChainVersion, this.state);
+            e.addFormPageDefinitionEvent(innerEvent);
+        }
+
         return e;
     }
 
@@ -98,6 +109,99 @@ public abstract class AbstractFormDefinitionAggregate extends AbstractAggregate 
         e.setCreatedAt((OffsetDateTime)ApplicationContext.current.getTimestampService().now(OffsetDateTime.class));
         return e;
     }
+
+
+    protected FormPageDefinitionEvent map(FormPageDefinitionCommand c, FormDefinitionCommand outerCommand, Long offChainVersion, FormDefinitionState outerState) {
+        FormPageDefinitionCommand.CreateFormPageDefinition create = (c.getCommandType().equals(CommandType.CREATE)) ? ((FormPageDefinitionCommand.CreateFormPageDefinition)c) : null;
+        if(create != null) {
+            return mapCreate(create, outerCommand, offChainVersion, outerState);
+        }
+
+        FormPageDefinitionCommand.MergePatchFormPageDefinition merge = (c.getCommandType().equals(CommandType.MERGE_PATCH)) ? ((FormPageDefinitionCommand.MergePatchFormPageDefinition)c) : null;
+        if(merge != null) {
+            return mapMergePatch(merge, outerCommand, offChainVersion, outerState);
+        }
+
+        FormPageDefinitionCommand.RemoveFormPageDefinition remove = (c.getCommandType().equals(CommandType.REMOVE)) ? ((FormPageDefinitionCommand.RemoveFormPageDefinition)c) : null;
+        if (remove != null) {
+            return mapRemove(remove, outerCommand, offChainVersion, outerState);
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    protected FormPageDefinitionEvent.FormPageDefinitionStateCreated mapCreate(FormPageDefinitionCommand.CreateFormPageDefinition c, FormDefinitionCommand outerCommand, Long offChainVersion, FormDefinitionState outerState) {
+        ((AbstractCommand)c).setRequesterId(outerCommand.getRequesterId());
+        FormPageDefinitionEventId stateEventId = new FormPageDefinitionEventId(outerState.getFormSequenceId(), c.getPageNumber(), offChainVersion);
+        FormPageDefinitionEvent.FormPageDefinitionStateCreated e = newFormPageDefinitionStateCreated(stateEventId);
+        FormPageDefinitionState s = ((EntityStateCollection.ModifiableEntityStateCollection<Integer, FormPageDefinitionState>)outerState.getPageDefinitions()).getOrAdd(c.getPageNumber());
+
+        e.setPageName(c.getPageName());
+        e.setMoveStateTableFieldName(c.getMoveStateTableFieldName());
+        e.setMoveStateStructName(c.getMoveStateStructName());
+        e.setMoveSubmitEventHandleFieldName(c.getMoveSubmitEventHandleFieldName());
+        e.setMoveUpdateEventHandleFieldName(c.getMoveUpdateEventHandleFieldName());
+        e.setActive(c.getActive());
+        e.setCreatedBy(c.getRequesterId());
+        e.setCreatedAt((OffsetDateTime)ApplicationContext.current.getTimestampService().now(OffsetDateTime.class));
+
+        return e;
+
+    }// END map(ICreate... ////////////////////////////
+
+    protected FormPageDefinitionEvent.FormPageDefinitionStateMergePatched mapMergePatch(FormPageDefinitionCommand.MergePatchFormPageDefinition c, FormDefinitionCommand outerCommand, Long offChainVersion, FormDefinitionState outerState) {
+        ((AbstractCommand)c).setRequesterId(outerCommand.getRequesterId());
+        FormPageDefinitionEventId stateEventId = new FormPageDefinitionEventId(outerState.getFormSequenceId(), c.getPageNumber(), offChainVersion);
+        FormPageDefinitionEvent.FormPageDefinitionStateMergePatched e = newFormPageDefinitionStateMergePatched(stateEventId);
+        FormPageDefinitionState s = ((EntityStateCollection.ModifiableEntityStateCollection<Integer, FormPageDefinitionState>)outerState.getPageDefinitions()).getOrAdd(c.getPageNumber());
+
+        e.setPageName(c.getPageName());
+        e.setMoveStateTableFieldName(c.getMoveStateTableFieldName());
+        e.setMoveStateStructName(c.getMoveStateStructName());
+        e.setMoveSubmitEventHandleFieldName(c.getMoveSubmitEventHandleFieldName());
+        e.setMoveUpdateEventHandleFieldName(c.getMoveUpdateEventHandleFieldName());
+        e.setActive(c.getActive());
+        e.setIsPropertyPageNameRemoved(c.getIsPropertyPageNameRemoved());
+        e.setIsPropertyMoveStateTableFieldNameRemoved(c.getIsPropertyMoveStateTableFieldNameRemoved());
+        e.setIsPropertyMoveStateStructNameRemoved(c.getIsPropertyMoveStateStructNameRemoved());
+        e.setIsPropertyMoveSubmitEventHandleFieldNameRemoved(c.getIsPropertyMoveSubmitEventHandleFieldNameRemoved());
+        e.setIsPropertyMoveUpdateEventHandleFieldNameRemoved(c.getIsPropertyMoveUpdateEventHandleFieldNameRemoved());
+        e.setIsPropertyActiveRemoved(c.getIsPropertyActiveRemoved());
+
+        e.setCreatedBy(c.getRequesterId());
+        e.setCreatedAt((OffsetDateTime)ApplicationContext.current.getTimestampService().now(OffsetDateTime.class));
+
+        return e;
+
+    }// END map(IMergePatch... ////////////////////////////
+
+    protected FormPageDefinitionEvent.FormPageDefinitionStateRemoved mapRemove(FormPageDefinitionCommand.RemoveFormPageDefinition c, FormDefinitionCommand outerCommand, Long offChainVersion, FormDefinitionState outerState) {
+        ((AbstractCommand)c).setRequesterId(outerCommand.getRequesterId());
+        FormPageDefinitionEventId stateEventId = new FormPageDefinitionEventId(outerState.getFormSequenceId(), c.getPageNumber(), offChainVersion);
+        FormPageDefinitionEvent.FormPageDefinitionStateRemoved e = newFormPageDefinitionStateRemoved(stateEventId);
+
+        e.setCreatedBy(c.getRequesterId());
+        e.setCreatedAt((OffsetDateTime)ApplicationContext.current.getTimestampService().now(OffsetDateTime.class));
+
+        return e;
+
+    }// END map(IRemove... ////////////////////////////
+
+    protected void throwOnInconsistentCommands(FormDefinitionCommand command, FormPageDefinitionCommand innerCommand) {
+        AbstractFormDefinitionCommand properties = command instanceof AbstractFormDefinitionCommand ? (AbstractFormDefinitionCommand) command : null;
+        AbstractFormPageDefinitionCommand innerProperties = innerCommand instanceof AbstractFormPageDefinitionCommand ? (AbstractFormPageDefinitionCommand) innerCommand : null;
+        if (properties == null || innerProperties == null) { return; }
+        String outerFormSequenceIdName = "FormSequenceId";
+        Long outerFormSequenceIdValue = properties.getFormSequenceId();
+        String innerFormDefinitionFormSequenceIdName = "FormDefinitionFormSequenceId";
+        Long innerFormDefinitionFormSequenceIdValue = innerProperties.getFormDefinitionFormSequenceId();
+        if (innerFormDefinitionFormSequenceIdValue == null) {
+            innerProperties.setFormDefinitionFormSequenceId(outerFormSequenceIdValue);
+        }
+        else if (innerFormDefinitionFormSequenceIdValue != outerFormSequenceIdValue 
+            && (innerFormDefinitionFormSequenceIdValue == null || innerFormDefinitionFormSequenceIdValue != null && !innerFormDefinitionFormSequenceIdValue.equals(outerFormSequenceIdValue))) {
+            throw DomainError.named("inconsistentId", "Outer %1$s %2$s NOT equals inner %3$s %4$s", outerFormSequenceIdName, outerFormSequenceIdValue, innerFormDefinitionFormSequenceIdName, innerFormDefinitionFormSequenceIdValue);
+        }
+    }// END throwOnInconsistentCommands /////////////////////
 
 
     ////////////////////////
@@ -139,6 +243,18 @@ public abstract class AbstractFormDefinitionAggregate extends AbstractAggregate 
 
     protected FormDefinitionEvent.FormDefinitionStateDeleted newFormDefinitionStateDeleted(FormDefinitionEventId stateEventId) {
         return new AbstractFormDefinitionEvent.SimpleFormDefinitionStateDeleted(stateEventId);
+    }
+
+    protected FormPageDefinitionEvent.FormPageDefinitionStateCreated newFormPageDefinitionStateCreated(FormPageDefinitionEventId stateEventId) {
+        return new AbstractFormPageDefinitionEvent.SimpleFormPageDefinitionStateCreated(stateEventId);
+    }
+
+    protected FormPageDefinitionEvent.FormPageDefinitionStateMergePatched newFormPageDefinitionStateMergePatched(FormPageDefinitionEventId stateEventId) {
+        return new AbstractFormPageDefinitionEvent.SimpleFormPageDefinitionStateMergePatched(stateEventId);
+    }
+
+    protected FormPageDefinitionEvent.FormPageDefinitionStateRemoved newFormPageDefinitionStateRemoved(FormPageDefinitionEventId stateEventId) {
+        return new AbstractFormPageDefinitionEvent.SimpleFormPageDefinitionStateRemoved(stateEventId);
     }
 
 

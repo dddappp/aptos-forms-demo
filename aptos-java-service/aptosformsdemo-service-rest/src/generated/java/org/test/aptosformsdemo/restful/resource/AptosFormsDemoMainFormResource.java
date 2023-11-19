@@ -129,11 +129,11 @@ public class AptosFormsDemoMainFormResource {
      * Retrieve.
      * Retrieves AptosFormsDemoMainForm with the specified ID.
      */
-    @GetMapping("{formSequenceIdAndSignerAddress}")
+    @GetMapping("{formPageAndSignerAddress}")
     @Transactional(readOnly = true)
-    public AptosFormsDemoMainFormStateDto get(@PathVariable("formSequenceIdAndSignerAddress") String formSequenceIdAndSignerAddress, @RequestParam(value = "fields", required = false) String fields) {
+    public AptosFormsDemoMainFormStateDto get(@PathVariable("formPageAndSignerAddress") String formPageAndSignerAddress, @RequestParam(value = "fields", required = false) String fields) {
         try {
-            FormSequenceIdAndAddress idObj = AptosFormsDemoMainFormResourceUtils.parseIdString(formSequenceIdAndSignerAddress);
+            FormPageAndAddress idObj = AptosFormsDemoMainFormResourceUtils.parseIdString(formPageAndSignerAddress);
             AptosFormsDemoMainFormState state = aptosFormsDemoMainFormApplicationService.get(idObj);
             if (state == null) { return null; }
 
@@ -171,16 +171,16 @@ public class AptosFormsDemoMainFormResource {
     }
 
 
-    @PutMapping("{formSequenceIdAndSignerAddress}/_commands/Submit")
-    public void submit(@PathVariable("formSequenceIdAndSignerAddress") String formSequenceIdAndSignerAddress, @RequestBody AptosFormsDemoMainFormCommands.Submit content) {
+    @PutMapping("{formPageAndSignerAddress}/_commands/Submit")
+    public void submit(@PathVariable("formPageAndSignerAddress") String formPageAndSignerAddress, @RequestBody AptosFormsDemoMainFormCommands.Submit content) {
         try {
 
             AptosFormsDemoMainFormCommands.Submit cmd = content;//.toSubmit();
-            FormSequenceIdAndAddress idObj = AptosFormsDemoMainFormResourceUtils.parseIdString(formSequenceIdAndSignerAddress);
-            if (cmd.getFormSequenceIdAndSignerAddress() == null) {
-                cmd.setFormSequenceIdAndSignerAddress(idObj);
-            } else if (!cmd.getFormSequenceIdAndSignerAddress().equals(idObj)) {
-                throw DomainError.named("inconsistentId", "Argument Id %1$s NOT equals body Id %2$s", formSequenceIdAndSignerAddress, cmd.getFormSequenceIdAndSignerAddress());
+            FormPageAndAddress idObj = AptosFormsDemoMainFormResourceUtils.parseIdString(formPageAndSignerAddress);
+            if (cmd.getFormPageAndSignerAddress() == null) {
+                cmd.setFormPageAndSignerAddress(idObj);
+            } else if (!cmd.getFormPageAndSignerAddress().equals(idObj)) {
+                throw DomainError.named("inconsistentId", "Argument Id %1$s NOT equals body Id %2$s", formPageAndSignerAddress, cmd.getFormPageAndSignerAddress());
             }
             cmd.setRequesterId(SecurityContextUtil.getRequesterId());
             aptosFormsDemoMainFormApplicationService.when(cmd);
@@ -189,16 +189,16 @@ public class AptosFormsDemoMainFormResource {
     }
 
 
-    @PutMapping("{formSequenceIdAndSignerAddress}/_commands/Update")
-    public void update(@PathVariable("formSequenceIdAndSignerAddress") String formSequenceIdAndSignerAddress, @RequestBody AptosFormsDemoMainFormCommands.Update content) {
+    @PutMapping("{formPageAndSignerAddress}/_commands/Update")
+    public void update(@PathVariable("formPageAndSignerAddress") String formPageAndSignerAddress, @RequestBody AptosFormsDemoMainFormCommands.Update content) {
         try {
 
             AptosFormsDemoMainFormCommands.Update cmd = content;//.toUpdate();
-            FormSequenceIdAndAddress idObj = AptosFormsDemoMainFormResourceUtils.parseIdString(formSequenceIdAndSignerAddress);
-            if (cmd.getFormSequenceIdAndSignerAddress() == null) {
-                cmd.setFormSequenceIdAndSignerAddress(idObj);
-            } else if (!cmd.getFormSequenceIdAndSignerAddress().equals(idObj)) {
-                throw DomainError.named("inconsistentId", "Argument Id %1$s NOT equals body Id %2$s", formSequenceIdAndSignerAddress, cmd.getFormSequenceIdAndSignerAddress());
+            FormPageAndAddress idObj = AptosFormsDemoMainFormResourceUtils.parseIdString(formPageAndSignerAddress);
+            if (cmd.getFormPageAndSignerAddress() == null) {
+                cmd.setFormPageAndSignerAddress(idObj);
+            } else if (!cmd.getFormPageAndSignerAddress().equals(idObj)) {
+                throw DomainError.named("inconsistentId", "Argument Id %1$s NOT equals body Id %2$s", formPageAndSignerAddress, cmd.getFormPageAndSignerAddress());
             }
             cmd.setRequesterId(SecurityContextUtil.getRequesterId());
             aptosFormsDemoMainFormApplicationService.when(cmd);
@@ -219,24 +219,24 @@ public class AptosFormsDemoMainFormResource {
         } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
     }
 
-    @GetMapping("{formSequenceIdAndSignerAddress}/_events/{version}")
+    @GetMapping("{formPageAndSignerAddress}/_events/{version}")
     @Transactional(readOnly = true)
-    public AptosFormsDemoMainFormEvent getEvent(@PathVariable("formSequenceIdAndSignerAddress") String formSequenceIdAndSignerAddress, @PathVariable("version") long version) {
+    public AptosFormsDemoMainFormEvent getEvent(@PathVariable("formPageAndSignerAddress") String formPageAndSignerAddress, @PathVariable("version") long version) {
         try {
 
-            FormSequenceIdAndAddress idObj = AptosFormsDemoMainFormResourceUtils.parseIdString(formSequenceIdAndSignerAddress);
+            FormPageAndAddress idObj = AptosFormsDemoMainFormResourceUtils.parseIdString(formPageAndSignerAddress);
             //AptosFormsDemoMainFormStateEventDtoConverter dtoConverter = getAptosFormsDemoMainFormStateEventDtoConverter();
             return aptosFormsDemoMainFormApplicationService.getEvent(idObj, version);
 
         } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
     }
 
-    @GetMapping("{formSequenceIdAndSignerAddress}/_historyStates/{version}")
+    @GetMapping("{formPageAndSignerAddress}/_historyStates/{version}")
     @Transactional(readOnly = true)
-    public AptosFormsDemoMainFormStateDto getHistoryState(@PathVariable("formSequenceIdAndSignerAddress") String formSequenceIdAndSignerAddress, @PathVariable("version") long version, @RequestParam(value = "fields", required = false) String fields) {
+    public AptosFormsDemoMainFormStateDto getHistoryState(@PathVariable("formPageAndSignerAddress") String formPageAndSignerAddress, @PathVariable("version") long version, @RequestParam(value = "fields", required = false) String fields) {
         try {
 
-            FormSequenceIdAndAddress idObj = AptosFormsDemoMainFormResourceUtils.parseIdString(formSequenceIdAndSignerAddress);
+            FormPageAndAddress idObj = AptosFormsDemoMainFormResourceUtils.parseIdString(formPageAndSignerAddress);
             AptosFormsDemoMainFormStateDto.DtoConverter dtoConverter = new AptosFormsDemoMainFormStateDto.DtoConverter();
             if (StringHelper.isNullOrEmpty(fields)) {
                 dtoConverter.setAllFieldsReturned(true);
@@ -271,17 +271,17 @@ public class AptosFormsDemoMainFormResource {
  
     public static class AptosFormsDemoMainFormResourceUtils {
 
-        public static FormSequenceIdAndAddress parseIdString(String idString) {
-            TextFormatter<FormSequenceIdAndAddress> formatter = AptosFormsDemoMainFormMetadata.URL_ID_TEXT_FORMATTER;
+        public static FormPageAndAddress parseIdString(String idString) {
+            TextFormatter<FormPageAndAddress> formatter = AptosFormsDemoMainFormMetadata.URL_ID_TEXT_FORMATTER;
             return formatter.parse(idString);
         }
 
-        public static void setNullIdOrThrowOnInconsistentIds(String formSequenceIdAndSignerAddress, AptosFormsDemoMainFormCommand value) {
-            FormSequenceIdAndAddress idObj = parseIdString(formSequenceIdAndSignerAddress);
-            if (value.getFormSequenceIdAndSignerAddress() == null) {
-                value.setFormSequenceIdAndSignerAddress(idObj);
-            } else if (!value.getFormSequenceIdAndSignerAddress().equals(idObj)) {
-                throw DomainError.named("inconsistentId", "Argument Id %1$s NOT equals body Id %2$s", formSequenceIdAndSignerAddress, value.getFormSequenceIdAndSignerAddress());
+        public static void setNullIdOrThrowOnInconsistentIds(String formPageAndSignerAddress, AptosFormsDemoMainFormCommand value) {
+            FormPageAndAddress idObj = parseIdString(formPageAndSignerAddress);
+            if (value.getFormPageAndSignerAddress() == null) {
+                value.setFormPageAndSignerAddress(idObj);
+            } else if (!value.getFormPageAndSignerAddress().equals(idObj)) {
+                throw DomainError.named("inconsistentId", "Argument Id %1$s NOT equals body Id %2$s", formPageAndSignerAddress, value.getFormPageAndSignerAddress());
             }
         }
     
@@ -333,11 +333,11 @@ public class AptosFormsDemoMainFormResource {
             return filter.entrySet();
         }
 
-        public static AptosFormsDemoMainFormStateDto[] toAptosFormsDemoMainFormStateDtoArray(Iterable<FormSequenceIdAndAddress> ids) {
+        public static AptosFormsDemoMainFormStateDto[] toAptosFormsDemoMainFormStateDtoArray(Iterable<FormPageAndAddress> ids) {
             List<AptosFormsDemoMainFormStateDto> states = new ArrayList<>();
             ids.forEach(i -> {
                 AptosFormsDemoMainFormStateDto dto = new AptosFormsDemoMainFormStateDto();
-                dto.setFormSequenceIdAndSignerAddress(i);
+                dto.setFormPageAndSignerAddress(i);
                 states.add(dto);
             });
             return states.toArray(new AptosFormsDemoMainFormStateDto[0]);

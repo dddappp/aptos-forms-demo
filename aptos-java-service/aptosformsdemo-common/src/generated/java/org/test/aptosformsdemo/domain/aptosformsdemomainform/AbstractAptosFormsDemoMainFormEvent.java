@@ -23,12 +23,12 @@ public abstract class AbstractAptosFormsDemoMainFormEvent extends AbstractEvent 
         this.aptosFormsDemoMainFormEventId = eventId;
     }
     
-    public FormSequenceIdAndAddress getFormSequenceIdAndSignerAddress() {
-        return getAptosFormsDemoMainFormEventId().getFormSequenceIdAndSignerAddress();
+    public FormPageAndAddress getFormPageAndSignerAddress() {
+        return getAptosFormsDemoMainFormEventId().getFormPageAndSignerAddress();
     }
 
-    public void setFormSequenceIdAndSignerAddress(FormSequenceIdAndAddress formSequenceIdAndSignerAddress) {
-        getAptosFormsDemoMainFormEventId().setFormSequenceIdAndSignerAddress(formSequenceIdAndSignerAddress);
+    public void setFormPageAndSignerAddress(FormPageAndAddress formPageAndSignerAddress) {
+        getAptosFormsDemoMainFormEventId().setFormPageAndSignerAddress(formPageAndSignerAddress);
     }
 
     private boolean eventReadOnly;

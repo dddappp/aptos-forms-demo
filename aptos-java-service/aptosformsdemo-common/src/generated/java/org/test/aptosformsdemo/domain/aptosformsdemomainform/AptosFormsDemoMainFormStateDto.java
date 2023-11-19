@@ -15,16 +15,16 @@ import org.test.aptosformsdemo.specialization.*;
 
 public class AptosFormsDemoMainFormStateDto {
 
-    private FormSequenceIdAndAddress formSequenceIdAndSignerAddress;
+    private FormPageAndAddress formPageAndSignerAddress;
 
-    public FormSequenceIdAndAddress getFormSequenceIdAndSignerAddress()
+    public FormPageAndAddress getFormPageAndSignerAddress()
     {
-        return this.formSequenceIdAndSignerAddress;
+        return this.formPageAndSignerAddress;
     }
 
-    public void setFormSequenceIdAndSignerAddress(FormSequenceIdAndAddress formSequenceIdAndSignerAddress)
+    public void setFormPageAndSignerAddress(FormPageAndAddress formPageAndSignerAddress)
     {
-        this.formSequenceIdAndSignerAddress = formSequenceIdAndSignerAddress;
+        this.formPageAndSignerAddress = formPageAndSignerAddress;
     }
 
     private BigInteger version;
@@ -150,8 +150,8 @@ public class AptosFormsDemoMainFormStateDto {
                 return null;
             }
             AptosFormsDemoMainFormStateDto dto = new AptosFormsDemoMainFormStateDto();
-            if (returnedFieldsContains("FormSequenceIdAndSignerAddress")) {
-                dto.setFormSequenceIdAndSignerAddress(state.getFormSequenceIdAndSignerAddress());
+            if (returnedFieldsContains("FormPageAndSignerAddress")) {
+                dto.setFormPageAndSignerAddress(state.getFormPageAndSignerAddress());
             }
             if (returnedFieldsContains("Version")) {
                 dto.setVersion(state.getVersion());

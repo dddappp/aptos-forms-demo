@@ -31,7 +31,7 @@ public class HibernateAptosFormsDemoMainFormStateRepository implements AptosForm
         return this.sessionFactory.getCurrentSession();
     }
     
-    private static final Set<String> readOnlyPropertyPascalCaseNames = new HashSet<String>(Arrays.asList("FormSequenceIdAndSignerAddress", "Fr_5pqi", "Fr_duif", "Fr_6i34", "Fr_8xjs", "Fr_9c3f", "Fr_4ok6", "Fr_b3ub", "Fr_1z7o", "Fr_d8rw", "Fr_dy3l", "Fr_6f68", "Fr_47yy", "Fr_gh3o", "Fr_fbba", "Fr_hhzp", "Single_text1", "Version", "OffChainVersion", "CreatedBy", "CreatedAt", "UpdatedBy", "UpdatedAt", "Active", "Deleted"));
+    private static final Set<String> readOnlyPropertyPascalCaseNames = new HashSet<String>(Arrays.asList("FormPageAndSignerAddress", "Fr_5pqi", "Fr_duif", "Fr_6i34", "Fr_8xjs", "Fr_9c3f", "Fr_4ok6", "Fr_b3ub", "Fr_1z7o", "Fr_d8rw", "Fr_dy3l", "Fr_6f68", "Fr_47yy", "Fr_gh3o", "Fr_fbba", "Fr_hhzp", "Single_text1", "Version", "OffChainVersion", "CreatedBy", "CreatedAt", "UpdatedBy", "UpdatedAt", "Active", "Deleted"));
     
     private ReadOnlyProxyGenerator readOnlyProxyGenerator;
     
@@ -44,11 +44,11 @@ public class HibernateAptosFormsDemoMainFormStateRepository implements AptosForm
     }
 
     @Transactional(readOnly = true)
-    public AptosFormsDemoMainFormState get(FormSequenceIdAndAddress id, boolean nullAllowed) {
+    public AptosFormsDemoMainFormState get(FormPageAndAddress id, boolean nullAllowed) {
         AptosFormsDemoMainFormState.SqlAptosFormsDemoMainFormState state = (AptosFormsDemoMainFormState.SqlAptosFormsDemoMainFormState)getCurrentSession().get(AbstractAptosFormsDemoMainFormState.SimpleAptosFormsDemoMainFormState.class, id);
         if (!nullAllowed && state == null) {
             state = new AbstractAptosFormsDemoMainFormState.SimpleAptosFormsDemoMainFormState();
-            state.setFormSequenceIdAndSignerAddress(id);
+            state.setFormPageAndSignerAddress(id);
         }
         if (getReadOnlyProxyGenerator() != null && state != null) {
             return (AptosFormsDemoMainFormState) getReadOnlyProxyGenerator().createProxy(state, new Class[]{AptosFormsDemoMainFormState.SqlAptosFormsDemoMainFormState.class}, "getStateReadOnly", readOnlyPropertyPascalCaseNames);
@@ -76,7 +76,7 @@ public class HibernateAptosFormsDemoMainFormStateRepository implements AptosForm
     }
 
     public void merge(AptosFormsDemoMainFormState detached) {
-        AptosFormsDemoMainFormState persistent = getCurrentSession().get(AbstractAptosFormsDemoMainFormState.SimpleAptosFormsDemoMainFormState.class, detached.getFormSequenceIdAndSignerAddress());
+        AptosFormsDemoMainFormState persistent = getCurrentSession().get(AbstractAptosFormsDemoMainFormState.SimpleAptosFormsDemoMainFormState.class, detached.getFormPageAndSignerAddress());
         if (persistent != null) {
             merge(persistent, detached);
             getCurrentSession().merge(detached);

@@ -298,6 +298,133 @@ public class FormDefinitionResource {
         } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
     }
 
+    /**
+     * Retrieve.
+     * Retrieves FormPageDefinition with the specified PageNumber.
+     */
+    @GetMapping("{formSequenceId}/FormPageDefinitions/{pageNumber}")
+    @Transactional(readOnly = true)
+    public FormPageDefinitionStateDto getFormPageDefinition(@PathVariable("formSequenceId") Long formSequenceId, @PathVariable("pageNumber") Integer pageNumber) {
+        try {
+
+            FormPageDefinitionState state = formDefinitionApplicationService.getFormPageDefinition(formSequenceId, pageNumber);
+            if (state == null) { return null; }
+            FormPageDefinitionStateDto.DtoConverter dtoConverter = new FormPageDefinitionStateDto.DtoConverter();
+            FormPageDefinitionStateDto stateDto = dtoConverter.toFormPageDefinitionStateDto(state);
+            dtoConverter.setAllFieldsReturned(true);
+            return stateDto;
+
+        } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
+    }
+
+    /**
+     * Create or update.
+     * Create or update FormPageDefinition
+     */
+    @PutMapping(path = "{formSequenceId}/FormPageDefinitions/{pageNumber}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void putFormPageDefinition(@PathVariable("formSequenceId") Long formSequenceId, @PathVariable("pageNumber") Integer pageNumber,
+                       @RequestParam(value = "commandId", required = false) String commandId,
+                       @RequestParam(value = "version", required = false) Long version,
+                       @RequestParam(value = "requesterId", required = false) String requesterId,
+                       @RequestBody CreateOrMergePatchFormPageDefinitionDto.MergePatchFormPageDefinitionDto body) {
+        try {
+            FormDefinitionCommand.MergePatchFormDefinition mergePatchFormDefinition = new CreateOrMergePatchFormDefinitionDto.MergePatchFormDefinitionDto();
+            mergePatchFormDefinition.setFormSequenceId(formSequenceId);
+            mergePatchFormDefinition.setCommandId(commandId != null && !commandId.isEmpty() ? commandId : body.getCommandId());
+            if (version != null) { mergePatchFormDefinition.setOffChainVersion(version); }
+            mergePatchFormDefinition.setRequesterId(requesterId != null && !requesterId.isEmpty() ? requesterId : body.getRequesterId());
+            FormPageDefinitionCommand.MergePatchFormPageDefinition mergePatchFormPageDefinition = body;//.toMergePatchFormPageDefinition();
+            mergePatchFormPageDefinition.setPageNumber(pageNumber);
+            mergePatchFormDefinition.getFormPageDefinitionCommands().add(mergePatchFormPageDefinition);
+            mergePatchFormDefinition.setRequesterId(SecurityContextUtil.getRequesterId());
+            formDefinitionApplicationService.when(mergePatchFormDefinition);
+        } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
+    }
+
+    /**
+     * Delete.
+     * Delete FormPageDefinition
+     */
+    @DeleteMapping("{formSequenceId}/FormPageDefinitions/{pageNumber}")
+    public void deleteFormPageDefinition(@PathVariable("formSequenceId") Long formSequenceId, @PathVariable("pageNumber") Integer pageNumber,
+                       @RequestParam(value = "commandId", required = false) String commandId,
+                       @RequestParam(value = "version", required = false) Long version,
+                       @RequestParam(value = "requesterId", required = false) String requesterId) {
+        try {
+            FormDefinitionCommand.MergePatchFormDefinition mergePatchFormDefinition = new CreateOrMergePatchFormDefinitionDto.MergePatchFormDefinitionDto();
+            mergePatchFormDefinition.setFormSequenceId(formSequenceId);
+            mergePatchFormDefinition.setCommandId(commandId);// != null && !commandId.isEmpty() ? commandId : body.getCommandId());
+            if (version != null) { 
+                mergePatchFormDefinition.setOffChainVersion(version); 
+            } else {
+                mergePatchFormDefinition.setOffChainVersion(formDefinitionApplicationService.get(formSequenceId).getOffChainVersion());
+            }
+            mergePatchFormDefinition.setRequesterId(requesterId);// != null && !requesterId.isEmpty() ? requesterId : body.getRequesterId());
+            FormPageDefinitionCommand.RemoveFormPageDefinition removeFormPageDefinition = new RemoveFormPageDefinitionDto();
+            removeFormPageDefinition.setPageNumber(pageNumber);
+            mergePatchFormDefinition.getFormPageDefinitionCommands().add(removeFormPageDefinition);
+            mergePatchFormDefinition.setRequesterId(SecurityContextUtil.getRequesterId());
+            formDefinitionApplicationService.when(mergePatchFormDefinition);
+        } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
+    }
+
+    /**
+     * FormPageDefinition List
+     */
+    @GetMapping("{formSequenceId}/FormPageDefinitions")
+    @Transactional(readOnly = true)
+    public FormPageDefinitionStateDto[] getFormPageDefinitions(@PathVariable("formSequenceId") Long formSequenceId,
+                    @RequestParam(value = "sort", required = false) String sort,
+                    @RequestParam(value = "fields", required = false) String fields,
+                    @RequestParam(value = "filter", required = false) String filter,
+                     HttpServletRequest request) {
+        try {
+            CriterionDto criterion = null;
+            if (!StringHelper.isNullOrEmpty(filter)) {
+                criterion = new ObjectMapper().readValue(filter, CriterionDto.class);
+            } else {
+                criterion = QueryParamUtils.getQueryCriterionDto(request.getParameterMap().entrySet().stream()
+                    .filter(kv -> FormDefinitionResourceUtils.getFormPageDefinitionFilterPropertyName(kv.getKey()) != null)
+                    .collect(Collectors.toMap(kv -> kv.getKey(), kv -> kv.getValue())));
+            }
+            Criterion c = CriterionDto.toSubclass(criterion, getCriterionTypeConverter(), getPropertyTypeResolver(), 
+                n -> (FormPageDefinitionMetadata.aliasMap.containsKey(n) ? FormPageDefinitionMetadata.aliasMap.get(n) : n));
+            Iterable<FormPageDefinitionState> states = formDefinitionApplicationService.getFormPageDefinitions(formSequenceId, c,
+                    FormDefinitionResourceUtils.getFormPageDefinitionQuerySorts(request.getParameterMap()));
+            if (states == null) { return null; }
+            FormPageDefinitionStateDto.DtoConverter dtoConverter = new FormPageDefinitionStateDto.DtoConverter();
+            if (StringHelper.isNullOrEmpty(fields)) {
+                dtoConverter.setAllFieldsReturned(true);
+            } else {
+                dtoConverter.setReturnedFieldsString(fields);
+            }
+            return dtoConverter.toFormPageDefinitionStateDtoArray(states);
+        } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
+    }
+
+    /**
+     * Create.
+     * Create FormPageDefinition
+     */
+    @PostMapping(path = "{formSequenceId}/FormPageDefinitions", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void postFormPageDefinitions(@PathVariable("formSequenceId") Long formSequenceId,
+                       @RequestParam(value = "commandId", required = false) String commandId,
+                       @RequestParam(value = "version", required = false) Long version,
+                       @RequestParam(value = "requesterId", required = false) String requesterId,
+                       @RequestBody CreateOrMergePatchFormPageDefinitionDto.CreateFormPageDefinitionDto body) {
+        try {
+            FormDefinitionCommand.MergePatchFormDefinition mergePatchFormDefinition = new AbstractFormDefinitionCommand.SimpleMergePatchFormDefinition();
+            mergePatchFormDefinition.setFormSequenceId(formSequenceId);
+            mergePatchFormDefinition.setCommandId(commandId != null && !commandId.isEmpty() ? commandId : body.getCommandId());
+            if (version != null) { mergePatchFormDefinition.setOffChainVersion(version); }
+            mergePatchFormDefinition.setRequesterId(requesterId != null && !requesterId.isEmpty() ? requesterId : body.getRequesterId());
+            FormPageDefinitionCommand.CreateFormPageDefinition createFormPageDefinition = body.toCreateFormPageDefinition();
+            mergePatchFormDefinition.getFormPageDefinitionCommands().add(createFormPageDefinition);
+            mergePatchFormDefinition.setRequesterId(SecurityContextUtil.getRequesterId());
+            formDefinitionApplicationService.when(mergePatchFormDefinition);
+        } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
+    }
+
 
 
     //protected  FormDefinitionStateEventDtoConverter getFormDefinitionStateEventDtoConverter() {
@@ -313,6 +440,15 @@ public class FormDefinitionResource {
             @Override
             public Class resolveTypeByPropertyName(String propertyName) {
                 return FormDefinitionResourceUtils.getFilterPropertyType(propertyName);
+            }
+        };
+    }
+
+    protected PropertyTypeResolver getFormPageDefinitionPropertyTypeResolver() {
+        return new PropertyTypeResolver() {
+            @Override
+            public Class resolveTypeByPropertyName(String propertyName) {
+                return FormDefinitionResourceUtils.getFormPageDefinitionFilterPropertyType(propertyName);
             }
         };
     }
@@ -371,6 +507,54 @@ public class FormDefinitionResource {
                     String pName = getFilterPropertyName(key);
                     if (!StringHelper.isNullOrEmpty(pName)) {
                         Class pClass = getFilterPropertyType(pName);
+                        filter.put(pName, ApplicationContext.current.getTypeConverter().convertFromString(pClass, values[0]));
+                    }
+                }
+            });
+            return filter.entrySet();
+        }
+
+        public static List<String> getFormPageDefinitionQueryOrders(String str, String separator) {
+            return QueryParamUtils.getQueryOrders(str, separator, FormPageDefinitionMetadata.aliasMap);
+        }
+
+        public static List<String> getFormPageDefinitionQuerySorts(Map<String, String[]> queryNameValuePairs) {
+            String[] values = queryNameValuePairs.get("sort");
+            return QueryParamUtils.getQuerySorts(values, FormPageDefinitionMetadata.aliasMap);
+        }
+
+        public static String getFormPageDefinitionFilterPropertyName(String fieldName) {
+            if ("sort".equalsIgnoreCase(fieldName)
+                    || "firstResult".equalsIgnoreCase(fieldName)
+                    || "maxResults".equalsIgnoreCase(fieldName)
+                    || "fields".equalsIgnoreCase(fieldName)) {
+                return null;
+            }
+            if (FormPageDefinitionMetadata.aliasMap.containsKey(fieldName)) {
+                return FormPageDefinitionMetadata.aliasMap.get(fieldName);
+            }
+            return null;
+        }
+
+        public static Class getFormPageDefinitionFilterPropertyType(String propertyName) {
+            if (FormPageDefinitionMetadata.propertyTypeMap.containsKey(propertyName)) {
+                String propertyType = FormPageDefinitionMetadata.propertyTypeMap.get(propertyName);
+                if (!StringHelper.isNullOrEmpty(propertyType)) {
+                    if (BoundedContextMetadata.CLASS_MAP.containsKey(propertyType)) {
+                        return BoundedContextMetadata.CLASS_MAP.get(propertyType);
+                    }
+                }
+            }
+            return String.class;
+        }
+
+        public static Iterable<Map.Entry<String, Object>> getFormPageDefinitionQueryFilterMap(Map<String, String[]> queryNameValuePairs) {
+            Map<String, Object> filter = new HashMap<>();
+            queryNameValuePairs.forEach((key, values) -> {
+                if (values.length > 0) {
+                    String pName = getFormPageDefinitionFilterPropertyName(key);
+                    if (!StringHelper.isNullOrEmpty(pName)) {
+                        Class pClass = getFormPageDefinitionFilterPropertyType(pName);
                         filter.put(pName, ApplicationContext.current.getTypeConverter().convertFromString(pClass, values[0]));
                     }
                 }

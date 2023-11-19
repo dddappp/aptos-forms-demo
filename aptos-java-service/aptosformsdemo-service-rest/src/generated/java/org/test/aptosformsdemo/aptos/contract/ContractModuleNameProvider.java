@@ -14,7 +14,7 @@ public interface ContractModuleNameProvider {
 
     String getEventHandleFieldName(String eventCategory);
 
-    String getTableFieldName();
+    String getStateTableFieldName();
 
     String getModuleQualifiedEntityStateStructName();
 

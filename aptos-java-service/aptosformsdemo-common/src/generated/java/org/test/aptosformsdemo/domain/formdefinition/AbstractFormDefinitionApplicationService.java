@@ -106,6 +106,14 @@ public abstract class AbstractFormDefinitionApplicationService implements FormDe
         return new AbstractFormDefinitionState.SimpleFormDefinitionState(eventStream.getEvents());
     }
 
+    public FormPageDefinitionState getFormPageDefinition(Long formDefinitionFormSequenceId, Integer pageNumber) {
+        return getStateQueryRepository().getFormPageDefinition(formDefinitionFormSequenceId, pageNumber);
+    }
+
+    public Iterable<FormPageDefinitionState> getFormPageDefinitions(Long formDefinitionFormSequenceId, Criterion filter, List<String> orders) {
+        return getStateQueryRepository().getFormPageDefinitions(formDefinitionFormSequenceId, filter, orders);
+    }
+
 
     public FormDefinitionAggregate getFormDefinitionAggregate(FormDefinitionState state) {
         return new AbstractFormDefinitionAggregate.SimpleFormDefinitionAggregate(state);

@@ -16,7 +16,7 @@ import org.test.aptosformsdemo.aptos.contract.AptosAccount;
 import org.test.aptosformsdemo.aptos.contract.repository.AptosAccountRepository;
 import org.test.aptosformsdemo.aptos.contract.ContractModuleNameProvider;
 import org.test.aptosformsdemo.aptos.contract.DefaultAptosFormsDemoMainFormModuleNameProvider;
-import org.test.aptosformsdemo.domain.FormSequenceIdAndAddress;
+import org.test.aptosformsdemo.domain.FormPageAndAddress;
 import org.test.aptosformsdemo.aptos.contract.TestTenantizedIdFunctions;
 
 @Service
@@ -33,16 +33,16 @@ public class PullAptosFormsDemoMainFormEventsTaskService {
 
     @Scheduled(fixedDelayString = "${aptos.contract.pull-aptos-forms-demo-main-form-events.aptos-forms-demo-main-form-submitted.fixed-delay:5000}")
     public void pullAptosFormsDemoMainFormSubmittedEvents() {
-        aptosFormsDemoMainFormEventService.pullAptosFormsDemoMainFormSubmittedEvents(getContractModuleNameProvider(), getToFormSequenceIdAndAddressFunction());
+        aptosFormsDemoMainFormEventService.pullAptosFormsDemoMainFormSubmittedEvents(getContractModuleNameProvider(), getToFormPageAndAddressFunction());
     }
 
     @Scheduled(fixedDelayString = "${aptos.contract.pull-aptos-forms-demo-main-form-events.aptos-forms-demo-main-form-updated.fixed-delay:5000}")
     public void pullAptosFormsDemoMainFormUpdatedEvents() {
-        aptosFormsDemoMainFormEventService.pullAptosFormsDemoMainFormUpdatedEvents(getContractModuleNameProvider(), getToFormSequenceIdAndAddressFunction());
+        aptosFormsDemoMainFormEventService.pullAptosFormsDemoMainFormUpdatedEvents(getContractModuleNameProvider(), getToFormPageAndAddressFunction());
     }
 
-    private java.util.function.Function<String, FormSequenceIdAndAddress> getToFormSequenceIdAndAddressFunction() {
-        return TestTenantizedIdFunctions.toFormSequenceIdAndAddressFunction(); // todo only for test
+    private java.util.function.Function<String, FormPageAndAddress> getToFormPageAndAddressFunction() {
+        return TestTenantizedIdFunctions.toFormPageAndAddressFunction(); // todo only for test
     }
 
     private ContractModuleNameProvider getContractModuleNameProvider() {

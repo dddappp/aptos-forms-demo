@@ -31,7 +31,7 @@ public class HibernateFormDefinitionStateQueryRepository implements FormDefiniti
         return this.sessionFactory.getCurrentSession();
     }
     
-    private static final Set<String> readOnlyPropertyPascalCaseNames = new HashSet<String>(Arrays.asList("FormSequenceId", "FormId", "ContractAddress", "StoreAccountAddress", "StartPageName", "Version", "OffChainVersion", "CreatedBy", "CreatedAt", "UpdatedBy", "UpdatedAt", "Active", "Deleted"));
+    private static final Set<String> readOnlyPropertyPascalCaseNames = new HashSet<String>(Arrays.asList("FormSequenceId", "FormId", "ContractAddress", "StoreAccountAddress", "PageDefinitions", "Version", "OffChainVersion", "CreatedBy", "CreatedAt", "UpdatedBy", "UpdatedAt", "Active", "Deleted"));
     
     private ReadOnlyProxyGenerator readOnlyProxyGenerator;
     
@@ -48,7 +48,7 @@ public class HibernateFormDefinitionStateQueryRepository implements FormDefiniti
 
         FormDefinitionState state = (FormDefinitionState)getCurrentSession().get(AbstractFormDefinitionState.SimpleFormDefinitionState.class, id);
         if (getReadOnlyProxyGenerator() != null && state != null) {
-            return (FormDefinitionState) getReadOnlyProxyGenerator().createProxy(state, new Class[]{FormDefinitionState.SqlFormDefinitionState.class}, "getStateReadOnly", readOnlyPropertyPascalCaseNames);
+            return (FormDefinitionState) getReadOnlyProxyGenerator().createProxy(state, new Class[]{FormDefinitionState.SqlFormDefinitionState.class, Saveable.class}, "getStateReadOnly", readOnlyPropertyPascalCaseNames);
         }
         return state;
     }
@@ -128,6 +128,22 @@ public class HibernateFormDefinitionStateQueryRepository implements FormDefiniti
         }
         addNotDeletedRestriction(criteria);
         return (long)criteria.uniqueResult();
+    }
+
+    @Transactional(readOnly = true)
+    public FormPageDefinitionState getFormPageDefinition(Long formDefinitionFormSequenceId, Integer pageNumber) {
+        FormDefinitionFormPageDefinitionId entityId = new FormDefinitionFormPageDefinitionId(formDefinitionFormSequenceId, pageNumber);
+        return (FormPageDefinitionState) getCurrentSession().get(AbstractFormPageDefinitionState.SimpleFormPageDefinitionState.class, entityId);
+    }
+
+    @Transactional(readOnly = true)
+    public Iterable<FormPageDefinitionState> getFormPageDefinitions(Long formDefinitionFormSequenceId, org.dddml.support.criterion.Criterion filter, List<String> orders) {
+        Criteria criteria = getCurrentSession().createCriteria(AbstractFormPageDefinitionState.SimpleFormPageDefinitionState.class);
+        org.hibernate.criterion.Junction partIdCondition = org.hibernate.criterion.Restrictions.conjunction()
+            .add(org.hibernate.criterion.Restrictions.eq("formDefinitionFormPageDefinitionId.formDefinitionFormSequenceId", formDefinitionFormSequenceId))
+            ;
+        HibernateUtils.criteriaAddFilterAndOrdersAndSetFirstResultAndMaxResults(criteria, filter, orders, 0, Integer.MAX_VALUE);
+        return criteria.add(partIdCondition).list();
     }
 
 

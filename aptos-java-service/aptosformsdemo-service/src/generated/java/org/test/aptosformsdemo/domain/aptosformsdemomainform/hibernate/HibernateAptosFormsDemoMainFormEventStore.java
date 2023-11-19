@@ -21,7 +21,7 @@ public class HibernateAptosFormsDemoMainFormEventStore extends AbstractHibernate
     @Override
     protected Serializable getEventId(EventStoreAggregateId eventStoreAggregateId, long version)
     {
-        return new AptosFormsDemoMainFormEventId((FormSequenceIdAndAddress) eventStoreAggregateId.getId(), BigInteger.valueOf(version));
+        return new AptosFormsDemoMainFormEventId((FormPageAndAddress) eventStoreAggregateId.getId(), BigInteger.valueOf(version));
     }
 
     @Override
@@ -37,10 +37,11 @@ public class HibernateAptosFormsDemoMainFormEventStore extends AbstractHibernate
         if (!eventType.isAssignableFrom(supportedEventType)) {
             throw new UnsupportedOperationException();
         }
-        FormSequenceIdAndAddress idObj = (FormSequenceIdAndAddress) eventStoreAggregateId.getId();
+        FormPageAndAddress idObj = (FormPageAndAddress) eventStoreAggregateId.getId();
         Criteria criteria = getCurrentSession().createCriteria(AbstractAptosFormsDemoMainFormEvent.class);
-        criteria.add(Restrictions.eq("aptosFormsDemoMainFormEventId.formSequenceIdAndSignerAddressFormSequenceId", idObj.getFormSequenceId()));
-        criteria.add(Restrictions.eq("aptosFormsDemoMainFormEventId.formSequenceIdAndSignerAddressAddress", idObj.getAddress()));
+        criteria.add(Restrictions.eq("aptosFormsDemoMainFormEventId.formPageAndSignerAddressFormSequenceId", idObj.getFormSequenceId()));
+        criteria.add(Restrictions.eq("aptosFormsDemoMainFormEventId.formPageAndSignerAddressPageNumber", idObj.getPageNumber()));
+        criteria.add(Restrictions.eq("aptosFormsDemoMainFormEventId.formPageAndSignerAddressAddress", idObj.getAddress()));
         criteria.add(Restrictions.le("aptosFormsDemoMainFormEventId.offChainVersion", version));
         criteria.addOrder(Order.asc("aptosFormsDemoMainFormEventId.offChainVersion"));
         List es = criteria.list();

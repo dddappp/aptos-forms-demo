@@ -26,8 +26,6 @@ public interface FormDefinitionState extends VersionedAptosMoveObject
 
     String getStoreAccountAddress();
 
-    String getStartPageName();
-
     Long getOffChainVersion();
 
     String getCreatedBy();
@@ -42,6 +40,8 @@ public interface FormDefinitionState extends VersionedAptosMoveObject
 
     Boolean getDeleted();
 
+    EntityStateCollection<Integer, FormPageDefinitionState> getPageDefinitions();
+
     interface MutableFormDefinitionState extends FormDefinitionState, VersionedAptosMoveObject.MutableVersionedAptosMoveObject {
         void setFormSequenceId(Long formSequenceId);
 
@@ -50,8 +50,6 @@ public interface FormDefinitionState extends VersionedAptosMoveObject
         void setContractAddress(String contractAddress);
 
         void setStoreAccountAddress(String storeAccountAddress);
-
-        void setStartPageName(String startPageName);
 
         void setOffChainVersion(Long offChainVersion);
 

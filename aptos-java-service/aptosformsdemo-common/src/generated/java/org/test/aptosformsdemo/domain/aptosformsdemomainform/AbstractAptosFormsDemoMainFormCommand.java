@@ -13,16 +13,16 @@ import org.test.aptosformsdemo.domain.AbstractCommand;
 
 public abstract class AbstractAptosFormsDemoMainFormCommand extends AbstractCommand implements AptosFormsDemoMainFormCommand {
 
-    private FormSequenceIdAndAddress formSequenceIdAndSignerAddress;
+    private FormPageAndAddress formPageAndSignerAddress;
 
-    public FormSequenceIdAndAddress getFormSequenceIdAndSignerAddress()
+    public FormPageAndAddress getFormPageAndSignerAddress()
     {
-        return this.formSequenceIdAndSignerAddress;
+        return this.formPageAndSignerAddress;
     }
 
-    public void setFormSequenceIdAndSignerAddress(FormSequenceIdAndAddress formSequenceIdAndSignerAddress)
+    public void setFormPageAndSignerAddress(FormPageAndAddress formPageAndSignerAddress)
     {
-        this.formSequenceIdAndSignerAddress = formSequenceIdAndSignerAddress;
+        this.formPageAndSignerAddress = formPageAndSignerAddress;
     }
 
     private Long offChainVersion;

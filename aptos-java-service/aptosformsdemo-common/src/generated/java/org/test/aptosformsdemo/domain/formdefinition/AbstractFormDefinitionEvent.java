@@ -143,6 +143,44 @@ public abstract class AbstractFormDefinitionEvent extends AbstractEvent implemen
         this.formDefinitionEventId = eventId;
     }
 
+    protected FormPageDefinitionEventDao getFormPageDefinitionEventDao() {
+        return (FormPageDefinitionEventDao)ApplicationContext.current.get("formPageDefinitionEventDao");
+    }
+
+    protected FormPageDefinitionEventId newFormPageDefinitionEventId(Integer pageNumber)
+    {
+        FormPageDefinitionEventId eventId = new FormPageDefinitionEventId(this.getFormDefinitionEventId().getFormSequenceId(), 
+            pageNumber, 
+            this.getFormDefinitionEventId().getOffChainVersion());
+        return eventId;
+    }
+
+    protected void throwOnInconsistentEventIds(FormPageDefinitionEvent.SqlFormPageDefinitionEvent e)
+    {
+        throwOnInconsistentEventIds(this, e);
+    }
+
+    public static void throwOnInconsistentEventIds(FormDefinitionEvent.SqlFormDefinitionEvent oe, FormPageDefinitionEvent.SqlFormPageDefinitionEvent e)
+    {
+        if (!oe.getFormDefinitionEventId().getFormSequenceId().equals(e.getFormPageDefinitionEventId().getFormDefinitionFormSequenceId()))
+        { 
+            throw DomainError.named("inconsistentEventIds", "Outer Id FormSequenceId %1$s but inner id FormDefinitionFormSequenceId %2$s", 
+                oe.getFormDefinitionEventId().getFormSequenceId(), e.getFormPageDefinitionEventId().getFormDefinitionFormSequenceId());
+        }
+    }
+
+    public FormPageDefinitionEvent.FormPageDefinitionStateCreated newFormPageDefinitionStateCreated(Integer pageNumber) {
+        return new AbstractFormPageDefinitionEvent.SimpleFormPageDefinitionStateCreated(newFormPageDefinitionEventId(pageNumber));
+    }
+
+    public FormPageDefinitionEvent.FormPageDefinitionStateMergePatched newFormPageDefinitionStateMergePatched(Integer pageNumber) {
+        return new AbstractFormPageDefinitionEvent.SimpleFormPageDefinitionStateMergePatched(newFormPageDefinitionEventId(pageNumber));
+    }
+
+    public FormPageDefinitionEvent.FormPageDefinitionStateRemoved newFormPageDefinitionStateRemoved(Integer pageNumber) {
+        return new AbstractFormPageDefinitionEvent.SimpleFormPageDefinitionStateRemoved(newFormPageDefinitionEventId(pageNumber));
+    }
+
 
     public abstract String getEventClass();
 
@@ -206,18 +244,6 @@ public abstract class AbstractFormDefinitionEvent extends AbstractEvent implemen
             this.storeAccountAddress = storeAccountAddress;
         }
 
-        private String startPageName;
-
-        public String getStartPageName()
-        {
-            return this.startPageName;
-        }
-
-        public void setStartPageName(String startPageName)
-        {
-            this.startPageName = startPageName;
-        }
-
         private BigInteger version;
 
         public BigInteger getVersion()
@@ -247,7 +273,7 @@ public abstract class AbstractFormDefinitionEvent extends AbstractEvent implemen
         }
     }
 
-    public static abstract class AbstractFormDefinitionStateCreated extends AbstractFormDefinitionStateEvent implements FormDefinitionEvent.FormDefinitionStateCreated
+    public static abstract class AbstractFormDefinitionStateCreated extends AbstractFormDefinitionStateEvent implements FormDefinitionEvent.FormDefinitionStateCreated, Saveable
     {
         public AbstractFormDefinitionStateCreated() {
             this(new FormDefinitionEventId());
@@ -261,10 +287,58 @@ public abstract class AbstractFormDefinitionEvent extends AbstractEvent implemen
             return StateEventType.CREATED;
         }
 
+        private Map<FormPageDefinitionEventId, FormPageDefinitionEvent.FormPageDefinitionStateCreated> formPageDefinitionEvents = new HashMap<FormPageDefinitionEventId, FormPageDefinitionEvent.FormPageDefinitionStateCreated>();
+        
+        private Iterable<FormPageDefinitionEvent.FormPageDefinitionStateCreated> readOnlyFormPageDefinitionEvents;
+
+        public Iterable<FormPageDefinitionEvent.FormPageDefinitionStateCreated> getFormPageDefinitionEvents()
+        {
+            if (!getEventReadOnly())
+            {
+                return this.formPageDefinitionEvents.values();
+            }
+            else
+            {
+                if (readOnlyFormPageDefinitionEvents != null) { return readOnlyFormPageDefinitionEvents; }
+                FormPageDefinitionEventDao eventDao = getFormPageDefinitionEventDao();
+                List<FormPageDefinitionEvent.FormPageDefinitionStateCreated> eL = new ArrayList<FormPageDefinitionEvent.FormPageDefinitionStateCreated>();
+                for (FormPageDefinitionEvent e : eventDao.findByFormDefinitionEventId(this.getFormDefinitionEventId()))
+                {
+                    ((FormPageDefinitionEvent.SqlFormPageDefinitionEvent)e).setEventReadOnly(true);
+                    eL.add((FormPageDefinitionEvent.FormPageDefinitionStateCreated)e);
+                }
+                return (readOnlyFormPageDefinitionEvents = eL);
+            }
+        }
+
+        public void setFormPageDefinitionEvents(Iterable<FormPageDefinitionEvent.FormPageDefinitionStateCreated> es)
+        {
+            if (es != null)
+            {
+                for (FormPageDefinitionEvent.FormPageDefinitionStateCreated e : es)
+                {
+                    addFormPageDefinitionEvent(e);
+                }
+            }
+            else { this.formPageDefinitionEvents.clear(); }
+        }
+        
+        public void addFormPageDefinitionEvent(FormPageDefinitionEvent.FormPageDefinitionStateCreated e)
+        {
+            throwOnInconsistentEventIds((FormPageDefinitionEvent.SqlFormPageDefinitionEvent)e);
+            this.formPageDefinitionEvents.put(((FormPageDefinitionEvent.SqlFormPageDefinitionEvent)e).getFormPageDefinitionEventId(), e);
+        }
+
+        public void save()
+        {
+            for (FormPageDefinitionEvent.FormPageDefinitionStateCreated e : this.getFormPageDefinitionEvents()) {
+                getFormPageDefinitionEventDao().save(e);
+            }
+        }
     }
 
 
-    public static abstract class AbstractFormDefinitionStateMergePatched extends AbstractFormDefinitionStateEvent implements FormDefinitionEvent.FormDefinitionStateMergePatched
+    public static abstract class AbstractFormDefinitionStateMergePatched extends AbstractFormDefinitionStateEvent implements FormDefinitionEvent.FormDefinitionStateMergePatched, Saveable
     {
         public AbstractFormDefinitionStateMergePatched() {
             this(new FormDefinitionEventId());
@@ -308,16 +382,6 @@ public abstract class AbstractFormDefinitionEvent extends AbstractEvent implemen
             this.isPropertyStoreAccountAddressRemoved = removed;
         }
 
-        private Boolean isPropertyStartPageNameRemoved;
-
-        public Boolean getIsPropertyStartPageNameRemoved() {
-            return this.isPropertyStartPageNameRemoved;
-        }
-
-        public void setIsPropertyStartPageNameRemoved(Boolean removed) {
-            this.isPropertyStartPageNameRemoved = removed;
-        }
-
         private Boolean isPropertyVersionRemoved;
 
         public Boolean getIsPropertyVersionRemoved() {
@@ -339,10 +403,58 @@ public abstract class AbstractFormDefinitionEvent extends AbstractEvent implemen
         }
 
 
+        private Map<FormPageDefinitionEventId, FormPageDefinitionEvent> formPageDefinitionEvents = new HashMap<FormPageDefinitionEventId, FormPageDefinitionEvent>();
+        
+        private Iterable<FormPageDefinitionEvent> readOnlyFormPageDefinitionEvents;
+
+        public Iterable<FormPageDefinitionEvent> getFormPageDefinitionEvents()
+        {
+            if (!getEventReadOnly())
+            {
+                return this.formPageDefinitionEvents.values();
+            }
+            else
+            {
+                if (readOnlyFormPageDefinitionEvents != null) { return readOnlyFormPageDefinitionEvents; }
+                FormPageDefinitionEventDao eventDao = getFormPageDefinitionEventDao();
+                List<FormPageDefinitionEvent> eL = new ArrayList<FormPageDefinitionEvent>();
+                for (FormPageDefinitionEvent e : eventDao.findByFormDefinitionEventId(this.getFormDefinitionEventId()))
+                {
+                    ((FormPageDefinitionEvent.SqlFormPageDefinitionEvent)e).setEventReadOnly(true);
+                    eL.add((FormPageDefinitionEvent)e);
+                }
+                return (readOnlyFormPageDefinitionEvents = eL);
+            }
+        }
+
+        public void setFormPageDefinitionEvents(Iterable<FormPageDefinitionEvent> es)
+        {
+            if (es != null)
+            {
+                for (FormPageDefinitionEvent e : es)
+                {
+                    addFormPageDefinitionEvent(e);
+                }
+            }
+            else { this.formPageDefinitionEvents.clear(); }
+        }
+        
+        public void addFormPageDefinitionEvent(FormPageDefinitionEvent e)
+        {
+            throwOnInconsistentEventIds((FormPageDefinitionEvent.SqlFormPageDefinitionEvent)e);
+            this.formPageDefinitionEvents.put(((FormPageDefinitionEvent.SqlFormPageDefinitionEvent)e).getFormPageDefinitionEventId(), e);
+        }
+
+        public void save()
+        {
+            for (FormPageDefinitionEvent e : this.getFormPageDefinitionEvents()) {
+                getFormPageDefinitionEventDao().save(e);
+            }
+        }
     }
 
 
-    public static abstract class AbstractFormDefinitionStateDeleted extends AbstractFormDefinitionStateEvent implements FormDefinitionEvent.FormDefinitionStateDeleted
+    public static abstract class AbstractFormDefinitionStateDeleted extends AbstractFormDefinitionStateEvent implements FormDefinitionEvent.FormDefinitionStateDeleted, Saveable
     {
         public AbstractFormDefinitionStateDeleted() {
             this(new FormDefinitionEventId());
@@ -356,6 +468,55 @@ public abstract class AbstractFormDefinitionEvent extends AbstractEvent implemen
             return StateEventType.DELETED;
         }
 
+        
+        private Map<FormPageDefinitionEventId, FormPageDefinitionEvent.FormPageDefinitionStateRemoved> formPageDefinitionEvents = new HashMap<FormPageDefinitionEventId, FormPageDefinitionEvent.FormPageDefinitionStateRemoved>();
+        
+        private Iterable<FormPageDefinitionEvent.FormPageDefinitionStateRemoved> readOnlyFormPageDefinitionEvents;
+
+        public Iterable<FormPageDefinitionEvent.FormPageDefinitionStateRemoved> getFormPageDefinitionEvents()
+        {
+            if (!getEventReadOnly())
+            {
+                return this.formPageDefinitionEvents.values();
+            }
+            else
+            {
+                if (readOnlyFormPageDefinitionEvents != null) { return readOnlyFormPageDefinitionEvents; }
+                FormPageDefinitionEventDao eventDao = getFormPageDefinitionEventDao();
+                List<FormPageDefinitionEvent.FormPageDefinitionStateRemoved> eL = new ArrayList<FormPageDefinitionEvent.FormPageDefinitionStateRemoved>();
+                for (FormPageDefinitionEvent e : eventDao.findByFormDefinitionEventId(this.getFormDefinitionEventId()))
+                {
+                    ((FormPageDefinitionEvent.SqlFormPageDefinitionEvent)e).setEventReadOnly(true);
+                    eL.add((FormPageDefinitionEvent.FormPageDefinitionStateRemoved)e);
+                }
+                return (readOnlyFormPageDefinitionEvents = eL);
+            }
+        }
+
+        public void setFormPageDefinitionEvents(Iterable<FormPageDefinitionEvent.FormPageDefinitionStateRemoved> es)
+        {
+            if (es != null)
+            {
+                for (FormPageDefinitionEvent.FormPageDefinitionStateRemoved e : es)
+                {
+                    addFormPageDefinitionEvent(e);
+                }
+            }
+            else { this.formPageDefinitionEvents.clear(); }
+        }
+        
+        public void addFormPageDefinitionEvent(FormPageDefinitionEvent.FormPageDefinitionStateRemoved e)
+        {
+            throwOnInconsistentEventIds((FormPageDefinitionEvent.SqlFormPageDefinitionEvent)e);
+            this.formPageDefinitionEvents.put(((FormPageDefinitionEvent.SqlFormPageDefinitionEvent)e).getFormPageDefinitionEventId(), e);
+        }
+
+        public void save()
+        {
+            for (FormPageDefinitionEvent.FormPageDefinitionStateRemoved e : this.getFormPageDefinitionEvents()) {
+                getFormPageDefinitionEventDao().save(e);
+            }
+        }
     }
 
     public static class SimpleFormDefinitionStateCreated extends AbstractFormDefinitionStateCreated

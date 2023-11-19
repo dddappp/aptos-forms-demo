@@ -31,5 +31,9 @@ public interface FormDefinitionStateQueryRepository {
 
     long getCount(Criterion filter);
 
+    FormPageDefinitionState getFormPageDefinition(Long formDefinitionFormSequenceId, Integer pageNumber);
+
+    Iterable<FormPageDefinitionState> getFormPageDefinitions(Long formDefinitionFormSequenceId, Criterion filter, List<String> orders);
+
 }
 

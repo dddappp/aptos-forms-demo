@@ -64,10 +64,6 @@ public interface FormDefinitionCommand extends Command {
 
         void setStoreAccountAddress(String storeAccountAddress);
 
-        String getStartPageName();
-
-        void setStartPageName(String startPageName);
-
         BigInteger getVersion();
 
         void setVersion(BigInteger version);
@@ -80,6 +76,10 @@ public interface FormDefinitionCommand extends Command {
 
     interface CreateFormDefinition extends CreateOrMergePatchFormDefinition
     {
+        CreateFormPageDefinitionCommandCollection getCreateFormPageDefinitionCommands();
+
+        FormPageDefinitionCommand.CreateFormPageDefinition newCreateFormPageDefinition();
+
     }
 
     interface MergePatchFormDefinition extends CreateOrMergePatchFormDefinition
@@ -96,10 +96,6 @@ public interface FormDefinitionCommand extends Command {
 
         void setIsPropertyStoreAccountAddressRemoved(Boolean removed);
 
-        Boolean getIsPropertyStartPageNameRemoved();
-
-        void setIsPropertyStartPageNameRemoved(Boolean removed);
-
         Boolean getIsPropertyVersionRemoved();
 
         void setIsPropertyVersionRemoved(Boolean removed);
@@ -109,10 +105,36 @@ public interface FormDefinitionCommand extends Command {
         void setIsPropertyActiveRemoved(Boolean removed);
 
 
+        FormPageDefinitionCommandCollection getFormPageDefinitionCommands();
+
+        FormPageDefinitionCommand.CreateFormPageDefinition newCreateFormPageDefinition();
+
+        FormPageDefinitionCommand.MergePatchFormPageDefinition newMergePatchFormPageDefinition();
+
+        FormPageDefinitionCommand.RemoveFormPageDefinition newRemoveFormPageDefinition();
+
     }
 
     interface DeleteFormDefinition extends FormDefinitionCommand
     {
+    }
+
+    interface CreateFormPageDefinitionCommandCollection extends Iterable<FormPageDefinitionCommand.CreateFormPageDefinition>
+    {
+        void add(FormPageDefinitionCommand.CreateFormPageDefinition c);
+
+        void remove(FormPageDefinitionCommand.CreateFormPageDefinition c);
+
+        void clear();
+    }
+
+    interface FormPageDefinitionCommandCollection extends Iterable<FormPageDefinitionCommand>
+    {
+        void add(FormPageDefinitionCommand c);
+
+        void remove(FormPageDefinitionCommand c);
+
+        void clear();
     }
 
 }

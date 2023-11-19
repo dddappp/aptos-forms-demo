@@ -11,7 +11,7 @@ import com.github.wubuku.aptos.bean.Event;
 import com.github.wubuku.aptos.bean.Option;
 import org.test.aptosformsdemo.domain.AptosEvent;
 import org.test.aptosformsdemo.domain.AptosEventGuid;
-import org.test.aptosformsdemo.domain.FormSequenceIdAndAddress;
+import org.test.aptosformsdemo.domain.FormPageAndAddress;
 import org.test.aptosformsdemo.domain.aptosformsdemomainform.AbstractAptosFormsDemoMainFormEvent;
 import org.test.aptosformsdemo.aptos.contract.aptosformsdemomainform.AptosFormsDemoMainFormSubmitted;
 import org.test.aptosformsdemo.aptos.contract.aptosformsdemomainform.AptosFormsDemoMainFormUpdated;
@@ -85,11 +85,11 @@ public class DomainBeanUtils {
     }
 
 
-    public static AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted toAptosFormsDemoMainFormSubmitted(java.util.function.Function<String, FormSequenceIdAndAddress> toFormSequenceIdAndAddress, Event<AptosFormsDemoMainFormSubmitted> eventEnvelope) {
+    public static AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted toAptosFormsDemoMainFormSubmitted(java.util.function.Function<String, FormPageAndAddress> toFormPageAndAddress, Event<AptosFormsDemoMainFormSubmitted> eventEnvelope) {
         AptosFormsDemoMainFormSubmitted contractEvent = eventEnvelope.getData();
 
         AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted aptosFormsDemoMainFormSubmitted = new AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted();
-        aptosFormsDemoMainFormSubmitted.setFormSequenceIdAndSignerAddress(toFormSequenceIdAndAddress.apply(contractEvent.getSignerAddress()));
+        aptosFormsDemoMainFormSubmitted.setFormPageAndSignerAddress(toFormPageAndAddress.apply(contractEvent.getSignerAddress()));
         aptosFormsDemoMainFormSubmitted.setDynamicProperties(contractEvent.getDynamicProperties());
         aptosFormsDemoMainFormSubmitted.setVersion(BigInteger.valueOf(-1));
 
@@ -98,11 +98,11 @@ public class DomainBeanUtils {
         return aptosFormsDemoMainFormSubmitted;
     }
 
-    public static AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormUpdated toAptosFormsDemoMainFormUpdated(java.util.function.Function<String, FormSequenceIdAndAddress> toFormSequenceIdAndAddress, Event<AptosFormsDemoMainFormUpdated> eventEnvelope) {
+    public static AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormUpdated toAptosFormsDemoMainFormUpdated(java.util.function.Function<String, FormPageAndAddress> toFormPageAndAddress, Event<AptosFormsDemoMainFormUpdated> eventEnvelope) {
         AptosFormsDemoMainFormUpdated contractEvent = eventEnvelope.getData();
 
         AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormUpdated aptosFormsDemoMainFormUpdated = new AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormUpdated();
-        aptosFormsDemoMainFormUpdated.setFormSequenceIdAndSignerAddress(toFormSequenceIdAndAddress.apply(contractEvent.getSignerAddress()));
+        aptosFormsDemoMainFormUpdated.setFormPageAndSignerAddress(toFormPageAndAddress.apply(contractEvent.getSignerAddress()));
         aptosFormsDemoMainFormUpdated.setDynamicProperties(contractEvent.getDynamicProperties());
         aptosFormsDemoMainFormUpdated.setVersion(contractEvent.getVersion());
 
@@ -110,6 +110,15 @@ public class DomainBeanUtils {
 
         return aptosFormsDemoMainFormUpdated;
     }
+
+//    public static org.test.aptosformsdemo.aptos.contract.persistence.FormPageDefinitionTableItemAdded toPersistenceFormPageDefinitionTableItemAdded(Event<FormPageDefinitionTableItemAdded> eventEnvelope) {
+//        FormPageDefinitionTableItemAdded contractEvent = eventEnvelope.getData();
+//        org.test.aptosformsdemo.domain.formdefinition.FormDefinitionFormPageDefinitionId id = new org.test.aptosformsdemo.domain.formdefinition.FormDefinitionFormPageDefinitionId(contractEvent.getFormDefinitionFormSequenceId(), contractEvent.getPageNumber());
+//        org.test.aptosformsdemo.aptos.contract.persistence.FormPageDefinitionTableItemAdded e = new org.test.aptosformsdemo.aptos.contract.persistence.FormPageDefinitionTableItemAdded();
+//        e.setFormDefinitionFormPageDefinitionId(id);
+//        setAptosEventProperties(e, eventEnvelope);
+//        return e;
+//    }
 
     public static void setAptosEventProperties(AptosEvent.MutableAptosEvent domainAptosEvent, Event<?> eventEnvelope) {
         domainAptosEvent.setAptosEventGuid(toAptosEventGuid(eventEnvelope.getGuid()));

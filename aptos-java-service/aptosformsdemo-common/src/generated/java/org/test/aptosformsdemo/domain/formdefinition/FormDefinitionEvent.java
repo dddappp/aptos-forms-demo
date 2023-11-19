@@ -54,10 +54,6 @@ public interface FormDefinitionEvent extends Event, AptosEvent, HasStatus {
 
         void setStoreAccountAddress(String storeAccountAddress);
 
-        String getStartPageName();
-
-        void setStartPageName(String startPageName);
-
         BigInteger getVersion();
 
         void setVersion(BigInteger version);
@@ -70,6 +66,12 @@ public interface FormDefinitionEvent extends Event, AptosEvent, HasStatus {
 
     interface FormDefinitionStateCreated extends FormDefinitionStateEvent
     {
+        Iterable<FormPageDefinitionEvent.FormPageDefinitionStateCreated> getFormPageDefinitionEvents();
+        
+        void addFormPageDefinitionEvent(FormPageDefinitionEvent.FormPageDefinitionStateCreated e);
+
+        FormPageDefinitionEvent.FormPageDefinitionStateCreated newFormPageDefinitionStateCreated(Integer pageNumber);
+
     
     }
 
@@ -88,10 +90,6 @@ public interface FormDefinitionEvent extends Event, AptosEvent, HasStatus {
 
         void setIsPropertyStoreAccountAddressRemoved(Boolean removed);
 
-        Boolean getIsPropertyStartPageNameRemoved();
-
-        void setIsPropertyStartPageNameRemoved(Boolean removed);
-
         Boolean getIsPropertyVersionRemoved();
 
         void setIsPropertyVersionRemoved(Boolean removed);
@@ -101,11 +99,27 @@ public interface FormDefinitionEvent extends Event, AptosEvent, HasStatus {
         void setIsPropertyActiveRemoved(Boolean removed);
 
 
+        Iterable<FormPageDefinitionEvent> getFormPageDefinitionEvents();
+        
+        void addFormPageDefinitionEvent(FormPageDefinitionEvent e);
+
+        FormPageDefinitionEvent.FormPageDefinitionStateCreated newFormPageDefinitionStateCreated(Integer pageNumber);
+
+        FormPageDefinitionEvent.FormPageDefinitionStateMergePatched newFormPageDefinitionStateMergePatched(Integer pageNumber);
+
+        FormPageDefinitionEvent.FormPageDefinitionStateRemoved newFormPageDefinitionStateRemoved(Integer pageNumber);
+
 
     }
 
     interface FormDefinitionStateDeleted extends FormDefinitionStateEvent
     {
+        Iterable<FormPageDefinitionEvent.FormPageDefinitionStateRemoved> getFormPageDefinitionEvents();
+        
+        void addFormPageDefinitionEvent(FormPageDefinitionEvent.FormPageDefinitionStateRemoved e);
+        
+        FormPageDefinitionEvent.FormPageDefinitionStateRemoved newFormPageDefinitionStateRemoved(Integer pageNumber);
+
     }
 
 

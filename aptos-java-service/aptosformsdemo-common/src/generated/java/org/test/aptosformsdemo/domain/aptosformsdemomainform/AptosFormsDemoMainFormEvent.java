@@ -21,9 +21,9 @@ public interface AptosFormsDemoMainFormEvent extends Event, AptosEvent, HasStatu
         void setEventReadOnly(boolean readOnly);
     }
 
-    FormSequenceIdAndAddress getFormSequenceIdAndSignerAddress();
+    FormPageAndAddress getFormPageAndSignerAddress();
 
-    //void setFormSequenceIdAndSignerAddress(FormSequenceIdAndAddress formSequenceIdAndSignerAddress);
+    //void setFormPageAndSignerAddress(FormPageAndAddress formPageAndSignerAddress);
 
     BigInteger getVersion();
     

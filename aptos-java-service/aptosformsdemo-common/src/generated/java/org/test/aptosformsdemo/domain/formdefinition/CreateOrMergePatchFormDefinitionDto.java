@@ -57,21 +57,6 @@ public class CreateOrMergePatchFormDefinitionDto extends AbstractFormDefinitionC
     }
 
     /**
-     * Start Page Name
-     */
-    private String startPageName;
-
-    public String getStartPageName()
-    {
-        return this.startPageName;
-    }
-
-    public void setStartPageName(String startPageName)
-    {
-        this.startPageName = startPageName;
-    }
-
-    /**
      * Version
      */
     private BigInteger version;
@@ -101,6 +86,18 @@ public class CreateOrMergePatchFormDefinitionDto extends AbstractFormDefinitionC
         this.active = active;
     }
 
+
+    private CreateOrMergePatchFormPageDefinitionDto[] pageDefinitions = new CreateOrMergePatchFormPageDefinitionDto[0];
+
+    public CreateOrMergePatchFormPageDefinitionDto[] getPageDefinitions()
+    {
+        return this.pageDefinitions;
+    }
+
+    public void setPageDefinitions(CreateOrMergePatchFormPageDefinitionDto[] pageDefinitions)
+    {
+        this.pageDefinitions = pageDefinitions;
+    }
 
     private Boolean isPropertyFormIdRemoved;
 
@@ -138,18 +135,6 @@ public class CreateOrMergePatchFormDefinitionDto extends AbstractFormDefinitionC
         this.isPropertyStoreAccountAddressRemoved = removed;
     }
 
-    private Boolean isPropertyStartPageNameRemoved;
-
-    public Boolean getIsPropertyStartPageNameRemoved()
-    {
-        return this.isPropertyStartPageNameRemoved;
-    }
-
-    public void setIsPropertyStartPageNameRemoved(Boolean removed)
-    {
-        this.isPropertyStartPageNameRemoved = removed;
-    }
-
     private Boolean isPropertyVersionRemoved;
 
     public Boolean getIsPropertyVersionRemoved()
@@ -180,7 +165,6 @@ public class CreateOrMergePatchFormDefinitionDto extends AbstractFormDefinitionC
         command.setFormId(this.getFormId());
         command.setContractAddress(this.getContractAddress());
         command.setStoreAccountAddress(this.getStoreAccountAddress());
-        command.setStartPageName(this.getStartPageName());
         command.setVersion(this.getVersion());
         command.setActive(this.getActive());
     }
@@ -193,10 +177,20 @@ public class CreateOrMergePatchFormDefinitionDto extends AbstractFormDefinitionC
         if (COMMAND_TYPE_CREATE.equals(getCommandType())) {
             AbstractFormDefinitionCommand.SimpleCreateFormDefinition command = new AbstractFormDefinitionCommand.SimpleCreateFormDefinition();
             copyTo((AbstractFormDefinitionCommand.AbstractCreateFormDefinition) command);
+            if (this.getPageDefinitions() != null) {
+                for (CreateOrMergePatchFormPageDefinitionDto cmd : this.getPageDefinitions()) {
+                    command.getPageDefinitions().add((FormPageDefinitionCommand.CreateFormPageDefinition) cmd.toCommand());
+                }
+            }
             return command;
         } else if (COMMAND_TYPE_MERGE_PATCH.equals(getCommandType())) {
             AbstractFormDefinitionCommand.SimpleMergePatchFormDefinition command = new AbstractFormDefinitionCommand.SimpleMergePatchFormDefinition();
             copyTo((AbstractFormDefinitionCommand.SimpleMergePatchFormDefinition) command);
+            if (this.getPageDefinitions() != null) {
+                for (CreateOrMergePatchFormPageDefinitionDto cmd : this.getPageDefinitions()) {
+                    command.getFormPageDefinitionCommands().add(cmd.toCommand());
+                }
+            }
             return command;
         } 
         throw new UnsupportedOperationException("Unknown command type:" + getCommandType());
@@ -210,10 +204,21 @@ public class CreateOrMergePatchFormDefinitionDto extends AbstractFormDefinitionC
         if (COMMAND_TYPE_CREATE.equals(getCommandType()) || null == getCommandType()) {
             CreateFormDefinitionDto command = new CreateFormDefinitionDto();
             copyTo((CreateFormDefinition) command);
+            if (this.getPageDefinitions() != null) {
+                for (CreateOrMergePatchFormPageDefinitionDto cmd : this.getPageDefinitions()) {
+                    if (cmd.getCommandType() == null) { cmd.setCommandType(COMMAND_TYPE_CREATE); }
+                    command.getCreateFormPageDefinitionCommands().add((FormPageDefinitionCommand.CreateFormPageDefinition) cmd.toSubclass());
+                }
+            }
             return command;
         } else if (COMMAND_TYPE_MERGE_PATCH.equals(getCommandType())) {
             MergePatchFormDefinitionDto command = new MergePatchFormDefinitionDto();
             copyTo((MergePatchFormDefinition) command);
+            if (this.getPageDefinitions() != null) {
+                for (CreateOrMergePatchFormPageDefinitionDto cmd : this.getPageDefinitions()) {
+                    command.getFormPageDefinitionCommands().add(cmd.toSubclass());
+                }
+            }
             return command;
         } 
         throw new UnsupportedOperationException("Unknown command type:" + getCommandType());
@@ -230,7 +235,6 @@ public class CreateOrMergePatchFormDefinitionDto extends AbstractFormDefinitionC
         command.setIsPropertyFormIdRemoved(this.getIsPropertyFormIdRemoved());
         command.setIsPropertyContractAddressRemoved(this.getIsPropertyContractAddressRemoved());
         command.setIsPropertyStoreAccountAddressRemoved(this.getIsPropertyStoreAccountAddressRemoved());
-        command.setIsPropertyStartPageNameRemoved(this.getIsPropertyStartPageNameRemoved());
         command.setIsPropertyVersionRemoved(this.getIsPropertyVersionRemoved());
         command.setIsPropertyActiveRemoved(this.getIsPropertyActiveRemoved());
     }
@@ -250,6 +254,42 @@ public class CreateOrMergePatchFormDefinitionDto extends AbstractFormDefinitionC
             return (FormDefinitionCommand.CreateFormDefinition) toCommand();
         }
 
+
+        @Override
+        public CreateFormPageDefinitionCommandCollection getCreateFormPageDefinitionCommands() {
+            return new CreateFormPageDefinitionCommandCollection() {
+                @Override
+                public void add(FormPageDefinitionCommand.CreateFormPageDefinition c) {
+                    java.util.List<CreateOrMergePatchFormPageDefinitionDto> list = new java.util.ArrayList<>(java.util.Arrays.asList(getPageDefinitions()));
+                    list.add((CreateOrMergePatchFormPageDefinitionDto) c);
+                    setPageDefinitions(list.toArray(new CreateOrMergePatchFormPageDefinitionDto[0]));
+                }
+
+                @Override
+                public void remove(FormPageDefinitionCommand.CreateFormPageDefinition c) {
+                    java.util.List<CreateOrMergePatchFormPageDefinitionDto> list = new java.util.ArrayList<>(java.util.Arrays.asList(getPageDefinitions()));
+                    list.remove((CreateOrMergePatchFormPageDefinitionDto) c);
+                    setPageDefinitions(list.toArray(new CreateOrMergePatchFormPageDefinitionDto[0]));
+                }
+
+                @Override
+                public void clear() {
+                    setPageDefinitions(new CreateOrMergePatchFormPageDefinitionDto[]{});
+                }
+
+                @Override
+                public java.util.Iterator<FormPageDefinitionCommand.CreateFormPageDefinition> iterator() {
+                    return java.util.Arrays.stream(getPageDefinitions())
+                            .map(e -> {if (e.getCommandType()==null) e.setCommandType(COMMAND_TYPE_CREATE);return (FormPageDefinitionCommand.CreateFormPageDefinition) e.toSubclass();}).iterator();
+                }
+            };
+        }
+
+        @Override
+        public FormPageDefinitionCommand.CreateFormPageDefinition newCreateFormPageDefinition() {
+            return new CreateOrMergePatchFormPageDefinitionDto.CreateFormPageDefinitionDto();
+        }
+
     }
 
     public static class MergePatchFormDefinitionDto extends CreateOrMergePatchFormDefinitionDto implements FormDefinitionCommand.MergePatchFormDefinition
@@ -265,6 +305,52 @@ public class CreateOrMergePatchFormDefinitionDto extends AbstractFormDefinitionC
         public FormDefinitionCommand.MergePatchFormDefinition toMergePatchFormDefinition()
         {
             return (FormDefinitionCommand.MergePatchFormDefinition) toCommand();
+        }
+
+
+        @Override
+        public FormPageDefinitionCommandCollection getFormPageDefinitionCommands() {
+            return new FormPageDefinitionCommandCollection() {
+                @Override
+                public void add(FormPageDefinitionCommand c) {
+                    java.util.List<CreateOrMergePatchFormPageDefinitionDto> list = new java.util.ArrayList<>(java.util.Arrays.asList(getPageDefinitions()));
+                    list.add((CreateOrMergePatchFormPageDefinitionDto) c);
+                    setPageDefinitions(list.toArray(new CreateOrMergePatchFormPageDefinitionDto[0]));
+                }
+
+                @Override
+                public void remove(FormPageDefinitionCommand c) {
+                    java.util.List<CreateOrMergePatchFormPageDefinitionDto> list = new java.util.ArrayList<>(java.util.Arrays.asList(getPageDefinitions()));
+                    list.remove((CreateOrMergePatchFormPageDefinitionDto) c);
+                    setPageDefinitions(list.toArray(new CreateOrMergePatchFormPageDefinitionDto[0]));
+                }
+
+                @Override
+                public void clear() {
+                    setPageDefinitions(new CreateOrMergePatchFormPageDefinitionDto[]{});
+                }
+
+                @Override
+                public java.util.Iterator<FormPageDefinitionCommand> iterator() {
+                    return java.util.Arrays.stream(getPageDefinitions())
+                            .map(e -> (FormPageDefinitionCommand) e.toSubclass()).iterator();
+                }
+            };
+        }
+
+        @Override
+        public FormPageDefinitionCommand.CreateFormPageDefinition newCreateFormPageDefinition() {
+            return new CreateOrMergePatchFormPageDefinitionDto.CreateFormPageDefinitionDto();
+        }
+
+        @Override
+        public FormPageDefinitionCommand.MergePatchFormPageDefinition newMergePatchFormPageDefinition() {
+            return new CreateOrMergePatchFormPageDefinitionDto.MergePatchFormPageDefinitionDto();
+        }
+
+        @Override
+        public FormPageDefinitionCommand.RemoveFormPageDefinition newRemoveFormPageDefinition() {
+            return new RemoveFormPageDefinitionDto();
         }
 
     }

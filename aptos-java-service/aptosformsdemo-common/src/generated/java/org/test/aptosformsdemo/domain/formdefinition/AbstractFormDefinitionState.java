@@ -13,7 +13,7 @@ import org.test.aptosformsdemo.domain.*;
 import org.test.aptosformsdemo.specialization.*;
 import org.test.aptosformsdemo.domain.formdefinition.FormDefinitionEvent.*;
 
-public abstract class AbstractFormDefinitionState implements FormDefinitionState.SqlFormDefinitionState {
+public abstract class AbstractFormDefinitionState implements FormDefinitionState.SqlFormDefinitionState, Saveable {
 
     private Long formSequenceId;
 
@@ -53,16 +53,6 @@ public abstract class AbstractFormDefinitionState implements FormDefinitionState
 
     public void setStoreAccountAddress(String storeAccountAddress) {
         this.storeAccountAddress = storeAccountAddress;
-    }
-
-    private String startPageName;
-
-    public String getStartPageName() {
-        return this.startPageName;
-    }
-
-    public void setStartPageName(String startPageName) {
-        this.startPageName = startPageName;
     }
 
     private BigInteger version;
@@ -149,6 +139,26 @@ public abstract class AbstractFormDefinitionState implements FormDefinitionState
         return this.getOffChainVersion() == null;
     }
 
+    private Set<FormPageDefinitionState> protectedPageDefinitions = new HashSet<>();
+
+    protected Set<FormPageDefinitionState> getProtectedPageDefinitions() {
+        return this.protectedPageDefinitions;
+    }
+
+    protected void setProtectedPageDefinitions(Set<FormPageDefinitionState> protectedPageDefinitions) {
+        this.protectedPageDefinitions = protectedPageDefinitions;
+    }
+
+    private EntityStateCollection<Integer, FormPageDefinitionState> pageDefinitions;
+
+    public EntityStateCollection<Integer, FormPageDefinitionState> getPageDefinitions() {
+        return this.pageDefinitions;
+    }
+
+    public void setPageDefinitions(EntityStateCollection<Integer, FormPageDefinitionState> pageDefinitions) {
+        this.pageDefinitions = pageDefinitions;
+    }
+
     private Boolean stateReadOnly;
 
     public Boolean getStateReadOnly() { return this.stateReadOnly; }
@@ -188,6 +198,7 @@ public abstract class AbstractFormDefinitionState implements FormDefinitionState
     }
     
     protected void initializeProperties() {
+        pageDefinitions = new SimpleFormPageDefinitionStateCollection();
     }
 
     @Override
@@ -224,7 +235,6 @@ public abstract class AbstractFormDefinitionState implements FormDefinitionState
         this.setFormId(e.getFormId());
         this.setContractAddress(e.getContractAddress());
         this.setStoreAccountAddress(e.getStoreAccountAddress());
-        this.setStartPageName(e.getStartPageName());
         this.setVersion(e.getVersion());
         this.setActive(e.getActive());
 
@@ -233,6 +243,10 @@ public abstract class AbstractFormDefinitionState implements FormDefinitionState
         this.setCreatedBy(e.getCreatedBy());
         this.setCreatedAt(e.getCreatedAt());
 
+        for (FormPageDefinitionEvent.FormPageDefinitionStateCreated innerEvent : e.getFormPageDefinitionEvents()) {
+            FormPageDefinitionState innerState = ((EntityStateCollection.ModifiableEntityStateCollection<Integer, FormPageDefinitionState>)this.getPageDefinitions()).getOrAdd(((FormPageDefinitionEvent.SqlFormPageDefinitionEvent)innerEvent).getFormPageDefinitionEventId().getPageNumber());
+            ((FormPageDefinitionState.SqlFormPageDefinitionState)innerState).mutate(innerEvent);
+        }
     }
 
     protected void merge(FormDefinitionState s) {
@@ -242,9 +256,42 @@ public abstract class AbstractFormDefinitionState implements FormDefinitionState
         this.setFormId(s.getFormId());
         this.setContractAddress(s.getContractAddress());
         this.setStoreAccountAddress(s.getStoreAccountAddress());
-        this.setStartPageName(s.getStartPageName());
         this.setVersion(s.getVersion());
         this.setActive(s.getActive());
+
+        if (s.getPageDefinitions() != null) {
+            Iterable<FormPageDefinitionState> iterable;
+            if (s.getPageDefinitions().isLazy()) {
+                iterable = s.getPageDefinitions().getLoadedStates();
+            } else {
+                iterable = s.getPageDefinitions();
+            }
+            if (iterable != null) {
+                for (FormPageDefinitionState ss : iterable) {
+                    FormPageDefinitionState thisInnerState = ((EntityStateCollection.ModifiableEntityStateCollection<Integer, FormPageDefinitionState>)this.getPageDefinitions()).getOrAdd(ss.getPageNumber());
+                    ((AbstractFormPageDefinitionState) thisInnerState).merge(ss);
+                }
+            }
+        }
+        if (s.getPageDefinitions() != null) {
+            if (s.getPageDefinitions() instanceof EntityStateCollection.ModifiableEntityStateCollection) {
+                if (((EntityStateCollection.ModifiableEntityStateCollection)s.getPageDefinitions()).getRemovedStates() != null) {
+                    for (FormPageDefinitionState ss : ((EntityStateCollection.ModifiableEntityStateCollection<Integer, FormPageDefinitionState>)s.getPageDefinitions()).getRemovedStates()) {
+                        FormPageDefinitionState thisInnerState = ((EntityStateCollection.ModifiableEntityStateCollection<Integer, FormPageDefinitionState>)this.getPageDefinitions()).getOrAdd(ss.getPageNumber());
+                        this.getPageDefinitions().remove(thisInnerState);
+                    }
+                }
+            } else {
+                if (s.getPageDefinitions().isAllLoaded()) {
+                    Set<Integer> removedStateIds = new HashSet<>(this.getPageDefinitions().stream().map(i -> i.getPageNumber()).collect(java.util.stream.Collectors.toList()));
+                    s.getPageDefinitions().forEach(i -> removedStateIds.remove(i.getPageNumber()));
+                    for (Integer i : removedStateIds) {
+                        FormPageDefinitionState thisInnerState = ((EntityStateCollection.ModifiableEntityStateCollection<Integer, FormPageDefinitionState>)this.getPageDefinitions()).getOrAdd(i);
+                        this.getPageDefinitions().remove(thisInnerState);
+                    }
+                }
+            }
+        }
     }
 
     public void when(FormDefinitionStateMergePatched e) {
@@ -271,13 +318,6 @@ public abstract class AbstractFormDefinitionState implements FormDefinitionState
         } else {
             this.setStoreAccountAddress(e.getStoreAccountAddress());
         }
-        if (e.getStartPageName() == null) {
-            if (e.getIsPropertyStartPageNameRemoved() != null && e.getIsPropertyStartPageNameRemoved()) {
-                this.setStartPageName(null);
-            }
-        } else {
-            this.setStartPageName(e.getStartPageName());
-        }
         if (e.getVersion() == null) {
             if (e.getIsPropertyVersionRemoved() != null && e.getIsPropertyVersionRemoved()) {
                 this.setVersion(null);
@@ -296,6 +336,14 @@ public abstract class AbstractFormDefinitionState implements FormDefinitionState
         this.setUpdatedBy(e.getCreatedBy());
         this.setUpdatedAt(e.getCreatedAt());
 
+        for (FormPageDefinitionEvent innerEvent : e.getFormPageDefinitionEvents()) {
+            FormPageDefinitionState innerState = ((EntityStateCollection.ModifiableEntityStateCollection<Integer, FormPageDefinitionState>)this.getPageDefinitions()).getOrAdd(((FormPageDefinitionEvent.SqlFormPageDefinitionEvent)innerEvent).getFormPageDefinitionEventId().getPageNumber());
+            ((FormPageDefinitionState.SqlFormPageDefinitionState)innerState).mutate(innerEvent);
+            if (innerEvent instanceof FormPageDefinitionEvent.FormPageDefinitionStateRemoved) {
+                //FormPageDefinitionEvent.FormPageDefinitionStateRemoved removed = (FormPageDefinitionEvent.FormPageDefinitionStateRemoved)innerEvent;
+                this.getPageDefinitions().remove(innerState);
+            }
+        }
     }
 
     public void when(FormDefinitionStateDeleted e) {
@@ -305,9 +353,21 @@ public abstract class AbstractFormDefinitionState implements FormDefinitionState
         this.setUpdatedBy(e.getCreatedBy());
         this.setUpdatedAt(e.getCreatedAt());
 
+        for (FormPageDefinitionState innerState : this.getPageDefinitions()) {
+            this.getPageDefinitions().remove(innerState);
+        
+            FormPageDefinitionEvent.FormPageDefinitionStateRemoved innerE = e.newFormPageDefinitionStateRemoved(innerState.getPageNumber());
+            innerE.setCreatedAt(e.getCreatedAt());
+            innerE.setCreatedBy(e.getCreatedBy());
+            ((FormPageDefinitionState.MutableFormPageDefinitionState)innerState).mutate(innerE);
+            //e.addFormPageDefinitionEvent(innerE);
+        }
     }
 
     public void save() {
+        if (pageDefinitions instanceof Saveable) {
+            ((Saveable)pageDefinitions).save();
+        }
     }
 
     protected void throwOnWrongEvent(FormDefinitionEvent event) {
@@ -347,6 +407,122 @@ public abstract class AbstractFormDefinitionState implements FormDefinitionState
 
     }
 
+
+    class SimpleFormPageDefinitionStateCollection implements EntityStateCollection.ModifiableEntityStateCollection<Integer, FormPageDefinitionState> {
+
+        @Override
+        public FormPageDefinitionState get(Integer pageNumber) {
+            return protectedPageDefinitions.stream().filter(
+                            e -> e.getPageNumber().equals(pageNumber))
+                    .findFirst().orElse(null);
+        }
+
+        @Override
+        public boolean isLazy() {
+            return false;
+        }
+
+        @Override
+        public boolean isAllLoaded() {
+            return true;
+        }
+
+        @Override
+        public Collection<FormPageDefinitionState> getLoadedStates() {
+            return protectedPageDefinitions;
+        }
+
+        @Override
+        public Collection<FormPageDefinitionState> getRemovedStates() {
+            return null;
+        }
+
+        @Override
+        public FormPageDefinitionState getOrAdd(Integer pageNumber) {
+            FormPageDefinitionState s = get(pageNumber);
+            if (s == null) {
+                FormDefinitionFormPageDefinitionId globalId = new FormDefinitionFormPageDefinitionId(getFormSequenceId(), pageNumber);
+                AbstractFormPageDefinitionState state = new AbstractFormPageDefinitionState.SimpleFormPageDefinitionState();
+                state.setFormDefinitionFormPageDefinitionId(globalId);
+                add(state);
+                s = state;
+            }
+            return s;
+        }
+
+        @Override
+        public int size() {
+            return protectedPageDefinitions.size();
+        }
+
+        @Override
+        public boolean isEmpty() {
+            return protectedPageDefinitions.isEmpty();
+        }
+
+        @Override
+        public boolean contains(Object o) {
+            return protectedPageDefinitions.contains(o);
+        }
+
+        @Override
+        public Iterator<FormPageDefinitionState> iterator() {
+            return protectedPageDefinitions.iterator();
+        }
+
+        @Override
+        public Object[] toArray() {
+            return protectedPageDefinitions.toArray();
+        }
+
+        @Override
+        public <T> T[] toArray(T[] a) {
+            return protectedPageDefinitions.toArray(a);
+        }
+
+        @Override
+        public boolean add(FormPageDefinitionState s) {
+            if (s instanceof AbstractFormPageDefinitionState) {
+                AbstractFormPageDefinitionState state = (AbstractFormPageDefinitionState) s;
+                state.setProtectedFormDefinitionState(AbstractFormDefinitionState.this);
+            }
+            return protectedPageDefinitions.add(s);
+        }
+
+        @Override
+        public boolean remove(Object o) {
+            if (o instanceof AbstractFormPageDefinitionState) {
+                AbstractFormPageDefinitionState s = (AbstractFormPageDefinitionState) o;
+                s.setProtectedFormDefinitionState(null);
+            }
+            return protectedPageDefinitions.remove(o);
+        }
+
+        @Override
+        public boolean containsAll(Collection<?> c) {
+            return protectedPageDefinitions.contains(c);
+        }
+
+        @Override
+        public boolean addAll(Collection<? extends FormPageDefinitionState> c) {
+            return protectedPageDefinitions.addAll(c);
+        }
+
+        @Override
+        public boolean removeAll(Collection<?> c) {
+            return protectedPageDefinitions.removeAll(c);
+        }
+
+        @Override
+        public boolean retainAll(Collection<?> c) {
+            return protectedPageDefinitions.retainAll(c);
+        }
+
+        @Override
+        public void clear() {
+            protectedPageDefinitions.clear();
+        }
+    }
 
 
 }

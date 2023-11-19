@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.test.aptosformsdemo.domain.FormSequenceIdAndAddress;
+import org.test.aptosformsdemo.domain.FormPageAndAddress;
 import org.test.aptosformsdemo.aptos.contract.TestTenantizedIdFunctions;
 
 @Service
@@ -41,13 +41,13 @@ public class UpdateAptosFormsDemoMainFormStateTaskService {
     @Transactional
     public void updateAptosFormsDemoMainFormStates() {
         aptosFormsDemoMainFormEventRepository.findByStatusIsNull().forEach(e -> {
-            aptosAptosFormsDemoMainFormService.updateAptosFormsDemoMainFormState(getContractModuleNameProvider(), getToFormSequenceIdAndAddressFunction(), e.getFormSequenceIdAndSignerAddress().getAddress());
+            aptosAptosFormsDemoMainFormService.updateAptosFormsDemoMainFormState(getContractModuleNameProvider(), getToFormPageAndAddressFunction(), e.getFormPageAndSignerAddress().getAddress());
             aptosFormsDemoMainFormEventService.updateStatusToProcessed(e);
         });
     }
 
-    private java.util.function.Function<String, FormSequenceIdAndAddress> getToFormSequenceIdAndAddressFunction() {
-        return TestTenantizedIdFunctions.toFormSequenceIdAndAddressFunction(); // todo only for test
+    private java.util.function.Function<String, FormPageAndAddress> getToFormPageAndAddressFunction() {
+        return TestTenantizedIdFunctions.toFormPageAndAddressFunction(); // todo only for test
     }
 
     private ContractModuleNameProvider getContractModuleNameProvider() {

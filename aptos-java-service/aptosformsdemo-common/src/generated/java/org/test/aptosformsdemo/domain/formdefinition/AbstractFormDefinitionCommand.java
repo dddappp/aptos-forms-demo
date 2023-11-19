@@ -77,18 +77,6 @@ public abstract class AbstractFormDefinitionCommand extends AbstractCommand impl
             this.storeAccountAddress = storeAccountAddress;
         }
 
-        private String startPageName;
-
-        public String getStartPageName()
-        {
-            return this.startPageName;
-        }
-
-        public void setStartPageName(String startPageName)
-        {
-            this.startPageName = startPageName;
-        }
-
         private BigInteger version;
 
         public BigInteger getVersion()
@@ -113,6 +101,30 @@ public abstract class AbstractFormDefinitionCommand extends AbstractCommand impl
             this.active = active;
         }
 
+        public FormPageDefinitionCommand.CreateFormPageDefinition newCreateFormPageDefinition()
+        {
+            AbstractFormPageDefinitionCommand.SimpleCreateFormPageDefinition c = new AbstractFormPageDefinitionCommand.SimpleCreateFormPageDefinition();
+            c.setFormDefinitionFormSequenceId(this.getFormSequenceId());
+
+            return c;
+        }
+
+        public FormPageDefinitionCommand.MergePatchFormPageDefinition newMergePatchFormPageDefinition()
+        {
+            AbstractFormPageDefinitionCommand.SimpleMergePatchFormPageDefinition c = new AbstractFormPageDefinitionCommand.SimpleMergePatchFormPageDefinition();
+            c.setFormDefinitionFormSequenceId(this.getFormSequenceId());
+
+            return c;
+        }
+
+        public FormPageDefinitionCommand.RemoveFormPageDefinition newRemoveFormPageDefinition()
+        {
+            AbstractFormPageDefinitionCommand.SimpleRemoveFormPageDefinition c = new AbstractFormPageDefinitionCommand.SimpleRemoveFormPageDefinition();
+            c.setFormDefinitionFormSequenceId(this.getFormSequenceId());
+
+            return c;
+        }
+
     }
 
     public static abstract class AbstractCreateFormDefinition extends AbstractCreateOrMergePatchFormDefinition implements CreateFormDefinition
@@ -120,6 +132,16 @@ public abstract class AbstractFormDefinitionCommand extends AbstractCommand impl
         @Override
         public String getCommandType() {
             return COMMAND_TYPE_CREATE;
+        }
+
+        private CreateFormPageDefinitionCommandCollection createFormPageDefinitionCommands = new SimpleCreateFormPageDefinitionCommandCollection();
+
+        public CreateFormPageDefinitionCommandCollection getCreateFormPageDefinitionCommands() {
+            return this.createFormPageDefinitionCommands;
+        }
+
+        public CreateFormPageDefinitionCommandCollection getPageDefinitions() {
+            return this.createFormPageDefinitionCommands; //pageDefinitions;
         }
 
     }
@@ -167,18 +189,6 @@ public abstract class AbstractFormDefinitionCommand extends AbstractCommand impl
             this.isPropertyStoreAccountAddressRemoved = removed;
         }
 
-        private Boolean isPropertyStartPageNameRemoved;
-
-        public Boolean getIsPropertyStartPageNameRemoved()
-        {
-            return this.isPropertyStartPageNameRemoved;
-        }
-
-        public void setIsPropertyStartPageNameRemoved(Boolean removed)
-        {
-            this.isPropertyStartPageNameRemoved = removed;
-        }
-
         private Boolean isPropertyVersionRemoved;
 
         public Boolean getIsPropertyVersionRemoved()
@@ -204,6 +214,13 @@ public abstract class AbstractFormDefinitionCommand extends AbstractCommand impl
         }
 
 
+        private FormPageDefinitionCommandCollection formPageDefinitionCommands = new SimpleFormPageDefinitionCommandCollection();
+
+        public FormPageDefinitionCommandCollection getFormPageDefinitionCommands()
+        {
+            return this.formPageDefinitionCommands;
+        }
+
     }
 
     public static class SimpleCreateFormDefinition extends AbstractCreateFormDefinition
@@ -225,6 +242,48 @@ public abstract class AbstractFormDefinitionCommand extends AbstractCommand impl
     }
 
     
+    public static class SimpleCreateFormPageDefinitionCommandCollection implements CreateFormPageDefinitionCommandCollection {
+        private List<FormPageDefinitionCommand.CreateFormPageDefinition> innerCommands = new ArrayList<FormPageDefinitionCommand.CreateFormPageDefinition>();
+
+        public void add(FormPageDefinitionCommand.CreateFormPageDefinition c) {
+            innerCommands.add(c);
+        }
+
+        public void remove(FormPageDefinitionCommand.CreateFormPageDefinition c) {
+            innerCommands.remove(c);
+        }
+
+        public void clear() {
+            innerCommands.clear();
+        }
+
+        @Override
+        public Iterator<FormPageDefinitionCommand.CreateFormPageDefinition> iterator() {
+            return innerCommands.iterator();
+        }
+    }
+
+    public static class SimpleFormPageDefinitionCommandCollection implements FormPageDefinitionCommandCollection {
+        private List<FormPageDefinitionCommand> innerCommands = new ArrayList<FormPageDefinitionCommand>();
+
+        public void add(FormPageDefinitionCommand c) {
+            innerCommands.add(c);
+        }
+
+        public void remove(FormPageDefinitionCommand c) {
+            innerCommands.remove(c);
+        }
+
+        public void clear() {
+            innerCommands.clear();
+        }
+
+        @Override
+        public Iterator<FormPageDefinitionCommand> iterator() {
+            return innerCommands.iterator();
+        }
+    }
+
 
 }
 

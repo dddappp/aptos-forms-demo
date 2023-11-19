@@ -70,6 +70,13 @@ public class AggregatesHibernateConfig {
 
 
     @Bean
+    public FormPageDefinitionEventDao formPageDefinitionEventDao(SessionFactory hibernateSessionFactory) {
+        HibernateFormPageDefinitionEventDao dao = new HibernateFormPageDefinitionEventDao();
+        dao.setSessionFactory(hibernateSessionFactory);
+        return dao;
+    }
+
+    @Bean
     public FormDefinitionStateRepository formDefinitionStateRepository(
             SessionFactory hibernateSessionFactory,
             ReadOnlyProxyGenerator stateReadOnlyProxyGenerator

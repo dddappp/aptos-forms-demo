@@ -58,7 +58,7 @@ public abstract class AbstractAptosFormsDemoMainFormApplicationService implement
         update(c, ar -> ar.update(c.getFr_5pqi(), c.getFr_duif(), c.getFr_6i34(), c.getFr_8xjs(), c.getFr_9c3f(), c.getFr_4ok6(), c.getFr_b3ub(), c.getFr_1z7o(), c.getFr_d8rw(), c.getFr_dy3l(), c.getFr_6f68(), c.getFr_47yy(), c.getFr_gh3o(), c.getFr_fbba(), c.getFr_hhzp(), c.getSingle_text1(), c.getOffChainVersion(), c.getCommandId(), c.getRequesterId(), c));
     }
 
-    public AptosFormsDemoMainFormState get(FormSequenceIdAndAddress id) {
+    public AptosFormsDemoMainFormState get(FormPageAndAddress id) {
         AptosFormsDemoMainFormState state = getStateRepository().get(id, true);
         return state;
     }
@@ -87,18 +87,18 @@ public abstract class AbstractAptosFormsDemoMainFormApplicationService implement
         return getStateQueryRepository().getCount(filter);
     }
 
-    public AptosFormsDemoMainFormEvent getEvent(FormSequenceIdAndAddress formSequenceIdAndSignerAddress, long version) {
-        AptosFormsDemoMainFormEvent e = (AptosFormsDemoMainFormEvent)getEventStore().getEvent(toEventStoreAggregateId(formSequenceIdAndSignerAddress), version);
+    public AptosFormsDemoMainFormEvent getEvent(FormPageAndAddress formPageAndSignerAddress, long version) {
+        AptosFormsDemoMainFormEvent e = (AptosFormsDemoMainFormEvent)getEventStore().getEvent(toEventStoreAggregateId(formPageAndSignerAddress), version);
         if (e != null) {
             ((AptosFormsDemoMainFormEvent.SqlAptosFormsDemoMainFormEvent)e).setEventReadOnly(true); 
         } else if (version == -1) {
-            return getEvent(formSequenceIdAndSignerAddress, 0);
+            return getEvent(formPageAndSignerAddress, 0);
         }
         return e;
     }
 
-    public AptosFormsDemoMainFormState getHistoryState(FormSequenceIdAndAddress formSequenceIdAndSignerAddress, long version) {
-        EventStream eventStream = getEventStore().loadEventStream(AbstractAptosFormsDemoMainFormEvent.class, toEventStoreAggregateId(formSequenceIdAndSignerAddress), version - 1);
+    public AptosFormsDemoMainFormState getHistoryState(FormPageAndAddress formPageAndSignerAddress, long version) {
+        EventStream eventStream = getEventStore().loadEventStream(AbstractAptosFormsDemoMainFormEvent.class, toEventStoreAggregateId(formPageAndSignerAddress), version - 1);
         return new AbstractAptosFormsDemoMainFormState.SimpleAptosFormsDemoMainFormState(eventStream.getEvents());
     }
 
@@ -107,12 +107,12 @@ public abstract class AbstractAptosFormsDemoMainFormApplicationService implement
         return new AbstractAptosFormsDemoMainFormAggregate.SimpleAptosFormsDemoMainFormAggregate(state);
     }
 
-    public EventStoreAggregateId toEventStoreAggregateId(FormSequenceIdAndAddress aggregateId) {
+    public EventStoreAggregateId toEventStoreAggregateId(FormPageAndAddress aggregateId) {
         return new EventStoreAggregateId.SimpleEventStoreAggregateId(aggregateId);
     }
 
     protected void update(AptosFormsDemoMainFormCommand c, Consumer<AptosFormsDemoMainFormAggregate> action) {
-        FormSequenceIdAndAddress aggregateId = c.getFormSequenceIdAndSignerAddress();
+        FormPageAndAddress aggregateId = c.getFormPageAndSignerAddress();
         EventStoreAggregateId eventStoreAggregateId = toEventStoreAggregateId(aggregateId);
         AptosFormsDemoMainFormState state = getStateRepository().get(aggregateId, false);
         boolean duplicate = isDuplicateCommand(c, eventStoreAggregateId, state);

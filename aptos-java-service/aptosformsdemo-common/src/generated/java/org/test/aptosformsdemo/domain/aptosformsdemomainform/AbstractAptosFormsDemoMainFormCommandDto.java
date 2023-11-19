@@ -13,18 +13,18 @@ import org.test.aptosformsdemo.domain.AbstractCommand;
 public abstract class AbstractAptosFormsDemoMainFormCommandDto extends AbstractCommand {
 
     /**
-     * Form Sequence Id And Signer Address
+     * Form Page And Signer Address
      */
-    private FormSequenceIdAndAddress formSequenceIdAndSignerAddress;
+    private FormPageAndAddress formPageAndSignerAddress;
 
-    public FormSequenceIdAndAddress getFormSequenceIdAndSignerAddress()
+    public FormPageAndAddress getFormPageAndSignerAddress()
     {
-        return this.formSequenceIdAndSignerAddress;
+        return this.formPageAndSignerAddress;
     }
 
-    public void setFormSequenceIdAndSignerAddress(FormSequenceIdAndAddress formSequenceIdAndSignerAddress)
+    public void setFormPageAndSignerAddress(FormPageAndAddress formPageAndSignerAddress)
     {
-        this.formSequenceIdAndSignerAddress = formSequenceIdAndSignerAddress;
+        this.formPageAndSignerAddress = formPageAndSignerAddress;
     }
 
     /**
@@ -44,7 +44,7 @@ public abstract class AbstractAptosFormsDemoMainFormCommandDto extends AbstractC
 
 
     public void copyTo(AptosFormsDemoMainFormCommand command) {
-        command.setFormSequenceIdAndSignerAddress(this.getFormSequenceIdAndSignerAddress());
+        command.setFormPageAndSignerAddress(this.getFormPageAndSignerAddress());
         command.setOffChainVersion(this.getOffChainVersion());
         
         command.setRequesterId(this.getRequesterId());

@@ -3,10 +3,13 @@
 <hibernate-mapping package="org.test.aptosformsdemo.domain.aptosformsdemomainform">
   <class name="AbstractAptosFormsDemoMainFormEvent" table="aptos_forms_demo_main_form_event" abstract="true">
     <composite-id name="aptosFormsDemoMainFormEventId" class="org.test.aptosformsdemo.domain.aptosformsdemomainform.AptosFormsDemoMainFormEventId">
-      <key-property name="formSequenceIdAndSignerAddressFormSequenceId">
+      <key-property name="formPageAndSignerAddressFormSequenceId">
         <column name="form_sequence_id" />
       </key-property>
-      <key-property name="formSequenceIdAndSignerAddressAddress">
+      <key-property name="formPageAndSignerAddressPageNumber">
+        <column name="page_number" />
+      </key-property>
+      <key-property name="formPageAndSignerAddressAddress">
         <column name="signer_address" sql-type="VARCHAR(66)" />
       </key-property>
       <key-property name="version">

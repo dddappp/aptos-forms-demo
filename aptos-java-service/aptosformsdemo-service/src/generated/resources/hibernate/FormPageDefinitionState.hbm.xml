@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"[]>
+<hibernate-mapping package="org.test.aptosformsdemo.domain.formdefinition">
+  <class name="org.test.aptosformsdemo.domain.formdefinition.AbstractFormPageDefinitionState$SimpleFormPageDefinitionState" table="form_page_definition">
+    <composite-id name="formDefinitionFormPageDefinitionId" class="org.test.aptosformsdemo.domain.formdefinition.FormDefinitionFormPageDefinitionId">
+      <key-property name="formDefinitionFormSequenceId">
+        <column name="form_sequence_id" />
+      </key-property>
+      <key-property name="pageNumber">
+        <column name="page_number" />
+      </key-property>
+    </composite-id>
+    <version name="offChainVersion" column="off_chain_version" type="long" />
+    <many-to-one name="protectedFormDefinitionState" class="org.test.aptosformsdemo.domain.formdefinition.AbstractFormDefinitionState$SimpleFormDefinitionState" insert="false" update="false">
+      <column name="form_sequence_id" />
+    </many-to-one>
+    <property name="pageName">
+      <column name="page_name" length="100" />
+    </property>
+    <property name="moveStateTableFieldName">
+      <column name="move_state_table_field_name" length="100" />
+    </property>
+    <property name="moveStateStructName">
+      <column name="move_state_struct_name" length="100" />
+    </property>
+    <property name="moveSubmitEventHandleFieldName">
+      <column name="move_submit_event_handle_field_name" length="100" />
+    </property>
+    <property name="moveUpdateEventHandleFieldName">
+      <column name="move_update_event_handle_field_name" length="100" />
+    </property>
+    <property name="createdBy">
+      <column name="created_by" />
+    </property>
+    <property name="updatedBy">
+      <column name="updated_by" />
+    </property>
+    <property name="active">
+      <column name="active" />
+    </property>
+    <property name="deleted">
+      <column name="deleted" />
+    </property>
+    <property name="createdAt" column="created_at" />
+    <property name="updatedAt" column="updated_at" />
+  </class>
+</hibernate-mapping>

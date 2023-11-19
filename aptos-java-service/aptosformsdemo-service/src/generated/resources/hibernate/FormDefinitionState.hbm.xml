@@ -11,6 +11,12 @@
       </generator>
     </id>
     <version name="offChainVersion" column="off_chain_version" type="long" />
+    <set name="protectedPageDefinitions" inverse="true" cascade="all-delete-orphan" fetch="join">
+      <key>
+        <column name="form_sequence_id" />
+      </key>
+      <one-to-many class="org.test.aptosformsdemo.domain.formdefinition.AbstractFormPageDefinitionState$SimpleFormPageDefinitionState" />
+    </set>
     <property name="formId">
       <column name="form_id" length="100" />
     </property>
@@ -19,9 +25,6 @@
     </property>
     <property name="storeAccountAddress">
       <column name="store_account_address" sql-type="VARCHAR(66)" />
-    </property>
-    <property name="startPageName">
-      <column name="start_page_name" length="100" />
     </property>
     <property name="version">
       <column name="version" sql-type="DECIMAL(20,0)" />

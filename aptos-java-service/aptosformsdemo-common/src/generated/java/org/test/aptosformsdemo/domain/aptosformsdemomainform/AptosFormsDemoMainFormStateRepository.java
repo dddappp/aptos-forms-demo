@@ -12,7 +12,7 @@ import java.math.BigInteger;
 import java.time.OffsetDateTime;
 
 public interface AptosFormsDemoMainFormStateRepository {
-    AptosFormsDemoMainFormState get(FormSequenceIdAndAddress id, boolean nullAllowed);
+    AptosFormsDemoMainFormState get(FormPageAndAddress id, boolean nullAllowed);
 
     void save(AptosFormsDemoMainFormState state);
 

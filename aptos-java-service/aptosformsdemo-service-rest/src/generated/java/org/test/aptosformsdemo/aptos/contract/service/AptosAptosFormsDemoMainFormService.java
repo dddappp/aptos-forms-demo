@@ -35,17 +35,17 @@ public class AptosAptosFormsDemoMainFormService {
     ) {
         this.aptosAptosFormsDemoMainFormStateRetriever = new AptosAptosFormsDemoMainFormStateRetriever(
                 aptosNodeApiClient,
-                (signerAddress, toFormSequenceIdAndAddress) -> {
+                (signerAddress, toFormPageAndAddress) -> {
                     AptosFormsDemoMainFormState.MutableAptosFormsDemoMainFormState s = new AbstractAptosFormsDemoMainFormState.SimpleAptosFormsDemoMainFormState();
-                    s.setFormSequenceIdAndSignerAddress(toFormSequenceIdAndAddress.apply(signerAddress));
+                    s.setFormPageAndSignerAddress(toFormPageAndAddress.apply(signerAddress));
                     return s;
                 }
         );
     }
 
     @Transactional
-    public void updateAptosFormsDemoMainFormState(ContractModuleNameProvider contractModuleNameProvider, java.util.function.Function<String, FormSequenceIdAndAddress> toFormSequenceIdAndAddress, String signerAddress) {
-        AptosFormsDemoMainFormState aptosFormsDemoMainFormState = aptosAptosFormsDemoMainFormStateRetriever.retrieveAptosFormsDemoMainFormState(contractModuleNameProvider, toFormSequenceIdAndAddress, signerAddress);
+    public void updateAptosFormsDemoMainFormState(ContractModuleNameProvider contractModuleNameProvider, java.util.function.Function<String, FormPageAndAddress> toFormPageAndAddress, String signerAddress) {
+        AptosFormsDemoMainFormState aptosFormsDemoMainFormState = aptosAptosFormsDemoMainFormStateRetriever.retrieveAptosFormsDemoMainFormState(contractModuleNameProvider, toFormPageAndAddress, signerAddress);
         if (aptosFormsDemoMainFormState == null) {
             return;
         }

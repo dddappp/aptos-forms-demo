@@ -5,18 +5,19 @@
 
 package org.test.aptosformsdemo.aptos.contract;
 
-import org.test.aptosformsdemo.domain.FormSequenceIdAndAddress;
+import org.test.aptosformsdemo.domain.FormPageAndAddress;
 
 public class TestTenantizedIdFunctions {
     private TestTenantizedIdFunctions() {
     }
 
-    public static java.util.function.Function<String, FormSequenceIdAndAddress> toFormSequenceIdAndAddressFunction() {
+    public static java.util.function.Function<String, FormPageAndAddress> toFormPageAndAddressFunction() {
         return (address) -> {
-            FormSequenceIdAndAddress formSequenceIdAndAddress = new FormSequenceIdAndAddress();
-            formSequenceIdAndAddress.setFormSequenceId(1L); // todo hard-coded for test
-            formSequenceIdAndAddress.setAddress(address);
-            return formSequenceIdAndAddress;
+            FormPageAndAddress formPageAndAddress = new FormPageAndAddress();
+            formPageAndAddress.setFormSequenceId(1L); // todo hard-coded for test
+            formPageAndAddress.setPageNumber(1);
+            formPageAndAddress.setAddress(address);
+            return formPageAndAddress;
         };
     }
 

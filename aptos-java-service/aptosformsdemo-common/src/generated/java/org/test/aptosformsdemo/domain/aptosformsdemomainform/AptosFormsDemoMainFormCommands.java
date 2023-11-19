@@ -25,16 +25,16 @@ public class AptosFormsDemoMainFormCommands {
         }
 
         /**
-         * Form Sequence Id And Signer Address
+         * Form Page And Signer Address
          */
-        private FormSequenceIdAndAddress formSequenceIdAndSignerAddress;
+        private FormPageAndAddress formPageAndSignerAddress;
 
-        public FormSequenceIdAndAddress getFormSequenceIdAndSignerAddress() {
-            return this.formSequenceIdAndSignerAddress;
+        public FormPageAndAddress getFormPageAndSignerAddress() {
+            return this.formPageAndSignerAddress;
         }
 
-        public void setFormSequenceIdAndSignerAddress(FormSequenceIdAndAddress formSequenceIdAndSignerAddress) {
-            this.formSequenceIdAndSignerAddress = formSequenceIdAndSignerAddress;
+        public void setFormPageAndSignerAddress(FormPageAndAddress formPageAndSignerAddress) {
+            this.formPageAndSignerAddress = formPageAndSignerAddress;
         }
 
         /**
@@ -271,16 +271,16 @@ public class AptosFormsDemoMainFormCommands {
         }
 
         /**
-         * Form Sequence Id And Signer Address
+         * Form Page And Signer Address
          */
-        private FormSequenceIdAndAddress formSequenceIdAndSignerAddress;
+        private FormPageAndAddress formPageAndSignerAddress;
 
-        public FormSequenceIdAndAddress getFormSequenceIdAndSignerAddress() {
-            return this.formSequenceIdAndSignerAddress;
+        public FormPageAndAddress getFormPageAndSignerAddress() {
+            return this.formPageAndSignerAddress;
         }
 
-        public void setFormSequenceIdAndSignerAddress(FormSequenceIdAndAddress formSequenceIdAndSignerAddress) {
-            this.formSequenceIdAndSignerAddress = formSequenceIdAndSignerAddress;
+        public void setFormPageAndSignerAddress(FormPageAndAddress formPageAndSignerAddress) {
+            this.formPageAndSignerAddress = formPageAndSignerAddress;
         }
 
         /**

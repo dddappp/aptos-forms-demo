@@ -19,7 +19,7 @@ public interface AptosFormsDemoMainFormApplicationService {
 
     void when(AptosFormsDemoMainFormCommands.Update c);
 
-    AptosFormsDemoMainFormState get(FormSequenceIdAndAddress id);
+    AptosFormsDemoMainFormState get(FormPageAndAddress id);
 
     Iterable<AptosFormsDemoMainFormState> getAll(Integer firstResult, Integer maxResults);
 
@@ -33,9 +33,9 @@ public interface AptosFormsDemoMainFormApplicationService {
 
     long getCount(Criterion filter);
 
-    AptosFormsDemoMainFormEvent getEvent(FormSequenceIdAndAddress formSequenceIdAndSignerAddress, long version);
+    AptosFormsDemoMainFormEvent getEvent(FormPageAndAddress formPageAndSignerAddress, long version);
 
-    AptosFormsDemoMainFormState getHistoryState(FormSequenceIdAndAddress formSequenceIdAndSignerAddress, long version);
+    AptosFormsDemoMainFormState getHistoryState(FormPageAndAddress formPageAndSignerAddress, long version);
 
 }
 

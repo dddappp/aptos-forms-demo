@@ -2,9 +2,12 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"[]>
 <hibernate-mapping package="org.test.aptosformsdemo.domain.aptosformsdemomainform">
   <class name="org.test.aptosformsdemo.domain.aptosformsdemomainform.AbstractAptosFormsDemoMainFormState$SimpleAptosFormsDemoMainFormState" table="aptos_forms_demo_main_form">
-    <composite-id name="formSequenceIdAndSignerAddress" class="org.test.aptosformsdemo.domain.FormSequenceIdAndAddress">
+    <composite-id name="formPageAndSignerAddress" class="org.test.aptosformsdemo.domain.FormPageAndAddress">
       <key-property name="formSequenceId">
         <column name="form_sequence_id" />
+      </key-property>
+      <key-property name="pageNumber">
+        <column name="page_number" />
       </key-property>
       <key-property name="address">
         <column name="signer_address" sql-type="VARCHAR(66)" />

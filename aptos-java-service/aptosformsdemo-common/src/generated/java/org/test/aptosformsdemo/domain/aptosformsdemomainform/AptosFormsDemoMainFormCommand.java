@@ -14,9 +14,9 @@ import org.test.aptosformsdemo.specialization.DomainError;
 
 public interface AptosFormsDemoMainFormCommand extends Command {
 
-    FormSequenceIdAndAddress getFormSequenceIdAndSignerAddress();
+    FormPageAndAddress getFormPageAndSignerAddress();
 
-    void setFormSequenceIdAndSignerAddress(FormSequenceIdAndAddress formSequenceIdAndSignerAddress);
+    void setFormPageAndSignerAddress(FormPageAndAddress formPageAndSignerAddress);
 
     Long getOffChainVersion();
 

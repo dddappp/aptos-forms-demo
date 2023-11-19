@@ -39,5 +39,9 @@ public interface FormDefinitionApplicationService {
 
     FormDefinitionState getHistoryState(Long formSequenceId, long version);
 
+    FormPageDefinitionState getFormPageDefinition(Long formDefinitionFormSequenceId, Integer pageNumber);
+
+    Iterable<FormPageDefinitionState> getFormPageDefinitions(Long formDefinitionFormSequenceId, Criterion filter, List<String> orders);
+
 }
 

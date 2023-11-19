@@ -5,6 +5,13 @@ aggregates:
       NoGeneratingMutateStateByEventMethods: false
       AutoGeneratingCrUDCommandsDisabled: false
     eventVersionProperty:
+      # The event version property has been set globally in order to generate event objects corresponding to the objects on-chain.
+      #  aggregateEventVersionProperty:
+      #    name: Version
+      #    type: u64
+      #
+      # The current object is an off-chain object with no on-chain events.
+      # So we set its version property separately.
       name: OffChainVersion
       type: long
     id:
@@ -20,23 +27,55 @@ aggregates:
         type: address
       StoreAccountAddress:
         type: address
-      StartPageName:
-        type: String
-        length: 100
+      PageDefinitions:
+        itemType: FormPageDefinition
+    entities:
+      FormPageDefinition:
+        metadata:
+          StateLobPropertiesEnabled: false
+          NoGeneratingMutateStateByEventMethods: false
+          AutoGeneratingCrUDCommandsDisabled: false
+        id:
+          name: PageNumber
+          type: int
+        globalId:
+          columnNames:
+            - form_sequence_id
+            - page_number
+        properties:
+          PageName:
+            type: String
+            length: 100
+          MoveStateTableFieldName:
+            type: String
+            length: 100
+          MoveStateStructName:
+            type: String
+            length: 100
+          MoveSubmitEventHandleFieldName:
+            type: String
+            length: 100
+          MoveUpdateEventHandleFieldName:
+            type: String
+            length: 100
+
 
 configuration:
   sequenceNumber: 20
   aptos:
-    offChainObjectNames: [ "FormDefinition" ]
+    offChainObjectNames: [ "FormDefinition", "FormPageDefinition" ]
   tenantizedIdTemplate:
     properties:
       FormSequenceId:
         type: long
+      PageNumber:
+        type: int
       "__ORIGINAL_ID__":
         type: "__OMITTED__"
     columnNames:
       - "form_sequence_id"
+      - "page_number"
       - "__ORIGINAL_ID_COLUMN_NAMES__"
-    idNameFormat: "FormSequenceIdAnd{_ORIGINAL_ID_NAME_}"
-    idTypeFormat: "FormSequenceIdAnd{_ORIGINAL_ID_TYPE_}"
+    idNameFormat: "FormPageAnd{_ORIGINAL_ID_NAME_}"
+    idTypeFormat: "FormPageAnd{_ORIGINAL_ID_TYPE_}"
     originalIdPropertyNameFormat: "{_ORIGINAL_ID_TYPE_}"

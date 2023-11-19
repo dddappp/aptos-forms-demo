@@ -27,7 +27,7 @@ public class DefaultAptosFormsDemoMainFormModuleNameProvider implements Contract
     }
 
     @Override
-    public String getTableFieldName() {
+    public String getStateTableFieldName() {
         return "aptos_forms_demo_main_form_table";
     }
 

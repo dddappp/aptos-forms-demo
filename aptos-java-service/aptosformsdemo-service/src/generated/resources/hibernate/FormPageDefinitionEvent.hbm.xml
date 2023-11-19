@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"[]>
+<hibernate-mapping package="org.test.aptosformsdemo.domain.formdefinition">
+  <class name="AbstractFormPageDefinitionEvent" table="form_page_definition_event" abstract="true">
+    <composite-id name="formPageDefinitionEventId" class="org.test.aptosformsdemo.domain.formdefinition.FormPageDefinitionEventId">
+      <key-property name="formDefinitionFormSequenceId">
+        <column name="form_sequence_id" />
+      </key-property>
+      <key-property name="pageNumber">
+        <column name="page_number" />
+      </key-property>
+      <key-property name="offChainVersion">
+        <column name="off_chain_version" />
+      </key-property>
+    </composite-id>
+    <discriminator column="event_class" type="string" />
+    <property name="createdBy" column="created_by" />
+    <property name="createdAt" column="created_at" />
+    <property name="commandId" column="command_id" />
+    <subclass name="AbstractFormPageDefinitionEvent$AbstractFormPageDefinitionStateEvent" abstract="true">
+      <property name="pageName">
+        <column name="page_name" length="100" />
+      </property>
+      <property name="moveStateTableFieldName">
+        <column name="move_state_table_field_name" length="100" />
+      </property>
+      <property name="moveStateStructName">
+        <column name="move_state_struct_name" length="100" />
+      </property>
+      <property name="moveSubmitEventHandleFieldName">
+        <column name="move_submit_event_handle_field_name" length="100" />
+      </property>
+      <property name="moveUpdateEventHandleFieldName">
+        <column name="move_update_event_handle_field_name" length="100" />
+      </property>
+      <property name="active">
+        <column name="active" />
+      </property>
+      <property name="offChainVersion" column="off_chain_version" not-null="true" />
+      <subclass name="AbstractFormPageDefinitionEvent$SimpleFormPageDefinitionStateCreated" discriminator-value="Created"></subclass>
+      <subclass name="AbstractFormPageDefinitionEvent$SimpleFormPageDefinitionStateMergePatched" discriminator-value="MergePatched">
+        <property name="isPropertyPageNameRemoved" column="is_property_page_name_removed" />
+        <property name="isPropertyMoveStateTableFieldNameRemoved" column="is_property_move_state_table_field_name_removed" />
+        <property name="isPropertyMoveStateStructNameRemoved" column="is_property_move_state_struct_name_removed" />
+        <property name="isPropertyMoveSubmitEventHandleFieldNameRemoved" column="is_property_move_submit_event_handle_field_name_removed" />
+        <property name="isPropertyMoveUpdateEventHandleFieldNameRemoved" column="is_property_move_update_event_handle_field_name_removed" />
+        <property name="isPropertyActiveRemoved" column="is_property_active_removed" />
+      </subclass>
+      <subclass name="AbstractFormPageDefinitionEvent$SimpleFormPageDefinitionStateRemoved" discriminator-value="Removed"></subclass>
+    </subclass>
+  </class>
+</hibernate-mapping>

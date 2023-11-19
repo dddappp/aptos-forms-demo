@@ -63,18 +63,6 @@ public class FormDefinitionStateDto {
         this.storeAccountAddress = storeAccountAddress;
     }
 
-    private String startPageName;
-
-    public String getStartPageName()
-    {
-        return this.startPageName;
-    }
-
-    public void setStartPageName(String startPageName)
-    {
-        this.startPageName = startPageName;
-    }
-
     private BigInteger version;
 
     public BigInteger getVersion()
@@ -159,10 +147,22 @@ public class FormDefinitionStateDto {
         this.updatedAt = updatedAt;
     }
 
+    private FormPageDefinitionStateDto[] pageDefinitions;
+
+    public FormPageDefinitionStateDto[] getPageDefinitions()
+    {
+        return this.pageDefinitions;
+    }    
+
+    public void setPageDefinitions(FormPageDefinitionStateDto[] pageDefinitions)
+    {
+        this.pageDefinitions = pageDefinitions;
+    }
+
 
     public static class DtoConverter extends AbstractStateDtoConverter
     {
-        public static Collection<String> collectionFieldNames = Arrays.asList(new String[]{});
+        public static Collection<String> collectionFieldNames = Arrays.asList(new String[]{"PageDefinitions"});
 
         @Override
         protected boolean isCollectionField(String fieldName) {
@@ -200,9 +200,6 @@ public class FormDefinitionStateDto {
             if (returnedFieldsContains("StoreAccountAddress")) {
                 dto.setStoreAccountAddress(state.getStoreAccountAddress());
             }
-            if (returnedFieldsContains("StartPageName")) {
-                dto.setStartPageName(state.getStartPageName());
-            }
             if (returnedFieldsContains("Version")) {
                 dto.setVersion(state.getVersion());
             }
@@ -223,6 +220,18 @@ public class FormDefinitionStateDto {
             }
             if (returnedFieldsContains("UpdatedAt")) {
                 dto.setUpdatedAt(state.getUpdatedAt());
+            }
+            if (returnedFieldsContains("PageDefinitions")) {
+                ArrayList<FormPageDefinitionStateDto> arrayList = new ArrayList();
+                if (state.getPageDefinitions() != null) {
+                    FormPageDefinitionStateDto.DtoConverter conv = new FormPageDefinitionStateDto.DtoConverter();
+                    String returnFS = CollectionUtils.mapGetValueIgnoringCase(getReturnedFields(), "PageDefinitions");
+                    if(returnFS != null) { conv.setReturnedFieldsString(returnFS); } else { conv.setAllFieldsReturned(this.getAllFieldsReturned()); }
+                    for (FormPageDefinitionState s : state.getPageDefinitions()) {
+                        arrayList.add(conv.toFormPageDefinitionStateDto(s));
+                    }
+                }
+                dto.setPageDefinitions(arrayList.toArray(new FormPageDefinitionStateDto[0]));
             }
             return dto;
         }
