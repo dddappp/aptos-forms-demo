@@ -1,22 +1,27 @@
 cd ../../XRender-Form-Utils/aptos-move
-
+# Please initialize a test account in this directory beforehand.
 #aptos init
 # Press Enter to confirm using the default values:
+
 aptos account fund-with-faucet --account default --amount 50000000000
 # View Aptos Profiles:
 #aptos config show-profiles
 
-aptos move publish --named-addresses xrender_form_utils=0x71df3ab1b6cf015aa5870a8a6e8ee0951c54e8d7d79bb59fa3b737c3a38fb93b --assume-yes
+# Please install the jq CLI tool beforehand
+xrender_form_utils_account=$(aptos config show-profiles | jq -r '.Result.default.account')
+
+aptos move publish --named-addresses xrender_form_utils=$xrender_form_utils_account --assume-yes
 
 cd ../../aptos-forms-demo/aptos-contracts
-
+# Please initialize a test account in this directory beforehand.
 #aptos init
 # Press Enter to confirm using the default values:
+
 aptos account fund-with-faucet --account default --amount 50000000000
 # View Aptos Profiles:
 #aptos config show-profiles
 
-aptos move publish --named-addresses aptos_forms_demo=default,xrender_form_utils=0x71df3ab1b6cf015aa5870a8a6e8ee0951c54e8d7d79bb59fa3b737c3a38fb93b --assume-yes
+aptos move publish --named-addresses aptos_forms_demo=default,xrender_form_utils=$xrender_form_utils_account --assume-yes
 
 aptos move run --function-id 'default::aptos_forms_demo_init::initialize' --assume-yes
 
