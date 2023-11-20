@@ -32,6 +32,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form_update_logic {
         single_text1: String,
         aptos_forms_demo_main_form: &aptos_forms_demo_main_form::AptosFormsDemoMainForm,
     ): aptos_forms_demo_main_form::AptosFormsDemoMainFormUpdated {
+        let _ = account;
         assert!(aptos_forms_demo_main_form::signer_address(aptos_forms_demo_main_form) == std::signer::address_of(account), ENoUpdatePermission);
         assert!(aptos_framework::timestamp::now_seconds() >= 1699256214, EFormNotOpen); // Open at: 2023-11-06T07:36:54Z
         assert!(aptos_framework::timestamp::now_seconds() <= 3908475414, EFormCutOff); // Cutoff at: 2093-11-08T07:36:54+08:00
