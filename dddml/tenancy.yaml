@@ -30,6 +30,8 @@ aggregates:
         class: sequence
       name: FormSequenceId
       type: long
+    uniqueConstraints:
+      "UniqueFormId": [ "FormId" ]
     properties:
       FormId:
         type: String

@@ -18,7 +18,7 @@
       <one-to-many class="org.test.aptosformsdemo.domain.formdefinition.AbstractFormPageDefinitionState$SimpleFormPageDefinitionState" />
     </set>
     <property name="formId">
-      <column name="form_id" length="100" />
+      <column name="form_id" length="100" unique-key="UniqueFormId" />
     </property>
     <property name="contractAddress">
       <column name="contract_address" sql-type="VARCHAR(66)" />
