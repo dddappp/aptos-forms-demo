@@ -6,6 +6,21 @@
 package org.test.aptosformsdemo.aptos.contract;
 
 public interface ContractModuleNameProvider {
+    static String toUnderscoreName(String name, boolean lowerCase) {
+        if (name == null) return null;
+        if (name.length() <= 0) return "";
+        StringBuilder dbName = new StringBuilder();
+        dbName.append(lowerCase ? Character.toLowerCase(name.charAt(0)) : Character.toUpperCase(name.charAt(0)));
+        int namePos = 1;
+        while (namePos < name.length()) {
+            char curChar = name.charAt(namePos);
+            if (Character.isUpperCase(curChar)) dbName.append('_');
+            dbName.append(lowerCase ? Character.toLowerCase(curChar) : Character.toUpperCase(curChar));
+            namePos++;
+        }
+        return dbName.toString();
+    }
+
     /**
      * @param eventCategory The name of the event being generalized, which we call event category.
      * @return
