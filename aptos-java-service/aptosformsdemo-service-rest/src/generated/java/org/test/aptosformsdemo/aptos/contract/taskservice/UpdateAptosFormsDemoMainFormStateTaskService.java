@@ -18,12 +18,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.test.aptosformsdemo.domain.FormPageAndAddress;
 import org.test.aptosformsdemo.aptos.contract.TestTenantizedIdFunctions;
+import org.test.aptosformsdemo.domain.formdefinition.FormDefinitionState;
+import org.test.aptosformsdemo.domain.formdefinition.FormDefinitionStateQueryRepository;
+import org.test.aptosformsdemo.domain.formdefinition.FormPageDefinitionState;
+
+import static org.test.aptosformsdemo.aptos.contract.taskservice.PullAptosFormsDemoMainFormEventsTaskService.getContractModuleNameProvider;
+import static org.test.aptosformsdemo.aptos.contract.taskservice.PullAptosFormsDemoMainFormEventsTaskService.getToFormPageAndAddressFunction;
 
 @Service
 public class UpdateAptosFormsDemoMainFormStateTaskService {
-
-//    @Value("${aptos.contract.address}")
-//    private String aptosContractAddress;
 
     @Autowired
     private AptosAccountRepository aptosAccountRepository;
@@ -37,29 +40,27 @@ public class UpdateAptosFormsDemoMainFormStateTaskService {
     @Autowired
     private AptosFormsDemoMainFormEventService aptosFormsDemoMainFormEventService;
 
+    @Autowired
+    private FormDefinitionStateQueryRepository formDefinitionStateQueryRepository;
+
     @Scheduled(fixedDelayString = "${aptos.contract.update-aptos-forms-demo-main-form-states.fixed-delay:5000}")
     @Transactional
     public void updateAptosFormsDemoMainFormStates() {
         aptosFormsDemoMainFormEventRepository.findByStatusIsNull().forEach(e -> {
-            //todo aptosAptosFormsDemoMainFormService.updateAptosFormsDemoMainFormState(getContractModuleNameProvider(), getToFormPageAndAddressFunction(), e.getFormPageAndSignerAddress().getAddress());
-            //todo aptosFormsDemoMainFormEventService.updateStatusToProcessed(e);
+            final long formSequenceId = e.getAptosFormsDemoMainFormEventId().getFormPageAndSignerAddress().getFormSequenceId();
+            final int pageNumber = e.getAptosFormsDemoMainFormEventId().getFormPageAndSignerAddress().getPageNumber();
+            FormDefinitionState formDefinitionState = formDefinitionStateQueryRepository.get(formSequenceId);
+            if (formDefinitionState == null) { return; }
+            FormPageDefinitionState formPageDefinitionState = formDefinitionState.getPageDefinitions().get(pageNumber);
+            if (formPageDefinitionState == null) { return; }
+            String moduleName = ContractModuleNameProvider.toUnderscoreName(formDefinitionState.getFormId() + formPageDefinitionState.getPageName(), true);
+            aptosAptosFormsDemoMainFormService.updateAptosFormsDemoMainFormState(
+                    getContractModuleNameProvider(moduleName, formDefinitionState, formPageDefinitionState),
+                    getToFormPageAndAddressFunction(formDefinitionState.getFormSequenceId(), formPageDefinitionState.getPageNumber()),
+                    e.getFormPageAndSignerAddress().getAddress()
+            );
+            aptosFormsDemoMainFormEventService.updateStatusToProcessed(e);
         });
     }
 
-    private java.util.function.Function<String, FormPageAndAddress> getToFormPageAndAddressFunction() {
-        return TestTenantizedIdFunctions.toFormPageAndAddressFunction(); // todo only for test
-    }
-
-    private ContractModuleNameProvider getContractModuleNameProvider() {
-        // Note: This 'Default' implementation contains hard-coded names. A truly generalized service may not be appropriate to use it.
-        DefaultAptosFormsDemoMainFormModuleNameProvider contractModuleNameProvider = new DefaultAptosFormsDemoMainFormModuleNameProvider();
-        //todo contractModuleNameProvider.setContractAddress(aptosContractAddress);
-        //todo contractModuleNameProvider.setStoreAccountAddress(getResourceAccountAddress());
-        return contractModuleNameProvider;
-    }
-
-//    private String getResourceAccountAddress() {
-//        return aptosAccountRepository.findById(ContractConstants.RESOURCE_ACCOUNT_ADDRESS)
-//                .map(AptosAccount::getAddress).orElse(null);
-//    }
 }

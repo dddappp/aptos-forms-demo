@@ -40,6 +40,14 @@ public interface FormPageDefinitionCommand extends Command {
 
         void setMoveUpdateEventHandleFieldName(String moveUpdateEventHandleFieldName);
 
+        String getMoveSubmitEventStructName();
+
+        void setMoveSubmitEventStructName(String moveSubmitEventStructName);
+
+        String getMoveUpdateEventStructName();
+
+        void setMoveUpdateEventStructName(String moveUpdateEventStructName);
+
         Boolean getActive();
 
         void setActive(Boolean active);
@@ -71,6 +79,14 @@ public interface FormPageDefinitionCommand extends Command {
         Boolean getIsPropertyMoveUpdateEventHandleFieldNameRemoved();
 
         void setIsPropertyMoveUpdateEventHandleFieldNameRemoved(Boolean removed);
+
+        Boolean getIsPropertyMoveSubmitEventStructNameRemoved();
+
+        void setIsPropertyMoveSubmitEventStructNameRemoved(Boolean removed);
+
+        Boolean getIsPropertyMoveUpdateEventStructNameRemoved();
+
+        void setIsPropertyMoveUpdateEventStructNameRemoved(Boolean removed);
 
         Boolean getIsPropertyActiveRemoved();
 

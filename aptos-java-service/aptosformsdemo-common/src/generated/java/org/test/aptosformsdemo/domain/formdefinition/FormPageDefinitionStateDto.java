@@ -86,6 +86,30 @@ public class FormPageDefinitionStateDto {
         this.moveUpdateEventHandleFieldName = moveUpdateEventHandleFieldName;
     }
 
+    private String moveSubmitEventStructName;
+
+    public String getMoveSubmitEventStructName()
+    {
+        return this.moveSubmitEventStructName;
+    }
+
+    public void setMoveSubmitEventStructName(String moveSubmitEventStructName)
+    {
+        this.moveSubmitEventStructName = moveSubmitEventStructName;
+    }
+
+    private String moveUpdateEventStructName;
+
+    public String getMoveUpdateEventStructName()
+    {
+        return this.moveUpdateEventStructName;
+    }
+
+    public void setMoveUpdateEventStructName(String moveUpdateEventStructName)
+    {
+        this.moveUpdateEventStructName = moveUpdateEventStructName;
+    }
+
     private Boolean active;
 
     public Boolean getActive()
@@ -216,6 +240,12 @@ public class FormPageDefinitionStateDto {
             }
             if (returnedFieldsContains("MoveUpdateEventHandleFieldName")) {
                 dto.setMoveUpdateEventHandleFieldName(state.getMoveUpdateEventHandleFieldName());
+            }
+            if (returnedFieldsContains("MoveSubmitEventStructName")) {
+                dto.setMoveSubmitEventStructName(state.getMoveSubmitEventStructName());
+            }
+            if (returnedFieldsContains("MoveUpdateEventStructName")) {
+                dto.setMoveUpdateEventStructName(state.getMoveUpdateEventStructName());
             }
             if (returnedFieldsContains("Active")) {
                 dto.setActive(state.getActive());

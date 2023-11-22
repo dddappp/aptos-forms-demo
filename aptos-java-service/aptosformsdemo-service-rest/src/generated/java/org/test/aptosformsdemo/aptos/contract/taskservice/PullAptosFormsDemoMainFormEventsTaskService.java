@@ -31,9 +31,6 @@ import java.util.HashMap;
 @Service
 public class PullAptosFormsDemoMainFormEventsTaskService {
 
-    //@Value("${aptos.contract.address}")
-    //private String aptosContractAddress;
-
     @Autowired
     private AptosAccountRepository aptosAccountRepository;
 
@@ -46,10 +43,7 @@ public class PullAptosFormsDemoMainFormEventsTaskService {
 
     @Scheduled(fixedDelayString = "${aptos.contract.pull-aptos-forms-demo-main-form-events.aptos-forms-demo-main-form-submitted.fixed-delay:5000}")
     public void pullAptosFormsDemoMainFormSubmittedEvents() {
-        java.util.Map<String, Object> filter = new HashMap<>();
-        java.util.List<String> orders = new java.util.ArrayList<>();
-        orders.add("formSequenceId");
-        FormDefinitionState formDefinitionState = formDefinitionStateQueryRepository.getFirst(filter.entrySet(), orders);
+        FormDefinitionState formDefinitionState = getFirstFormDefinitionState(); //todo only for test
         if (formDefinitionState == null) { return; }
         FormPageDefinitionState formPageDefinitionState = formDefinitionState.getPageDefinitions().get(1);
         if (formPageDefinitionState == null) { return; }
@@ -62,10 +56,26 @@ public class PullAptosFormsDemoMainFormEventsTaskService {
 
     @Scheduled(fixedDelayString = "${aptos.contract.pull-aptos-forms-demo-main-form-events.aptos-forms-demo-main-form-updated.fixed-delay:5000}")
     public void pullAptosFormsDemoMainFormUpdatedEvents() {
-        //todo aptosFormsDemoMainFormEventService.pullAptosFormsDemoMainFormUpdatedEvents(getContractModuleNameProvider(), getToFormPageAndAddressFunction());
+        FormDefinitionState formDefinitionState = getFirstFormDefinitionState();
+        if (formDefinitionState == null) { return; }
+        FormPageDefinitionState formPageDefinitionState = formDefinitionState.getPageDefinitions().get(1);
+        if (formPageDefinitionState == null) { return; }
+        String moduleName = ContractModuleNameProvider.toUnderscoreName(formDefinitionState.getFormId() + formPageDefinitionState.getPageName(), true);
+        aptosFormsDemoMainFormEventService.pullAptosFormsDemoMainFormUpdatedEvents(
+                getContractModuleNameProvider(moduleName, formDefinitionState, formPageDefinitionState),
+                getToFormPageAndAddressFunction(formDefinitionState.getFormSequenceId(), formPageDefinitionState.getPageNumber())
+        );
     }
 
-    private java.util.function.Function<String, FormPageAndAddress> getToFormPageAndAddressFunction(final long formSequenceId, final int pageNumber) {
+    private FormDefinitionState getFirstFormDefinitionState() {
+        java.util.Map<String, Object> filter = new HashMap<>();
+        java.util.List<String> orders = new java.util.ArrayList<>();
+        orders.add("formSequenceId");
+        FormDefinitionState formDefinitionState = formDefinitionStateQueryRepository.getFirst(filter.entrySet(), orders);
+        return formDefinitionState;
+    }
+
+    public static java.util.function.Function<String, FormPageAndAddress> getToFormPageAndAddressFunction(final long formSequenceId, final int pageNumber) {
         return (address) -> {
             FormPageAndAddress formPageAndAddress = new FormPageAndAddress();
             formPageAndAddress.setFormSequenceId(formSequenceId);
@@ -75,11 +85,17 @@ public class PullAptosFormsDemoMainFormEventsTaskService {
         };
     }
 
-    private ContractModuleNameProvider getContractModuleNameProvider(final String moduleName, final FormDefinitionState formDefinitionState, final FormPageDefinitionState formPageDefinitionState) {
+    public static ContractModuleNameProvider getContractModuleNameProvider(final String moduleName, final FormDefinitionState formDefinitionState, final FormPageDefinitionState formPageDefinitionState) {
         ContractModuleNameProvider contractModuleNameProvider = new ContractModuleNameProvider() {
             @Override
             public String getModuleQualifiedEventStructName(String eventCategory) {
-                return null; //todo
+                if ("AptosFormsDemoMainFormSubmitted".equals(eventCategory)) {
+                    return moduleName + "::" + formPageDefinitionState.getMoveSubmitEventStructName();
+                }
+                if ("AptosFormsDemoMainFormUpdated".equals(eventCategory)) {
+                    return moduleName + "::" + formPageDefinitionState.getMoveUpdateEventStructName();
+                }
+                throw new IllegalArgumentException("Unknown event category: " + eventCategory);
             }
 
             @Override
@@ -126,8 +142,4 @@ public class PullAptosFormsDemoMainFormEventsTaskService {
         return contractModuleNameProvider;
     }
 
-//    private String getResourceAccountAddress() {
-//        return aptosAccountRepository.findById(ContractConstants.RESOURCE_ACCOUNT_ADDRESS)
-//                .map(AptosAccount::getAddress).orElse(null);
-//    }
 }

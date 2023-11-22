@@ -71,7 +71,12 @@ aggregates:
           MoveUpdateEventHandleFieldName:
             type: String
             length: 100
-
+          MoveSubmitEventStructName:
+            type: String
+            length: 100
+          MoveUpdateEventStructName:
+            type: String
+            length: 100
 
 configuration:
   sequenceNumber: 20

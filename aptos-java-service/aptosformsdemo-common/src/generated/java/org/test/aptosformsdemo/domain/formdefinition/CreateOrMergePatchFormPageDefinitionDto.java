@@ -86,6 +86,36 @@ public class CreateOrMergePatchFormPageDefinitionDto extends AbstractFormPageDef
     }
 
     /**
+     * Move Submit Event Struct Name
+     */
+    private String moveSubmitEventStructName;
+
+    public String getMoveSubmitEventStructName()
+    {
+        return this.moveSubmitEventStructName;
+    }
+
+    public void setMoveSubmitEventStructName(String moveSubmitEventStructName)
+    {
+        this.moveSubmitEventStructName = moveSubmitEventStructName;
+    }
+
+    /**
+     * Move Update Event Struct Name
+     */
+    private String moveUpdateEventStructName;
+
+    public String getMoveUpdateEventStructName()
+    {
+        return this.moveUpdateEventStructName;
+    }
+
+    public void setMoveUpdateEventStructName(String moveUpdateEventStructName)
+    {
+        this.moveUpdateEventStructName = moveUpdateEventStructName;
+    }
+
+    /**
      * Active
      */
     private Boolean active;
@@ -161,6 +191,30 @@ public class CreateOrMergePatchFormPageDefinitionDto extends AbstractFormPageDef
         this.isPropertyMoveUpdateEventHandleFieldNameRemoved = removed;
     }
 
+    private Boolean isPropertyMoveSubmitEventStructNameRemoved;
+
+    public Boolean getIsPropertyMoveSubmitEventStructNameRemoved()
+    {
+        return this.isPropertyMoveSubmitEventStructNameRemoved;
+    }
+
+    public void setIsPropertyMoveSubmitEventStructNameRemoved(Boolean removed)
+    {
+        this.isPropertyMoveSubmitEventStructNameRemoved = removed;
+    }
+
+    private Boolean isPropertyMoveUpdateEventStructNameRemoved;
+
+    public Boolean getIsPropertyMoveUpdateEventStructNameRemoved()
+    {
+        return this.isPropertyMoveUpdateEventStructNameRemoved;
+    }
+
+    public void setIsPropertyMoveUpdateEventStructNameRemoved(Boolean removed)
+    {
+        this.isPropertyMoveUpdateEventStructNameRemoved = removed;
+    }
+
     private Boolean isPropertyActiveRemoved;
 
     public Boolean getIsPropertyActiveRemoved()
@@ -181,6 +235,8 @@ public class CreateOrMergePatchFormPageDefinitionDto extends AbstractFormPageDef
         command.setMoveStateStructName(this.getMoveStateStructName());
         command.setMoveSubmitEventHandleFieldName(this.getMoveSubmitEventHandleFieldName());
         command.setMoveUpdateEventHandleFieldName(this.getMoveUpdateEventHandleFieldName());
+        command.setMoveSubmitEventStructName(this.getMoveSubmitEventStructName());
+        command.setMoveUpdateEventStructName(this.getMoveUpdateEventStructName());
         command.setActive(this.getActive());
     }
 
@@ -241,6 +297,8 @@ public class CreateOrMergePatchFormPageDefinitionDto extends AbstractFormPageDef
         command.setIsPropertyMoveStateStructNameRemoved(this.getIsPropertyMoveStateStructNameRemoved());
         command.setIsPropertyMoveSubmitEventHandleFieldNameRemoved(this.getIsPropertyMoveSubmitEventHandleFieldNameRemoved());
         command.setIsPropertyMoveUpdateEventHandleFieldNameRemoved(this.getIsPropertyMoveUpdateEventHandleFieldNameRemoved());
+        command.setIsPropertyMoveSubmitEventStructNameRemoved(this.getIsPropertyMoveSubmitEventStructNameRemoved());
+        command.setIsPropertyMoveUpdateEventStructNameRemoved(this.getIsPropertyMoveUpdateEventStructNameRemoved());
         command.setIsPropertyActiveRemoved(this.getIsPropertyActiveRemoved());
     }
 

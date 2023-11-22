@@ -481,6 +481,8 @@ public class M {
             "moveStateStructName",
             "moveSubmitEventHandleFieldName",
             "moveUpdateEventHandleFieldName",
+            "moveSubmitEventStructName",
+            "moveUpdateEventStructName",
             "offChainVersion",
             "createdBy",
             "createdAt",
@@ -495,6 +497,8 @@ public class M {
 
     public static final String[] propertyTypes = new String[] {
             "Integer",
+            "String",
+            "String",
             "String",
             "String",
             "String",
@@ -536,6 +540,10 @@ public class M {
         aliasMap.put("MoveSubmitEventHandleFieldName", "moveSubmitEventHandleFieldName");
         aliasMap.put("moveUpdateEventHandleFieldName", "moveUpdateEventHandleFieldName");
         aliasMap.put("MoveUpdateEventHandleFieldName", "moveUpdateEventHandleFieldName");
+        aliasMap.put("moveSubmitEventStructName", "moveSubmitEventStructName");
+        aliasMap.put("MoveSubmitEventStructName", "moveSubmitEventStructName");
+        aliasMap.put("moveUpdateEventStructName", "moveUpdateEventStructName");
+        aliasMap.put("MoveUpdateEventStructName", "moveUpdateEventStructName");
         aliasMap.put("offChainVersion", "offChainVersion");
         aliasMap.put("OffChainVersion", "offChainVersion");
         aliasMap.put("createdBy", "createdBy");

@@ -29,6 +29,10 @@ public interface FormPageDefinitionState
 
     String getMoveUpdateEventHandleFieldName();
 
+    String getMoveSubmitEventStructName();
+
+    String getMoveUpdateEventStructName();
+
     Long getOffChainVersion();
 
     String getCreatedBy();
@@ -57,6 +61,10 @@ public interface FormPageDefinitionState
         void setMoveSubmitEventHandleFieldName(String moveSubmitEventHandleFieldName);
 
         void setMoveUpdateEventHandleFieldName(String moveUpdateEventHandleFieldName);
+
+        void setMoveSubmitEventStructName(String moveSubmitEventStructName);
+
+        void setMoveUpdateEventStructName(String moveUpdateEventStructName);
 
         void setOffChainVersion(Long offChainVersion);
 

@@ -110,6 +110,26 @@ public abstract class AbstractFormPageDefinitionState implements FormPageDefinit
         this.moveUpdateEventHandleFieldName = moveUpdateEventHandleFieldName;
     }
 
+    private String moveSubmitEventStructName;
+
+    public String getMoveSubmitEventStructName() {
+        return this.moveSubmitEventStructName;
+    }
+
+    public void setMoveSubmitEventStructName(String moveSubmitEventStructName) {
+        this.moveSubmitEventStructName = moveSubmitEventStructName;
+    }
+
+    private String moveUpdateEventStructName;
+
+    public String getMoveUpdateEventStructName() {
+        return this.moveUpdateEventStructName;
+    }
+
+    public void setMoveUpdateEventStructName(String moveUpdateEventStructName) {
+        this.moveUpdateEventStructName = moveUpdateEventStructName;
+    }
+
     private Long offChainVersion;
 
     public Long getOffChainVersion() {
@@ -250,6 +270,8 @@ public abstract class AbstractFormPageDefinitionState implements FormPageDefinit
         this.setMoveStateStructName(e.getMoveStateStructName());
         this.setMoveSubmitEventHandleFieldName(e.getMoveSubmitEventHandleFieldName());
         this.setMoveUpdateEventHandleFieldName(e.getMoveUpdateEventHandleFieldName());
+        this.setMoveSubmitEventStructName(e.getMoveSubmitEventStructName());
+        this.setMoveUpdateEventStructName(e.getMoveUpdateEventStructName());
         this.setActive(e.getActive());
 
         this.setDeleted(false);
@@ -268,6 +290,8 @@ public abstract class AbstractFormPageDefinitionState implements FormPageDefinit
         this.setMoveStateStructName(s.getMoveStateStructName());
         this.setMoveSubmitEventHandleFieldName(s.getMoveSubmitEventHandleFieldName());
         this.setMoveUpdateEventHandleFieldName(s.getMoveUpdateEventHandleFieldName());
+        this.setMoveSubmitEventStructName(s.getMoveSubmitEventStructName());
+        this.setMoveUpdateEventStructName(s.getMoveUpdateEventStructName());
         this.setActive(s.getActive());
     }
 
@@ -308,6 +332,20 @@ public abstract class AbstractFormPageDefinitionState implements FormPageDefinit
             }
         } else {
             this.setMoveUpdateEventHandleFieldName(e.getMoveUpdateEventHandleFieldName());
+        }
+        if (e.getMoveSubmitEventStructName() == null) {
+            if (e.getIsPropertyMoveSubmitEventStructNameRemoved() != null && e.getIsPropertyMoveSubmitEventStructNameRemoved()) {
+                this.setMoveSubmitEventStructName(null);
+            }
+        } else {
+            this.setMoveSubmitEventStructName(e.getMoveSubmitEventStructName());
+        }
+        if (e.getMoveUpdateEventStructName() == null) {
+            if (e.getIsPropertyMoveUpdateEventStructNameRemoved() != null && e.getIsPropertyMoveUpdateEventStructNameRemoved()) {
+                this.setMoveUpdateEventStructName(null);
+            }
+        } else {
+            this.setMoveUpdateEventStructName(e.getMoveUpdateEventStructName());
         }
         if (e.getActive() == null) {
             if (e.getIsPropertyActiveRemoved() != null && e.getIsPropertyActiveRemoved()) {

@@ -136,6 +136,8 @@ public abstract class AbstractFormDefinitionAggregate extends AbstractAggregate 
         e.setMoveStateStructName(c.getMoveStateStructName());
         e.setMoveSubmitEventHandleFieldName(c.getMoveSubmitEventHandleFieldName());
         e.setMoveUpdateEventHandleFieldName(c.getMoveUpdateEventHandleFieldName());
+        e.setMoveSubmitEventStructName(c.getMoveSubmitEventStructName());
+        e.setMoveUpdateEventStructName(c.getMoveUpdateEventStructName());
         e.setActive(c.getActive());
         e.setCreatedBy(c.getRequesterId());
         e.setCreatedAt((OffsetDateTime)ApplicationContext.current.getTimestampService().now(OffsetDateTime.class));
@@ -155,12 +157,16 @@ public abstract class AbstractFormDefinitionAggregate extends AbstractAggregate 
         e.setMoveStateStructName(c.getMoveStateStructName());
         e.setMoveSubmitEventHandleFieldName(c.getMoveSubmitEventHandleFieldName());
         e.setMoveUpdateEventHandleFieldName(c.getMoveUpdateEventHandleFieldName());
+        e.setMoveSubmitEventStructName(c.getMoveSubmitEventStructName());
+        e.setMoveUpdateEventStructName(c.getMoveUpdateEventStructName());
         e.setActive(c.getActive());
         e.setIsPropertyPageNameRemoved(c.getIsPropertyPageNameRemoved());
         e.setIsPropertyMoveStateTableFieldNameRemoved(c.getIsPropertyMoveStateTableFieldNameRemoved());
         e.setIsPropertyMoveStateStructNameRemoved(c.getIsPropertyMoveStateStructNameRemoved());
         e.setIsPropertyMoveSubmitEventHandleFieldNameRemoved(c.getIsPropertyMoveSubmitEventHandleFieldNameRemoved());
         e.setIsPropertyMoveUpdateEventHandleFieldNameRemoved(c.getIsPropertyMoveUpdateEventHandleFieldNameRemoved());
+        e.setIsPropertyMoveSubmitEventStructNameRemoved(c.getIsPropertyMoveSubmitEventStructNameRemoved());
+        e.setIsPropertyMoveUpdateEventStructNameRemoved(c.getIsPropertyMoveUpdateEventStructNameRemoved());
         e.setIsPropertyActiveRemoved(c.getIsPropertyActiveRemoved());
 
         e.setCreatedBy(c.getRequesterId());

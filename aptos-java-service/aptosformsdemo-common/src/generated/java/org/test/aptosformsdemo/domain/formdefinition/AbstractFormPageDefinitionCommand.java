@@ -100,6 +100,30 @@ public abstract class AbstractFormPageDefinitionCommand extends AbstractCommand 
             this.moveUpdateEventHandleFieldName = moveUpdateEventHandleFieldName;
         }
 
+        private String moveSubmitEventStructName;
+
+        public String getMoveSubmitEventStructName()
+        {
+            return this.moveSubmitEventStructName;
+        }
+
+        public void setMoveSubmitEventStructName(String moveSubmitEventStructName)
+        {
+            this.moveSubmitEventStructName = moveSubmitEventStructName;
+        }
+
+        private String moveUpdateEventStructName;
+
+        public String getMoveUpdateEventStructName()
+        {
+            return this.moveUpdateEventStructName;
+        }
+
+        public void setMoveUpdateEventStructName(String moveUpdateEventStructName)
+        {
+            this.moveUpdateEventStructName = moveUpdateEventStructName;
+        }
+
         private Boolean active;
 
         public Boolean getActive()
@@ -188,6 +212,30 @@ public abstract class AbstractFormPageDefinitionCommand extends AbstractCommand 
         public void setIsPropertyMoveUpdateEventHandleFieldNameRemoved(Boolean removed)
         {
             this.isPropertyMoveUpdateEventHandleFieldNameRemoved = removed;
+        }
+
+        private Boolean isPropertyMoveSubmitEventStructNameRemoved;
+
+        public Boolean getIsPropertyMoveSubmitEventStructNameRemoved()
+        {
+            return this.isPropertyMoveSubmitEventStructNameRemoved;
+        }
+
+        public void setIsPropertyMoveSubmitEventStructNameRemoved(Boolean removed)
+        {
+            this.isPropertyMoveSubmitEventStructNameRemoved = removed;
+        }
+
+        private Boolean isPropertyMoveUpdateEventStructNameRemoved;
+
+        public Boolean getIsPropertyMoveUpdateEventStructNameRemoved()
+        {
+            return this.isPropertyMoveUpdateEventStructNameRemoved;
+        }
+
+        public void setIsPropertyMoveUpdateEventStructNameRemoved(Boolean removed)
+        {
+            this.isPropertyMoveUpdateEventStructNameRemoved = removed;
         }
 
         private Boolean isPropertyActiveRemoved;
