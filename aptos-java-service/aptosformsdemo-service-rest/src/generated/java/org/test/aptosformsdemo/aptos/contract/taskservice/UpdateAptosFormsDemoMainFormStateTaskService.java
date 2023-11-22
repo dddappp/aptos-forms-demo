@@ -22,8 +22,8 @@ import org.test.aptosformsdemo.aptos.contract.TestTenantizedIdFunctions;
 @Service
 public class UpdateAptosFormsDemoMainFormStateTaskService {
 
-    @Value("${aptos.contract.address}")
-    private String aptosContractAddress;
+//    @Value("${aptos.contract.address}")
+//    private String aptosContractAddress;
 
     @Autowired
     private AptosAccountRepository aptosAccountRepository;
@@ -41,8 +41,8 @@ public class UpdateAptosFormsDemoMainFormStateTaskService {
     @Transactional
     public void updateAptosFormsDemoMainFormStates() {
         aptosFormsDemoMainFormEventRepository.findByStatusIsNull().forEach(e -> {
-            aptosAptosFormsDemoMainFormService.updateAptosFormsDemoMainFormState(getContractModuleNameProvider(), getToFormPageAndAddressFunction(), e.getFormPageAndSignerAddress().getAddress());
-            aptosFormsDemoMainFormEventService.updateStatusToProcessed(e);
+            //todo aptosAptosFormsDemoMainFormService.updateAptosFormsDemoMainFormState(getContractModuleNameProvider(), getToFormPageAndAddressFunction(), e.getFormPageAndSignerAddress().getAddress());
+            //todo aptosFormsDemoMainFormEventService.updateStatusToProcessed(e);
         });
     }
 
@@ -53,13 +53,13 @@ public class UpdateAptosFormsDemoMainFormStateTaskService {
     private ContractModuleNameProvider getContractModuleNameProvider() {
         // Note: This 'Default' implementation contains hard-coded names. A truly generalized service may not be appropriate to use it.
         DefaultAptosFormsDemoMainFormModuleNameProvider contractModuleNameProvider = new DefaultAptosFormsDemoMainFormModuleNameProvider();
-        contractModuleNameProvider.setContractAddress(aptosContractAddress);
-        contractModuleNameProvider.setStoreAccountAddress(getResourceAccountAddress());
+        //todo contractModuleNameProvider.setContractAddress(aptosContractAddress);
+        //todo contractModuleNameProvider.setStoreAccountAddress(getResourceAccountAddress());
         return contractModuleNameProvider;
     }
 
-    private String getResourceAccountAddress() {
-        return aptosAccountRepository.findById(ContractConstants.RESOURCE_ACCOUNT_ADDRESS)
-                .map(AptosAccount::getAddress).orElse(null);
-    }
+//    private String getResourceAccountAddress() {
+//        return aptosAccountRepository.findById(ContractConstants.RESOURCE_ACCOUNT_ADDRESS)
+//                .map(AptosAccount::getAddress).orElse(null);
+//    }
 }
