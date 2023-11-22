@@ -144,11 +144,27 @@ public abstract class AbstractAptosFormsDemoMainFormAggregate extends AbstractAg
             AptosFormsDemoMainFormEventId eventId = new AptosFormsDemoMainFormEventId(getState().getFormPageAndSignerAddress(), null);
             AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted e = new AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted();
 
-            e.setAptosEventVersion(null); // todo Need to update 'verify' method to return event properties.
-            e.setAptosEventSequenceNumber(null); // todo Need to update 'verify' method to return event properties.
-            e.setAptosEventType(null); // todo Need to update 'verify' method to return event properties.
-            e.setAptosEventGuid(null); // todo Need to update 'verify' method to return event properties.
-            e.setStatus(null); // todo Need to update 'verify' method to return event properties.
+            e.getDynamicProperties().put("fr_5pqi", fr_5pqi);
+            e.getDynamicProperties().put("fr_duif", fr_duif);
+            e.getDynamicProperties().put("fr_6i34", fr_6i34);
+            e.getDynamicProperties().put("fr_8xjs", fr_8xjs);
+            e.getDynamicProperties().put("fr_9c3f", fr_9c3f);
+            e.getDynamicProperties().put("fr_4ok6", fr_4ok6);
+            e.getDynamicProperties().put("fr_b3ub", fr_b3ub);
+            e.getDynamicProperties().put("fr_1z7o", fr_1z7o);
+            e.getDynamicProperties().put("fr_d8rw", fr_d8rw);
+            e.getDynamicProperties().put("fr_dy3l", fr_dy3l);
+            e.getDynamicProperties().put("fr_6f68", fr_6f68);
+            e.getDynamicProperties().put("fr_47yy", fr_47yy);
+            e.getDynamicProperties().put("fr_gh3o", fr_gh3o);
+            e.getDynamicProperties().put("fr_fbba", fr_fbba);
+            e.getDynamicProperties().put("fr_hhzp", fr_hhzp);
+            e.getDynamicProperties().put("single_text1", single_text1);
+            e.setAptosEventVersion(null);
+            e.setAptosEventSequenceNumber(null);
+            e.setAptosEventType(null);
+            e.setAptosEventGuid(null);
+            e.setStatus(null);
 
             e.setCommandId(commandId);
             e.setCreatedBy(requesterId);
@@ -162,11 +178,27 @@ public abstract class AbstractAptosFormsDemoMainFormAggregate extends AbstractAg
             AptosFormsDemoMainFormEventId eventId = new AptosFormsDemoMainFormEventId(getState().getFormPageAndSignerAddress(), null);
             AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormUpdated e = new AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormUpdated();
 
-            e.setAptosEventVersion(null); // todo Need to update 'verify' method to return event properties.
-            e.setAptosEventSequenceNumber(null); // todo Need to update 'verify' method to return event properties.
-            e.setAptosEventType(null); // todo Need to update 'verify' method to return event properties.
-            e.setAptosEventGuid(null); // todo Need to update 'verify' method to return event properties.
-            e.setStatus(null); // todo Need to update 'verify' method to return event properties.
+            e.getDynamicProperties().put("fr_5pqi", fr_5pqi);
+            e.getDynamicProperties().put("fr_duif", fr_duif);
+            e.getDynamicProperties().put("fr_6i34", fr_6i34);
+            e.getDynamicProperties().put("fr_8xjs", fr_8xjs);
+            e.getDynamicProperties().put("fr_9c3f", fr_9c3f);
+            e.getDynamicProperties().put("fr_4ok6", fr_4ok6);
+            e.getDynamicProperties().put("fr_b3ub", fr_b3ub);
+            e.getDynamicProperties().put("fr_1z7o", fr_1z7o);
+            e.getDynamicProperties().put("fr_d8rw", fr_d8rw);
+            e.getDynamicProperties().put("fr_dy3l", fr_dy3l);
+            e.getDynamicProperties().put("fr_6f68", fr_6f68);
+            e.getDynamicProperties().put("fr_47yy", fr_47yy);
+            e.getDynamicProperties().put("fr_gh3o", fr_gh3o);
+            e.getDynamicProperties().put("fr_fbba", fr_fbba);
+            e.getDynamicProperties().put("fr_hhzp", fr_hhzp);
+            e.getDynamicProperties().put("single_text1", single_text1);
+            e.setAptosEventVersion(null);
+            e.setAptosEventSequenceNumber(null);
+            e.setAptosEventType(null);
+            e.setAptosEventGuid(null);
+            e.setStatus(null);
 
             e.setCommandId(commandId);
             e.setCreatedBy(requesterId);
