@@ -9,8 +9,8 @@
       <key-property name="pageNumber">
         <column name="page_number" />
       </key-property>
-      <key-property name="offChainVersion">
-        <column name="off_chain_version" />
+      <key-property name="formDefinitionOffChainVersion">
+        <column name="form_definition_off_chain_version" />
       </key-property>
     </composite-id>
     <discriminator column="event_class" type="string" />

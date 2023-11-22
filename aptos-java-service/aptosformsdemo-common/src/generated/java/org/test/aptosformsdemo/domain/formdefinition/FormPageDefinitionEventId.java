@@ -33,27 +33,27 @@ public class FormPageDefinitionEventId implements Serializable {
         this.pageNumber = pageNumber;
     }
 
-    private Long offChainVersion;
+    private Long formDefinitionOffChainVersion;
 
-    public Long getOffChainVersion()
+    public Long getFormDefinitionOffChainVersion()
     {
-        return this.offChainVersion;
+        return this.formDefinitionOffChainVersion;
     }
 
-    public void setOffChainVersion(Long offChainVersion)
+    public void setFormDefinitionOffChainVersion(Long formDefinitionOffChainVersion)
     {
-        this.offChainVersion = offChainVersion;
+        this.formDefinitionOffChainVersion = formDefinitionOffChainVersion;
     }
 
     public FormPageDefinitionEventId()
     {
     }
 
-    public FormPageDefinitionEventId(Long formDefinitionFormSequenceId, Integer pageNumber, Long offChainVersion)
+    public FormPageDefinitionEventId(Long formDefinitionFormSequenceId, Integer pageNumber, Long formDefinitionOffChainVersion)
     {
         this.formDefinitionFormSequenceId = formDefinitionFormSequenceId;
         this.pageNumber = pageNumber;
-        this.offChainVersion = offChainVersion;
+        this.formDefinitionOffChainVersion = formDefinitionOffChainVersion;
     }
 
     @Override
@@ -70,7 +70,7 @@ public class FormPageDefinitionEventId implements Serializable {
         return true 
             && (formDefinitionFormSequenceId == other.formDefinitionFormSequenceId || (formDefinitionFormSequenceId != null && formDefinitionFormSequenceId.equals(other.formDefinitionFormSequenceId)))
             && (pageNumber == other.pageNumber || (pageNumber != null && pageNumber.equals(other.pageNumber)))
-            && (offChainVersion == other.offChainVersion || (offChainVersion != null && offChainVersion.equals(other.offChainVersion)))
+            && (formDefinitionOffChainVersion == other.formDefinitionOffChainVersion || (formDefinitionOffChainVersion != null && formDefinitionOffChainVersion.equals(other.formDefinitionOffChainVersion)))
             ;
     }
 
@@ -84,8 +84,8 @@ public class FormPageDefinitionEventId implements Serializable {
         if (this.pageNumber != null) {
             hash += 13 * this.pageNumber.hashCode();
         }
-        if (this.offChainVersion != null) {
-            hash += 13 * this.offChainVersion.hashCode();
+        if (this.formDefinitionOffChainVersion != null) {
+            hash += 13 * this.formDefinitionOffChainVersion.hashCode();
         }
         return hash;
     }
@@ -95,14 +95,14 @@ public class FormPageDefinitionEventId implements Serializable {
         return "FormPageDefinitionEventId{" +
                 "formDefinitionFormSequenceId=" + formDefinitionFormSequenceId +
                 ", pageNumber=" + pageNumber +
-                ", offChainVersion=" + offChainVersion +
+                ", formDefinitionOffChainVersion=" + formDefinitionOffChainVersion +
                 '}';
     }
 
     protected static final String[] FLATTENED_PROPERTY_NAMES = new String[]{
             "formDefinitionFormSequenceId",
             "pageNumber",
-            "offChainVersion",
+            "formDefinitionOffChainVersion",
     };
 
     protected static final String[] FLATTENED_PROPERTY_TYPES = new String[]{

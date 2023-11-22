@@ -43,7 +43,7 @@ public class HibernateFormPageDefinitionEventDao implements FormPageDefinitionEv
         Criteria criteria = getCurrentSession().createCriteria(AbstractFormPageDefinitionEvent.class);
         Junction partIdCondition = Restrictions.conjunction()
             .add(Restrictions.eq("formPageDefinitionEventId.formDefinitionFormSequenceId", formDefinitionEventId.getFormSequenceId()))
-            .add(Restrictions.eq("formPageDefinitionEventId.offChainVersion", formDefinitionEventId.getOffChainVersion()))
+            .add(Restrictions.eq("formPageDefinitionEventId.formDefinitionOffChainVersion", formDefinitionEventId.getOffChainVersion()))
             ;
         return criteria.add(partIdCondition).list();
     }
