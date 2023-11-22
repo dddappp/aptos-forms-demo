@@ -7,22 +7,16 @@ package org.test.aptosformsdemo.aptos.contract.taskservice;
 
 import org.test.aptosformsdemo.aptos.contract.repository.*;
 import org.test.aptosformsdemo.aptos.contract.service.*;
-import org.test.aptosformsdemo.aptos.contract.ContractConstants;
-import org.test.aptosformsdemo.aptos.contract.AptosAccount;
 import org.test.aptosformsdemo.aptos.contract.ContractModuleNameProvider;
-import org.test.aptosformsdemo.aptos.contract.DefaultAptosFormsDemoMainFormModuleNameProvider;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.test.aptosformsdemo.domain.FormPageAndAddress;
-import org.test.aptosformsdemo.aptos.contract.TestTenantizedIdFunctions;
 import org.test.aptosformsdemo.domain.formdefinition.FormDefinitionState;
 import org.test.aptosformsdemo.domain.formdefinition.FormDefinitionStateQueryRepository;
 import org.test.aptosformsdemo.domain.formdefinition.FormPageDefinitionState;
 
-import static org.test.aptosformsdemo.aptos.contract.taskservice.PullAptosFormsDemoMainFormEventsTaskService.getContractModuleNameProvider;
+import static org.test.aptosformsdemo.aptos.contract.taskservice.PullAptosFormsDemoMainFormEventsTaskService.getAptosFormsDemoMainFormModuleNameProvider;
 import static org.test.aptosformsdemo.aptos.contract.taskservice.PullAptosFormsDemoMainFormEventsTaskService.getToFormPageAndAddressFunction;
 
 @Service
@@ -55,7 +49,7 @@ public class UpdateAptosFormsDemoMainFormStateTaskService {
             if (formPageDefinitionState == null) { return; }
             String moduleName = ContractModuleNameProvider.toUnderscoreName(formDefinitionState.getFormId() + formPageDefinitionState.getPageName(), true);
             aptosAptosFormsDemoMainFormService.updateAptosFormsDemoMainFormState(
-                    getContractModuleNameProvider(moduleName, formDefinitionState, formPageDefinitionState),
+                    getAptosFormsDemoMainFormModuleNameProvider(moduleName, formDefinitionState, formPageDefinitionState),
                     getToFormPageAndAddressFunction(formDefinitionState.getFormSequenceId(), formPageDefinitionState.getPageNumber()),
                     e.getFormPageAndSignerAddress().getAddress()
             );
