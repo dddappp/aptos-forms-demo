@@ -20,6 +20,49 @@ public interface FormDefinitionEvent extends Event {
         void setEventReadOnly(boolean readOnly);
     }
 
+    interface FormWithFirstPageDefined extends FormDefinitionEvent {
+        String getFormId();
+
+        void setFormId(String value);
+
+        String getContractAddress();
+
+        void setContractAddress(String value);
+
+        String getStoreAccountAddress();
+
+        void setStoreAccountAddress(String value);
+
+        String getPageName();
+
+        void setPageName(String value);
+
+        String getMoveStateTableFieldName();
+
+        void setMoveStateTableFieldName(String value);
+
+        String getMoveStateStructName();
+
+        void setMoveStateStructName(String value);
+
+        String getMoveSubmitEventHandleFieldName();
+
+        void setMoveSubmitEventHandleFieldName(String value);
+
+        String getMoveUpdateEventHandleFieldName();
+
+        void setMoveUpdateEventHandleFieldName(String value);
+
+        String getMoveSubmitEventStructName();
+
+        void setMoveSubmitEventStructName(String value);
+
+        String getMoveUpdateEventStructName();
+
+        void setMoveUpdateEventStructName(String value);
+
+    }
+
     Long getFormSequenceId();
 
     //void setFormSequenceId(Long formSequenceId);

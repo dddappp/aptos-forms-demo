@@ -21,6 +21,140 @@ public interface AptosFormsDemoMainFormEvent extends Event, AptosEvent, HasStatu
         void setEventReadOnly(boolean readOnly);
     }
 
+    interface AptosFormsDemoMainFormSubmitted extends AptosFormsDemoMainFormEvent {
+        BigInteger getFr_5pqi();
+
+        void setFr_5pqi(BigInteger value);
+
+        String[] getFr_duif();
+
+        void setFr_duif(String[] value);
+
+        String[] getFr_6i34();
+
+        void setFr_6i34(String[] value);
+
+        String getFr_8xjs();
+
+        void setFr_8xjs(String value);
+
+        String getFr_9c3f();
+
+        void setFr_9c3f(String value);
+
+        BigInteger getFr_4ok6();
+
+        void setFr_4ok6(BigInteger value);
+
+        String getFr_b3ub();
+
+        void setFr_b3ub(String value);
+
+        BigInteger getFr_1z7o();
+
+        void setFr_1z7o(BigInteger value);
+
+        DateRange getFr_d8rw();
+
+        void setFr_d8rw(DateRange value);
+
+        DateRange getFr_dy3l();
+
+        void setFr_dy3l(DateRange value);
+
+        BigInteger getFr_6f68();
+
+        void setFr_6f68(BigInteger value);
+
+        TimeRange getFr_47yy();
+
+        void setFr_47yy(TimeRange value);
+
+        String[] getFr_gh3o();
+
+        void setFr_gh3o(String[] value);
+
+        String[] getFr_fbba();
+
+        void setFr_fbba(String[] value);
+
+        XRenderFormDate getFr_hhzp();
+
+        void setFr_hhzp(XRenderFormDate value);
+
+        String getSingle_text1();
+
+        void setSingle_text1(String value);
+
+    }
+
+    interface AptosFormsDemoMainFormUpdated extends AptosFormsDemoMainFormEvent {
+        BigInteger getFr_5pqi();
+
+        void setFr_5pqi(BigInteger value);
+
+        String[] getFr_duif();
+
+        void setFr_duif(String[] value);
+
+        String[] getFr_6i34();
+
+        void setFr_6i34(String[] value);
+
+        String getFr_8xjs();
+
+        void setFr_8xjs(String value);
+
+        String getFr_9c3f();
+
+        void setFr_9c3f(String value);
+
+        BigInteger getFr_4ok6();
+
+        void setFr_4ok6(BigInteger value);
+
+        String getFr_b3ub();
+
+        void setFr_b3ub(String value);
+
+        BigInteger getFr_1z7o();
+
+        void setFr_1z7o(BigInteger value);
+
+        DateRange getFr_d8rw();
+
+        void setFr_d8rw(DateRange value);
+
+        DateRange getFr_dy3l();
+
+        void setFr_dy3l(DateRange value);
+
+        BigInteger getFr_6f68();
+
+        void setFr_6f68(BigInteger value);
+
+        TimeRange getFr_47yy();
+
+        void setFr_47yy(TimeRange value);
+
+        String[] getFr_gh3o();
+
+        void setFr_gh3o(String[] value);
+
+        String[] getFr_fbba();
+
+        void setFr_fbba(String[] value);
+
+        XRenderFormDate getFr_hhzp();
+
+        void setFr_hhzp(XRenderFormDate value);
+
+        String getSingle_text1();
+
+        void setSingle_text1(String value);
+
+    }
+
     FormPageAndAddress getFormPageAndSignerAddress();
 
     //void setFormPageAndSignerAddress(FormPageAndAddress formPageAndSignerAddress);

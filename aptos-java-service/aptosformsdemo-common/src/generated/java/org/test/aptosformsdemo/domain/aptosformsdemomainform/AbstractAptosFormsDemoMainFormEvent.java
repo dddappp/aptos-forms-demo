@@ -146,7 +146,7 @@ public abstract class AbstractAptosFormsDemoMainFormEvent extends AbstractEvent 
 
     public abstract String getEventClass();
 
-    public static class AptosFormsDemoMainFormLobEvent extends  AbstractAptosFormsDemoMainFormEvent {
+    public static class AptosFormsDemoMainFormLobEvent extends AbstractAptosFormsDemoMainFormEvent {
 
         public Map<String, Object> getDynamicProperties() {
             return dynamicProperties;
@@ -168,7 +168,7 @@ public abstract class AbstractAptosFormsDemoMainFormEvent extends AbstractEvent 
 
     }
 
-    public static class AptosFormsDemoMainFormSubmitted extends AptosFormsDemoMainFormLobEvent {
+    public static class AptosFormsDemoMainFormSubmitted extends AptosFormsDemoMainFormLobEvent implements AptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted {
 
         @Override
         public String getEventClass() {
@@ -369,7 +369,7 @@ public abstract class AbstractAptosFormsDemoMainFormEvent extends AbstractEvent 
 
     }
 
-    public static class AptosFormsDemoMainFormUpdated extends AptosFormsDemoMainFormLobEvent {
+    public static class AptosFormsDemoMainFormUpdated extends AptosFormsDemoMainFormLobEvent implements AptosFormsDemoMainFormEvent.AptosFormsDemoMainFormUpdated {
 
         @Override
         public String getEventClass() {

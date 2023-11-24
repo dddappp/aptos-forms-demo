@@ -133,7 +133,7 @@ public abstract class AbstractFormDefinitionEvent extends AbstractEvent implemen
 
     public abstract String getEventClass();
 
-    public static class FormDefinitionLobEvent extends  AbstractFormDefinitionEvent {
+    public static class FormDefinitionLobEvent extends AbstractFormDefinitionEvent {
 
         public Map<String, Object> getDynamicProperties() {
             return dynamicProperties;
@@ -155,7 +155,7 @@ public abstract class AbstractFormDefinitionEvent extends AbstractEvent implemen
 
     }
 
-    public static class FormWithFirstPageDefined extends FormDefinitionLobEvent {
+    public static class FormWithFirstPageDefined extends FormDefinitionLobEvent implements FormDefinitionEvent.FormWithFirstPageDefined {
 
         @Override
         public String getEventClass() {
