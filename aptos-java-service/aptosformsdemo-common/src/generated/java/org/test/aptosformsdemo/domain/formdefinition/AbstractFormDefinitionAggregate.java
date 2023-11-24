@@ -267,17 +267,18 @@ public abstract class AbstractFormDefinitionAggregate extends AbstractAggregate 
 
         @Override
         public void defineFormWithFirstPage(String formId, String contractAddress, String storeAccountAddress, String pageName, String moveStateTableFieldName, String moveStateStructName, String moveSubmitEventHandleFieldName, String moveUpdateEventHandleFieldName, String moveSubmitEventStructName, String moveUpdateEventStructName, Long offChainVersion, String commandId, String requesterId, FormDefinitionCommands.DefineFormWithFirstPage c) {
+            java.util.function.Supplier<FormDefinitionEvent.FormWithFirstPageDefined> eventFactory = () -> newFormWithFirstPageDefined(formId, contractAddress, storeAccountAddress, pageName, moveStateTableFieldName, moveStateStructName, moveSubmitEventHandleFieldName, moveUpdateEventHandleFieldName, moveSubmitEventStructName, moveUpdateEventStructName, offChainVersion, commandId, requesterId);
+            FormDefinitionEvent.FormWithFirstPageDefined e;
             try {
-                verifyDefineFormWithFirstPage(formId, contractAddress, storeAccountAddress, pageName, moveStateTableFieldName, moveStateStructName, moveSubmitEventHandleFieldName, moveUpdateEventHandleFieldName, moveSubmitEventStructName, moveUpdateEventStructName, c);
+                e = verifyDefineFormWithFirstPage(eventFactory, formId, contractAddress, storeAccountAddress, pageName, moveStateTableFieldName, moveStateStructName, moveSubmitEventHandleFieldName, moveUpdateEventHandleFieldName, moveSubmitEventStructName, moveUpdateEventStructName, c);
             } catch (Exception ex) {
                 throw new DomainError("VerificationFailed", ex);
             }
 
-            Event e = newFormWithFirstPageDefined(formId, contractAddress, storeAccountAddress, pageName, moveStateTableFieldName, moveStateStructName, moveSubmitEventHandleFieldName, moveUpdateEventHandleFieldName, moveSubmitEventStructName, moveUpdateEventStructName, offChainVersion, commandId, requesterId);
             apply(e);
         }
 
-        protected void verifyDefineFormWithFirstPage(String formId, String contractAddress, String storeAccountAddress, String pageName, String moveStateTableFieldName, String moveStateStructName, String moveSubmitEventHandleFieldName, String moveUpdateEventHandleFieldName, String moveSubmitEventStructName, String moveUpdateEventStructName, FormDefinitionCommands.DefineFormWithFirstPage c) {
+        protected FormDefinitionEvent.FormWithFirstPageDefined verifyDefineFormWithFirstPage(java.util.function.Supplier<FormDefinitionEvent.FormWithFirstPageDefined> eventFactory, String formId, String contractAddress, String storeAccountAddress, String pageName, String moveStateTableFieldName, String moveStateStructName, String moveSubmitEventHandleFieldName, String moveUpdateEventHandleFieldName, String moveSubmitEventStructName, String moveUpdateEventStructName, FormDefinitionCommands.DefineFormWithFirstPage c) {
             String FormId = formId;
             String ContractAddress = contractAddress;
             String StoreAccountAddress = storeAccountAddress;
@@ -289,22 +290,22 @@ public abstract class AbstractFormDefinitionAggregate extends AbstractAggregate 
             String MoveSubmitEventStructName = moveSubmitEventStructName;
             String MoveUpdateEventStructName = moveUpdateEventStructName;
 
-            ReflectUtils.invokeStaticMethod(
+            FormDefinitionEvent.FormWithFirstPageDefined e = (FormDefinitionEvent.FormWithFirstPageDefined) ReflectUtils.invokeStaticMethod(
                     "org.test.aptosformsdemo.domain.formdefinition.DefineFormWithFirstPageLogic",
                     "verify",
-                    new Class[]{FormDefinitionState.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, VerificationContext.class},
-                    new Object[]{getState(), formId, contractAddress, storeAccountAddress, pageName, moveStateTableFieldName, moveStateStructName, moveSubmitEventHandleFieldName, moveUpdateEventHandleFieldName, moveSubmitEventStructName, moveUpdateEventStructName, VerificationContext.forCommand(c)}
+                    new Class[]{java.util.function.Supplier.class, FormDefinitionState.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, VerificationContext.class},
+                    new Object[]{eventFactory, getState(), formId, contractAddress, storeAccountAddress, pageName, moveStateTableFieldName, moveStateStructName, moveSubmitEventHandleFieldName, moveUpdateEventHandleFieldName, moveSubmitEventStructName, moveUpdateEventStructName, VerificationContext.forCommand(c)}
             );
 
 //package org.test.aptosformsdemo.domain.formdefinition;
 //
 //public class DefineFormWithFirstPageLogic {
-//    public static void verify(FormDefinitionState formDefinitionState, String formId, String contractAddress, String storeAccountAddress, String pageName, String moveStateTableFieldName, String moveStateStructName, String moveSubmitEventHandleFieldName, String moveUpdateEventHandleFieldName, String moveSubmitEventStructName, String moveUpdateEventStructName, VerificationContext verificationContext) {
+//    public static FormDefinitionEvent.FormWithFirstPageDefined verify(java.util.function.Supplier<FormDefinitionEvent.FormWithFirstPageDefined> eventFactory, FormDefinitionState formDefinitionState, String formId, String contractAddress, String storeAccountAddress, String pageName, String moveStateTableFieldName, String moveStateStructName, String moveSubmitEventHandleFieldName, String moveUpdateEventHandleFieldName, String moveSubmitEventStructName, String moveUpdateEventStructName, VerificationContext verificationContext) {
 //    }
 //}
-
+            return e;
         }
-           
+
 
         protected AbstractFormDefinitionEvent.FormWithFirstPageDefined newFormWithFirstPageDefined(String formId, String contractAddress, String storeAccountAddress, String pageName, String moveStateTableFieldName, String moveStateStructName, String moveSubmitEventHandleFieldName, String moveUpdateEventHandleFieldName, String moveSubmitEventStructName, String moveUpdateEventStructName, Long offChainVersion, String commandId, String requesterId) {
             FormDefinitionEventId eventId = new FormDefinitionEventId(getState().getFormSequenceId(), offChainVersion);
