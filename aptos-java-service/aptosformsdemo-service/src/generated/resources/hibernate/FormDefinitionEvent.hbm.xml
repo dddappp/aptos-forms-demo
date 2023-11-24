@@ -22,6 +22,7 @@
           <param name="org.hibernate.type.ParameterType">java.util.HashMap</param>
         </type>
       </property>
+      <subclass name="AbstractFormDefinitionEvent$FormWithFirstPageDefined" discriminator-value="FormWithFirstPageDefined" />
     </subclass>
     <subclass name="AbstractFormDefinitionEvent$AbstractFormDefinitionStateEvent" abstract="true">
       <property name="formId">

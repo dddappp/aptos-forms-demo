@@ -213,6 +213,8 @@ public abstract class AbstractFormDefinitionState implements FormDefinitionState
             when((FormDefinitionStateMergePatched) e);
         } else if (e instanceof FormDefinitionStateDeleted) {
             when((FormDefinitionStateDeleted) e);
+        } else if (e instanceof AbstractFormDefinitionEvent.FormWithFirstPageDefined) {
+            when((AbstractFormDefinitionEvent.FormWithFirstPageDefined)e);
         } else {
             throw new UnsupportedOperationException(String.format("Unsupported event type: %1$s", e.getClass().getName()));
         }
@@ -342,6 +344,57 @@ public abstract class AbstractFormDefinitionState implements FormDefinitionState
             ((FormPageDefinitionState.MutableFormPageDefinitionState)innerState).mutate(innerE);
             //e.addFormPageDefinitionEvent(innerE);
         }
+    }
+
+    public void when(AbstractFormDefinitionEvent.FormWithFirstPageDefined e) {
+        throwOnWrongEvent(e);
+
+        String formId = e.getFormId();
+        String FormId = formId;
+        String contractAddress = e.getContractAddress();
+        String ContractAddress = contractAddress;
+        String storeAccountAddress = e.getStoreAccountAddress();
+        String StoreAccountAddress = storeAccountAddress;
+        String pageName = e.getPageName();
+        String PageName = pageName;
+        String moveStateTableFieldName = e.getMoveStateTableFieldName();
+        String MoveStateTableFieldName = moveStateTableFieldName;
+        String moveStateStructName = e.getMoveStateStructName();
+        String MoveStateStructName = moveStateStructName;
+        String moveSubmitEventHandleFieldName = e.getMoveSubmitEventHandleFieldName();
+        String MoveSubmitEventHandleFieldName = moveSubmitEventHandleFieldName;
+        String moveUpdateEventHandleFieldName = e.getMoveUpdateEventHandleFieldName();
+        String MoveUpdateEventHandleFieldName = moveUpdateEventHandleFieldName;
+        String moveSubmitEventStructName = e.getMoveSubmitEventStructName();
+        String MoveSubmitEventStructName = moveSubmitEventStructName;
+        String moveUpdateEventStructName = e.getMoveUpdateEventStructName();
+        String MoveUpdateEventStructName = moveUpdateEventStructName;
+
+        if (this.getCreatedBy() == null){
+            this.setCreatedBy(e.getCreatedBy());
+        }
+        if (this.getCreatedAt() == null){
+            this.setCreatedAt(e.getCreatedAt());
+        }
+        this.setUpdatedBy(e.getCreatedBy());
+        this.setUpdatedAt(e.getCreatedAt());
+
+        FormDefinitionState updatedFormDefinitionState = (FormDefinitionState) ReflectUtils.invokeStaticMethod(
+                    "org.test.aptosformsdemo.domain.formdefinition.DefineFormWithFirstPageLogic",
+                    "mutate",
+                    new Class[]{FormDefinitionState.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, MutationContext.class},
+                    new Object[]{this, formId, contractAddress, storeAccountAddress, pageName, moveStateTableFieldName, moveStateStructName, moveSubmitEventHandleFieldName, moveUpdateEventHandleFieldName, moveSubmitEventStructName, moveUpdateEventStructName, MutationContext.forEvent(e, s -> {if (s == this) {return this;} else {throw new UnsupportedOperationException();}})}
+            );
+
+//package org.test.aptosformsdemo.domain.formdefinition;
+//
+//public class DefineFormWithFirstPageLogic {
+//    public static FormDefinitionState mutate(FormDefinitionState formDefinitionState, String formId, String contractAddress, String storeAccountAddress, String pageName, String moveStateTableFieldName, String moveStateStructName, String moveSubmitEventHandleFieldName, String moveUpdateEventHandleFieldName, String moveSubmitEventStructName, String moveUpdateEventStructName, MutationContext<FormDefinitionState, FormDefinitionState.MutableFormDefinitionState> mutationContext) {
+//    }
+//}
+
+        if (this != updatedFormDefinitionState) { merge(updatedFormDefinitionState); } //else do nothing
+
     }
 
     public void save() {

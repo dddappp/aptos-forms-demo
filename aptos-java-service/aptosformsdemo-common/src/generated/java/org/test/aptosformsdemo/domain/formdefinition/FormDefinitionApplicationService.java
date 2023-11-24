@@ -20,6 +20,8 @@ public interface FormDefinitionApplicationService {
 
     void when(FormDefinitionCommand.DeleteFormDefinition c);
 
+    void when(FormDefinitionCommands.DefineFormWithFirstPage c);
+
     FormDefinitionState get(Long id);
 
     Iterable<FormDefinitionState> getAll(Integer firstResult, Integer maxResults);

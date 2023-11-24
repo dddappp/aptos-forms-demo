@@ -155,6 +155,135 @@ public abstract class AbstractFormDefinitionEvent extends AbstractEvent implemen
 
     }
 
+    public static class FormWithFirstPageDefined extends FormDefinitionLobEvent {
+
+        @Override
+        public String getEventClass() {
+            return "FormWithFirstPageDefined";
+        }
+
+        public String getFormId() {
+            Object val = getDynamicProperties().get("formId");
+            if (val instanceof String) {
+                return (String) val;
+            }
+            return ApplicationContext.current.getTypeConverter().convertValue(val, String.class);
+        }
+
+        public void setFormId(String value) {
+            getDynamicProperties().put("formId", value);
+        }
+
+        public String getContractAddress() {
+            Object val = getDynamicProperties().get("contractAddress");
+            if (val instanceof String) {
+                return (String) val;
+            }
+            return ApplicationContext.current.getTypeConverter().convertValue(val, String.class);
+        }
+
+        public void setContractAddress(String value) {
+            getDynamicProperties().put("contractAddress", value);
+        }
+
+        public String getStoreAccountAddress() {
+            Object val = getDynamicProperties().get("storeAccountAddress");
+            if (val instanceof String) {
+                return (String) val;
+            }
+            return ApplicationContext.current.getTypeConverter().convertValue(val, String.class);
+        }
+
+        public void setStoreAccountAddress(String value) {
+            getDynamicProperties().put("storeAccountAddress", value);
+        }
+
+        public String getPageName() {
+            Object val = getDynamicProperties().get("pageName");
+            if (val instanceof String) {
+                return (String) val;
+            }
+            return ApplicationContext.current.getTypeConverter().convertValue(val, String.class);
+        }
+
+        public void setPageName(String value) {
+            getDynamicProperties().put("pageName", value);
+        }
+
+        public String getMoveStateTableFieldName() {
+            Object val = getDynamicProperties().get("moveStateTableFieldName");
+            if (val instanceof String) {
+                return (String) val;
+            }
+            return ApplicationContext.current.getTypeConverter().convertValue(val, String.class);
+        }
+
+        public void setMoveStateTableFieldName(String value) {
+            getDynamicProperties().put("moveStateTableFieldName", value);
+        }
+
+        public String getMoveStateStructName() {
+            Object val = getDynamicProperties().get("moveStateStructName");
+            if (val instanceof String) {
+                return (String) val;
+            }
+            return ApplicationContext.current.getTypeConverter().convertValue(val, String.class);
+        }
+
+        public void setMoveStateStructName(String value) {
+            getDynamicProperties().put("moveStateStructName", value);
+        }
+
+        public String getMoveSubmitEventHandleFieldName() {
+            Object val = getDynamicProperties().get("moveSubmitEventHandleFieldName");
+            if (val instanceof String) {
+                return (String) val;
+            }
+            return ApplicationContext.current.getTypeConverter().convertValue(val, String.class);
+        }
+
+        public void setMoveSubmitEventHandleFieldName(String value) {
+            getDynamicProperties().put("moveSubmitEventHandleFieldName", value);
+        }
+
+        public String getMoveUpdateEventHandleFieldName() {
+            Object val = getDynamicProperties().get("moveUpdateEventHandleFieldName");
+            if (val instanceof String) {
+                return (String) val;
+            }
+            return ApplicationContext.current.getTypeConverter().convertValue(val, String.class);
+        }
+
+        public void setMoveUpdateEventHandleFieldName(String value) {
+            getDynamicProperties().put("moveUpdateEventHandleFieldName", value);
+        }
+
+        public String getMoveSubmitEventStructName() {
+            Object val = getDynamicProperties().get("moveSubmitEventStructName");
+            if (val instanceof String) {
+                return (String) val;
+            }
+            return ApplicationContext.current.getTypeConverter().convertValue(val, String.class);
+        }
+
+        public void setMoveSubmitEventStructName(String value) {
+            getDynamicProperties().put("moveSubmitEventStructName", value);
+        }
+
+        public String getMoveUpdateEventStructName() {
+            Object val = getDynamicProperties().get("moveUpdateEventStructName");
+            if (val instanceof String) {
+                return (String) val;
+            }
+            return ApplicationContext.current.getTypeConverter().convertValue(val, String.class);
+        }
+
+        public void setMoveUpdateEventStructName(String value) {
+            getDynamicProperties().put("moveUpdateEventStructName", value);
+        }
+
+    }
+
 
     public static abstract class AbstractFormDefinitionStateEvent extends AbstractFormDefinitionEvent implements FormDefinitionEvent.FormDefinitionStateEvent {
         private String formId;

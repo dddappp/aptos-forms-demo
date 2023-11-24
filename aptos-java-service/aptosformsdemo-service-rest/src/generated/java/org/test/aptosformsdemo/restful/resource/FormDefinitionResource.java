@@ -255,6 +255,24 @@ public class FormDefinitionResource {
         } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
     }
 
+
+    @PutMapping("{formSequenceId}/_commands/DefineFormWithFirstPage")
+    public void defineFormWithFirstPage(@PathVariable("formSequenceId") Long formSequenceId, @RequestBody FormDefinitionCommands.DefineFormWithFirstPage content) {
+        try {
+
+            FormDefinitionCommands.DefineFormWithFirstPage cmd = content;//.toDefineFormWithFirstPage();
+            Long idObj = formSequenceId;
+            if (cmd.getFormSequenceId() == null) {
+                cmd.setFormSequenceId(idObj);
+            } else if (!cmd.getFormSequenceId().equals(idObj)) {
+                throw DomainError.named("inconsistentId", "Argument Id %1$s NOT equals body Id %2$s", formSequenceId, cmd.getFormSequenceId());
+            }
+            cmd.setRequesterId(SecurityContextUtil.getRequesterId());
+            formDefinitionApplicationService.when(cmd);
+
+        } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
+    }
+
     @GetMapping("_metadata/filteringFields")
     public List<PropertyMetadataDto> getMetadataFilteringFields() {
         try {

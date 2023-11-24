@@ -22,6 +22,8 @@ public interface FormDefinitionAggregate {
 
     void delete(FormDefinitionCommand.DeleteFormDefinition c);
 
+    void defineFormWithFirstPage(String formId, String contractAddress, String storeAccountAddress, String pageName, String moveStateTableFieldName, String moveStateStructName, String moveSubmitEventHandleFieldName, String moveUpdateEventHandleFieldName, String moveSubmitEventStructName, String moveUpdateEventStructName, Long offChainVersion, String commandId, String requesterId, FormDefinitionCommands.DefineFormWithFirstPage c);
+
     void throwOnInvalidStateTransition(Command c);
 }
 

@@ -1,6 +1,7 @@
 aggregates:
   FormDefinition:
     metadata:
+      #EventLobPropertiesEnabled: false
       StateLobPropertiesEnabled: false
       NoGeneratingMutateStateByEventMethods: false
       AutoGeneratingCrUDCommandsDisabled: false
@@ -56,6 +57,40 @@ aggregates:
             - form_sequence_id
             - page_number
         properties:
+          PageName:
+            type: String
+            length: 100
+          MoveStateTableFieldName:
+            type: String
+            length: 100
+          MoveStateStructName:
+            type: String
+            length: 100
+          MoveSubmitEventHandleFieldName:
+            type: String
+            length: 100
+          MoveUpdateEventHandleFieldName:
+            type: String
+            length: 100
+          MoveSubmitEventStructName:
+            type: String
+            length: 100
+          MoveUpdateEventStructName:
+            type: String
+            length: 100
+    methods:
+      DefineFormWithFirstPage:
+        isCreationCommand: true
+        event:
+          name: FormWithFirstPageDefined
+        parameters:
+          FormId:
+            type: String
+            length: 100
+          ContractAddress:
+            type: address
+          StoreAccountAddress:
+            type: address
           PageName:
             type: String
             length: 100

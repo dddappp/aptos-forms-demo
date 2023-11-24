@@ -61,6 +61,10 @@ public abstract class AbstractFormDefinitionApplicationService implements FormDe
         update(c, ar -> ar.delete(c));
     }
 
+    public void when(FormDefinitionCommands.DefineFormWithFirstPage c) {
+        update(c, ar -> ar.defineFormWithFirstPage(c.getFormId(), c.getContractAddress(), c.getStoreAccountAddress(), c.getPageName(), c.getMoveStateTableFieldName(), c.getMoveStateStructName(), c.getMoveSubmitEventHandleFieldName(), c.getMoveUpdateEventHandleFieldName(), c.getMoveSubmitEventStructName(), c.getMoveUpdateEventStructName(), c.getOffChainVersion(), c.getCommandId(), c.getRequesterId(), c));
+    }
+
     public FormDefinitionState get(Long id) {
         FormDefinitionState state = getStateRepository().get(id, true);
         return state;
