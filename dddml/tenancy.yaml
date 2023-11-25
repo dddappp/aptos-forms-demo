@@ -83,6 +83,8 @@ aggregates:
         isCreationCommand: true
         event:
           name: FormWithFirstPageDefined
+        metadata:
+          ShouldStaticallyInvokeJavaLogicFunctions: true
         parameters:
           FormId:
             type: String
