@@ -21,24 +21,24 @@ public class StaticMethodConstraints {
         ReflectUtils.assertStaticMethodIfClassExists(
                     "org.test.aptosformsdemo.domain.aptosformsdemomainform.SubmitLogic",
                     "verify",
-                    new Class[]{AptosFormsDemoMainFormState.class, BigInteger.class, String[].class, String[].class, String.class, String.class, BigInteger.class, String.class, BigInteger.class, DateRange.class, DateRange.class, BigInteger.class, TimeRange.class, String[].class, String[].class, XRenderFormDate.class, String.class, VerificationContext.class},
-                    new String[]{"_", "fr_5pqi", "fr_duif", "fr_6i34", "fr_8xjs", "fr_9c3f", "fr_4ok6", "fr_b3ub", "fr_1z7o", "fr_d8rw", "fr_dy3l", "fr_6f68", "fr_47yy", "fr_gh3o", "fr_fbba", "fr_hhzp", "single_text1"}
+                    new Class[]{java.util.function.Supplier.class, AptosFormsDemoMainFormState.class, BigInteger.class, String[].class, String[].class, String.class, String.class, BigInteger.class, String.class, BigInteger.class, DateRange.class, DateRange.class, BigInteger.class, TimeRange.class, String[].class, String[].class, XRenderFormDate.class, String.class, VerificationContext.class},
+                    new String[]{"_", "_", "fr_5pqi", "fr_duif", "fr_6i34", "fr_8xjs", "fr_9c3f", "fr_4ok6", "fr_b3ub", "fr_1z7o", "fr_d8rw", "fr_dy3l", "fr_6f68", "fr_47yy", "fr_gh3o", "fr_fbba", "fr_hhzp", "single_text1"}
             );
 
 
         ReflectUtils.assertStaticMethodIfClassExists(
                     "org.test.aptosformsdemo.domain.aptosformsdemomainform.UpdateLogic",
                     "verify",
-                    new Class[]{AptosFormsDemoMainFormState.class, BigInteger.class, String[].class, String[].class, String.class, String.class, BigInteger.class, String.class, BigInteger.class, DateRange.class, DateRange.class, BigInteger.class, TimeRange.class, String[].class, String[].class, XRenderFormDate.class, String.class, VerificationContext.class},
-                    new String[]{"_", "fr_5pqi", "fr_duif", "fr_6i34", "fr_8xjs", "fr_9c3f", "fr_4ok6", "fr_b3ub", "fr_1z7o", "fr_d8rw", "fr_dy3l", "fr_6f68", "fr_47yy", "fr_gh3o", "fr_fbba", "fr_hhzp", "single_text1"}
+                    new Class[]{java.util.function.Supplier.class, AptosFormsDemoMainFormState.class, BigInteger.class, String[].class, String[].class, String.class, String.class, BigInteger.class, String.class, BigInteger.class, DateRange.class, DateRange.class, BigInteger.class, TimeRange.class, String[].class, String[].class, XRenderFormDate.class, String.class, VerificationContext.class},
+                    new String[]{"_", "_", "fr_5pqi", "fr_duif", "fr_6i34", "fr_8xjs", "fr_9c3f", "fr_4ok6", "fr_b3ub", "fr_1z7o", "fr_d8rw", "fr_dy3l", "fr_6f68", "fr_47yy", "fr_gh3o", "fr_fbba", "fr_hhzp", "single_text1"}
             );
 
 
         ReflectUtils.assertStaticMethodIfClassExists(
                     "org.test.aptosformsdemo.domain.formdefinition.DefineFormWithFirstPageLogic",
                     "verify",
-                    new Class[]{FormDefinitionState.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, VerificationContext.class},
-                    new String[]{"_", "formId", "contractAddress", "storeAccountAddress", "pageName", "moveStateTableFieldName", "moveStateStructName", "moveSubmitEventHandleFieldName", "moveUpdateEventHandleFieldName", "moveSubmitEventStructName", "moveUpdateEventStructName"}
+                    new Class[]{java.util.function.Supplier.class, FormDefinitionState.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, VerificationContext.class},
+                    new String[]{"_", "_", "formId", "contractAddress", "storeAccountAddress", "pageName", "moveStateTableFieldName", "moveStateStructName", "moveSubmitEventHandleFieldName", "moveUpdateEventHandleFieldName", "moveSubmitEventStructName", "moveUpdateEventStructName"}
             );
 
 
