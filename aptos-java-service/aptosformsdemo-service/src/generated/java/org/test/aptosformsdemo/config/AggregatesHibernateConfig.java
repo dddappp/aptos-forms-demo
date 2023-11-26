@@ -11,6 +11,9 @@ import org.test.aptosformsdemo.domain.aptosformsdemomainform.hibernate.*;
 import org.test.aptosformsdemo.domain.formdefinition.*;
 import org.test.aptosformsdemo.domain.*;
 import org.test.aptosformsdemo.domain.formdefinition.hibernate.*;
+import org.test.aptosformsdemo.domain.formidregistration.*;
+import org.test.aptosformsdemo.domain.*;
+import org.test.aptosformsdemo.domain.formidregistration.hibernate.*;
 import org.test.aptosformsdemo.specialization.AggregateEventListener;
 import org.test.aptosformsdemo.specialization.EventStore;
 import org.test.aptosformsdemo.specialization.IdGenerator;
@@ -115,6 +118,42 @@ public class AggregatesHibernateConfig {
                 formDefinitionEventStore,
                 formDefinitionStateRepository,
                 formDefinitionStateQueryRepository
+        );
+        return applicationService;
+    }
+
+
+
+    @Bean
+    public FormIdRegistrationStateRepository formIdRegistrationStateRepository(
+            SessionFactory hibernateSessionFactory,
+            ReadOnlyProxyGenerator stateReadOnlyProxyGenerator
+    ) {
+        HibernateFormIdRegistrationStateRepository repository = new HibernateFormIdRegistrationStateRepository();
+        repository.setSessionFactory(hibernateSessionFactory);
+        repository.setReadOnlyProxyGenerator(stateReadOnlyProxyGenerator);
+        return repository;
+    }
+
+    @Bean
+    public FormIdRegistrationStateQueryRepository formIdRegistrationStateQueryRepository(
+            SessionFactory hibernateSessionFactory,
+            ReadOnlyProxyGenerator stateReadOnlyProxyGenerator
+    ) {
+        HibernateFormIdRegistrationStateQueryRepository repository = new HibernateFormIdRegistrationStateQueryRepository();
+        repository.setSessionFactory(hibernateSessionFactory);
+        repository.setReadOnlyProxyGenerator(stateReadOnlyProxyGenerator);
+        return repository;
+    }
+
+    @Bean
+    public AbstractFormIdRegistrationApplicationService.SimpleFormIdRegistrationApplicationService formIdRegistrationApplicationService(
+            FormIdRegistrationStateRepository formIdRegistrationStateRepository,
+            FormIdRegistrationStateQueryRepository formIdRegistrationStateQueryRepository
+    ) {
+        AbstractFormIdRegistrationApplicationService.SimpleFormIdRegistrationApplicationService applicationService = new AbstractFormIdRegistrationApplicationService.SimpleFormIdRegistrationApplicationService(
+                formIdRegistrationStateRepository,
+                formIdRegistrationStateQueryRepository
         );
         return applicationService;
     }

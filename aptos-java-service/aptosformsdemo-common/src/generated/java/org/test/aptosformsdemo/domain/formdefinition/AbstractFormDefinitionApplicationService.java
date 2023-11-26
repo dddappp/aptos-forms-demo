@@ -49,25 +49,6 @@ public abstract class AbstractFormDefinitionApplicationService implements FormDe
         this.stateQueryRepository = stateQueryRepository;
     }
 
-    public Long createWithoutId(FormDefinitionCommand.CreateFormDefinition c) {
-        /*
-        Long idObj = getIdGenerator().generateId(c);
-        FormDefinitionState state = getStateRepository().get(idObj, true);
-        if (state != null) {
-            if (getIdGenerator().isArbitraryIdEnabled()) {
-                idObj = getIdGenerator().getNextId();
-            } else {
-                throw DomainError.named("instanceExist", "the instance already exist, Id: %1$s , aggregate name: %2$s ", idObj, "FormDefinition");
-            }
-        }
-        c.setFormSequenceId(idObj);
-        when(c);
-        return idObj;
-   
-        */
-        return null;
-    }
-
     public void when(FormDefinitionCommand.CreateFormDefinition c) {
         update(c, ar -> ar.create(c));
     }

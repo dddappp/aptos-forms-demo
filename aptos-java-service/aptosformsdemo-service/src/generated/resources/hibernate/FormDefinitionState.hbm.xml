@@ -3,12 +3,7 @@
 <hibernate-mapping package="org.test.aptosformsdemo.domain.formdefinition">
   <class name="org.test.aptosformsdemo.domain.formdefinition.AbstractFormDefinitionState$SimpleFormDefinitionState" table="form_definition">
     <id name="formSequenceId" column="form_sequence_id">
-      <generator class="enhanced-table">
-        <param name="segment_value">form_definition</param>
-        <param name="initial_value">1</param>
-        <param name="increment_size">10</param>
-        <param name="optimizer">pooled-lo</param>
-      </generator>
+      <generator class="assigned" />
     </id>
     <version name="offChainVersion" column="off_chain_version" type="long" />
     <set name="protectedPageDefinitions" inverse="true" cascade="all-delete-orphan" fetch="join">

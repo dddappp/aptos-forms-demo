@@ -13,6 +13,7 @@ import org.test.aptosformsdemo.domain.*;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.domain.formdefinition.*;
+import org.test.aptosformsdemo.domain.formidregistration.*;
 
 public class StaticMethodConstraints {
 

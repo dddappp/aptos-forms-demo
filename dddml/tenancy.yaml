@@ -27,8 +27,6 @@ aggregates:
       name: OffChainVersion
       type: long
     id:
-      generator:
-        class: sequence
       name: FormSequenceId
       type: long
     uniqueConstraints:
@@ -79,6 +77,12 @@ aggregates:
             type: String
             length: 100
     methods:
+      Create:
+        isInternal: true
+      MergePatch:
+        isInternal: true
+      Delete:
+        isInternal: true
       DefineFormWithFirstPage:
         isCreationCommand: true
         event:
@@ -115,10 +119,39 @@ aggregates:
             type: String
             length: 100
 
+  FormIdRegistration:
+    metadata:
+      AbsolutelyNoEventSourcing: true
+      StateLobPropertiesEnabled: false
+      NoGeneratingMutateStateByEventMethods: false
+      AutoGeneratingCrUDCommandsDisabled: false
+    shouldNotImplement: [ "VersionedAptosMoveObject" ]
+    eventShouldNotImplement: [ "AptosEvent", "HasStatus" ]
+    eventVersionProperty:
+      name: OffChainVersion
+      type: long
+    id:
+      generator:
+        class: sequence
+      name: FormSequenceId
+      type: long
+    uniqueConstraints:
+      "UniqueFormIdRegistration": [ "FormId" ]
+    properties:
+      FormId:
+        type: String
+        length: 100
+    methods:
+      MergePatch:
+        isInternal: true
+      Delete:
+        isInternal: true
+
+
 configuration:
   sequenceNumber: 20
   aptos:
-    offChainObjectNames: [ "FormDefinition", "FormPageDefinition" ]
+    offChainObjectNames: [ "FormDefinition", "FormPageDefinition", "FormIdRegistration" ]
   tenantizedIdTemplate:
     properties:
       FormSequenceId:

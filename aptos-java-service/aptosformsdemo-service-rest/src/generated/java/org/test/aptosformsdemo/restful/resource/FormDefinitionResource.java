@@ -170,82 +170,6 @@ public class FormDefinitionResource {
     }
 
 
-    /**
-     * Create.
-     * Create FormDefinition
-     */
-    @PostMapping @ResponseStatus(HttpStatus.CREATED)
-    public Long post(@RequestBody CreateOrMergePatchFormDefinitionDto.CreateFormDefinitionDto value,  HttpServletResponse response) {
-        try {
-            FormDefinitionCommand.CreateFormDefinition cmd = value;//.toCreateFormDefinition();
-            cmd.setRequesterId(SecurityContextUtil.getRequesterId());
-            Long idObj = formDefinitionApplicationService.createWithoutId(cmd);
-
-            return idObj;
-        } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
-    }
-
-
-    /**
-     * Create or update.
-     * Create or update FormDefinition
-     */
-    @PutMapping("{formSequenceId}")
-    public void put(@PathVariable("formSequenceId") Long formSequenceId, @RequestBody CreateOrMergePatchFormDefinitionDto value) {
-        try {
-            if (value.getOffChainVersion() != null) {
-                value.setCommandType(Command.COMMAND_TYPE_MERGE_PATCH);
-                FormDefinitionCommand.MergePatchFormDefinition cmd = (FormDefinitionCommand.MergePatchFormDefinition) value.toSubclass();
-                FormDefinitionResourceUtils.setNullIdOrThrowOnInconsistentIds(formSequenceId, cmd);
-                cmd.setRequesterId(SecurityContextUtil.getRequesterId());
-                formDefinitionApplicationService.when(cmd);
-                return;
-            }
-            throw DomainError.named("unsupportedOperation", "Unsupported HTTP PUT to create, aggregate Id %1$s", formSequenceId);
-        } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
-    }
-
-
-    /**
-     * Patch.
-     * Patch FormDefinition
-     */
-    @PatchMapping("{formSequenceId}")
-    public void patch(@PathVariable("formSequenceId") Long formSequenceId, @RequestBody CreateOrMergePatchFormDefinitionDto.MergePatchFormDefinitionDto value) {
-        try {
-
-            FormDefinitionCommand.MergePatchFormDefinition cmd = value;//.toMergePatchFormDefinition();
-            FormDefinitionResourceUtils.setNullIdOrThrowOnInconsistentIds(formSequenceId, cmd);
-            cmd.setRequesterId(SecurityContextUtil.getRequesterId());
-            formDefinitionApplicationService.when(cmd);
-
-        } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
-    }
-
-    /**
-     * Delete.
-     * Delete FormDefinition
-     */
-    @DeleteMapping("{formSequenceId}")
-    public void delete(@PathVariable("formSequenceId") Long formSequenceId,
-                       @NotNull @RequestParam(value = "commandId", required = false) String commandId,
-                       @NotNull @RequestParam(value = "version", required = false) @Min(value = -1) Long version,
-                       @RequestParam(value = "requesterId", required = false) String requesterId) {
-        try {
-
-            FormDefinitionCommand.DeleteFormDefinition deleteCmd = new DeleteFormDefinitionDto();
-
-            deleteCmd.setCommandId(commandId);
-            deleteCmd.setRequesterId(requesterId);
-            deleteCmd.setOffChainVersion(version);
-            FormDefinitionResourceUtils.setNullIdOrThrowOnInconsistentIds(formSequenceId, deleteCmd);
-            deleteCmd.setRequesterId(SecurityContextUtil.getRequesterId());
-            formDefinitionApplicationService.when(deleteCmd);
-
-        } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
-    }
-
-
     @PutMapping("{formSequenceId}/_commands/DefineFormWithFirstPage")
     public void defineFormWithFirstPage(@PathVariable("formSequenceId") Long formSequenceId, @RequestBody FormDefinitionCommands.DefineFormWithFirstPage content) {
         try {
@@ -325,57 +249,6 @@ public class FormDefinitionResource {
     }
 
     /**
-     * Create or update.
-     * Create or update FormPageDefinition
-     */
-    @PutMapping(path = "{formSequenceId}/FormPageDefinitions/{pageNumber}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void putFormPageDefinition(@PathVariable("formSequenceId") Long formSequenceId, @PathVariable("pageNumber") Integer pageNumber,
-                       @RequestParam(value = "commandId", required = false) String commandId,
-                       @RequestParam(value = "version", required = false) Long version,
-                       @RequestParam(value = "requesterId", required = false) String requesterId,
-                       @RequestBody CreateOrMergePatchFormPageDefinitionDto.MergePatchFormPageDefinitionDto body) {
-        try {
-            FormDefinitionCommand.MergePatchFormDefinition mergePatchFormDefinition = new CreateOrMergePatchFormDefinitionDto.MergePatchFormDefinitionDto();
-            mergePatchFormDefinition.setFormSequenceId(formSequenceId);
-            mergePatchFormDefinition.setCommandId(commandId != null && !commandId.isEmpty() ? commandId : body.getCommandId());
-            if (version != null) { mergePatchFormDefinition.setOffChainVersion(version); }
-            mergePatchFormDefinition.setRequesterId(requesterId != null && !requesterId.isEmpty() ? requesterId : body.getRequesterId());
-            FormPageDefinitionCommand.MergePatchFormPageDefinition mergePatchFormPageDefinition = body;//.toMergePatchFormPageDefinition();
-            mergePatchFormPageDefinition.setPageNumber(pageNumber);
-            mergePatchFormDefinition.getFormPageDefinitionCommands().add(mergePatchFormPageDefinition);
-            mergePatchFormDefinition.setRequesterId(SecurityContextUtil.getRequesterId());
-            formDefinitionApplicationService.when(mergePatchFormDefinition);
-        } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
-    }
-
-    /**
-     * Delete.
-     * Delete FormPageDefinition
-     */
-    @DeleteMapping("{formSequenceId}/FormPageDefinitions/{pageNumber}")
-    public void deleteFormPageDefinition(@PathVariable("formSequenceId") Long formSequenceId, @PathVariable("pageNumber") Integer pageNumber,
-                       @RequestParam(value = "commandId", required = false) String commandId,
-                       @RequestParam(value = "version", required = false) Long version,
-                       @RequestParam(value = "requesterId", required = false) String requesterId) {
-        try {
-            FormDefinitionCommand.MergePatchFormDefinition mergePatchFormDefinition = new CreateOrMergePatchFormDefinitionDto.MergePatchFormDefinitionDto();
-            mergePatchFormDefinition.setFormSequenceId(formSequenceId);
-            mergePatchFormDefinition.setCommandId(commandId);// != null && !commandId.isEmpty() ? commandId : body.getCommandId());
-            if (version != null) { 
-                mergePatchFormDefinition.setOffChainVersion(version); 
-            } else {
-                mergePatchFormDefinition.setOffChainVersion(formDefinitionApplicationService.get(formSequenceId).getOffChainVersion());
-            }
-            mergePatchFormDefinition.setRequesterId(requesterId);// != null && !requesterId.isEmpty() ? requesterId : body.getRequesterId());
-            FormPageDefinitionCommand.RemoveFormPageDefinition removeFormPageDefinition = new RemoveFormPageDefinitionDto();
-            removeFormPageDefinition.setPageNumber(pageNumber);
-            mergePatchFormDefinition.getFormPageDefinitionCommands().add(removeFormPageDefinition);
-            mergePatchFormDefinition.setRequesterId(SecurityContextUtil.getRequesterId());
-            formDefinitionApplicationService.when(mergePatchFormDefinition);
-        } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
-    }
-
-    /**
      * FormPageDefinition List
      */
     @GetMapping("{formSequenceId}/FormPageDefinitions")
@@ -406,29 +279,6 @@ public class FormDefinitionResource {
                 dtoConverter.setReturnedFieldsString(fields);
             }
             return dtoConverter.toFormPageDefinitionStateDtoArray(states);
-        } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
-    }
-
-    /**
-     * Create.
-     * Create FormPageDefinition
-     */
-    @PostMapping(path = "{formSequenceId}/FormPageDefinitions", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void postFormPageDefinitions(@PathVariable("formSequenceId") Long formSequenceId,
-                       @RequestParam(value = "commandId", required = false) String commandId,
-                       @RequestParam(value = "version", required = false) Long version,
-                       @RequestParam(value = "requesterId", required = false) String requesterId,
-                       @RequestBody CreateOrMergePatchFormPageDefinitionDto.CreateFormPageDefinitionDto body) {
-        try {
-            FormDefinitionCommand.MergePatchFormDefinition mergePatchFormDefinition = new AbstractFormDefinitionCommand.SimpleMergePatchFormDefinition();
-            mergePatchFormDefinition.setFormSequenceId(formSequenceId);
-            mergePatchFormDefinition.setCommandId(commandId != null && !commandId.isEmpty() ? commandId : body.getCommandId());
-            if (version != null) { mergePatchFormDefinition.setOffChainVersion(version); }
-            mergePatchFormDefinition.setRequesterId(requesterId != null && !requesterId.isEmpty() ? requesterId : body.getRequesterId());
-            FormPageDefinitionCommand.CreateFormPageDefinition createFormPageDefinition = body.toCreateFormPageDefinition();
-            mergePatchFormDefinition.getFormPageDefinitionCommands().add(createFormPageDefinition);
-            mergePatchFormDefinition.setRequesterId(SecurityContextUtil.getRequesterId());
-            formDefinitionApplicationService.when(mergePatchFormDefinition);
         } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
     }
 
