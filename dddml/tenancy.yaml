@@ -5,6 +5,7 @@ aggregates:
       StateLobPropertiesEnabled: false
       NoGeneratingMutateStateByEventMethods: false
       AutoGeneratingCrUDCommandsDisabled: false
+      DuplicateEventNameCheckingDisabled: true
     # We globally set the interfaces that should be implemented by aggregate roots and aggregate event objects
     # in order to generate objects corresponding to the objects on-chain.
     #
@@ -125,6 +126,7 @@ aggregates:
       StateLobPropertiesEnabled: false
       NoGeneratingMutateStateByEventMethods: false
       AutoGeneratingCrUDCommandsDisabled: false
+      DuplicateEventNameCheckingDisabled: true
     shouldNotImplement: [ "VersionedAptosMoveObject" ]
     eventShouldNotImplement: [ "AptosEvent", "HasStatus" ]
     eventVersionProperty:
