@@ -178,12 +178,8 @@ public class FormDefinitionResource {
     public Long post(@RequestBody CreateOrMergePatchFormDefinitionDto.CreateFormDefinitionDto value,  HttpServletResponse response) {
         try {
             FormDefinitionCommand.CreateFormDefinition cmd = value;//.toCreateFormDefinition();
-            if (cmd.getFormSequenceId() == null) {
-                throw DomainError.named("nullId", "Aggregate Id in cmd is null, aggregate name: %1$s.", "FormDefinition");
-            }
-            Long idObj = cmd.getFormSequenceId();
             cmd.setRequesterId(SecurityContextUtil.getRequesterId());
-            formDefinitionApplicationService.when(cmd);
+            Long idObj = formDefinitionApplicationService.createWithoutId(cmd);
 
             return idObj;
         } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }

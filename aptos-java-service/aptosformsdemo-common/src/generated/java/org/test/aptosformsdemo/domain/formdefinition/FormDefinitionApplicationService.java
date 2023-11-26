@@ -14,6 +14,8 @@ import org.test.aptosformsdemo.specialization.Event;
 import org.test.aptosformsdemo.domain.Command;
 
 public interface FormDefinitionApplicationService {
+    Long createWithoutId(FormDefinitionCommand.CreateFormDefinition c);
+
     void when(FormDefinitionCommand.CreateFormDefinition c);
 
     void when(FormDefinitionCommand.MergePatchFormDefinition c);
