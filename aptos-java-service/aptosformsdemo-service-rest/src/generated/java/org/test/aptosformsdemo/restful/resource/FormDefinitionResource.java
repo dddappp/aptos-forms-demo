@@ -201,13 +201,7 @@ public class FormDefinitionResource {
                 formDefinitionApplicationService.when(cmd);
                 return;
             }
-
-            value.setCommandType(Command.COMMAND_TYPE_CREATE);
-            FormDefinitionCommand.CreateFormDefinition cmd = (FormDefinitionCommand.CreateFormDefinition) value.toSubclass();
-            FormDefinitionResourceUtils.setNullIdOrThrowOnInconsistentIds(formSequenceId, cmd);
-            cmd.setRequesterId(SecurityContextUtil.getRequesterId());
-            formDefinitionApplicationService.when(cmd);
-
+            throw DomainError.named("unsupportedOperation", "Unsupported HTTP PUT to create, aggregate Id %1$s", formSequenceId);
         } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
     }
 
