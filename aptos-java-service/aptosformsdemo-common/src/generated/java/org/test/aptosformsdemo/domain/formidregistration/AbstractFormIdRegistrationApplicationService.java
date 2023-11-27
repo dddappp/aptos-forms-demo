@@ -48,23 +48,24 @@ public abstract class AbstractFormIdRegistrationApplicationService implements Fo
         update(c, s -> {
         // //////////////////////////////////
         throwOnConcurrencyConflict(s, c);
+        FormIdRegistrationState.SqlFormIdRegistrationState ss = ((FormIdRegistrationState.SqlFormIdRegistrationState)s);
         if (c.getFormId() == null) {
             if (c.getIsPropertyFormIdRemoved() != null && c.getIsPropertyFormIdRemoved()) {
-                ((FormIdRegistrationState.SqlFormIdRegistrationState)s).setFormId(null);
+                ss.setFormId(null);
             }
         } else {
-            ((FormIdRegistrationState.SqlFormIdRegistrationState)s).setFormId(c.getFormId());
+            ss.setFormId(c.getFormId());
         }
         if (c.getActive() == null) {
             if (c.getIsPropertyActiveRemoved() != null && c.getIsPropertyActiveRemoved()) {
-                ((FormIdRegistrationState.SqlFormIdRegistrationState)s).setActive(null);
+                ss.setActive(null);
             }
         } else {
-            ((FormIdRegistrationState.SqlFormIdRegistrationState)s).setActive(c.getActive());
+            ss.setActive(c.getActive());
         }
-        ((FormIdRegistrationState.SqlFormIdRegistrationState)s).setUpdatedBy(c.getRequesterId());
-        ((FormIdRegistrationState.SqlFormIdRegistrationState)s).setUpdatedAt((OffsetDateTime)ApplicationContext.current.getTimestampService().now(OffsetDateTime.class));
-        ((FormIdRegistrationState.SqlFormIdRegistrationState)s).setCommandId(c.getCommandId());
+        ss.setUpdatedBy(c.getRequesterId());
+        ss.setUpdatedAt((OffsetDateTime)ApplicationContext.current.getTimestampService().now(OffsetDateTime.class));
+        ss.setCommandId(c.getCommandId());
         // //////////////////////////////////
         });
     }
