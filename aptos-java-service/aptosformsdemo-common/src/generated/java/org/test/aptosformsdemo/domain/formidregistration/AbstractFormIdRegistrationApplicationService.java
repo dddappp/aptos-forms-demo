@@ -32,28 +32,16 @@ public abstract class AbstractFormIdRegistrationApplicationService implements Fo
 
     public Long createWithoutId(FormIdRegistrationCommand.CreateFormIdRegistration c) {
         FormIdRegistrationState.SqlFormIdRegistrationState s = new AbstractFormIdRegistrationState.SimpleFormIdRegistrationState();
+        // //////////////////////////
         s.setFormId(c.getFormId());
         s.setActive(c.getActive());
         s.setDeleted(false);
         s.setCreatedBy(c.getRequesterId());
         s.setCreatedAt((OffsetDateTime)ApplicationContext.current.getTimestampService().now(OffsetDateTime.class));
         s.setCommandId(c.getCommandId());
+        // //////////////////////////
         getStateRepository().save(s);
         return s.getFormSequenceId();
-    }
-
-    public void when(FormIdRegistrationCommand.CreateFormIdRegistration c) {
-        update(c, s -> {
-        // //////////////////////////
-        throwOnConcurrencyConflict(s, c);
-        ((FormIdRegistrationState.SqlFormIdRegistrationState)s).setFormId(c.getFormId());
-        ((FormIdRegistrationState.SqlFormIdRegistrationState)s).setActive(c.getActive());
-        ((FormIdRegistrationState.SqlFormIdRegistrationState)s).setDeleted(false);
-        ((FormIdRegistrationState.SqlFormIdRegistrationState)s).setCreatedBy(c.getRequesterId());
-        ((FormIdRegistrationState.SqlFormIdRegistrationState)s).setCreatedAt((OffsetDateTime)ApplicationContext.current.getTimestampService().now(OffsetDateTime.class));
-        ((FormIdRegistrationState.SqlFormIdRegistrationState)s).setCommandId(c.getCommandId());
-        // //////////////////////////
-        });
     }
 
     public void when(FormIdRegistrationCommand.MergePatchFormIdRegistration c) {

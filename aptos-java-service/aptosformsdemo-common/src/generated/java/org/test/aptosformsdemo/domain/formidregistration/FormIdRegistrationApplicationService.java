@@ -16,8 +16,6 @@ import org.test.aptosformsdemo.domain.Command;
 public interface FormIdRegistrationApplicationService {
     Long createWithoutId(FormIdRegistrationCommand.CreateFormIdRegistration c);
 
-    void when(FormIdRegistrationCommand.CreateFormIdRegistration c);
-
     void when(FormIdRegistrationCommand.MergePatchFormIdRegistration c);
 
     void when(FormIdRegistrationCommand.DeleteFormIdRegistration c);
