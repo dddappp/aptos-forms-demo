@@ -31,22 +31,15 @@ public abstract class AbstractFormIdRegistrationApplicationService implements Fo
     }
 
     public Long createWithoutId(FormIdRegistrationCommand.CreateFormIdRegistration c) {
-        /*
-        Long idObj = getIdGenerator().generateId(c);
-        FormIdRegistrationState state = getStateRepository().get(idObj, true);
-        if (state != null) {
-            if (getIdGenerator().isArbitraryIdEnabled()) {
-                idObj = getIdGenerator().getNextId();
-            } else {
-                throw DomainError.named("instanceExist", "the instance already exist, Id: %1$s , aggregate name: %2$s ", idObj, "FormIdRegistration");
-            }
-        }
-        c.setFormSequenceId(idObj);
-        when(c);
-        return idObj;
-   
-        */
-        return null;
+        FormIdRegistrationState.SqlFormIdRegistrationState s = new AbstractFormIdRegistrationState.SimpleFormIdRegistrationState();
+        s.setFormId(c.getFormId());
+        s.setActive(c.getActive());
+        s.setDeleted(false);
+        s.setCreatedBy(c.getRequesterId());
+        s.setCreatedAt((OffsetDateTime)ApplicationContext.current.getTimestampService().now(OffsetDateTime.class));
+        s.setCommandId(c.getCommandId());
+        getStateRepository().save(s);
+        return s.getFormSequenceId();
     }
 
     public void when(FormIdRegistrationCommand.CreateFormIdRegistration c) {

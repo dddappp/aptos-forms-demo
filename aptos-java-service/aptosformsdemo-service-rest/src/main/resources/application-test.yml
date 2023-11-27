@@ -33,3 +33,9 @@ aptos:
 #    pull-order-v2-events:
 #      order-v2-created:
 #        fixed-delay: 6000
+
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
