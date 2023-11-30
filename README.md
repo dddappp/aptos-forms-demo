@@ -262,7 +262,7 @@ So before getting started, you need to set up a basic Java development environme
 * Install JDK and [Maven](https://maven.apache.org).
 * Install MySQL database server.
 
-If you have already installed Docker, you can use Docker to run a MySQL database service. For example:
+If you have already installed Docker, you can use Docker to run a MySQL database server. For example:
 
 ```shell
 sudo docker run -p 3306:3306 --name mysql \
