@@ -30,7 +30,7 @@ public class AptosFormsDemoApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext ctx = SpringApplication.run(AptosFormsDemoApplication.class, args);
-        ApplicationContext.current = new SpringApplicationContext(ctx);
+        //ApplicationContext.current = new SpringApplicationContext(ctx);
         ctx.publishEvent(new ContextStartedEvent(ctx));
     }
 

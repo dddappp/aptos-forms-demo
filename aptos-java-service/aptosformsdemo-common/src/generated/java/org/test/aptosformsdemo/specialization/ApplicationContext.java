@@ -27,11 +27,7 @@ public class ApplicationContext {
         }
     };
 
-    public static volatile ApplicationContext current;
-
-    public static void setCurrent(ApplicationContext context) {
-        current = context;
-    }
+    public static ApplicationContext current;
 
     public Object get(String name) {
         throw new UnsupportedOperationException();
