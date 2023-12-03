@@ -26,12 +26,12 @@ The following explains how Move Forms works.
 
 ![How Move Forms Works](./docs/HowMoveFormsWorks.jpg)
 
-* First, you use Form Builder to design a form.
-* Then, you can export the schema of this form.
+* First, we use Form Builder to design a form.
+* Then, we can export the schema of this form.
 * We use a command line tool to convert the schema into a domain model, from which we can generate on-chain contract and off-chain service.
 * In addition, we can use a tool to generate a form submission page from the schema.
 * Then end-users can fill out and submit the form.
-* You can view the submitted data via the off-chain service.
+* We can view the submitted data via the off-chain service.
 
 ## Prerequisites
 
@@ -72,7 +72,13 @@ You can use the *Export (导出)* button to export the form's schema to the clip
 
 ### Run dddappp Project Creation Tool
 
-We use the XRender form schema file `form-schema/form.json` to generate the DDDML model file. The generated model file is available at `dddml/forms.yaml`.
+With the XRender form schema file, we can generate the on-chain contracts and off-chain service (sometimes it's called indexer).
+
+This process can be done in one step with dddml CLI tool.
+However, its internal implementation does this by first generating the DDDML model file,
+and then generating on-chain contract and off-chain service from the model file.
+
+For the following command, we assume that the saved form schema file is `form-schema/form.json`, and the generated model file is available at `dddml/forms.yaml`.
 
 > **Tip**
 >
