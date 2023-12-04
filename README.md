@@ -28,10 +28,14 @@ The following explains how Move Forms works.
 
 * First, we use Form Builder to design a form.
 * Then, we can export the schema of this form.
-* We use a command line tool to convert the schema into a domain model, from which we can generate on-chain contract and off-chain service.
+* We use a command line tool to convert the schema into a DDDML domain model, from which we can generate on-chain contract and off-chain service.
 * In addition, we can use a tool to generate a form submission page from the schema.
 * Then end-users can fill out and submit the form.
 * We can view the submitted data via the off-chain service.
+
+> **Tip**
+>
+> About DDDML, here is an introductory article: ["Introducing DDDML: The Key to Low-Code Development for Decentralized Applications"](https://github.com/wubuku/Dapp-LCDP-Demo/blob/main/IntroducingDDDML.md).
 
 ## Prerequisites
 
@@ -78,11 +82,7 @@ This process can be done in one step with dddml CLI tool.
 However, its internal implementation does this by first generating the DDDML model file,
 and then generating on-chain contract and off-chain service from the model file.
 
-For the following command, we assume that the saved form schema file is `form-schema/form.json`, and the generated model file is available at `dddml/forms.yaml`.
-
-> **Tip**
->
-> About DDDML, here is an introductory article: ["Introducing DDDML: The Key to Low-Code Development for Decentralized Applications"](https://github.com/wubuku/Dapp-LCDP-Demo/blob/main/IntroducingDDDML.md).
+For the following command, we assume that the saved form schema file is `form-schema/form.json`, and the generated model file will be available at `dddml/forms.yaml`.
 
 In repository root directory, run:
 
