@@ -154,19 +154,24 @@ configuration:
   sequenceNumber: 20
   aptos:
     offChainObjectNames: [ "FormDefinition", "FormPageDefinition", "FormIdRegistration" ]
-  tenantizedIdTemplate:
-    properties:
-      FormSequenceId:
-        type: long
-      PageNumber:
-        type: int
-      "__ORIGINAL_ID__":
-        type: "__OMITTED__"
-    columnNames:
-      - "form_sequence_id"
-      - "page_number"
-      - "__ORIGINAL_ID_COLUMN_NAMES__"
-    idNameFormat: "FormPageAnd{_ORIGINAL_ID_NAME_}"
-    idTypeFormat: "FormPageAnd{_ORIGINAL_ID_TYPE_}"
-    originalIdPropertyNameFormat: "{_ORIGINAL_ID_TYPE_}"
+  tenantizedIdTemplates:
+    "__Default__":
+      properties:
+        FormSequenceId:
+          type: long
+        PageNumber:
+          type: int
+        "__ORIGINAL_ID__":
+          type: "__OMITTED__"
+      columnNames:
+        - "form_sequence_id"
+        - "page_number"
+        - "__ORIGINAL_ID_COLUMN_NAMES__"
+      idNameFormat: "FormPageAnd{_ORIGINAL_ID_NAME_}"
+      idTypeFormat: "FormPageAnd{_ORIGINAL_ID_TYPE_}"
+      originalIdPropertyNameFormat: "{_ORIGINAL_ID_TYPE_}"
 
+  aggregates:
+    AptosFormsDemoMainForm:
+      metadata:
+        TenantizedIdTemplateName: "__Default__"
