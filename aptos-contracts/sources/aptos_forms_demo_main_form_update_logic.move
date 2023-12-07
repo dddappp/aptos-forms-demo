@@ -30,6 +30,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form_update_logic {
         fr_fbba: vector<String>,
         fr_hhzp: Date,
         single_text1: String,
+        payment_123: u64,
         aptos_forms_demo_main_form: &aptos_forms_demo_main_form::AptosFormsDemoMainForm,
     ): aptos_forms_demo_main_form::AptosFormsDemoMainFormUpdated {
         let _ = account;
@@ -54,6 +55,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form_update_logic {
             fr_fbba,
             fr_hhzp,
             single_text1,
+            payment_123,
         )
     }
 
@@ -78,6 +80,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form_update_logic {
         let fr_fbba = aptos_forms_demo_main_form_updated::fr_fbba(aptos_forms_demo_main_form_updated);
         let fr_hhzp = aptos_forms_demo_main_form_updated::fr_hhzp(aptos_forms_demo_main_form_updated);
         let single_text1 = aptos_forms_demo_main_form_updated::single_text1(aptos_forms_demo_main_form_updated);
+        let payment_123 = aptos_forms_demo_main_form_updated::payment_123(aptos_forms_demo_main_form_updated);
         let signer_address = aptos_forms_demo_main_form::signer_address(&aptos_forms_demo_main_form);
         let _ = signer_address;
         aptos_forms_demo_main_form::set_fr_5pqi(&mut aptos_forms_demo_main_form, fr_5pqi);
@@ -96,6 +99,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form_update_logic {
         aptos_forms_demo_main_form::set_fr_fbba(&mut aptos_forms_demo_main_form, fr_fbba);
         aptos_forms_demo_main_form::set_fr_hhzp(&mut aptos_forms_demo_main_form, fr_hhzp);
         aptos_forms_demo_main_form::set_single_text1(&mut aptos_forms_demo_main_form, single_text1);
+        aptos_forms_demo_main_form::set_payment_123(&mut aptos_forms_demo_main_form, payment_123);
         aptos_forms_demo_main_form
     }
 

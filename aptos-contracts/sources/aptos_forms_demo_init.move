@@ -5,11 +5,13 @@
 
 module aptos_forms_demo::aptos_forms_demo_init {
     use aptos_forms_demo::aptos_forms_demo_genesis_account as genesis_account;
+    use aptos_forms_demo::aptos_forms_demo_global;
     use aptos_forms_demo::aptos_forms_demo_main_form;
 
     public entry fun initialize(account: &signer) {
         genesis_account::initialize(account);
         aptos_forms_demo_main_form::initialize(account);
+        aptos_forms_demo_global::initialize(account);
     }
 
 }

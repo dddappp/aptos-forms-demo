@@ -79,4 +79,8 @@ module aptos_forms_demo::aptos_forms_demo_main_form_updated {
         aptos_forms_demo_main_form::aptos_forms_demo_main_form_updated_single_text1(aptos_forms_demo_main_form_updated)
     }
 
+    public fun payment_123(aptos_forms_demo_main_form_updated: &AptosFormsDemoMainFormUpdated): u64 {
+        aptos_forms_demo_main_form::aptos_forms_demo_main_form_updated_payment_123(aptos_forms_demo_main_form_updated)
+    }
+
 }

@@ -29,6 +29,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form_submit_logic {
         fr_fbba: vector<String>,
         fr_hhzp: Date,
         single_text1: String,
+        payment_123: u64,
     ): aptos_forms_demo_main_form::AptosFormsDemoMainFormSubmitted {
         let signer_address = std::signer::address_of(account);
         assert!(aptos_framework::timestamp::now_seconds() >= 1699256214, EFormNotOpen); // Open at: 2023-11-06T07:36:54Z
@@ -52,6 +53,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form_submit_logic {
             fr_fbba,
             fr_hhzp,
             single_text1,
+            payment_123,
         )
     }
 
@@ -76,6 +78,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form_submit_logic {
         let fr_fbba = aptos_forms_demo_main_form_submitted::fr_fbba(aptos_forms_demo_main_form_submitted);
         let fr_hhzp = aptos_forms_demo_main_form_submitted::fr_hhzp(aptos_forms_demo_main_form_submitted);
         let single_text1 = aptos_forms_demo_main_form_submitted::single_text1(aptos_forms_demo_main_form_submitted);
+        let payment_123 = aptos_forms_demo_main_form_submitted::payment_123(aptos_forms_demo_main_form_submitted);
         aptos_forms_demo_main_form::create_aptos_forms_demo_main_form(
             signer_address,
             fr_5pqi,
@@ -94,6 +97,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form_submit_logic {
             fr_fbba,
             fr_hhzp,
             single_text1,
+            payment_123,
         )
     }
 

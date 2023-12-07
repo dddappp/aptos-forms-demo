@@ -69,6 +69,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         fr_fbba: vector<String>,
         fr_hhzp: Date,
         single_text1: String,
+        payment_123: u64,
     }
 
     public fun signer_address(aptos_forms_demo_main_form: &AptosFormsDemoMainForm): address {
@@ -216,6 +217,14 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         aptos_forms_demo_main_form.single_text1 = single_text1;
     }
 
+    public fun payment_123(aptos_forms_demo_main_form: &AptosFormsDemoMainForm): u64 {
+        aptos_forms_demo_main_form.payment_123
+    }
+
+    public(friend) fun set_payment_123(aptos_forms_demo_main_form: &mut AptosFormsDemoMainForm, payment_123: u64) {
+        aptos_forms_demo_main_form.payment_123 = payment_123;
+    }
+
     fun new_aptos_forms_demo_main_form(
         signer_address: address,
         fr_5pqi: u128,
@@ -234,6 +243,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         fr_fbba: vector<String>,
         fr_hhzp: Date,
         single_text1: String,
+        payment_123: u64,
     ): AptosFormsDemoMainForm {
         assert!(aptos_forms_demo::aptos_forms_demo_fr_duif::are_all_valid(&fr_duif), EInvalidEnumValue);
         assert!(aptos_forms_demo::aptos_forms_demo_fr_6i34::are_all_valid(&fr_6i34), EInvalidEnumValue);
@@ -263,6 +273,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
             fr_fbba,
             fr_hhzp,
             single_text1,
+            payment_123,
         }
     }
 
@@ -284,6 +295,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         fr_fbba: vector<String>,
         fr_hhzp: Date,
         single_text1: String,
+        payment_123: u64,
     }
 
     public fun aptos_forms_demo_main_form_submitted_signer_address(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): address {
@@ -354,6 +366,10 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         aptos_forms_demo_main_form_submitted.single_text1
     }
 
+    public fun aptos_forms_demo_main_form_submitted_payment_123(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): u64 {
+        aptos_forms_demo_main_form_submitted.payment_123
+    }
+
     public(friend) fun new_aptos_forms_demo_main_form_submitted(
         signer_address: address,
         fr_5pqi: u128,
@@ -372,6 +388,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         fr_fbba: vector<String>,
         fr_hhzp: Date,
         single_text1: String,
+        payment_123: u64,
     ): AptosFormsDemoMainFormSubmitted {
         AptosFormsDemoMainFormSubmitted {
             signer_address,
@@ -391,6 +408,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
             fr_fbba,
             fr_hhzp,
             single_text1,
+            payment_123,
         }
     }
 
@@ -413,6 +431,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         fr_fbba: vector<String>,
         fr_hhzp: Date,
         single_text1: String,
+        payment_123: u64,
     }
 
     public fun aptos_forms_demo_main_form_updated_signer_address(aptos_forms_demo_main_form_updated: &AptosFormsDemoMainFormUpdated): address {
@@ -483,6 +502,10 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         aptos_forms_demo_main_form_updated.single_text1
     }
 
+    public fun aptos_forms_demo_main_form_updated_payment_123(aptos_forms_demo_main_form_updated: &AptosFormsDemoMainFormUpdated): u64 {
+        aptos_forms_demo_main_form_updated.payment_123
+    }
+
     public(friend) fun new_aptos_forms_demo_main_form_updated(
         aptos_forms_demo_main_form: &AptosFormsDemoMainForm,
         fr_5pqi: u128,
@@ -501,6 +524,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         fr_fbba: vector<String>,
         fr_hhzp: Date,
         single_text1: String,
+        payment_123: u64,
     ): AptosFormsDemoMainFormUpdated {
         AptosFormsDemoMainFormUpdated {
             signer_address: signer_address(aptos_forms_demo_main_form),
@@ -521,6 +545,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
             fr_fbba,
             fr_hhzp,
             single_text1,
+            payment_123,
         }
     }
 
@@ -543,6 +568,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         fr_fbba: vector<String>,
         fr_hhzp: Date,
         single_text1: String,
+        payment_123: u64,
     ): AptosFormsDemoMainForm acquires Tables {
         asset_aptos_forms_demo_main_form_not_exists(signer_address);
         let aptos_forms_demo_main_form = new_aptos_forms_demo_main_form(
@@ -563,6 +589,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
             fr_fbba,
             fr_hhzp,
             single_text1,
+            payment_123,
         );
         aptos_forms_demo_main_form
     }
@@ -628,6 +655,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
             fr_fbba: _fr_fbba,
             fr_hhzp: _fr_hhzp,
             single_text1: _single_text1,
+            payment_123: _payment_123,
         } = aptos_forms_demo_main_form;
     }
 

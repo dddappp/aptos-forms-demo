@@ -27,6 +27,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form_aggregate {
         fr_fbba: vector<String>,
         fr_hhzp: vector<u16>,
         single_text1: String,
+        payment_123: u64,
     ) {
         let aptos_forms_demo_main_form_submitted = aptos_forms_demo_main_form_submit_logic::verify(
             account,
@@ -46,6 +47,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form_aggregate {
             fr_fbba,
             xrender_form_utils::date::value_of(fr_hhzp),
             single_text1,
+            payment_123,
         );
         let aptos_forms_demo_main_form = aptos_forms_demo_main_form_submit_logic::mutate(
             account,
@@ -74,6 +76,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form_aggregate {
         fr_fbba: vector<String>,
         fr_hhzp: vector<u16>,
         single_text1: String,
+        payment_123: u64,
     ) {
         let aptos_forms_demo_main_form = aptos_forms_demo_main_form::remove_aptos_forms_demo_main_form(signer_address);
         let aptos_forms_demo_main_form_updated = aptos_forms_demo_main_form_update_logic::verify(
@@ -94,6 +97,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form_aggregate {
             fr_fbba,
             xrender_form_utils::date::value_of(fr_hhzp),
             single_text1,
+            payment_123,
             &aptos_forms_demo_main_form,
         );
         let updated_aptos_forms_demo_main_form = aptos_forms_demo_main_form_update_logic::mutate(
