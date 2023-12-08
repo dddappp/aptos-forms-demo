@@ -310,6 +310,19 @@ singletonObjects:
             sequenceNumber: -1
         isInternal: true
         metadata: {}
+        verificationLogic:
+          Move: >-
+            let _ = account;
+                    aptos_forms_demo_global::new_payment_123_vault_deposited(
+                        aptos_forms_demo_global,
+                        aptos_framework::coin::value(amount),
+                    )
+        mutationLogic:
+          Move: >-
+            let _ = payment_123_vault_deposited;
+                    let vault = aptos_forms_demo_global::borrow_mut_Payment_123_Vault(&mut aptos_forms_demo_global);
+                    coin::merge(vault, amount);
+                    aptos_forms_demo_global
         event:
           name: Payment_123_VaultDeposited
           properties:
