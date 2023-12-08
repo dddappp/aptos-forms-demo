@@ -114,8 +114,10 @@
         type: String
         sequenceNumber: 15
       Payment_123:
+        name: Payment_123
+        displayName: 支付
         optional: false
-        type: u64
+        type: AptosFormsDemo_payment_123
         sequenceNumber: 16
     methods:
       Submit:
@@ -272,39 +274,71 @@ enumObjects:
     name: AptosFormsDemo_fr_fbba
     displayName: 点击多选
     metadata: {}
-
+  AptosFormsDemo_payment_123:
+    baseType: u64
+    values:
+      Option_100:
+        name: Option_100
+        displayName: 初级
+        value: 100
+        intValue: 100
+        stringValue: 100
+      Option_200:
+        name: Option_200
+        displayName: 高级
+        value: 200
+        intValue: 200
+        stringValue: 200
+    name: AptosFormsDemo_payment_123
+    displayName: 支付
+    metadata: {}
 singletonObjects:
   AptosFormsDemoGlobal:
-    metadata:
-      #Preprocessors: [ "MOVE_CRUD_IT" ]
-    friends: [ "AptosFormsDemoMainForm.Submit", "AptosFormsDemoMainForm.Update" ]
+    name: AptosFormsDemoGlobal
     properties:
       Payment_123_Vault:
-        type: "Coin<APT>"
+        name: Payment_123_Vault
+        type: Coin<APT>
+        sequenceNumber: -1
     methods:
       DepositPayment_123_Vault:
-        isInternal: true
+        name: DepositPayment_123_Vault
         parameters:
           Amount:
+            name: Amount
             type: Coin<APT>
+            sequenceNumber: -1
+        isInternal: true
+        metadata: {}
         event:
           name: Payment_123_VaultDeposited
           properties:
             Amount:
+              name: Amount
               type: u64
+              sequenceNumber: -1
       WithdrawPayment_123_Vault:
-        isInternal: true
+        name: WithdrawPayment_123_Vault
         parameters:
           Amount:
+            name: Amount
             type: u64
+            sequenceNumber: -1
         result:
           type: Coin<APT>
+        isInternal: true
+        metadata: {}
         event:
           name: Payment_123_VaultWithdrawn
-      "__Init__":
+      __Init__:
+        name: __Init__
+        metadata: {}
         event:
           name: AptosFormsDemoGlobalInitialized
-
+    metadata: {}
+    friends:
+    - AptosFormsDemoMainForm.Submit
+    - AptosFormsDemoMainForm.Update
 configuration:
   defaultUserIdType: string
   defaultTimestampType: OffsetDateTime

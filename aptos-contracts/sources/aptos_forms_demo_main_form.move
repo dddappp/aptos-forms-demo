@@ -222,6 +222,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
     }
 
     public(friend) fun set_payment_123(aptos_forms_demo_main_form: &mut AptosFormsDemoMainForm, payment_123: u64) {
+        assert!(aptos_forms_demo::aptos_forms_demo_payment_123::is_valid(payment_123), EInvalidEnumValue);
         aptos_forms_demo_main_form.payment_123 = payment_123;
     }
 
@@ -254,6 +255,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         assert!(aptos_forms_demo::aptos_forms_demo_fr_gh3o::are_all_valid(&fr_gh3o), EInvalidEnumValue);
         assert!(aptos_forms_demo::aptos_forms_demo_fr_fbba::are_all_valid(&fr_fbba), EInvalidEnumValue);
         assert!(std::string::length(&single_text1) <= 50, EDataTooLong);
+        assert!(aptos_forms_demo::aptos_forms_demo_payment_123::is_valid(payment_123), EInvalidEnumValue);
         AptosFormsDemoMainForm {
             signer_address,
             version: 0,

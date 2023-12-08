@@ -197,6 +197,23 @@
       "type": "string",
       "format": "email",
       "widget": "input"
+    },
+    "payment_123": {
+      "title": "支付",
+      "widget": "payment",
+      "props": {
+        "options": [
+          {
+            "label": "初级",
+            "value": 100
+          },
+          {
+            "label": "高级",
+            "value": 200
+          }
+        ],
+        "coinType": "APT"
+      }
     }
   },
   "displayType": "row",
