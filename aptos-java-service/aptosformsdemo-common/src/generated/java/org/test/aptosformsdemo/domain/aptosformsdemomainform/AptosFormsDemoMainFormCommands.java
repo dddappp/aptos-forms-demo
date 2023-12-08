@@ -246,6 +246,19 @@ public class AptosFormsDemoMainFormCommands {
         }
 
         /**
+         * Payment_123
+         */
+        private BigInteger payment_123;
+
+        public BigInteger getPayment_123() {
+            return this.payment_123;
+        }
+
+        public void setPayment_123(BigInteger payment_123) {
+            this.payment_123 = payment_123;
+        }
+
+        /**
          * Off Chain Version
          */
         private Long offChainVersion;
@@ -489,6 +502,19 @@ public class AptosFormsDemoMainFormCommands {
 
         public void setSingle_text1(String single_text1) {
             this.single_text1 = single_text1;
+        }
+
+        /**
+         * Payment_123
+         */
+        private BigInteger payment_123;
+
+        public BigInteger getPayment_123() {
+            return this.payment_123;
+        }
+
+        public void setPayment_123(BigInteger payment_123) {
+            this.payment_123 = payment_123;
         }
 
         /**

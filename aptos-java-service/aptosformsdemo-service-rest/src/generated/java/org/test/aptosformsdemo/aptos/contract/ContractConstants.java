@@ -13,6 +13,8 @@ public class ContractConstants {
 
     public static final String APTOS_FORMS_DEMO_MAIN_FORM_ID_TYPE = "address";
 
+    public static final String APTOS_FORMS_DEMO_GLOBAL_ID_TYPE = "address";
+
     public static String toNumericalAddressType(String type, String contractAddress) {
         if (type.startsWith(CONTRACT_NAMED_ADDRESS + "::")) {
             return contractAddress + type.substring(CONTRACT_NAMED_ADDRESS.length());

@@ -86,6 +86,10 @@ public interface AptosFormsDemoMainFormEvent extends Event, AptosEvent, HasStatu
 
         void setSingle_text1(String value);
 
+        BigInteger getPayment_123();
+
+        void setPayment_123(BigInteger value);
+
     }
 
     interface AptosFormsDemoMainFormUpdated extends AptosFormsDemoMainFormEvent {
@@ -152,6 +156,10 @@ public interface AptosFormsDemoMainFormEvent extends Event, AptosEvent, HasStatu
         String getSingle_text1();
 
         void setSingle_text1(String value);
+
+        BigInteger getPayment_123();
+
+        void setPayment_123(BigInteger value);
 
     }
 

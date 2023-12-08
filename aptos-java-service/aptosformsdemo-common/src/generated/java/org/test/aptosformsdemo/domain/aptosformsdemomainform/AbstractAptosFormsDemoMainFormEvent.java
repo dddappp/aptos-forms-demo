@@ -367,6 +367,18 @@ public abstract class AbstractAptosFormsDemoMainFormEvent extends AbstractEvent 
             getDynamicProperties().put("single_text1", value);
         }
 
+        public BigInteger getPayment_123() {
+            Object val = getDynamicProperties().get("payment_123");
+            if (val instanceof BigInteger) {
+                return (BigInteger) val;
+            }
+            return ApplicationContext.current.getTypeConverter().convertValue(val, BigInteger.class);
+        }
+
+        public void setPayment_123(BigInteger value) {
+            getDynamicProperties().put("payment_123", value);
+        }
+
     }
 
     public static class AptosFormsDemoMainFormUpdated extends AptosFormsDemoMainFormLobEvent implements AptosFormsDemoMainFormEvent.AptosFormsDemoMainFormUpdated {
@@ -566,6 +578,18 @@ public abstract class AbstractAptosFormsDemoMainFormEvent extends AbstractEvent 
 
         public void setSingle_text1(String value) {
             getDynamicProperties().put("single_text1", value);
+        }
+
+        public BigInteger getPayment_123() {
+            Object val = getDynamicProperties().get("payment_123");
+            if (val instanceof BigInteger) {
+                return (BigInteger) val;
+            }
+            return ApplicationContext.current.getTypeConverter().convertValue(val, BigInteger.class);
+        }
+
+        public void setPayment_123(BigInteger value) {
+            getDynamicProperties().put("payment_123", value);
         }
 
     }

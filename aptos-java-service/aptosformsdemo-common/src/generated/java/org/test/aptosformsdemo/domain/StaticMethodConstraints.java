@@ -14,6 +14,8 @@ import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.domain.formdefinition.*;
 import org.test.aptosformsdemo.domain.formidregistration.*;
+import org.test.aptosformsdemo.domain.aptosformsdemoglobal.*;
+import java.util.Date;
 
 public class StaticMethodConstraints {
 
@@ -22,16 +24,16 @@ public class StaticMethodConstraints {
         ReflectUtils.assertStaticMethodIfClassExists(
                     "org.test.aptosformsdemo.domain.aptosformsdemomainform.SubmitLogic",
                     "verify",
-                    new Class[]{java.util.function.Supplier.class, AptosFormsDemoMainFormState.class, BigInteger.class, String[].class, String[].class, String.class, String.class, BigInteger.class, String.class, BigInteger.class, DateRange.class, DateRange.class, BigInteger.class, TimeRange.class, String[].class, String[].class, XRenderFormDate.class, String.class, VerificationContext.class},
-                    new String[]{"_", "_", "fr_5pqi", "fr_duif", "fr_6i34", "fr_8xjs", "fr_9c3f", "fr_4ok6", "fr_b3ub", "fr_1z7o", "fr_d8rw", "fr_dy3l", "fr_6f68", "fr_47yy", "fr_gh3o", "fr_fbba", "fr_hhzp", "single_text1"}
+                    new Class[]{java.util.function.Supplier.class, AptosFormsDemoMainFormState.class, BigInteger.class, String[].class, String[].class, String.class, String.class, BigInteger.class, String.class, BigInteger.class, DateRange.class, DateRange.class, BigInteger.class, TimeRange.class, String[].class, String[].class, XRenderFormDate.class, String.class, BigInteger.class, VerificationContext.class},
+                    new String[]{"_", "_", "fr_5pqi", "fr_duif", "fr_6i34", "fr_8xjs", "fr_9c3f", "fr_4ok6", "fr_b3ub", "fr_1z7o", "fr_d8rw", "fr_dy3l", "fr_6f68", "fr_47yy", "fr_gh3o", "fr_fbba", "fr_hhzp", "single_text1", "payment_123"}
             );
 
 
         ReflectUtils.assertStaticMethodIfClassExists(
                     "org.test.aptosformsdemo.domain.aptosformsdemomainform.UpdateLogic",
                     "verify",
-                    new Class[]{java.util.function.Supplier.class, AptosFormsDemoMainFormState.class, BigInteger.class, String[].class, String[].class, String.class, String.class, BigInteger.class, String.class, BigInteger.class, DateRange.class, DateRange.class, BigInteger.class, TimeRange.class, String[].class, String[].class, XRenderFormDate.class, String.class, VerificationContext.class},
-                    new String[]{"_", "_", "fr_5pqi", "fr_duif", "fr_6i34", "fr_8xjs", "fr_9c3f", "fr_4ok6", "fr_b3ub", "fr_1z7o", "fr_d8rw", "fr_dy3l", "fr_6f68", "fr_47yy", "fr_gh3o", "fr_fbba", "fr_hhzp", "single_text1"}
+                    new Class[]{java.util.function.Supplier.class, AptosFormsDemoMainFormState.class, BigInteger.class, String[].class, String[].class, String.class, String.class, BigInteger.class, String.class, BigInteger.class, DateRange.class, DateRange.class, BigInteger.class, TimeRange.class, String[].class, String[].class, XRenderFormDate.class, String.class, BigInteger.class, VerificationContext.class},
+                    new String[]{"_", "_", "fr_5pqi", "fr_duif", "fr_6i34", "fr_8xjs", "fr_9c3f", "fr_4ok6", "fr_b3ub", "fr_1z7o", "fr_d8rw", "fr_dy3l", "fr_6f68", "fr_47yy", "fr_gh3o", "fr_fbba", "fr_hhzp", "single_text1", "payment_123"}
             );
 
 
@@ -44,18 +46,42 @@ public class StaticMethodConstraints {
 
 
         ReflectUtils.assertStaticMethodIfClassExists(
+                    "org.test.aptosformsdemo.domain.aptosformsdemoglobal.DepositPayment_123_VaultLogic",
+                    "verify",
+                    new Class[]{java.util.function.Supplier.class, AptosFormsDemoGlobalState.class, VerificationContext.class},
+                    new String[]{"_", "_"}
+            );
+
+
+        ReflectUtils.assertStaticMethodIfClassExists(
+                    "org.test.aptosformsdemo.domain.aptosformsdemoglobal.WithdrawPayment_123_VaultLogic",
+                    "verify",
+                    new Class[]{java.util.function.Supplier.class, AptosFormsDemoGlobalState.class, BigInteger.class, VerificationContext.class},
+                    new String[]{"_", "_", "amount"}
+            );
+
+
+        ReflectUtils.assertStaticMethodIfClassExists(
+                    "org.test.aptosformsdemo.domain.aptosformsdemoglobal.__Init__Logic",
+                    "verify",
+                    new Class[]{java.util.function.Supplier.class, AptosFormsDemoGlobalState.class, VerificationContext.class},
+                    new String[]{"_", "_"}
+            );
+
+
+        ReflectUtils.assertStaticMethodIfClassExists(
                     "org.test.aptosformsdemo.domain.aptosformsdemomainform.SubmitLogic",
                     "mutate",
-                    new Class[]{AptosFormsDemoMainFormState.class, BigInteger.class, String[].class, String[].class, String.class, String.class, BigInteger.class, String.class, BigInteger.class, DateRange.class, DateRange.class, BigInteger.class, TimeRange.class, String[].class, String[].class, XRenderFormDate.class, String.class, BigInteger.class, BigInteger.class, String.class, AptosEventGuid.class, String.class, MutationContext.class},
-                    new String[]{"_", "fr_5pqi", "fr_duif", "fr_6i34", "fr_8xjs", "fr_9c3f", "fr_4ok6", "fr_b3ub", "fr_1z7o", "fr_d8rw", "fr_dy3l", "fr_6f68", "fr_47yy", "fr_gh3o", "fr_fbba", "fr_hhzp", "single_text1", "aptosEventVersion", "aptosEventSequenceNumber", "aptosEventType", "aptosEventGuid", "status"}
+                    new Class[]{AptosFormsDemoMainFormState.class, BigInteger.class, String[].class, String[].class, String.class, String.class, BigInteger.class, String.class, BigInteger.class, DateRange.class, DateRange.class, BigInteger.class, TimeRange.class, String[].class, String[].class, XRenderFormDate.class, String.class, BigInteger.class, BigInteger.class, BigInteger.class, String.class, AptosEventGuid.class, String.class, MutationContext.class},
+                    new String[]{"_", "fr_5pqi", "fr_duif", "fr_6i34", "fr_8xjs", "fr_9c3f", "fr_4ok6", "fr_b3ub", "fr_1z7o", "fr_d8rw", "fr_dy3l", "fr_6f68", "fr_47yy", "fr_gh3o", "fr_fbba", "fr_hhzp", "single_text1", "payment_123", "aptosEventVersion", "aptosEventSequenceNumber", "aptosEventType", "aptosEventGuid", "status"}
             );
 
 
         ReflectUtils.assertStaticMethodIfClassExists(
                     "org.test.aptosformsdemo.domain.aptosformsdemomainform.UpdateLogic",
                     "mutate",
-                    new Class[]{AptosFormsDemoMainFormState.class, BigInteger.class, String[].class, String[].class, String.class, String.class, BigInteger.class, String.class, BigInteger.class, DateRange.class, DateRange.class, BigInteger.class, TimeRange.class, String[].class, String[].class, XRenderFormDate.class, String.class, BigInteger.class, BigInteger.class, String.class, AptosEventGuid.class, String.class, MutationContext.class},
-                    new String[]{"_", "fr_5pqi", "fr_duif", "fr_6i34", "fr_8xjs", "fr_9c3f", "fr_4ok6", "fr_b3ub", "fr_1z7o", "fr_d8rw", "fr_dy3l", "fr_6f68", "fr_47yy", "fr_gh3o", "fr_fbba", "fr_hhzp", "single_text1", "aptosEventVersion", "aptosEventSequenceNumber", "aptosEventType", "aptosEventGuid", "status"}
+                    new Class[]{AptosFormsDemoMainFormState.class, BigInteger.class, String[].class, String[].class, String.class, String.class, BigInteger.class, String.class, BigInteger.class, DateRange.class, DateRange.class, BigInteger.class, TimeRange.class, String[].class, String[].class, XRenderFormDate.class, String.class, BigInteger.class, BigInteger.class, BigInteger.class, String.class, AptosEventGuid.class, String.class, MutationContext.class},
+                    new String[]{"_", "fr_5pqi", "fr_duif", "fr_6i34", "fr_8xjs", "fr_9c3f", "fr_4ok6", "fr_b3ub", "fr_1z7o", "fr_d8rw", "fr_dy3l", "fr_6f68", "fr_47yy", "fr_gh3o", "fr_fbba", "fr_hhzp", "single_text1", "payment_123", "aptosEventVersion", "aptosEventSequenceNumber", "aptosEventType", "aptosEventGuid", "status"}
             );
 
 
@@ -64,6 +90,14 @@ public class StaticMethodConstraints {
                     "mutate",
                     new Class[]{FormDefinitionState.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, MutationContext.class},
                     new String[]{"_", "formId", "contractAddress", "storeAccountAddress", "pageName", "moveStateTableFieldName", "moveStateStructName", "moveSubmitEventHandleFieldName", "moveUpdateEventHandleFieldName", "moveSubmitEventStructName", "moveUpdateEventStructName"}
+            );
+
+
+        ReflectUtils.assertStaticMethodIfClassExists(
+                    "org.test.aptosformsdemo.domain.aptosformsdemoglobal.__Init__Logic",
+                    "mutate",
+                    new Class[]{AptosFormsDemoGlobalState.class, BigInteger.class, BigInteger.class, String.class, AptosEventGuid.class, String.class, MutationContext.class},
+                    new String[]{"_", "aptosEventVersion", "aptosEventSequenceNumber", "aptosEventType", "aptosEventGuid", "status"}
             );
 
 

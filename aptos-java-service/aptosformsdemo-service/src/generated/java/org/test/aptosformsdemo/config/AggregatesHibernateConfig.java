@@ -14,6 +14,9 @@ import org.test.aptosformsdemo.domain.formdefinition.hibernate.*;
 import org.test.aptosformsdemo.domain.formidregistration.*;
 import org.test.aptosformsdemo.domain.*;
 import org.test.aptosformsdemo.domain.formidregistration.hibernate.*;
+import org.test.aptosformsdemo.domain.aptosformsdemoglobal.*;
+import org.test.aptosformsdemo.domain.*;
+import org.test.aptosformsdemo.domain.aptosformsdemoglobal.hibernate.*;
 import org.test.aptosformsdemo.specialization.AggregateEventListener;
 import org.test.aptosformsdemo.specialization.EventStore;
 import org.test.aptosformsdemo.specialization.IdGenerator;
@@ -154,6 +157,51 @@ public class AggregatesHibernateConfig {
         AbstractFormIdRegistrationApplicationService.SimpleFormIdRegistrationApplicationService applicationService = new AbstractFormIdRegistrationApplicationService.SimpleFormIdRegistrationApplicationService(
                 formIdRegistrationStateRepository,
                 formIdRegistrationStateQueryRepository
+        );
+        return applicationService;
+    }
+
+
+
+    @Bean
+    public AptosFormsDemoGlobalStateRepository aptosFormsDemoGlobalStateRepository(
+            SessionFactory hibernateSessionFactory,
+            ReadOnlyProxyGenerator stateReadOnlyProxyGenerator
+    ) {
+        HibernateAptosFormsDemoGlobalStateRepository repository = new HibernateAptosFormsDemoGlobalStateRepository();
+        repository.setSessionFactory(hibernateSessionFactory);
+        repository.setReadOnlyProxyGenerator(stateReadOnlyProxyGenerator);
+        return repository;
+    }
+
+    @Bean
+    public AptosFormsDemoGlobalStateQueryRepository aptosFormsDemoGlobalStateQueryRepository(
+            SessionFactory hibernateSessionFactory,
+            ReadOnlyProxyGenerator stateReadOnlyProxyGenerator
+    ) {
+        HibernateAptosFormsDemoGlobalStateQueryRepository repository = new HibernateAptosFormsDemoGlobalStateQueryRepository();
+        repository.setSessionFactory(hibernateSessionFactory);
+        repository.setReadOnlyProxyGenerator(stateReadOnlyProxyGenerator);
+        return repository;
+    }
+
+    @Bean
+    public HibernateAptosFormsDemoGlobalEventStore aptosFormsDemoGlobalEventStore(SessionFactory hibernateSessionFactory) {
+        HibernateAptosFormsDemoGlobalEventStore eventStore = new HibernateAptosFormsDemoGlobalEventStore();
+        eventStore.setSessionFactory(hibernateSessionFactory);
+        return eventStore;
+    }
+
+    @Bean
+    public AbstractAptosFormsDemoGlobalApplicationService.SimpleAptosFormsDemoGlobalApplicationService aptosFormsDemoGlobalApplicationService(
+            @Qualifier("aptosFormsDemoGlobalEventStore") EventStore aptosFormsDemoGlobalEventStore,
+            AptosFormsDemoGlobalStateRepository aptosFormsDemoGlobalStateRepository,
+            AptosFormsDemoGlobalStateQueryRepository aptosFormsDemoGlobalStateQueryRepository
+    ) {
+        AbstractAptosFormsDemoGlobalApplicationService.SimpleAptosFormsDemoGlobalApplicationService applicationService = new AbstractAptosFormsDemoGlobalApplicationService.SimpleAptosFormsDemoGlobalApplicationService(
+                aptosFormsDemoGlobalEventStore,
+                aptosFormsDemoGlobalStateRepository,
+                aptosFormsDemoGlobalStateQueryRepository
         );
         return applicationService;
     }
