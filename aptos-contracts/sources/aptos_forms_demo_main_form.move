@@ -138,7 +138,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
     }
 
     public(friend) fun set_fr_b3ub(aptos_forms_demo_main_form: &mut AptosFormsDemoMainForm, fr_b3ub: String) {
-        assert!(std::string::length(&fr_b3ub) <= 255, EDataTooLong);
+        assert!(std::string::length(&fr_b3ub) <= 50, EDataTooLong);
         aptos_forms_demo_main_form.fr_b3ub = fr_b3ub;
     }
 
@@ -251,7 +251,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         assert!(std::string::length(&fr_8xjs) <= 255, EDataTooLong);
         assert!(std::string::length(&fr_9c3f) <= 1, EDataTooLong);
         assert!(aptos_forms_demo::aptos_forms_demo_fr_9c3f::is_valid(fr_9c3f), EInvalidEnumValue);
-        assert!(std::string::length(&fr_b3ub) <= 255, EDataTooLong);
+        assert!(std::string::length(&fr_b3ub) <= 50, EDataTooLong);
         assert!(aptos_forms_demo::aptos_forms_demo_fr_gh3o::are_all_valid(&fr_gh3o), EInvalidEnumValue);
         assert!(aptos_forms_demo::aptos_forms_demo_fr_fbba::are_all_valid(&fr_fbba), EInvalidEnumValue);
         assert!(std::string::length(&single_text1) <= 50, EDataTooLong);

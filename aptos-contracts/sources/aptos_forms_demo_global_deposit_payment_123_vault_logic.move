@@ -10,6 +10,7 @@ module aptos_forms_demo::aptos_forms_demo_global_deposit_payment_123_vault_logic
         amount: &Coin<AptosCoin>,
         aptos_forms_demo_global: &aptos_forms_demo_global::AptosFormsDemoGlobal,
     ): aptos_forms_demo_global::Payment_123_VaultDeposited {
+        let _ = account;
         aptos_forms_demo_global::new_payment_123_vault_deposited(
             aptos_forms_demo_global,
             aptos_framework::coin::value(amount),
@@ -22,7 +23,7 @@ module aptos_forms_demo::aptos_forms_demo_global_deposit_payment_123_vault_logic
         amount: Coin<AptosCoin>,
         aptos_forms_demo_global: aptos_forms_demo_global::AptosFormsDemoGlobal,
     ): aptos_forms_demo_global::AptosFormsDemoGlobal {
-        let _amount_value = aptos_forms_demo_global::payment_123_vault_deposited_amount(payment_123_vault_deposited);
+        let _ = payment_123_vault_deposited;
         let vault = aptos_forms_demo_global::borrow_mut_payment_123_vault(&mut aptos_forms_demo_global);
         aptos_framework::coin::merge(vault, amount);
         aptos_forms_demo_global
