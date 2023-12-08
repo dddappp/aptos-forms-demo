@@ -678,15 +678,15 @@ public class M {
 
     public static final String URL_ID_FIELD_SEPARATOR = ",";
 
-    public static final TextFormatter<org.test.aptosformsdemo.domain.FormPageAndAddress> URL_ID_TEXT_FORMATTER =
-                    new AbstractValueObjectTextFormatter<org.test.aptosformsdemo.domain.FormPageAndAddress>(org.test.aptosformsdemo.domain.FormPageAndAddress.class, URL_ID_FIELD_SEPARATOR) {
+    public static final TextFormatter<org.test.aptosformsdemo.domain.FormAndAddress> URL_ID_TEXT_FORMATTER =
+                    new AbstractValueObjectTextFormatter<org.test.aptosformsdemo.domain.FormAndAddress>(org.test.aptosformsdemo.domain.FormAndAddress.class, URL_ID_FIELD_SEPARATOR) {
                         @Override
                         protected Class<?> getClassByTypeName(String type) {
                             return BoundedContextMetadata.CLASS_MAP.get(type);
                         }
                     };
 
-    public static final Class ID_CLASS = org.test.aptosformsdemo.domain.FormPageAndAddress.class;
+    public static final Class ID_CLASS = org.test.aptosformsdemo.domain.FormAndAddress.class;
 
     public static final String[] propertyNames = new String[] {
             "payment_123_Vault",
@@ -698,9 +698,8 @@ public class M {
             "active",
             "deleted",
             "version",
-            "formPageAndAccountAddress.formSequenceId",
-            "formPageAndAccountAddress.pageNumber",
-            "formPageAndAccountAddress.address",
+            "formAndAccountAddress.formSequenceId",
+            "formAndAccountAddress.address",
     };
 
     public static final String[] propertyTypes = new String[] {
@@ -714,7 +713,6 @@ public class M {
             "Boolean",
             "BigInteger",
             "Long",
-            "Integer",
             "String",
     };
 
@@ -748,12 +746,10 @@ public class M {
         aliasMap.put("Deleted", "deleted");
         aliasMap.put("version", "version");
         aliasMap.put("Version", "version");
-        aliasMap.put("formPageAndAccountAddress.formSequenceId", "formPageAndAccountAddress.formSequenceId");
-        aliasMap.put("FormPageAndAccountAddress.FormSequenceId", "formPageAndAccountAddress.formSequenceId");
-        aliasMap.put("formPageAndAccountAddress.pageNumber", "formPageAndAccountAddress.pageNumber");
-        aliasMap.put("FormPageAndAccountAddress.PageNumber", "formPageAndAccountAddress.pageNumber");
-        aliasMap.put("formPageAndAccountAddress.address", "formPageAndAccountAddress.address");
-        aliasMap.put("FormPageAndAccountAddress.Address", "formPageAndAccountAddress.address");
+        aliasMap.put("formAndAccountAddress.formSequenceId", "formAndAccountAddress.formSequenceId");
+        aliasMap.put("FormAndAccountAddress.FormSequenceId", "formAndAccountAddress.formSequenceId");
+        aliasMap.put("formAndAccountAddress.address", "formAndAccountAddress.address");
+        aliasMap.put("FormAndAccountAddress.Address", "formAndAccountAddress.address");
     }
 
     private static void initPropertyTypeMap() {

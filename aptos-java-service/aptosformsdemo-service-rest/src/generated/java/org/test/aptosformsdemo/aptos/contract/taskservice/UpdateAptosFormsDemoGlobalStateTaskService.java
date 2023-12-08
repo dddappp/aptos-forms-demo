@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.test.aptosformsdemo.domain.FormPageAndAddress;
+import org.test.aptosformsdemo.domain.FormAndAddress;
 import org.test.aptosformsdemo.aptos.contract.TestTenantizedIdFunctions;
 
 @Service
@@ -41,13 +41,13 @@ public class UpdateAptosFormsDemoGlobalStateTaskService {
     @Transactional
     public void updateAptosFormsDemoGlobalStates() {
         aptosFormsDemoGlobalEventRepository.findByStatusIsNull().forEach(e -> {
-            aptosAptosFormsDemoGlobalService.updateAptosFormsDemoGlobalState(getContractModuleNameProvider(), getToFormPageAndAddressFunction(), e.getFormPageAndAccountAddress().getAddress());
+            aptosAptosFormsDemoGlobalService.updateAptosFormsDemoGlobalState(getContractModuleNameProvider(), getToFormAndAddressFunction(), e.getFormAndAccountAddress().getAddress());
             aptosFormsDemoGlobalEventService.updateStatusToProcessed(e);
         });
     }
 
-    private java.util.function.Function<String, FormPageAndAddress> getToFormPageAndAddressFunction() {
-        return TestTenantizedIdFunctions.toFormPageAndAddressFunction(); // todo only for test
+    private java.util.function.Function<String, FormAndAddress> getToFormAndAddressFunction() {
+        return TestTenantizedIdFunctions.toFormAndAddressFunction(); // todo only for test
     }
 
     private ContractModuleNameProvider getContractModuleNameProvider() {

@@ -35,17 +35,17 @@ public class AptosAptosFormsDemoGlobalService {
     ) {
         this.aptosAptosFormsDemoGlobalStateRetriever = new AptosAptosFormsDemoGlobalStateRetriever(
                 aptosNodeApiClient,
-                (accountAddress, toFormPageAndAddress) -> {
+                (accountAddress, toFormAndAddress) -> {
                     AptosFormsDemoGlobalState.MutableAptosFormsDemoGlobalState s = new AbstractAptosFormsDemoGlobalState.SimpleAptosFormsDemoGlobalState();
-                    s.setFormPageAndAccountAddress(toFormPageAndAddress.apply(accountAddress));
+                    s.setFormAndAccountAddress(toFormAndAddress.apply(accountAddress));
                     return s;
                 }
         );
     }
 
     @Transactional
-    public void updateAptosFormsDemoGlobalState(ContractModuleNameProvider contractModuleNameProvider, java.util.function.Function<String, FormPageAndAddress> toFormPageAndAddress, String accountAddress) {
-        AptosFormsDemoGlobalState aptosFormsDemoGlobalState = aptosAptosFormsDemoGlobalStateRetriever.retrieveAptosFormsDemoGlobalState(contractModuleNameProvider, toFormPageAndAddress, accountAddress);
+    public void updateAptosFormsDemoGlobalState(ContractModuleNameProvider contractModuleNameProvider, java.util.function.Function<String, FormAndAddress> toFormAndAddress, String accountAddress) {
+        AptosFormsDemoGlobalState aptosFormsDemoGlobalState = aptosAptosFormsDemoGlobalStateRetriever.retrieveAptosFormsDemoGlobalState(contractModuleNameProvider, toFormAndAddress, accountAddress);
         if (aptosFormsDemoGlobalState == null) {
             return;
         }

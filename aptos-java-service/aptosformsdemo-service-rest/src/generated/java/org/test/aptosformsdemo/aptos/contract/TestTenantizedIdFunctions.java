@@ -6,6 +6,7 @@
 package org.test.aptosformsdemo.aptos.contract;
 
 import org.test.aptosformsdemo.domain.FormPageAndAddress;
+import org.test.aptosformsdemo.domain.FormAndAddress;
 
 public class TestTenantizedIdFunctions {
     private TestTenantizedIdFunctions() {
@@ -18,6 +19,15 @@ public class TestTenantizedIdFunctions {
             formPageAndAddress.setPageNumber(1);
             formPageAndAddress.setAddress(address);
             return formPageAndAddress;
+        };
+    }
+
+    public static java.util.function.Function<String, FormAndAddress> toFormAndAddressFunction() {
+        return (address) -> {
+            FormAndAddress formAndAddress = new FormAndAddress();
+            formAndAddress.setFormSequenceId(1L); // todo hard-coded for test
+            formAndAddress.setAddress(address);
+            return formAndAddress;
         };
     }
 

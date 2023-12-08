@@ -15,16 +15,16 @@ import org.test.aptosformsdemo.specialization.*;
 
 public class AptosFormsDemoGlobalStateDto {
 
-    private FormPageAndAddress formPageAndAccountAddress;
+    private FormAndAddress formAndAccountAddress;
 
-    public FormPageAndAddress getFormPageAndAccountAddress()
+    public FormAndAddress getFormAndAccountAddress()
     {
-        return this.formPageAndAccountAddress;
+        return this.formAndAccountAddress;
     }
 
-    public void setFormPageAndAccountAddress(FormPageAndAddress formPageAndAccountAddress)
+    public void setFormAndAccountAddress(FormAndAddress formAndAccountAddress)
     {
-        this.formPageAndAccountAddress = formPageAndAccountAddress;
+        this.formAndAccountAddress = formAndAccountAddress;
     }
 
     private Boolean active;
@@ -150,8 +150,8 @@ public class AptosFormsDemoGlobalStateDto {
                 return null;
             }
             AptosFormsDemoGlobalStateDto dto = new AptosFormsDemoGlobalStateDto();
-            if (returnedFieldsContains("FormPageAndAccountAddress")) {
-                dto.setFormPageAndAccountAddress(state.getFormPageAndAccountAddress());
+            if (returnedFieldsContains("FormAndAccountAddress")) {
+                dto.setFormAndAccountAddress(state.getFormAndAccountAddress());
             }
             if (returnedFieldsContains("Active")) {
                 dto.setActive(state.getActive());

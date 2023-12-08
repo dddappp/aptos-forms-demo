@@ -15,14 +15,14 @@ import org.test.aptosformsdemo.domain.aptosformsdemoglobal.AptosFormsDemoGlobalE
 
 public abstract class AbstractAptosFormsDemoGlobalState implements AptosFormsDemoGlobalState.SqlAptosFormsDemoGlobalState {
 
-    private FormPageAndAddress formPageAndAccountAddress;
+    private FormAndAddress formAndAccountAddress;
 
-    public FormPageAndAddress getFormPageAndAccountAddress() {
-        return this.formPageAndAccountAddress;
+    public FormAndAddress getFormAndAccountAddress() {
+        return this.formAndAccountAddress;
     }
 
-    public void setFormPageAndAccountAddress(FormPageAndAddress formPageAndAccountAddress) {
-        this.formPageAndAccountAddress = formPageAndAccountAddress;
+    public void setFormAndAccountAddress(FormAndAddress formAndAccountAddress) {
+        this.formAndAccountAddress = formAndAccountAddress;
     }
 
     private Long offChainVersion;
@@ -138,7 +138,7 @@ public abstract class AbstractAptosFormsDemoGlobalState implements AptosFormsDem
     public AbstractAptosFormsDemoGlobalState(List<Event> events) {
         initializeForReapplying();
         if (events != null && events.size() > 0) {
-            this.setFormPageAndAccountAddress(((AptosFormsDemoGlobalEvent.SqlAptosFormsDemoGlobalEvent) events.get(0)).getAptosFormsDemoGlobalEventId().getFormPageAndAccountAddress());
+            this.setFormAndAccountAddress(((AptosFormsDemoGlobalEvent.SqlAptosFormsDemoGlobalEvent) events.get(0)).getAptosFormsDemoGlobalEventId().getFormAndAccountAddress());
             for (Event e : events) {
                 //mutate(e);
                 this.setOffChainVersion((this.getOffChainVersion() == null ? AptosFormsDemoGlobalState.VERSION_NULL : this.getOffChainVersion()) + 1);
@@ -162,14 +162,14 @@ public abstract class AbstractAptosFormsDemoGlobalState implements AptosFormsDem
 
     @Override
     public int hashCode() {
-        return getFormPageAndAccountAddress().hashCode();
+        return getFormAndAccountAddress().hashCode();
     }
 
     @Override
     public boolean equals(Object obj) {
         if (this == obj) { return true; }
         if (obj instanceof AptosFormsDemoGlobalState) {
-            return Objects.equals(this.getFormPageAndAccountAddress(), ((AptosFormsDemoGlobalState)obj).getFormPageAndAccountAddress());
+            return Objects.equals(this.getFormAndAccountAddress(), ((AptosFormsDemoGlobalState)obj).getFormAndAccountAddress());
         }
         return false;
     }
@@ -187,8 +187,8 @@ public abstract class AbstractAptosFormsDemoGlobalState implements AptosFormsDem
     }
 
     protected void throwOnWrongEvent(AptosFormsDemoGlobalEvent event) {
-        FormPageAndAddress stateEntityId = this.getFormPageAndAccountAddress(); // Aggregate Id
-        FormPageAndAddress eventEntityId = ((AptosFormsDemoGlobalEvent.SqlAptosFormsDemoGlobalEvent)event).getAptosFormsDemoGlobalEventId().getFormPageAndAccountAddress(); // EntityBase.Aggregate.GetEventIdPropertyIdName();
+        FormAndAddress stateEntityId = this.getFormAndAccountAddress(); // Aggregate Id
+        FormAndAddress eventEntityId = ((AptosFormsDemoGlobalEvent.SqlAptosFormsDemoGlobalEvent)event).getAptosFormsDemoGlobalEventId().getFormAndAccountAddress(); // EntityBase.Aggregate.GetEventIdPropertyIdName();
         if (!stateEntityId.equals(eventEntityId)) {
             throw DomainError.named("mutateWrongEntity", "Entity Id %1$s in state but entity id %2$s in event", stateEntityId, eventEntityId);
         }

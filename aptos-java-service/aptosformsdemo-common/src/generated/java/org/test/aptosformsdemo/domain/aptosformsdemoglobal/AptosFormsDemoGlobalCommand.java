@@ -14,9 +14,9 @@ import org.test.aptosformsdemo.specialization.DomainError;
 
 public interface AptosFormsDemoGlobalCommand extends Command {
 
-    FormPageAndAddress getFormPageAndAccountAddress();
+    FormAndAddress getFormAndAccountAddress();
 
-    void setFormPageAndAccountAddress(FormPageAndAddress formPageAndAccountAddress);
+    void setFormAndAccountAddress(FormAndAddress formAndAccountAddress);
 
     Long getOffChainVersion();
 

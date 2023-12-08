@@ -8,7 +8,7 @@ package org.test.aptosformsdemo.aptos.contract.service;
 import com.github.wubuku.aptos.bean.Event;
 import com.github.wubuku.aptos.utils.NodeApiClient;
 
-import org.test.aptosformsdemo.domain.FormPageAndAddress;
+import org.test.aptosformsdemo.domain.FormAndAddress;
 import org.test.aptosformsdemo.domain.aptosformsdemoglobal.AbstractAptosFormsDemoGlobalEvent;
 import org.test.aptosformsdemo.aptos.contract.ContractConstants;
 import org.test.aptosformsdemo.aptos.contract.DomainBeanUtils;
@@ -44,7 +44,7 @@ public class AptosFormsDemoGlobalEventService {
     }
 
     @Transactional
-    public void pullPayment_123_VaultDepositedEvents(ContractModuleNameProvider contractModuleNameProvider, java.util.function.Function<String, FormPageAndAddress> toFormPageAndAddress) {
+    public void pullPayment_123_VaultDepositedEvents(ContractModuleNameProvider contractModuleNameProvider, java.util.function.Function<String, FormAndAddress> toFormAndAddress) {
         String resourceAccountAddress = contractModuleNameProvider.getStoreAccountAddress();
         if (resourceAccountAddress == null) {
             return;
@@ -73,7 +73,7 @@ public class AptosFormsDemoGlobalEventService {
                 cursor = cursor.add(BigInteger.ONE);
                 for (Event<Payment_123_VaultDeposited> eventEnvelope : eventPage) {
                     eventEnvelope.getData().setAccountAddress(resourceAccountAddress);
-                    savePayment_123_VaultDeposited(toFormPageAndAddress, eventEnvelope);
+                    savePayment_123_VaultDeposited(toFormAndAddress, eventEnvelope);
                 }
             } else {
                 break;
@@ -86,8 +86,8 @@ public class AptosFormsDemoGlobalEventService {
         return lastEvent != null ? lastEvent.getAptosEventSequenceNumber() : null;
     }
 
-    private void savePayment_123_VaultDeposited(java.util.function.Function<String, FormPageAndAddress> toFormPageAndAddress, Event<Payment_123_VaultDeposited> eventEnvelope) {
-        AbstractAptosFormsDemoGlobalEvent.Payment_123_VaultDeposited payment_123_VaultDeposited = DomainBeanUtils.toPayment_123_VaultDeposited(toFormPageAndAddress, eventEnvelope);
+    private void savePayment_123_VaultDeposited(java.util.function.Function<String, FormAndAddress> toFormAndAddress, Event<Payment_123_VaultDeposited> eventEnvelope) {
+        AbstractAptosFormsDemoGlobalEvent.Payment_123_VaultDeposited payment_123_VaultDeposited = DomainBeanUtils.toPayment_123_VaultDeposited(toFormAndAddress, eventEnvelope);
         if (aptosFormsDemoGlobalEventRepository.findById(payment_123_VaultDeposited.getAptosFormsDemoGlobalEventId()).isPresent()) {
             return;
         }
@@ -95,7 +95,7 @@ public class AptosFormsDemoGlobalEventService {
     }
 
     @Transactional
-    public void pullPayment_123_VaultWithdrawnEvents(ContractModuleNameProvider contractModuleNameProvider, java.util.function.Function<String, FormPageAndAddress> toFormPageAndAddress) {
+    public void pullPayment_123_VaultWithdrawnEvents(ContractModuleNameProvider contractModuleNameProvider, java.util.function.Function<String, FormAndAddress> toFormAndAddress) {
         String resourceAccountAddress = contractModuleNameProvider.getStoreAccountAddress();
         if (resourceAccountAddress == null) {
             return;
@@ -124,7 +124,7 @@ public class AptosFormsDemoGlobalEventService {
                 cursor = cursor.add(BigInteger.ONE);
                 for (Event<Payment_123_VaultWithdrawn> eventEnvelope : eventPage) {
                     eventEnvelope.getData().setAccountAddress(resourceAccountAddress);
-                    savePayment_123_VaultWithdrawn(toFormPageAndAddress, eventEnvelope);
+                    savePayment_123_VaultWithdrawn(toFormAndAddress, eventEnvelope);
                 }
             } else {
                 break;
@@ -137,8 +137,8 @@ public class AptosFormsDemoGlobalEventService {
         return lastEvent != null ? lastEvent.getAptosEventSequenceNumber() : null;
     }
 
-    private void savePayment_123_VaultWithdrawn(java.util.function.Function<String, FormPageAndAddress> toFormPageAndAddress, Event<Payment_123_VaultWithdrawn> eventEnvelope) {
-        AbstractAptosFormsDemoGlobalEvent.Payment_123_VaultWithdrawn payment_123_VaultWithdrawn = DomainBeanUtils.toPayment_123_VaultWithdrawn(toFormPageAndAddress, eventEnvelope);
+    private void savePayment_123_VaultWithdrawn(java.util.function.Function<String, FormAndAddress> toFormAndAddress, Event<Payment_123_VaultWithdrawn> eventEnvelope) {
+        AbstractAptosFormsDemoGlobalEvent.Payment_123_VaultWithdrawn payment_123_VaultWithdrawn = DomainBeanUtils.toPayment_123_VaultWithdrawn(toFormAndAddress, eventEnvelope);
         if (aptosFormsDemoGlobalEventRepository.findById(payment_123_VaultWithdrawn.getAptosFormsDemoGlobalEventId()).isPresent()) {
             return;
         }

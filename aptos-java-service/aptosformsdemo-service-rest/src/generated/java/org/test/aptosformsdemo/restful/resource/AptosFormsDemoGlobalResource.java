@@ -129,11 +129,11 @@ public class AptosFormsDemoGlobalResource {
      * Retrieve.
      * Retrieves AptosFormsDemoGlobal with the specified ID.
      */
-    @GetMapping("{formPageAndAccountAddress}")
+    @GetMapping("{formAndAccountAddress}")
     @Transactional(readOnly = true)
-    public AptosFormsDemoGlobalStateDto get(@PathVariable("formPageAndAccountAddress") String formPageAndAccountAddress, @RequestParam(value = "fields", required = false) String fields) {
+    public AptosFormsDemoGlobalStateDto get(@PathVariable("formAndAccountAddress") String formAndAccountAddress, @RequestParam(value = "fields", required = false) String fields) {
         try {
-            FormPageAndAddress idObj = AptosFormsDemoGlobalResourceUtils.parseIdString(formPageAndAccountAddress);
+            FormAndAddress idObj = AptosFormsDemoGlobalResourceUtils.parseIdString(formAndAccountAddress);
             AptosFormsDemoGlobalState state = aptosFormsDemoGlobalApplicationService.get(idObj);
             if (state == null) { return null; }
 
@@ -183,24 +183,24 @@ public class AptosFormsDemoGlobalResource {
         } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
     }
 
-    @GetMapping("{formPageAndAccountAddress}/_events/{version}")
+    @GetMapping("{formAndAccountAddress}/_events/{version}")
     @Transactional(readOnly = true)
-    public AptosFormsDemoGlobalEvent getEvent(@PathVariable("formPageAndAccountAddress") String formPageAndAccountAddress, @PathVariable("version") long version) {
+    public AptosFormsDemoGlobalEvent getEvent(@PathVariable("formAndAccountAddress") String formAndAccountAddress, @PathVariable("version") long version) {
         try {
 
-            FormPageAndAddress idObj = AptosFormsDemoGlobalResourceUtils.parseIdString(formPageAndAccountAddress);
+            FormAndAddress idObj = AptosFormsDemoGlobalResourceUtils.parseIdString(formAndAccountAddress);
             //AptosFormsDemoGlobalStateEventDtoConverter dtoConverter = getAptosFormsDemoGlobalStateEventDtoConverter();
             return aptosFormsDemoGlobalApplicationService.getEvent(idObj, version);
 
         } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
     }
 
-    @GetMapping("{formPageAndAccountAddress}/_historyStates/{version}")
+    @GetMapping("{formAndAccountAddress}/_historyStates/{version}")
     @Transactional(readOnly = true)
-    public AptosFormsDemoGlobalStateDto getHistoryState(@PathVariable("formPageAndAccountAddress") String formPageAndAccountAddress, @PathVariable("version") long version, @RequestParam(value = "fields", required = false) String fields) {
+    public AptosFormsDemoGlobalStateDto getHistoryState(@PathVariable("formAndAccountAddress") String formAndAccountAddress, @PathVariable("version") long version, @RequestParam(value = "fields", required = false) String fields) {
         try {
 
-            FormPageAndAddress idObj = AptosFormsDemoGlobalResourceUtils.parseIdString(formPageAndAccountAddress);
+            FormAndAddress idObj = AptosFormsDemoGlobalResourceUtils.parseIdString(formAndAccountAddress);
             AptosFormsDemoGlobalStateDto.DtoConverter dtoConverter = new AptosFormsDemoGlobalStateDto.DtoConverter();
             if (StringHelper.isNullOrEmpty(fields)) {
                 dtoConverter.setAllFieldsReturned(true);
@@ -235,17 +235,17 @@ public class AptosFormsDemoGlobalResource {
  
     public static class AptosFormsDemoGlobalResourceUtils {
 
-        public static FormPageAndAddress parseIdString(String idString) {
-            TextFormatter<FormPageAndAddress> formatter = AptosFormsDemoGlobalMetadata.URL_ID_TEXT_FORMATTER;
+        public static FormAndAddress parseIdString(String idString) {
+            TextFormatter<FormAndAddress> formatter = AptosFormsDemoGlobalMetadata.URL_ID_TEXT_FORMATTER;
             return formatter.parse(idString);
         }
 
-        public static void setNullIdOrThrowOnInconsistentIds(String formPageAndAccountAddress, AptosFormsDemoGlobalCommand value) {
-            FormPageAndAddress idObj = parseIdString(formPageAndAccountAddress);
-            if (value.getFormPageAndAccountAddress() == null) {
-                value.setFormPageAndAccountAddress(idObj);
-            } else if (!value.getFormPageAndAccountAddress().equals(idObj)) {
-                throw DomainError.named("inconsistentId", "Argument Id %1$s NOT equals body Id %2$s", formPageAndAccountAddress, value.getFormPageAndAccountAddress());
+        public static void setNullIdOrThrowOnInconsistentIds(String formAndAccountAddress, AptosFormsDemoGlobalCommand value) {
+            FormAndAddress idObj = parseIdString(formAndAccountAddress);
+            if (value.getFormAndAccountAddress() == null) {
+                value.setFormAndAccountAddress(idObj);
+            } else if (!value.getFormAndAccountAddress().equals(idObj)) {
+                throw DomainError.named("inconsistentId", "Argument Id %1$s NOT equals body Id %2$s", formAndAccountAddress, value.getFormAndAccountAddress());
             }
         }
     
@@ -297,11 +297,11 @@ public class AptosFormsDemoGlobalResource {
             return filter.entrySet();
         }
 
-        public static AptosFormsDemoGlobalStateDto[] toAptosFormsDemoGlobalStateDtoArray(Iterable<FormPageAndAddress> ids) {
+        public static AptosFormsDemoGlobalStateDto[] toAptosFormsDemoGlobalStateDtoArray(Iterable<FormAndAddress> ids) {
             List<AptosFormsDemoGlobalStateDto> states = new ArrayList<>();
             ids.forEach(i -> {
                 AptosFormsDemoGlobalStateDto dto = new AptosFormsDemoGlobalStateDto();
-                dto.setFormPageAndAccountAddress(i);
+                dto.setFormAndAccountAddress(i);
                 states.add(dto);
             });
             return states.toArray(new AptosFormsDemoGlobalStateDto[0]);

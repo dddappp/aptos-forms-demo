@@ -12,7 +12,7 @@ import java.util.Date;
 import java.math.BigInteger;
 
 public interface AptosFormsDemoGlobalStateRepository {
-    AptosFormsDemoGlobalState get(FormPageAndAddress id, boolean nullAllowed);
+    AptosFormsDemoGlobalState get(FormAndAddress id, boolean nullAllowed);
 
     void save(AptosFormsDemoGlobalState state);
 

@@ -13,16 +13,16 @@ import org.test.aptosformsdemo.domain.AbstractCommand;
 
 public abstract class AbstractAptosFormsDemoGlobalCommand extends AbstractCommand implements AptosFormsDemoGlobalCommand {
 
-    private FormPageAndAddress formPageAndAccountAddress;
+    private FormAndAddress formAndAccountAddress;
 
-    public FormPageAndAddress getFormPageAndAccountAddress()
+    public FormAndAddress getFormAndAccountAddress()
     {
-        return this.formPageAndAccountAddress;
+        return this.formAndAccountAddress;
     }
 
-    public void setFormPageAndAccountAddress(FormPageAndAddress formPageAndAccountAddress)
+    public void setFormAndAccountAddress(FormAndAddress formAndAccountAddress)
     {
-        this.formPageAndAccountAddress = formPageAndAccountAddress;
+        this.formAndAccountAddress = formAndAccountAddress;
     }
 
     private Long offChainVersion;

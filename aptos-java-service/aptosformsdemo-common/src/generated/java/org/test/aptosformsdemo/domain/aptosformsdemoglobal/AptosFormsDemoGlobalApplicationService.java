@@ -15,7 +15,7 @@ import org.test.aptosformsdemo.specialization.Event;
 import org.test.aptosformsdemo.domain.Command;
 
 public interface AptosFormsDemoGlobalApplicationService {
-    AptosFormsDemoGlobalState get(FormPageAndAddress id);
+    AptosFormsDemoGlobalState get(FormAndAddress id);
 
     Iterable<AptosFormsDemoGlobalState> getAll(Integer firstResult, Integer maxResults);
 
@@ -29,9 +29,9 @@ public interface AptosFormsDemoGlobalApplicationService {
 
     long getCount(Criterion filter);
 
-    AptosFormsDemoGlobalEvent getEvent(FormPageAndAddress formPageAndAccountAddress, long version);
+    AptosFormsDemoGlobalEvent getEvent(FormAndAddress formAndAccountAddress, long version);
 
-    AptosFormsDemoGlobalState getHistoryState(FormPageAndAddress formPageAndAccountAddress, long version);
+    AptosFormsDemoGlobalState getHistoryState(FormAndAddress formAndAccountAddress, long version);
 
 }
 

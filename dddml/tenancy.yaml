@@ -170,8 +170,25 @@ configuration:
       idNameFormat: "FormPageAnd{_ORIGINAL_ID_NAME_}"
       idTypeFormat: "FormPageAnd{_ORIGINAL_ID_TYPE_}"
       originalIdPropertyNameFormat: "{_ORIGINAL_ID_TYPE_}"
+    FormTenantizedIdTemplate:
+      properties:
+        FormSequenceId:
+          type: long
+        "__ORIGINAL_ID__":
+          type: "__OMITTED__"
+      columnNames:
+        - "form_sequence_id"
+        - "__ORIGINAL_ID_COLUMN_NAMES__"
+      idNameFormat: "FormAnd{_ORIGINAL_ID_NAME_}"
+      idTypeFormat: "FormAnd{_ORIGINAL_ID_TYPE_}"
+      originalIdPropertyNameFormat: "{_ORIGINAL_ID_TYPE_}"
 
   aggregates:
     AptosFormsDemoMainForm:
       metadata:
         TenantizedIdTemplateName: "__Default__"
+  singletonObjects:
+    AptosFormsDemoGlobal:
+      metadata:
+        TenantizedIdTemplateName: FormTenantizedIdTemplate
+

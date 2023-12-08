@@ -13,7 +13,7 @@ import java.util.Date;
 import java.math.BigInteger;
 
 public interface AptosFormsDemoGlobalStateQueryRepository {
-    AptosFormsDemoGlobalState get(FormPageAndAddress id);
+    AptosFormsDemoGlobalState get(FormAndAddress id);
 
     Iterable<AptosFormsDemoGlobalState> getAll(Integer firstResult, Integer maxResults);
     

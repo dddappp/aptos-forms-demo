@@ -16,7 +16,7 @@ import org.test.aptosformsdemo.aptos.contract.AptosAccount;
 import org.test.aptosformsdemo.aptos.contract.repository.AptosAccountRepository;
 import org.test.aptosformsdemo.aptos.contract.ContractModuleNameProvider;
 import org.test.aptosformsdemo.aptos.contract.DefaultAptosFormsDemoGlobalModuleNameProvider;
-import org.test.aptosformsdemo.domain.FormPageAndAddress;
+import org.test.aptosformsdemo.domain.FormAndAddress;
 import org.test.aptosformsdemo.aptos.contract.TestTenantizedIdFunctions;
 
 @Service
@@ -33,16 +33,16 @@ public class PullAptosFormsDemoGlobalEventsTaskService {
 
     @Scheduled(fixedDelayString = "${aptos.contract.pull-aptos-forms-demo-global-events.payment-123-vault-deposited.fixed-delay:5000}")
     public void pullPayment_123_VaultDepositedEvents() {
-        aptosFormsDemoGlobalEventService.pullPayment_123_VaultDepositedEvents(getContractModuleNameProvider(), getToFormPageAndAddressFunction());
+        aptosFormsDemoGlobalEventService.pullPayment_123_VaultDepositedEvents(getContractModuleNameProvider(), getToFormAndAddressFunction());
     }
 
     @Scheduled(fixedDelayString = "${aptos.contract.pull-aptos-forms-demo-global-events.payment-123-vault-withdrawn.fixed-delay:5000}")
     public void pullPayment_123_VaultWithdrawnEvents() {
-        aptosFormsDemoGlobalEventService.pullPayment_123_VaultWithdrawnEvents(getContractModuleNameProvider(), getToFormPageAndAddressFunction());
+        aptosFormsDemoGlobalEventService.pullPayment_123_VaultWithdrawnEvents(getContractModuleNameProvider(), getToFormAndAddressFunction());
     }
 
-    private java.util.function.Function<String, FormPageAndAddress> getToFormPageAndAddressFunction() {
-        return TestTenantizedIdFunctions.toFormPageAndAddressFunction(); // todo only for test
+    private java.util.function.Function<String, FormAndAddress> getToFormAndAddressFunction() {
+        return TestTenantizedIdFunctions.toFormAndAddressFunction(); // todo only for test
     }
 
     private ContractModuleNameProvider getContractModuleNameProvider() {

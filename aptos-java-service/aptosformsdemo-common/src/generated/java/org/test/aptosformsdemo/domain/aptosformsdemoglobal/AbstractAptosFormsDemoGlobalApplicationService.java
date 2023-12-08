@@ -50,7 +50,7 @@ public abstract class AbstractAptosFormsDemoGlobalApplicationService implements 
         this.stateQueryRepository = stateQueryRepository;
     }
 
-    public AptosFormsDemoGlobalState get(FormPageAndAddress id) {
+    public AptosFormsDemoGlobalState get(FormAndAddress id) {
         AptosFormsDemoGlobalState state = getStateRepository().get(id, true);
         return state;
     }
@@ -79,18 +79,18 @@ public abstract class AbstractAptosFormsDemoGlobalApplicationService implements 
         return getStateQueryRepository().getCount(filter);
     }
 
-    public AptosFormsDemoGlobalEvent getEvent(FormPageAndAddress formPageAndAccountAddress, long version) {
-        AptosFormsDemoGlobalEvent e = (AptosFormsDemoGlobalEvent)getEventStore().getEvent(toEventStoreAggregateId(formPageAndAccountAddress), version);
+    public AptosFormsDemoGlobalEvent getEvent(FormAndAddress formAndAccountAddress, long version) {
+        AptosFormsDemoGlobalEvent e = (AptosFormsDemoGlobalEvent)getEventStore().getEvent(toEventStoreAggregateId(formAndAccountAddress), version);
         if (e != null) {
             ((AptosFormsDemoGlobalEvent.SqlAptosFormsDemoGlobalEvent)e).setEventReadOnly(true); 
         } else if (version == -1) {
-            return getEvent(formPageAndAccountAddress, 0);
+            return getEvent(formAndAccountAddress, 0);
         }
         return e;
     }
 
-    public AptosFormsDemoGlobalState getHistoryState(FormPageAndAddress formPageAndAccountAddress, long version) {
-        EventStream eventStream = getEventStore().loadEventStream(AbstractAptosFormsDemoGlobalEvent.class, toEventStoreAggregateId(formPageAndAccountAddress), version - 1);
+    public AptosFormsDemoGlobalState getHistoryState(FormAndAddress formAndAccountAddress, long version) {
+        EventStream eventStream = getEventStore().loadEventStream(AbstractAptosFormsDemoGlobalEvent.class, toEventStoreAggregateId(formAndAccountAddress), version - 1);
         return new AbstractAptosFormsDemoGlobalState.SimpleAptosFormsDemoGlobalState(eventStream.getEvents());
     }
 
@@ -99,12 +99,12 @@ public abstract class AbstractAptosFormsDemoGlobalApplicationService implements 
         return new AbstractAptosFormsDemoGlobalAggregate.SimpleAptosFormsDemoGlobalAggregate(state);
     }
 
-    public EventStoreAggregateId toEventStoreAggregateId(FormPageAndAddress aggregateId) {
+    public EventStoreAggregateId toEventStoreAggregateId(FormAndAddress aggregateId) {
         return new EventStoreAggregateId.SimpleEventStoreAggregateId(aggregateId);
     }
 
     protected void update(AptosFormsDemoGlobalCommand c, Consumer<AptosFormsDemoGlobalAggregate> action) {
-        FormPageAndAddress aggregateId = c.getFormPageAndAccountAddress();
+        FormAndAddress aggregateId = c.getFormAndAccountAddress();
         EventStoreAggregateId eventStoreAggregateId = toEventStoreAggregateId(aggregateId);
         AptosFormsDemoGlobalState state = getStateRepository().get(aggregateId, false);
         boolean duplicate = isDuplicateCommand(c, eventStoreAggregateId, state);

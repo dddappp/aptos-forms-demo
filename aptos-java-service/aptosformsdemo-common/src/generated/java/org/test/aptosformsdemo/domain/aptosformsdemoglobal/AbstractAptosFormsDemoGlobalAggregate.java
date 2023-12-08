@@ -108,7 +108,7 @@ public abstract class AbstractAptosFormsDemoGlobalAggregate extends AbstractAggr
            
 
         protected AbstractAptosFormsDemoGlobalEvent.AptosFormsDemoGlobalInitialized newAptosFormsDemoGlobalInitialized(Long offChainVersion, String commandId, String requesterId) {
-            AptosFormsDemoGlobalEventId eventId = new AptosFormsDemoGlobalEventId(getState().getFormPageAndAccountAddress(), null);
+            AptosFormsDemoGlobalEventId eventId = new AptosFormsDemoGlobalEventId(getState().getFormAndAccountAddress(), null);
             AbstractAptosFormsDemoGlobalEvent.AptosFormsDemoGlobalInitialized e = new AbstractAptosFormsDemoGlobalEvent.AptosFormsDemoGlobalInitialized();
 
             e.setAptosEventVersion(null);

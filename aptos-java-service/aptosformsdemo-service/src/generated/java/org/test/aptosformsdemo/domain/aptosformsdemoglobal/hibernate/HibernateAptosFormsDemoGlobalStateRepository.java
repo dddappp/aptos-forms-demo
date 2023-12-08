@@ -31,7 +31,7 @@ public class HibernateAptosFormsDemoGlobalStateRepository implements AptosFormsD
         return this.sessionFactory.getCurrentSession();
     }
     
-    private static final Set<String> readOnlyPropertyPascalCaseNames = new HashSet<String>(Arrays.asList("FormPageAndAccountAddress", "Payment_123_Vault", "OffChainVersion", "CreatedBy", "CreatedAt", "UpdatedBy", "UpdatedAt", "Active", "Deleted", "Version"));
+    private static final Set<String> readOnlyPropertyPascalCaseNames = new HashSet<String>(Arrays.asList("FormAndAccountAddress", "Payment_123_Vault", "OffChainVersion", "CreatedBy", "CreatedAt", "UpdatedBy", "UpdatedAt", "Active", "Deleted", "Version"));
     
     private ReadOnlyProxyGenerator readOnlyProxyGenerator;
     
@@ -44,11 +44,11 @@ public class HibernateAptosFormsDemoGlobalStateRepository implements AptosFormsD
     }
 
     @Transactional(readOnly = true)
-    public AptosFormsDemoGlobalState get(FormPageAndAddress id, boolean nullAllowed) {
+    public AptosFormsDemoGlobalState get(FormAndAddress id, boolean nullAllowed) {
         AptosFormsDemoGlobalState.SqlAptosFormsDemoGlobalState state = (AptosFormsDemoGlobalState.SqlAptosFormsDemoGlobalState)getCurrentSession().get(AbstractAptosFormsDemoGlobalState.SimpleAptosFormsDemoGlobalState.class, id);
         if (!nullAllowed && state == null) {
             state = new AbstractAptosFormsDemoGlobalState.SimpleAptosFormsDemoGlobalState();
-            state.setFormPageAndAccountAddress(id);
+            state.setFormAndAccountAddress(id);
         }
         if (getReadOnlyProxyGenerator() != null && state != null) {
             return (AptosFormsDemoGlobalState) getReadOnlyProxyGenerator().createProxy(state, new Class[]{AptosFormsDemoGlobalState.SqlAptosFormsDemoGlobalState.class}, "getStateReadOnly", readOnlyPropertyPascalCaseNames);
@@ -76,7 +76,7 @@ public class HibernateAptosFormsDemoGlobalStateRepository implements AptosFormsD
     }
 
     public void merge(AptosFormsDemoGlobalState detached) {
-        AptosFormsDemoGlobalState persistent = getCurrentSession().get(AbstractAptosFormsDemoGlobalState.SimpleAptosFormsDemoGlobalState.class, detached.getFormPageAndAccountAddress());
+        AptosFormsDemoGlobalState persistent = getCurrentSession().get(AbstractAptosFormsDemoGlobalState.SimpleAptosFormsDemoGlobalState.class, detached.getFormAndAccountAddress());
         if (persistent != null) {
             merge(persistent, detached);
             getCurrentSession().merge(detached);

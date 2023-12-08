@@ -38,9 +38,9 @@ public interface AptosFormsDemoGlobalEvent extends Event, AptosEvent, HasStatus 
     interface AptosFormsDemoGlobalInitialized extends AptosFormsDemoGlobalEvent {
     }
 
-    FormPageAndAddress getFormPageAndAccountAddress();
+    FormAndAddress getFormAndAccountAddress();
 
-    //void setFormPageAndAccountAddress(FormPageAndAddress formPageAndAccountAddress);
+    //void setFormAndAccountAddress(FormAndAddress formAndAccountAddress);
 
     BigInteger getVersion();
     

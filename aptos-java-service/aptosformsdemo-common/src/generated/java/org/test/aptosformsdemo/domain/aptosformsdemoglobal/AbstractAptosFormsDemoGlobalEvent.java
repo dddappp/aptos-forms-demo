@@ -23,12 +23,12 @@ public abstract class AbstractAptosFormsDemoGlobalEvent extends AbstractEvent im
         this.aptosFormsDemoGlobalEventId = eventId;
     }
     
-    public FormPageAndAddress getFormPageAndAccountAddress() {
-        return getAptosFormsDemoGlobalEventId().getFormPageAndAccountAddress();
+    public FormAndAddress getFormAndAccountAddress() {
+        return getAptosFormsDemoGlobalEventId().getFormAndAccountAddress();
     }
 
-    public void setFormPageAndAccountAddress(FormPageAndAddress formPageAndAccountAddress) {
-        getAptosFormsDemoGlobalEventId().setFormPageAndAccountAddress(formPageAndAccountAddress);
+    public void setFormAndAccountAddress(FormAndAddress formAndAccountAddress) {
+        getAptosFormsDemoGlobalEventId().setFormAndAccountAddress(formAndAccountAddress);
     }
 
     private boolean eventReadOnly;

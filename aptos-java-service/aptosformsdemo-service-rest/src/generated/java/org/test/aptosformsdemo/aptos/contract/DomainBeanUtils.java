@@ -15,7 +15,7 @@ import org.test.aptosformsdemo.domain.FormPageAndAddress;
 import org.test.aptosformsdemo.domain.aptosformsdemomainform.AbstractAptosFormsDemoMainFormEvent;
 import org.test.aptosformsdemo.aptos.contract.aptosformsdemomainform.AptosFormsDemoMainFormSubmitted;
 import org.test.aptosformsdemo.aptos.contract.aptosformsdemomainform.AptosFormsDemoMainFormUpdated;
-import org.test.aptosformsdemo.domain.FormPageAndAddress;
+import org.test.aptosformsdemo.domain.FormAndAddress;
 import org.test.aptosformsdemo.domain.aptosformsdemoglobal.AbstractAptosFormsDemoGlobalEvent;
 import org.test.aptosformsdemo.aptos.contract.aptosformsdemoglobal.Payment_123_VaultDeposited;
 import org.test.aptosformsdemo.aptos.contract.aptosformsdemoglobal.Payment_123_VaultWithdrawn;
@@ -116,11 +116,11 @@ public class DomainBeanUtils {
         return aptosFormsDemoMainFormUpdated;
     }
 
-    public static AbstractAptosFormsDemoGlobalEvent.Payment_123_VaultDeposited toPayment_123_VaultDeposited(java.util.function.Function<String, FormPageAndAddress> toFormPageAndAddress, Event<Payment_123_VaultDeposited> eventEnvelope) {
+    public static AbstractAptosFormsDemoGlobalEvent.Payment_123_VaultDeposited toPayment_123_VaultDeposited(java.util.function.Function<String, FormAndAddress> toFormAndAddress, Event<Payment_123_VaultDeposited> eventEnvelope) {
         Payment_123_VaultDeposited contractEvent = eventEnvelope.getData();
 
         AbstractAptosFormsDemoGlobalEvent.Payment_123_VaultDeposited payment_123_VaultDeposited = new AbstractAptosFormsDemoGlobalEvent.Payment_123_VaultDeposited();
-        payment_123_VaultDeposited.setFormPageAndAccountAddress(toFormPageAndAddress.apply(contractEvent.getAccountAddress()));
+        payment_123_VaultDeposited.setFormAndAccountAddress(toFormAndAddress.apply(contractEvent.getAccountAddress()));
         payment_123_VaultDeposited.setDynamicProperties(contractEvent.getDynamicProperties());
         payment_123_VaultDeposited.setVersion(contractEvent.getVersion());
 
@@ -129,11 +129,11 @@ public class DomainBeanUtils {
         return payment_123_VaultDeposited;
     }
 
-    public static AbstractAptosFormsDemoGlobalEvent.Payment_123_VaultWithdrawn toPayment_123_VaultWithdrawn(java.util.function.Function<String, FormPageAndAddress> toFormPageAndAddress, Event<Payment_123_VaultWithdrawn> eventEnvelope) {
+    public static AbstractAptosFormsDemoGlobalEvent.Payment_123_VaultWithdrawn toPayment_123_VaultWithdrawn(java.util.function.Function<String, FormAndAddress> toFormAndAddress, Event<Payment_123_VaultWithdrawn> eventEnvelope) {
         Payment_123_VaultWithdrawn contractEvent = eventEnvelope.getData();
 
         AbstractAptosFormsDemoGlobalEvent.Payment_123_VaultWithdrawn payment_123_VaultWithdrawn = new AbstractAptosFormsDemoGlobalEvent.Payment_123_VaultWithdrawn();
-        payment_123_VaultWithdrawn.setFormPageAndAccountAddress(toFormPageAndAddress.apply(contractEvent.getAccountAddress()));
+        payment_123_VaultWithdrawn.setFormAndAccountAddress(toFormAndAddress.apply(contractEvent.getAccountAddress()));
         payment_123_VaultWithdrawn.setDynamicProperties(contractEvent.getDynamicProperties());
         payment_123_VaultWithdrawn.setVersion(contractEvent.getVersion());
 
@@ -142,11 +142,11 @@ public class DomainBeanUtils {
         return payment_123_VaultWithdrawn;
     }
 
-    public static AbstractAptosFormsDemoGlobalEvent.AptosFormsDemoGlobalInitialized toAptosFormsDemoGlobalInitialized(java.util.function.Function<String, FormPageAndAddress> toFormPageAndAddress, Event<AptosFormsDemoGlobalInitialized> eventEnvelope) {
+    public static AbstractAptosFormsDemoGlobalEvent.AptosFormsDemoGlobalInitialized toAptosFormsDemoGlobalInitialized(java.util.function.Function<String, FormAndAddress> toFormAndAddress, Event<AptosFormsDemoGlobalInitialized> eventEnvelope) {
         AptosFormsDemoGlobalInitialized contractEvent = eventEnvelope.getData();
 
         AbstractAptosFormsDemoGlobalEvent.AptosFormsDemoGlobalInitialized aptosFormsDemoGlobalInitialized = new AbstractAptosFormsDemoGlobalEvent.AptosFormsDemoGlobalInitialized();
-        aptosFormsDemoGlobalInitialized.setFormPageAndAccountAddress(toFormPageAndAddress.apply(contractEvent.getAccountAddress()));
+        aptosFormsDemoGlobalInitialized.setFormAndAccountAddress(toFormAndAddress.apply(contractEvent.getAccountAddress()));
         aptosFormsDemoGlobalInitialized.setDynamicProperties(contractEvent.getDynamicProperties());
         aptosFormsDemoGlobalInitialized.setVersion(BigInteger.valueOf(-1));
 

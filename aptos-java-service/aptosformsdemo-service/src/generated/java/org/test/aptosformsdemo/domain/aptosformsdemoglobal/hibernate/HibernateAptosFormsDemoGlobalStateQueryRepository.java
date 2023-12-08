@@ -31,7 +31,7 @@ public class HibernateAptosFormsDemoGlobalStateQueryRepository implements AptosF
         return this.sessionFactory.getCurrentSession();
     }
     
-    private static final Set<String> readOnlyPropertyPascalCaseNames = new HashSet<String>(Arrays.asList("FormPageAndAccountAddress", "Payment_123_Vault", "OffChainVersion", "CreatedBy", "CreatedAt", "UpdatedBy", "UpdatedAt", "Active", "Deleted", "Version"));
+    private static final Set<String> readOnlyPropertyPascalCaseNames = new HashSet<String>(Arrays.asList("FormAndAccountAddress", "Payment_123_Vault", "OffChainVersion", "CreatedBy", "CreatedAt", "UpdatedBy", "UpdatedAt", "Active", "Deleted", "Version"));
     
     private ReadOnlyProxyGenerator readOnlyProxyGenerator;
     
@@ -44,7 +44,7 @@ public class HibernateAptosFormsDemoGlobalStateQueryRepository implements AptosF
     }
 
     @Transactional(readOnly = true)
-    public AptosFormsDemoGlobalState get(FormPageAndAddress id) {
+    public AptosFormsDemoGlobalState get(FormAndAddress id) {
 
         AptosFormsDemoGlobalState state = (AptosFormsDemoGlobalState)getCurrentSession().get(AbstractAptosFormsDemoGlobalState.SimpleAptosFormsDemoGlobalState.class, id);
         if (getReadOnlyProxyGenerator() != null && state != null) {

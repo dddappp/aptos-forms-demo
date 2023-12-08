@@ -18,7 +18,7 @@ public interface AptosFormsDemoGlobalState extends VersionedAptosMoveObject
 
     Long VERSION_NULL = VERSION_ZERO - 1;
 
-    FormPageAndAddress getFormPageAndAccountAddress();
+    FormAndAddress getFormAndAccountAddress();
 
     Long getOffChainVersion();
 
@@ -37,7 +37,7 @@ public interface AptosFormsDemoGlobalState extends VersionedAptosMoveObject
     Map<String, Object> getDynamicProperties();
 
     interface MutableAptosFormsDemoGlobalState extends AptosFormsDemoGlobalState, VersionedAptosMoveObject.MutableVersionedAptosMoveObject {
-        void setFormPageAndAccountAddress(FormPageAndAddress formPageAndAccountAddress);
+        void setFormAndAccountAddress(FormAndAddress formAndAccountAddress);
 
         void setOffChainVersion(Long offChainVersion);
 

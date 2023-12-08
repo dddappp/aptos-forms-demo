@@ -13,18 +13,18 @@ import org.test.aptosformsdemo.domain.AbstractCommand;
 public abstract class AbstractAptosFormsDemoGlobalCommandDto extends AbstractCommand {
 
     /**
-     * Form Page And Account Address
+     * Form And Account Address
      */
-    private FormPageAndAddress formPageAndAccountAddress;
+    private FormAndAddress formAndAccountAddress;
 
-    public FormPageAndAddress getFormPageAndAccountAddress()
+    public FormAndAddress getFormAndAccountAddress()
     {
-        return this.formPageAndAccountAddress;
+        return this.formAndAccountAddress;
     }
 
-    public void setFormPageAndAccountAddress(FormPageAndAddress formPageAndAccountAddress)
+    public void setFormAndAccountAddress(FormAndAddress formAndAccountAddress)
     {
-        this.formPageAndAccountAddress = formPageAndAccountAddress;
+        this.formAndAccountAddress = formAndAccountAddress;
     }
 
     /**
@@ -44,7 +44,7 @@ public abstract class AbstractAptosFormsDemoGlobalCommandDto extends AbstractCom
 
 
     public void copyTo(AptosFormsDemoGlobalCommand command) {
-        command.setFormPageAndAccountAddress(this.getFormPageAndAccountAddress());
+        command.setFormAndAccountAddress(this.getFormAndAccountAddress());
         command.setOffChainVersion(this.getOffChainVersion());
         
         command.setRequesterId(this.getRequesterId());

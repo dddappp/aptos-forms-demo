@@ -25,17 +25,17 @@ public class AptosAptosFormsDemoGlobalStateRetriever {
 
     private NodeApiClient aptosNodeApiClient;
 
-    private BiFunction<String, java.util.function.Function<String, FormPageAndAddress>, AptosFormsDemoGlobalState.MutableAptosFormsDemoGlobalState> aptosFormsDemoGlobalStateFactory;
+    private BiFunction<String, java.util.function.Function<String, FormAndAddress>, AptosFormsDemoGlobalState.MutableAptosFormsDemoGlobalState> aptosFormsDemoGlobalStateFactory;
 
 
     public AptosAptosFormsDemoGlobalStateRetriever(NodeApiClient aptosNodeApiClient,
-                                    BiFunction<String, java.util.function.Function<String, FormPageAndAddress>, AptosFormsDemoGlobalState.MutableAptosFormsDemoGlobalState> aptosFormsDemoGlobalStateFactory
+                                    BiFunction<String, java.util.function.Function<String, FormAndAddress>, AptosFormsDemoGlobalState.MutableAptosFormsDemoGlobalState> aptosFormsDemoGlobalStateFactory
     ) {
         this.aptosNodeApiClient = aptosNodeApiClient;
         this.aptosFormsDemoGlobalStateFactory = aptosFormsDemoGlobalStateFactory;
     }
 
-    public AptosFormsDemoGlobalState retrieveAptosFormsDemoGlobalState(ContractModuleNameProvider contractModuleNameProvider, java.util.function.Function<String, FormPageAndAddress> toFormPageAndAddress, String accountAddress) {
+    public AptosFormsDemoGlobalState retrieveAptosFormsDemoGlobalState(ContractModuleNameProvider contractModuleNameProvider, java.util.function.Function<String, FormAndAddress> toFormAndAddress, String accountAddress) {
         String resourceAccountAddress = contractModuleNameProvider.getStoreAccountAddress();
         AccountResource<AptosFormsDemoGlobal> accountResource;
         try {
@@ -48,11 +48,11 @@ public class AptosAptosFormsDemoGlobalStateRetriever {
         }
         AptosFormsDemoGlobal aptosFormsDemoGlobal = accountResource.getData();
         aptosFormsDemoGlobal.setAccountAddress(resourceAccountAddress);
-        return toAptosFormsDemoGlobalState(toFormPageAndAddress, aptosFormsDemoGlobal);
+        return toAptosFormsDemoGlobalState(toFormAndAddress, aptosFormsDemoGlobal);
     }
 
-    private AptosFormsDemoGlobalState toAptosFormsDemoGlobalState(java.util.function.Function<String, FormPageAndAddress> toFormPageAndAddress, AptosFormsDemoGlobal aptosFormsDemoGlobal) {
-        AptosFormsDemoGlobalState.MutableAptosFormsDemoGlobalState aptosFormsDemoGlobalState = aptosFormsDemoGlobalStateFactory.apply(aptosFormsDemoGlobal.getAccountAddress(), toFormPageAndAddress);
+    private AptosFormsDemoGlobalState toAptosFormsDemoGlobalState(java.util.function.Function<String, FormAndAddress> toFormAndAddress, AptosFormsDemoGlobal aptosFormsDemoGlobal) {
+        AptosFormsDemoGlobalState.MutableAptosFormsDemoGlobalState aptosFormsDemoGlobalState = aptosFormsDemoGlobalStateFactory.apply(aptosFormsDemoGlobal.getAccountAddress(), toFormAndAddress);
         aptosFormsDemoGlobalState.setVersion(aptosFormsDemoGlobal.getVersion());
         aptosFormsDemoGlobalState.setDynamicProperties(aptosFormsDemoGlobal.getDynamicProperties());
         return aptosFormsDemoGlobalState;

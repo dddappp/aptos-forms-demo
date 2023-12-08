@@ -25,16 +25,16 @@ public class AptosFormsDemoGlobalCommands {
         }
 
         /**
-         * Form Page And Account Address
+         * Form And Account Address
          */
-        private FormPageAndAddress formPageAndAccountAddress;
+        private FormAndAddress formAndAccountAddress;
 
-        public FormPageAndAddress getFormPageAndAccountAddress() {
-            return this.formPageAndAccountAddress;
+        public FormAndAddress getFormAndAccountAddress() {
+            return this.formAndAccountAddress;
         }
 
-        public void setFormPageAndAccountAddress(FormPageAndAddress formPageAndAccountAddress) {
-            this.formPageAndAccountAddress = formPageAndAccountAddress;
+        public void setFormAndAccountAddress(FormAndAddress formAndAccountAddress) {
+            this.formAndAccountAddress = formAndAccountAddress;
         }
 
         /**
@@ -63,16 +63,16 @@ public class AptosFormsDemoGlobalCommands {
         }
 
         /**
-         * Form Page And Account Address
+         * Form And Account Address
          */
-        private FormPageAndAddress formPageAndAccountAddress;
+        private FormAndAddress formAndAccountAddress;
 
-        public FormPageAndAddress getFormPageAndAccountAddress() {
-            return this.formPageAndAccountAddress;
+        public FormAndAddress getFormAndAccountAddress() {
+            return this.formAndAccountAddress;
         }
 
-        public void setFormPageAndAccountAddress(FormPageAndAddress formPageAndAccountAddress) {
-            this.formPageAndAccountAddress = formPageAndAccountAddress;
+        public void setFormAndAccountAddress(FormAndAddress formAndAccountAddress) {
+            this.formAndAccountAddress = formAndAccountAddress;
         }
 
         /**
@@ -114,16 +114,16 @@ public class AptosFormsDemoGlobalCommands {
         }
 
         /**
-         * Form Page And Account Address
+         * Form And Account Address
          */
-        private FormPageAndAddress formPageAndAccountAddress;
+        private FormAndAddress formAndAccountAddress;
 
-        public FormPageAndAddress getFormPageAndAccountAddress() {
-            return this.formPageAndAccountAddress;
+        public FormAndAddress getFormAndAccountAddress() {
+            return this.formAndAccountAddress;
         }
 
-        public void setFormPageAndAccountAddress(FormPageAndAddress formPageAndAccountAddress) {
-            this.formPageAndAccountAddress = formPageAndAccountAddress;
+        public void setFormAndAccountAddress(FormAndAddress formAndAccountAddress) {
+            this.formAndAccountAddress = formAndAccountAddress;
         }
 
         /**
