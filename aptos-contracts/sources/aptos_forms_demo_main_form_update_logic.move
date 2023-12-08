@@ -1,6 +1,5 @@
 module aptos_forms_demo::aptos_forms_demo_main_form_update_logic {
     use aptos_forms_demo::aptos_forms_demo_main_form;
-    use aptos_forms_demo::aptos_forms_demo_main_form_updated;
     use std::string::String;
     use xrender_form_utils::date::Date;
     use xrender_form_utils::date_range::DateRange;
@@ -64,23 +63,23 @@ module aptos_forms_demo::aptos_forms_demo_main_form_update_logic {
         aptos_forms_demo_main_form_updated: &aptos_forms_demo_main_form::AptosFormsDemoMainFormUpdated,
         aptos_forms_demo_main_form: aptos_forms_demo_main_form::AptosFormsDemoMainForm,
     ): aptos_forms_demo_main_form::AptosFormsDemoMainForm {
-        let fr_5pqi = aptos_forms_demo_main_form_updated::fr_5pqi(aptos_forms_demo_main_form_updated);
-        let fr_duif = aptos_forms_demo_main_form_updated::fr_duif(aptos_forms_demo_main_form_updated);
-        let fr_6i34 = aptos_forms_demo_main_form_updated::fr_6i34(aptos_forms_demo_main_form_updated);
-        let fr_8xjs = aptos_forms_demo_main_form_updated::fr_8xjs(aptos_forms_demo_main_form_updated);
-        let fr_9c3f = aptos_forms_demo_main_form_updated::fr_9c3f(aptos_forms_demo_main_form_updated);
-        let fr_4ok6 = aptos_forms_demo_main_form_updated::fr_4ok6(aptos_forms_demo_main_form_updated);
-        let fr_b3ub = aptos_forms_demo_main_form_updated::fr_b3ub(aptos_forms_demo_main_form_updated);
-        let fr_1z7o = aptos_forms_demo_main_form_updated::fr_1z7o(aptos_forms_demo_main_form_updated);
-        let fr_d8rw = aptos_forms_demo_main_form_updated::fr_d8rw(aptos_forms_demo_main_form_updated);
-        let fr_dy3l = aptos_forms_demo_main_form_updated::fr_dy3l(aptos_forms_demo_main_form_updated);
-        let fr_6f68 = aptos_forms_demo_main_form_updated::fr_6f68(aptos_forms_demo_main_form_updated);
-        let fr_47yy = aptos_forms_demo_main_form_updated::fr_47yy(aptos_forms_demo_main_form_updated);
-        let fr_gh3o = aptos_forms_demo_main_form_updated::fr_gh3o(aptos_forms_demo_main_form_updated);
-        let fr_fbba = aptos_forms_demo_main_form_updated::fr_fbba(aptos_forms_demo_main_form_updated);
-        let fr_hhzp = aptos_forms_demo_main_form_updated::fr_hhzp(aptos_forms_demo_main_form_updated);
-        let single_text1 = aptos_forms_demo_main_form_updated::single_text1(aptos_forms_demo_main_form_updated);
-        let payment_123 = aptos_forms_demo_main_form_updated::payment_123(aptos_forms_demo_main_form_updated);
+        let fr_5pqi = aptos_forms_demo_main_form::aptos_forms_demo_main_form_updated_fr_5pqi(aptos_forms_demo_main_form_updated);
+        let fr_duif = aptos_forms_demo_main_form::aptos_forms_demo_main_form_updated_fr_duif(aptos_forms_demo_main_form_updated);
+        let fr_6i34 = aptos_forms_demo_main_form::aptos_forms_demo_main_form_updated_fr_6i34(aptos_forms_demo_main_form_updated);
+        let fr_8xjs = aptos_forms_demo_main_form::aptos_forms_demo_main_form_updated_fr_8xjs(aptos_forms_demo_main_form_updated);
+        let fr_9c3f = aptos_forms_demo_main_form::aptos_forms_demo_main_form_updated_fr_9c3f(aptos_forms_demo_main_form_updated);
+        let fr_4ok6 = aptos_forms_demo_main_form::aptos_forms_demo_main_form_updated_fr_4ok6(aptos_forms_demo_main_form_updated);
+        let fr_b3ub = aptos_forms_demo_main_form::aptos_forms_demo_main_form_updated_fr_b3ub(aptos_forms_demo_main_form_updated);
+        let fr_1z7o = aptos_forms_demo_main_form::aptos_forms_demo_main_form_updated_fr_1z7o(aptos_forms_demo_main_form_updated);
+        let fr_d8rw = aptos_forms_demo_main_form::aptos_forms_demo_main_form_updated_fr_d8rw(aptos_forms_demo_main_form_updated);
+        let fr_dy3l = aptos_forms_demo_main_form::aptos_forms_demo_main_form_updated_fr_dy3l(aptos_forms_demo_main_form_updated);
+        let fr_6f68 = aptos_forms_demo_main_form::aptos_forms_demo_main_form_updated_fr_6f68(aptos_forms_demo_main_form_updated);
+        let fr_47yy = aptos_forms_demo_main_form::aptos_forms_demo_main_form_updated_fr_47yy(aptos_forms_demo_main_form_updated);
+        let fr_gh3o = aptos_forms_demo_main_form::aptos_forms_demo_main_form_updated_fr_gh3o(aptos_forms_demo_main_form_updated);
+        let fr_fbba = aptos_forms_demo_main_form::aptos_forms_demo_main_form_updated_fr_fbba(aptos_forms_demo_main_form_updated);
+        let fr_hhzp = aptos_forms_demo_main_form::aptos_forms_demo_main_form_updated_fr_hhzp(aptos_forms_demo_main_form_updated);
+        let single_text1 = aptos_forms_demo_main_form::aptos_forms_demo_main_form_updated_single_text1(aptos_forms_demo_main_form_updated);
+        let payment_123 = aptos_forms_demo_main_form::aptos_forms_demo_main_form_updated_payment_123(aptos_forms_demo_main_form_updated);
         let signer_address = aptos_forms_demo_main_form::signer_address(&aptos_forms_demo_main_form);
         let _ = signer_address;
         aptos_forms_demo_main_form::set_fr_5pqi(&mut aptos_forms_demo_main_form, fr_5pqi);

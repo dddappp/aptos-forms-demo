@@ -12,4 +12,5 @@ public class AptosFormsDemo_payment_123 {
     public static final BigInteger OPTION_100 = BigInteger.valueOf(100);
 
     public static final BigInteger OPTION_200 = BigInteger.valueOf(200);
+
 }

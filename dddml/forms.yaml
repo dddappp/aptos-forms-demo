@@ -363,6 +363,7 @@ configuration:
   metadata:
     AlwaysGeneratingEventClobProperties: false
     AlwaysGeneratingClobEventProperties: false
+    NO_MOVE_EVENT_MODULE: true
   commandIdName: CommandId
   requesterIdName: RequesterId
   commandContextName: CommandContext
