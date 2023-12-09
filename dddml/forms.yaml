@@ -131,7 +131,7 @@
           Move: >-
             {_EXTRACT_EVENT_PROPERTIES_}
 
-            let withdrawn_payment_123 = aptos_framework::coin::withdraw<aptos_framework::coin::AptosCoin>(_account, payment_123);
+            let withdrawn_payment_123 = aptos_framework::coin::withdraw<aptos_framework::aptos_coin::AptosCoin>(_account, payment_123);
                     aptos_forms_demo::aptos_forms_demo_global_aggregate::deposit_payment_123_vault(_account, withdrawn_payment_123);
         event:
           name: AptosFormsDemoMainFormSubmitted
