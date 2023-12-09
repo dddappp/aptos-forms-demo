@@ -36,6 +36,6 @@ public class AptosFormsDemoApplication {
 
     @EventListener(ApplicationReadyEvent.class)
     public void initAccountAddresses() {
-//        contractInitService.initAccountAddresses();
+        contractInitService.initAccountAddresses(); // TODO: only for test, remove later
     }
 }
