@@ -10,6 +10,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form_update_logic {
     const EFormNotOpen: u64 = 111;
     const EFormCutOff: u64 = 112;
     const ENoUpdatePermission: u64 = 113;
+    const EFieldNotUpdatable: u64 = 114;
 
     public(friend) fun verify(
         account: &signer,
@@ -34,6 +35,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form_update_logic {
     ): aptos_forms_demo_main_form::AptosFormsDemoMainFormUpdated {
         let _ = account;
         assert!(aptos_forms_demo_main_form::signer_address(aptos_forms_demo_main_form) == std::signer::address_of(account), ENoUpdatePermission);
+        assert!(payment_123 == aptos_forms_demo_main_form::payment_123(aptos_forms_demo_main_form), EFieldNotUpdatable);
         assert!(aptos_framework::timestamp::now_seconds() >= 1699256214, EFormNotOpen); // Open at: 2023-11-06T07:36:54Z
         assert!(aptos_framework::timestamp::now_seconds() <= 3908475414, EFormCutOff); // Cutoff at: 2093-11-08T07:36:54+08:00
         aptos_forms_demo_main_form::new_aptos_forms_demo_main_form_updated(
