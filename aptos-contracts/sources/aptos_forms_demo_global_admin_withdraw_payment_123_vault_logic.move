@@ -20,7 +20,7 @@ module aptos_forms_demo::aptos_forms_demo_global_admin_withdraw_payment_123_vaul
         let amount = aptos_forms_demo_global::payment_123_vault_admin_withdrawn_amount(payment_123_vault_admin_withdrawn);
         let vault = aptos_forms_demo_global::borrow_mut_payment_123_vault(&mut aptos_forms_demo_global);
         let w = aptos_framework::coin::extract(vault, amount);
-        aptos_framework::coin::deposit( std::signer::address_of(_account), w);
+        aptos_framework::coin::deposit(std::signer::address_of(_account), w);
         aptos_forms_demo_global
     }
 
