@@ -159,13 +159,17 @@
           name: AptosFormsDemoMainFormUpdated
           properties:
             Payment_123_Supplement:
-              type: u64
+              name: Payment_123_Supplement
               valueExpression:
-                Move: "0/* todo */"
+                Move: 0/* todo */
+              type: u64
+              sequenceNumber: -1
             Payment_123_Refund:
-              type: u64
+              name: Payment_123_Refund
               valueExpression:
-                Move: "0/* todo */"
+                Move: 0/* todo */
+              type: u64
+              sequenceNumber: -1
         constants:
           EFormNotOpen:
             name: EFormNotOpen
