@@ -12,6 +12,7 @@ module aptos_forms_demo::aptos_forms_demo_global {
     use aptos_framework::event;
     friend aptos_forms_demo::aptos_forms_demo_global_deposit_payment_123_vault_logic;
     friend aptos_forms_demo::aptos_forms_demo_global_withdraw_payment_123_vault_logic;
+    friend aptos_forms_demo::aptos_forms_demo_global_admin_withdraw_payment_123_vault_logic;
     friend aptos_forms_demo::aptos_forms_demo_global_aggregate;
 
     const EDataTooLong: u64 = 102;
@@ -21,6 +22,7 @@ module aptos_forms_demo::aptos_forms_demo_global {
     struct Events has key {
         payment_123_vault_deposited_handle: event::EventHandle<Payment_123_VaultDeposited>,
         payment_123_vault_withdrawn_handle: event::EventHandle<Payment_123_VaultWithdrawn>,
+        payment_123_vault_admin_withdrawn_handle: event::EventHandle<Payment_123_VaultAdminWithdrawn>,
     }
 
     public fun initialize(account: &signer) {
@@ -30,6 +32,7 @@ module aptos_forms_demo::aptos_forms_demo_global {
         move_to(&res_account, Events {
             payment_123_vault_deposited_handle: account::new_event_handle<Payment_123_VaultDeposited>(&res_account),
             payment_123_vault_withdrawn_handle: account::new_event_handle<Payment_123_VaultWithdrawn>(&res_account),
+            payment_123_vault_admin_withdrawn_handle: account::new_event_handle<Payment_123_VaultAdminWithdrawn>(&res_account),
         });
 
         let aptos_forms_demo_global = new_aptos_forms_demo_global();
@@ -99,6 +102,25 @@ module aptos_forms_demo::aptos_forms_demo_global {
         }
     }
 
+    struct Payment_123_VaultAdminWithdrawn has store, drop {
+        version: u64,
+        amount: u64,
+    }
+
+    public fun payment_123_vault_admin_withdrawn_amount(payment_123_vault_admin_withdrawn: &Payment_123_VaultAdminWithdrawn): u64 {
+        payment_123_vault_admin_withdrawn.amount
+    }
+
+    public(friend) fun new_payment_123_vault_admin_withdrawn(
+        aptos_forms_demo_global: &AptosFormsDemoGlobal,
+        amount: u64,
+    ): Payment_123_VaultAdminWithdrawn {
+        Payment_123_VaultAdminWithdrawn {
+            version: version(aptos_forms_demo_global),
+            amount,
+        }
+    }
+
     struct AptosFormsDemoGlobalInitialized has store, drop {
     }
 
@@ -162,6 +184,12 @@ module aptos_forms_demo::aptos_forms_demo_global {
         assert!(exists<Events>(genesis_account::resource_account_address()), ENotInitialized);
         let events = borrow_global_mut<Events>(genesis_account::resource_account_address());
         event::emit_event(&mut events.payment_123_vault_withdrawn_handle, payment_123_vault_withdrawn);
+    }
+
+    public(friend) fun emit_payment_123_vault_admin_withdrawn(payment_123_vault_admin_withdrawn: Payment_123_VaultAdminWithdrawn) acquires Events {
+        assert!(exists<Events>(genesis_account::resource_account_address()), ENotInitialized);
+        let events = borrow_global_mut<Events>(genesis_account::resource_account_address());
+        event::emit_event(&mut events.payment_123_vault_admin_withdrawn_handle, payment_123_vault_admin_withdrawn);
     }
 
 }

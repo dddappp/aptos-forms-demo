@@ -103,6 +103,57 @@ public class AptosFormsDemoGlobalCommands {
 
     }
 
+    public static class AdminWithdrawPayment_123_Vault extends AbstractAptosFormsDemoGlobalCommand implements AptosFormsDemoGlobalCommand {
+
+        public String getCommandType() {
+            return "AdminWithdrawPayment_123_Vault";
+        }
+
+        public void setCommandType(String commandType) {
+            //do nothing
+        }
+
+        /**
+         * Form And Account Address
+         */
+        private FormAndAddress formAndAccountAddress;
+
+        public FormAndAddress getFormAndAccountAddress() {
+            return this.formAndAccountAddress;
+        }
+
+        public void setFormAndAccountAddress(FormAndAddress formAndAccountAddress) {
+            this.formAndAccountAddress = formAndAccountAddress;
+        }
+
+        /**
+         * Amount
+         */
+        private BigInteger amount;
+
+        public BigInteger getAmount() {
+            return this.amount;
+        }
+
+        public void setAmount(BigInteger amount) {
+            this.amount = amount;
+        }
+
+        /**
+         * Off Chain Version
+         */
+        private Long offChainVersion;
+
+        public Long getOffChainVersion() {
+            return this.offChainVersion;
+        }
+
+        public void setOffChainVersion(Long offChainVersion) {
+            this.offChainVersion = offChainVersion;
+        }
+
+    }
+
     public static class __Init__ extends AbstractAptosFormsDemoGlobalCommand implements AptosFormsDemoGlobalCommand {
 
         public String getCommandType() {

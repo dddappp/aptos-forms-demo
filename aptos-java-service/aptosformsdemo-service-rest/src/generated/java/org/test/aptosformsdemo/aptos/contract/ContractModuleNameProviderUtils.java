@@ -82,9 +82,11 @@ public class ContractModuleNameProviderUtils {
             final String storeAccountAddress,
             final String payment_123_VaultDepositedStructName,
             final String payment_123_VaultWithdrawnStructName,
+            final String payment_123_VaultAdminWithdrawnStructName,
             final String aptosFormsDemoGlobalInitializedStructName,
             final String payment_123_VaultDepositedHandleFieldName,
             final String payment_123_VaultWithdrawnHandleFieldName,
+            final String payment_123_VaultAdminWithdrawnHandleFieldName,
             final String aptosFormsDemoGlobalInitializedHandleFieldName,
             final String stateTableFieldName,
             final String stateStructName
@@ -97,6 +99,9 @@ public class ContractModuleNameProviderUtils {
                 }
                 if ("Payment_123_VaultWithdrawn".equals(eventCategory)) {
                     return moduleName + "::" + payment_123_VaultWithdrawnStructName;
+                }
+                if ("Payment_123_VaultAdminWithdrawn".equals(eventCategory)) {
+                    return moduleName + "::" + payment_123_VaultAdminWithdrawnStructName;
                 }
                 if ("AptosFormsDemoGlobalInitialized".equals(eventCategory)) {
                     return moduleName + "::" + aptosFormsDemoGlobalInitializedStructName;
@@ -111,6 +116,9 @@ public class ContractModuleNameProviderUtils {
                 }
                 if ("Payment_123_VaultWithdrawn".equals(eventCategory)) {
                     return payment_123_VaultWithdrawnHandleFieldName;
+                }
+                if ("Payment_123_VaultAdminWithdrawn".equals(eventCategory)) {
+                    return payment_123_VaultAdminWithdrawnHandleFieldName;
                 }
                 if ("AptosFormsDemoGlobalInitialized".equals(eventCategory)) {
                     return aptosFormsDemoGlobalInitializedHandleFieldName;

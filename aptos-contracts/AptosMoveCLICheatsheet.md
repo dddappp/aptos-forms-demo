@@ -22,3 +22,11 @@ aptos move run --function-id 'default::aptos_forms_demo_main_form_aggregate::upd
 
 ## AptosFormsDemoGlobal singleton object
 
+### AdminWithdrawPayment_123_Vault method
+
+```shell
+aptos move run --function-id 'default::aptos_forms_demo_global_aggregate::admin_withdraw_payment_123_vault' \
+--args u64:amount \
+--assume-yes
+```
+

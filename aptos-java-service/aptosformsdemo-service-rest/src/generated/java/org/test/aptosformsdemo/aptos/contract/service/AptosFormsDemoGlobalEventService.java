@@ -16,6 +16,7 @@ import org.test.aptosformsdemo.aptos.contract.ContractModuleNameProvider;
 
 import org.test.aptosformsdemo.aptos.contract.aptosformsdemoglobal.Payment_123_VaultDeposited;
 import org.test.aptosformsdemo.aptos.contract.aptosformsdemoglobal.Payment_123_VaultWithdrawn;
+import org.test.aptosformsdemo.aptos.contract.aptosformsdemoglobal.Payment_123_VaultAdminWithdrawn;
 import org.test.aptosformsdemo.aptos.contract.aptosformsdemoglobal.AptosFormsDemoGlobalInitialized;
 import org.test.aptosformsdemo.aptos.contract.repository.AptosFormsDemoGlobalEventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -143,6 +144,57 @@ public class AptosFormsDemoGlobalEventService {
             return;
         }
         aptosFormsDemoGlobalEventRepository.save(payment_123_VaultWithdrawn);
+    }
+
+    @Transactional
+    public void pullPayment_123_VaultAdminWithdrawnEvents(ContractModuleNameProvider contractModuleNameProvider, java.util.function.Function<String, FormAndAddress> toFormAndAddress) {
+        String resourceAccountAddress = contractModuleNameProvider.getStoreAccountAddress();
+        if (resourceAccountAddress == null) {
+            return;
+        }
+        int limit = 1;
+        BigInteger cursor = getPayment_123_VaultAdminWithdrawnEventNextCursor();
+        if (cursor == null) {
+            cursor = BigInteger.ZERO;
+        }
+        while (true) {
+            List<Event<Payment_123_VaultAdminWithdrawn>> eventPage;
+            try {
+                eventPage = aptosNodeApiClient.getEventsByEventHandle(
+                        resourceAccountAddress,
+                        contractModuleNameProvider.getContractAddress() + "::" + contractModuleNameProvider.getModuleQualifiedEventsStructName(),
+                        contractModuleNameProvider.getEventHandleFieldName("Payment_123_VaultAdminWithdrawn"),
+                        Payment_123_VaultAdminWithdrawn.class,
+                        cursor.longValue(),
+                        limit
+                );
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            if (eventPage != null && eventPage.size() > 0) {
+                cursor = cursor.add(BigInteger.ONE);
+                for (Event<Payment_123_VaultAdminWithdrawn> eventEnvelope : eventPage) {
+                    eventEnvelope.getData().setAccountAddress(resourceAccountAddress);
+                    savePayment_123_VaultAdminWithdrawn(toFormAndAddress, eventEnvelope);
+                }
+            } else {
+                break;
+            }
+        }
+    }
+
+    private BigInteger getPayment_123_VaultAdminWithdrawnEventNextCursor() {
+        AbstractAptosFormsDemoGlobalEvent.Payment_123_VaultAdminWithdrawn lastEvent = aptosFormsDemoGlobalEventRepository.findFirstPayment_123_VaultAdminWithdrawnByOrderByAptosEventSequenceNumber();
+        return lastEvent != null ? lastEvent.getAptosEventSequenceNumber() : null;
+    }
+
+    private void savePayment_123_VaultAdminWithdrawn(java.util.function.Function<String, FormAndAddress> toFormAndAddress, Event<Payment_123_VaultAdminWithdrawn> eventEnvelope) {
+        AbstractAptosFormsDemoGlobalEvent.Payment_123_VaultAdminWithdrawn payment_123_VaultAdminWithdrawn = DomainBeanUtils.toPayment_123_VaultAdminWithdrawn(toFormAndAddress, eventEnvelope);
+        if (aptosFormsDemoGlobalEventRepository.findById(payment_123_VaultAdminWithdrawn.getAptosFormsDemoGlobalEventId()).isPresent()) {
+            return;
+        }
+        aptosFormsDemoGlobalEventRepository.save(payment_123_VaultAdminWithdrawn);
     }
 
 }

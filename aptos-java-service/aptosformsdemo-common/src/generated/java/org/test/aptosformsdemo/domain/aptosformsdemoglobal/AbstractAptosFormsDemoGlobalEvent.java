@@ -210,6 +210,27 @@ public abstract class AbstractAptosFormsDemoGlobalEvent extends AbstractEvent im
 
     }
 
+    public static class Payment_123_VaultAdminWithdrawn extends AptosFormsDemoGlobalLobEvent implements AptosFormsDemoGlobalEvent.Payment_123_VaultAdminWithdrawn {
+
+        @Override
+        public String getEventClass() {
+            return "Payment_123_VaultAdminWithdrawn";
+        }
+
+        public BigInteger getAmount() {
+            Object val = getDynamicProperties().get("amount");
+            if (val instanceof BigInteger) {
+                return (BigInteger) val;
+            }
+            return ApplicationContext.current.getTypeConverter().convertValue(val, BigInteger.class);
+        }
+
+        public void setAmount(BigInteger value) {
+            getDynamicProperties().put("amount", value);
+        }
+
+    }
+
     public static class AptosFormsDemoGlobalInitialized extends AptosFormsDemoGlobalLobEvent implements AptosFormsDemoGlobalEvent.AptosFormsDemoGlobalInitialized {
 
         @Override

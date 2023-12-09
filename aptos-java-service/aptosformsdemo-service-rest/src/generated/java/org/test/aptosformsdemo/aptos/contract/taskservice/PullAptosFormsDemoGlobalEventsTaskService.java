@@ -41,6 +41,11 @@ public class PullAptosFormsDemoGlobalEventsTaskService {
         aptosFormsDemoGlobalEventService.pullPayment_123_VaultWithdrawnEvents(getContractModuleNameProvider(), getToFormAndAddressFunction());
     }
 
+    @Scheduled(fixedDelayString = "${aptos.contract.pull-aptos-forms-demo-global-events.payment-123-vault-admin-withdrawn.fixed-delay:5000}")
+    public void pullPayment_123_VaultAdminWithdrawnEvents() {
+        aptosFormsDemoGlobalEventService.pullPayment_123_VaultAdminWithdrawnEvents(getContractModuleNameProvider(), getToFormAndAddressFunction());
+    }
+
     private java.util.function.Function<String, FormAndAddress> getToFormAndAddressFunction() {
         return TestTenantizedIdFunctions.toFormAndAddressFunction(); // todo only for test
     }

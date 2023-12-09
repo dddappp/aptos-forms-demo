@@ -15,6 +15,8 @@ import org.test.aptosformsdemo.specialization.Event;
 import org.test.aptosformsdemo.domain.Command;
 
 public interface AptosFormsDemoGlobalApplicationService {
+    void when(AptosFormsDemoGlobalCommands.AdminWithdrawPayment_123_Vault c);
+
     AptosFormsDemoGlobalState get(FormAndAddress id);
 
     Iterable<AptosFormsDemoGlobalState> getAll(Integer firstResult, Integer maxResults);

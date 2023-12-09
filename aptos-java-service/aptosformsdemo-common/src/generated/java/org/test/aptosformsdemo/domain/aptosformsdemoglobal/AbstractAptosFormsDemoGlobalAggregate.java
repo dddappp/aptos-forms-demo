@@ -46,6 +46,19 @@ public abstract class AbstractAptosFormsDemoGlobalAggregate extends AbstractAggr
             super(state);
         }
 
+        @Override
+        public void adminWithdrawPayment_123_Vault(BigInteger amount, Long offChainVersion, String commandId, String requesterId, AptosFormsDemoGlobalCommands.AdminWithdrawPayment_123_Vault c) {
+            java.util.function.Supplier<AptosFormsDemoGlobalEvent.Payment_123_VaultAdminWithdrawn> eventFactory = () -> newPayment_123_VaultAdminWithdrawn(amount, offChainVersion, commandId, requesterId);
+            AptosFormsDemoGlobalEvent.Payment_123_VaultAdminWithdrawn e;
+            try {
+                e = verifyAdminWithdrawPayment_123_Vault(eventFactory, amount, c);
+            } catch (Exception ex) {
+                throw new DomainError("VerificationFailed", ex);
+            }
+
+            apply(e);
+        }
+
         protected AptosFormsDemoGlobalEvent.Payment_123_VaultDeposited verifyDepositPayment_123_Vault(java.util.function.Supplier<AptosFormsDemoGlobalEvent.Payment_123_VaultDeposited> eventFactory, AptosFormsDemoGlobalCommands.DepositPayment_123_Vault c) {
 
             AptosFormsDemoGlobalEvent.Payment_123_VaultDeposited e = (AptosFormsDemoGlobalEvent.Payment_123_VaultDeposited) ReflectUtils.invokeStaticMethod(
@@ -87,6 +100,27 @@ public abstract class AbstractAptosFormsDemoGlobalAggregate extends AbstractAggr
         }
            
 
+        protected AptosFormsDemoGlobalEvent.Payment_123_VaultAdminWithdrawn verifyAdminWithdrawPayment_123_Vault(java.util.function.Supplier<AptosFormsDemoGlobalEvent.Payment_123_VaultAdminWithdrawn> eventFactory, BigInteger amount, AptosFormsDemoGlobalCommands.AdminWithdrawPayment_123_Vault c) {
+            BigInteger Amount = amount;
+
+            AptosFormsDemoGlobalEvent.Payment_123_VaultAdminWithdrawn e = (AptosFormsDemoGlobalEvent.Payment_123_VaultAdminWithdrawn) ReflectUtils.invokeStaticMethod(
+                    "org.test.aptosformsdemo.domain.aptosformsdemoglobal.AdminWithdrawPayment_123_VaultLogic",
+                    "verify",
+                    new Class[]{java.util.function.Supplier.class, AptosFormsDemoGlobalState.class, BigInteger.class, VerificationContext.class},
+                    new Object[]{eventFactory, getState(), amount, VerificationContext.forCommand(c)}
+            );
+
+//package org.test.aptosformsdemo.domain.aptosformsdemoglobal;
+//
+//public class AdminWithdrawPayment_123_VaultLogic {
+//    public static AptosFormsDemoGlobalEvent.Payment_123_VaultAdminWithdrawn verify(java.util.function.Supplier<AptosFormsDemoGlobalEvent.Payment_123_VaultAdminWithdrawn> eventFactory, AptosFormsDemoGlobalState aptosFormsDemoGlobalState, BigInteger amount, VerificationContext verificationContext) {
+//    }
+//}
+
+            return e;
+        }
+           
+
         protected AptosFormsDemoGlobalEvent.AptosFormsDemoGlobalInitialized verify__Init__(java.util.function.Supplier<AptosFormsDemoGlobalEvent.AptosFormsDemoGlobalInitialized> eventFactory, AptosFormsDemoGlobalCommands.__Init__ c) {
 
             AptosFormsDemoGlobalEvent.AptosFormsDemoGlobalInitialized e = (AptosFormsDemoGlobalEvent.AptosFormsDemoGlobalInitialized) ReflectUtils.invokeStaticMethod(
@@ -106,6 +140,25 @@ public abstract class AbstractAptosFormsDemoGlobalAggregate extends AbstractAggr
             return e;
         }
            
+
+        protected AbstractAptosFormsDemoGlobalEvent.Payment_123_VaultAdminWithdrawn newPayment_123_VaultAdminWithdrawn(BigInteger amount, Long offChainVersion, String commandId, String requesterId) {
+            AptosFormsDemoGlobalEventId eventId = new AptosFormsDemoGlobalEventId(getState().getFormAndAccountAddress(), null);
+            AbstractAptosFormsDemoGlobalEvent.Payment_123_VaultAdminWithdrawn e = new AbstractAptosFormsDemoGlobalEvent.Payment_123_VaultAdminWithdrawn();
+
+            e.getDynamicProperties().put("amount", amount);
+            e.setAptosEventVersion(null);
+            e.setAptosEventSequenceNumber(null);
+            e.setAptosEventType(null);
+            e.setAptosEventGuid(null);
+            e.setStatus(null);
+
+            e.setCommandId(commandId);
+            e.setCreatedBy(requesterId);
+            e.setCreatedAt((java.util.Date)ApplicationContext.current.getTimestampService().now(java.util.Date.class));
+
+            e.setAptosFormsDemoGlobalEventId(eventId);
+            return e;
+        }
 
         protected AbstractAptosFormsDemoGlobalEvent.AptosFormsDemoGlobalInitialized newAptosFormsDemoGlobalInitialized(Long offChainVersion, String commandId, String requesterId) {
             AptosFormsDemoGlobalEventId eventId = new AptosFormsDemoGlobalEventId(getState().getFormAndAccountAddress(), null);

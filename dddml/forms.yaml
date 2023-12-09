@@ -368,6 +368,13 @@ singletonObjects:
                     (aptos_forms_demo_global, w)
         event:
           name: Payment_123_VaultWithdrawn
+      AdminWithdrawPayment_123_Vault:
+        parameters:
+          Amount:
+            name: Amount
+            type: u64
+        event:
+          name: Payment_123_VaultAdminWithdrawn
       __Init__:
         name: __Init__
         metadata: {}

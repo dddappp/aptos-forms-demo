@@ -23,6 +23,9 @@ public class DefaultAptosFormsDemoGlobalModuleNameProvider implements ContractMo
         if ("Payment_123_VaultWithdrawn".equals(eventCategory)) {
             return "payment_123_vault_withdrawn_handle";
         }
+        if ("Payment_123_VaultAdminWithdrawn".equals(eventCategory)) {
+            return "payment_123_vault_admin_withdrawn_handle";
+        }
         if ("AptosFormsDemoGlobalInitialized".equals(eventCategory)) {
             return "aptos_forms_demo_global_initialized_handle";
         }

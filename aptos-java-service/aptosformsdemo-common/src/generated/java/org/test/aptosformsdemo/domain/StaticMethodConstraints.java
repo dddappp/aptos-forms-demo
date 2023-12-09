@@ -62,6 +62,14 @@ public class StaticMethodConstraints {
 
 
         ReflectUtils.assertStaticMethodIfClassExists(
+                    "org.test.aptosformsdemo.domain.aptosformsdemoglobal.AdminWithdrawPayment_123_VaultLogic",
+                    "verify",
+                    new Class[]{java.util.function.Supplier.class, AptosFormsDemoGlobalState.class, BigInteger.class, VerificationContext.class},
+                    new String[]{"_", "_", "amount"}
+            );
+
+
+        ReflectUtils.assertStaticMethodIfClassExists(
                     "org.test.aptosformsdemo.domain.aptosformsdemoglobal.__Init__Logic",
                     "verify",
                     new Class[]{java.util.function.Supplier.class, AptosFormsDemoGlobalState.class, VerificationContext.class},
@@ -90,6 +98,14 @@ public class StaticMethodConstraints {
                     "mutate",
                     new Class[]{FormDefinitionState.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, MutationContext.class},
                     new String[]{"_", "formId", "contractAddress", "storeAccountAddress", "pageName", "moveStateTableFieldName", "moveStateStructName", "moveSubmitEventHandleFieldName", "moveUpdateEventHandleFieldName", "moveSubmitEventStructName", "moveUpdateEventStructName"}
+            );
+
+
+        ReflectUtils.assertStaticMethodIfClassExists(
+                    "org.test.aptosformsdemo.domain.aptosformsdemoglobal.AdminWithdrawPayment_123_VaultLogic",
+                    "mutate",
+                    new Class[]{AptosFormsDemoGlobalState.class, BigInteger.class, BigInteger.class, BigInteger.class, String.class, AptosEventGuid.class, String.class, MutationContext.class},
+                    new String[]{"_", "amount", "aptosEventVersion", "aptosEventSequenceNumber", "aptosEventType", "aptosEventGuid", "status"}
             );
 
 

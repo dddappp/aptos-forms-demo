@@ -35,6 +35,13 @@ public interface AptosFormsDemoGlobalEvent extends Event, AptosEvent, HasStatus 
 
     }
 
+    interface Payment_123_VaultAdminWithdrawn extends AptosFormsDemoGlobalEvent {
+        BigInteger getAmount();
+
+        void setAmount(BigInteger value);
+
+    }
+
     interface AptosFormsDemoGlobalInitialized extends AptosFormsDemoGlobalEvent {
     }
 

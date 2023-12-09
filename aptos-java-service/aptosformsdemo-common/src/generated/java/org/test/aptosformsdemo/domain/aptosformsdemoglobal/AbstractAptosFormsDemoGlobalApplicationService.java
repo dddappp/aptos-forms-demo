@@ -50,6 +50,10 @@ public abstract class AbstractAptosFormsDemoGlobalApplicationService implements 
         this.stateQueryRepository = stateQueryRepository;
     }
 
+    public void when(AptosFormsDemoGlobalCommands.AdminWithdrawPayment_123_Vault c) {
+        update(c, ar -> ar.adminWithdrawPayment_123_Vault(c.getAmount(), c.getOffChainVersion(), c.getCommandId(), c.getRequesterId(), c));
+    }
+
     public AptosFormsDemoGlobalState get(FormAndAddress id) {
         AptosFormsDemoGlobalState state = getStateRepository().get(id, true);
         return state;

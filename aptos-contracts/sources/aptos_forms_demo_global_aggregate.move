@@ -5,6 +5,7 @@
 
 module aptos_forms_demo::aptos_forms_demo_global_aggregate {
     use aptos_forms_demo::aptos_forms_demo_global;
+    use aptos_forms_demo::aptos_forms_demo_global_admin_withdraw_payment_123_vault_logic;
     use aptos_forms_demo::aptos_forms_demo_global_deposit_payment_123_vault_logic;
     use aptos_forms_demo::aptos_forms_demo_global_withdraw_payment_123_vault_logic;
     use aptos_framework::aptos_coin::AptosCoin;
@@ -51,6 +52,25 @@ module aptos_forms_demo::aptos_forms_demo_global_aggregate {
         aptos_forms_demo_global::update_version_and_add(updated_aptos_forms_demo_global);
         aptos_forms_demo_global::emit_payment_123_vault_withdrawn(payment_123_vault_withdrawn);
         withdraw_payment_123_vault_return
+    }
+
+    public entry fun admin_withdraw_payment_123_vault(
+        account: &signer,
+        amount: u64,
+    ) {
+        let aptos_forms_demo_global = aptos_forms_demo_global::remove_aptos_forms_demo_global();
+        let payment_123_vault_admin_withdrawn = aptos_forms_demo_global_admin_withdraw_payment_123_vault_logic::verify(
+            account,
+            amount,
+            &aptos_forms_demo_global,
+        );
+        let updated_aptos_forms_demo_global = aptos_forms_demo_global_admin_withdraw_payment_123_vault_logic::mutate(
+            account,
+            &payment_123_vault_admin_withdrawn,
+            aptos_forms_demo_global,
+        );
+        aptos_forms_demo_global::update_version_and_add(updated_aptos_forms_demo_global);
+        aptos_forms_demo_global::emit_payment_123_vault_admin_withdrawn(payment_123_vault_admin_withdrawn);
     }
 
 }

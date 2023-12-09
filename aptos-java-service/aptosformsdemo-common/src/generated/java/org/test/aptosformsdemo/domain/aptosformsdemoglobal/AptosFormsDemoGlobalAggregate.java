@@ -17,6 +17,8 @@ public interface AptosFormsDemoGlobalAggregate {
 
     List<Event> getChanges();
 
+    void adminWithdrawPayment_123_Vault(BigInteger amount, Long offChainVersion, String commandId, String requesterId, AptosFormsDemoGlobalCommands.AdminWithdrawPayment_123_Vault c);
+
     void throwOnInvalidStateTransition(Command c);
 }
 
