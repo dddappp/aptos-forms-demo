@@ -204,12 +204,12 @@
       "props": {
         "options": [
           {
-            "label": "初级",
-            "value": 100
+            "label": "初级会员（0.01 APT）",
+            "value": 1000000
           },
           {
-            "label": "高级",
-            "value": 200
+            "label": "高级会员（0.02 APT）",
+            "value": 2000000
           }
         ],
         "coinType": "APT"

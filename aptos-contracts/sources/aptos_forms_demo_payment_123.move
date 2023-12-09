@@ -6,16 +6,16 @@
 module aptos_forms_demo::aptos_forms_demo_payment_123 {
     use std::vector;
 
-    public fun option_100(): u64 {
-        100
+    public fun option_1000000(): u64 {
+        1000000
     }
 
-    public fun option_200(): u64 {
-        200
+    public fun option_2000000(): u64 {
+        2000000
     }
 
     public fun is_valid(v: u64): bool {
-        v == option_100() || v == option_200()
+        v == option_1000000() || v == option_2000000()
     }
 
     public fun are_all_valid(vs: &vector<u64>): bool {

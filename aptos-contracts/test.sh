@@ -26,7 +26,7 @@ aptos move publish --named-addresses aptos_forms_demo=default,xrender_form_utils
 aptos move run --function-id 'default::aptos_forms_demo_init::initialize' --assume-yes
 
 aptos move run --function-id 'default::aptos_forms_demo_main_form_aggregate::submit' \
---args u128:12 'string:["A","B"]' 'string:["A","B"]' 'string:fr_8xjs' 'string:1' u128:1 'string:fr_b3ub' u128:1 'u16:[2022,1,1,2022,1,2]' 'u16:[2022,1,1,2022,1,2]' u128:1 'u8:[1,1,1,1,1,2]' 'string:["A","B"]' 'string:["1","2"]' 'u16:[2022,1,1]' 'string:single_text1' u64:100 \
+--args u128:12 'string:["A","B"]' 'string:["A","B"]' 'string:fr_8xjs' 'string:1' u128:1 'string:fr_b3ub' u128:1 'u16:[2022,1,1,2022,1,2]' 'u16:[2022,1,1,2022,1,2]' u128:1 'u8:[1,1,1,1,1,2]' 'string:["A","B"]' 'string:["1","2"]' 'u16:[2022,1,1]' 'string:single_text1' u64:1000000 \
 --assume-yes
 
 #cd ../aptos-java-service

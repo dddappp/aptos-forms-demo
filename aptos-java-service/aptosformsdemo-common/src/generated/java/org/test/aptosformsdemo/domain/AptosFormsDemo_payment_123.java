@@ -9,8 +9,8 @@ package org.test.aptosformsdemo.domain;
 import java.math.BigInteger;
 
 public class AptosFormsDemo_payment_123 {
-    public static final BigInteger OPTION_100 = BigInteger.valueOf(100);
+    public static final BigInteger OPTION_1000000 = BigInteger.valueOf(1000000);
 
-    public static final BigInteger OPTION_200 = BigInteger.valueOf(200);
+    public static final BigInteger OPTION_2000000 = BigInteger.valueOf(2000000);
 
 }

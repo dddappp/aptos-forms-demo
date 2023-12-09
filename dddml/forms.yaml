@@ -289,18 +289,18 @@ enumObjects:
   AptosFormsDemo_payment_123:
     baseType: u64
     values:
-      Option_100:
-        name: Option_100
-        displayName: 初级
-        value: 100
-        intValue: 100
-        stringValue: 100
-      Option_200:
-        name: Option_200
-        displayName: 高级
-        value: 200
-        intValue: 200
-        stringValue: 200
+      Option_1000000:
+        name: Option_1000000
+        displayName: 初级会员（0.01 APT）
+        value: 1000000
+        intValue: 1000000
+        stringValue: 1000000
+      Option_2000000:
+        name: Option_2000000
+        displayName: 高级会员（0.02 APT）
+        value: 2000000
+        intValue: 2000000
+        stringValue: 2000000
     name: AptosFormsDemo_payment_123
     displayName: 支付
     metadata: {}
