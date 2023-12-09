@@ -230,7 +230,7 @@ You can do a test of submitting the form using the default account:
 
 ```shell
 aptos move run --function-id 'default::aptos_forms_demo_main_form_aggregate::submit' \
---args u128:12 'string:["A","B"]' 'string:["A","B"]' 'string:fr_8xjs' 'string:1' u128:1 'string:fr_b3ub' u128:1 'u16:[2022,1,1,2022,1,2]' 'u16:[2022,1,1,2022,1,2]' u128:1 'u8:[1,1,1,1,1,2]' 'string:["A","B"]' 'string:["1","2"]' 'u16:[2022,1,1]' 'string:single_text1' \
+--args u128:12 'string:["A","B"]' 'string:["A","B"]' 'string:fr_8xjs' 'string:1' u128:1 'string:fr_b3ub' u128:1 'u16:[2022,1,1,2022,1,2]' 'u16:[2022,1,1,2022,1,2]' u128:1 'u8:[1,1,1,1,1,2]' 'string:["A","B"]' 'string:["1","2"]' 'u16:[2022,1,1]' 'string:single_text1' u64:100 \
 --assume-yes
 ```
 
@@ -239,8 +239,16 @@ aptos move run --function-id 'default::aptos_forms_demo_main_form_aggregate::sub
 You can do a test of updating the form like this:
 
 ```shell
-aptos move run --function-id 'default::aptos_forms_demo_main_form_aggregate::update' \                                                                    
---args address:56c01bfdfae128e57544f59f52be70bb883ea2d1fb97ba5774741996f77b4eb7  u128:12 'string:["A","B"]' 'string:["A","B"]' 'string:fr_8xjs' 'string:1' u128:1 'string:fr_b3ub' u128:1 'u16:[2022,1,1,2022,1,2]' 'u16:[2022,1,1,2022,1,2]' u128:1 'u8:[1,1,1,1,1,2]' 'string:["A","B"]' 'string:["1","2"]' 'u16:[2022,1,1]' 'string:single_text1' \
+aptos move run --function-id 'default::aptos_forms_demo_main_form_aggregate::update' \
+--args address:56c01bfdfae128e57544f59f52be70bb883ea2d1fb97ba5774741996f77b4eb7  u128:12 'string:["A","B"]' 'string:["A","B"]' 'string:fr_8xjs' 'string:1' u128:1 'string:fr_b3ub' u128:1 'u16:[2022,1,1,2022,1,2]' 'u16:[2022,1,1,2022,1,2]' u128:1 'u8:[1,1,1,1,1,2]' 'string:["A","B"]' 'string:["1","2"]' 'u16:[2022,1,1]' 'string:single_text1' u64:100 \
+--assume-yes
+```
+
+### Test admin withdraw payment
+
+```shell
+aptos move run --function-id 'default::aptos_forms_demo_global_aggregate::admin_withdraw_payment_123_vault' \
+--args u64:100 \
 --assume-yes
 ```
 
