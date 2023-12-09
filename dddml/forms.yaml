@@ -157,6 +157,11 @@
                     assert!(aptos_framework::timestamp::now_seconds() <= 3908475414, EFormCutOff); // Cutoff at: 2093-11-08T07:36:54+08:00
         event:
           name: AptosFormsDemoMainFormUpdated
+          properties:
+            Payment_123_Supplement:
+              type: u64
+            Payment_123_Refund:
+              type: u64
         constants:
           EFormNotOpen:
             name: EFormNotOpen

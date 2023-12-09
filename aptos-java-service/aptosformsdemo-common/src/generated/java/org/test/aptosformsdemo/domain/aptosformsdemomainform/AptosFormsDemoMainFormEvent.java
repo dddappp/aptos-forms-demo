@@ -161,6 +161,14 @@ public interface AptosFormsDemoMainFormEvent extends Event, AptosEvent, HasStatu
 
         void setPayment_123(BigInteger value);
 
+        BigInteger getPayment_123_Supplement();
+
+        void setPayment_123_Supplement(BigInteger value);
+
+        BigInteger getPayment_123_Refund();
+
+        void setPayment_123_Refund(BigInteger value);
+
     }
 
     FormPageAndAddress getFormPageAndSignerAddress();

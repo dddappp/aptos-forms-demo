@@ -434,6 +434,8 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         fr_hhzp: Date,
         single_text1: String,
         payment_123: u64,
+        payment_123_supplement: u64,
+        payment_123_refund: u64,
     }
 
     public fun aptos_forms_demo_main_form_updated_signer_address(aptos_forms_demo_main_form_updated: &AptosFormsDemoMainFormUpdated): address {
@@ -508,6 +510,14 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         aptos_forms_demo_main_form_updated.payment_123
     }
 
+    public fun aptos_forms_demo_main_form_updated_payment_123_supplement(aptos_forms_demo_main_form_updated: &AptosFormsDemoMainFormUpdated): u64 {
+        aptos_forms_demo_main_form_updated.payment_123_supplement
+    }
+
+    public fun aptos_forms_demo_main_form_updated_payment_123_refund(aptos_forms_demo_main_form_updated: &AptosFormsDemoMainFormUpdated): u64 {
+        aptos_forms_demo_main_form_updated.payment_123_refund
+    }
+
     public(friend) fun new_aptos_forms_demo_main_form_updated(
         aptos_forms_demo_main_form: &AptosFormsDemoMainForm,
         fr_5pqi: u128,
@@ -527,6 +537,8 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         fr_hhzp: Date,
         single_text1: String,
         payment_123: u64,
+        payment_123_supplement: u64,
+        payment_123_refund: u64,
     ): AptosFormsDemoMainFormUpdated {
         AptosFormsDemoMainFormUpdated {
             signer_address: signer_address(aptos_forms_demo_main_form),
@@ -548,6 +560,8 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
             fr_hhzp,
             single_text1,
             payment_123,
+            payment_123_supplement,
+            payment_123_refund,
         }
     }
 

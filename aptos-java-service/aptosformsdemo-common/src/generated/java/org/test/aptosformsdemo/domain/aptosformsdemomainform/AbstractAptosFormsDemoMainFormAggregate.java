@@ -202,6 +202,8 @@ public abstract class AbstractAptosFormsDemoMainFormAggregate extends AbstractAg
             e.getDynamicProperties().put("fr_hhzp", fr_hhzp);
             e.getDynamicProperties().put("single_text1", single_text1);
             e.getDynamicProperties().put("payment_123", payment_123);
+            e.setPayment_123_Supplement(null);
+            e.setPayment_123_Refund(null);
             e.setAptosEventVersion(null);
             e.setAptosEventSequenceNumber(null);
             e.setAptosEventType(null);

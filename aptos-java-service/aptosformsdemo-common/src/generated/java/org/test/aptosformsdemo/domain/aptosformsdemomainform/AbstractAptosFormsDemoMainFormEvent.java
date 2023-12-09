@@ -592,6 +592,30 @@ public abstract class AbstractAptosFormsDemoMainFormEvent extends AbstractEvent 
             getDynamicProperties().put("payment_123", value);
         }
 
+        public BigInteger getPayment_123_Supplement() {
+            Object val = getDynamicProperties().get("payment_123_Supplement");
+            if (val instanceof BigInteger) {
+                return (BigInteger) val;
+            }
+            return ApplicationContext.current.getTypeConverter().convertValue(val, BigInteger.class);
+        }
+
+        public void setPayment_123_Supplement(BigInteger value) {
+            getDynamicProperties().put("payment_123_Supplement", value);
+        }
+
+        public BigInteger getPayment_123_Refund() {
+            Object val = getDynamicProperties().get("payment_123_Refund");
+            if (val instanceof BigInteger) {
+                return (BigInteger) val;
+            }
+            return ApplicationContext.current.getTypeConverter().convertValue(val, BigInteger.class);
+        }
+
+        public void setPayment_123_Refund(BigInteger value) {
+            getDynamicProperties().put("payment_123_Refund", value);
+        }
+
     }
 
 
