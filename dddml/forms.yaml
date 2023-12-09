@@ -160,8 +160,12 @@
           properties:
             Payment_123_Supplement:
               type: u64
+              valueExpression:
+                Move: "0/* todo */"
             Payment_123_Refund:
               type: u64
+              valueExpression:
+                Move: "0/* todo */"
         constants:
           EFormNotOpen:
             name: EFormNotOpen

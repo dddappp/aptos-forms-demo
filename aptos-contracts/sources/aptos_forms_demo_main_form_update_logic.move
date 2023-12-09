@@ -57,8 +57,8 @@ module aptos_forms_demo::aptos_forms_demo_main_form_update_logic {
             fr_hhzp,
             single_text1,
             payment_123,
-            0,//todo payment_123_supplement,
-            0,//todo payment_123_refund,
+            0/* todo */,
+            0/* todo */,
         )
     }
 
@@ -105,8 +105,6 @@ module aptos_forms_demo::aptos_forms_demo_main_form_update_logic {
         aptos_forms_demo_main_form::set_fr_hhzp(&mut aptos_forms_demo_main_form, fr_hhzp);
         aptos_forms_demo_main_form::set_single_text1(&mut aptos_forms_demo_main_form, single_text1);
         aptos_forms_demo_main_form::set_payment_123(&mut aptos_forms_demo_main_form, payment_123);
-        //aptos_forms_demo_main_form::set_payment_123_supplement(&mut aptos_forms_demo_main_form, payment_123_supplement);
-        //aptos_forms_demo_main_form::set_payment_123_refund(&mut aptos_forms_demo_main_form, payment_123_refund);
         aptos_forms_demo_main_form
     }
 
