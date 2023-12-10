@@ -87,6 +87,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form_update_logic {
         let payment_123 = aptos_forms_demo_main_form::aptos_forms_demo_main_form_updated_payment_123(aptos_forms_demo_main_form_updated);
         let payment_123_supplement = aptos_forms_demo_main_form::aptos_forms_demo_main_form_updated_payment_123_supplement(aptos_forms_demo_main_form_updated);
         let payment_123_refund = aptos_forms_demo_main_form::aptos_forms_demo_main_form_updated_payment_123_refund(aptos_forms_demo_main_form_updated);
+        let signer_address = aptos_forms_demo_main_form::signer_address(&aptos_forms_demo_main_form);
         if (payment_123_supplement > 0) {
             let withdrawn_payment_123_supplement = aptos_framework::coin::withdraw<aptos_framework::aptos_coin::AptosCoin>(_account, payment_123_supplement);
             aptos_forms_demo::aptos_forms_demo_global_aggregate::deposit_payment_123_vault(_account, withdrawn_payment_123_supplement);            
@@ -94,7 +95,6 @@ module aptos_forms_demo::aptos_forms_demo_main_form_update_logic {
             let withdrawn_payment_123_refund = aptos_forms_demo::aptos_forms_demo_global_aggregate::withdraw_payment_123_vault(_account, payment_123_refund);            
             aptos_framework::coin::deposit(std::signer::address_of(_account), withdrawn_payment_123_refund);
         };
-        let signer_address = aptos_forms_demo_main_form::signer_address(&aptos_forms_demo_main_form);
         let _ = signer_address;
         aptos_forms_demo_main_form::set_fr_5pqi(&mut aptos_forms_demo_main_form, fr_5pqi);
         aptos_forms_demo_main_form::set_fr_duif(&mut aptos_forms_demo_main_form, fr_duif);
