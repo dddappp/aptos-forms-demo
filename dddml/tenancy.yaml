@@ -183,6 +183,12 @@ configuration:
       idTypeFormat: "FormAnd{_ORIGINAL_ID_TYPE_}"
       originalIdPropertyNameFormat: "{_ORIGINAL_ID_TYPE_}"
 
+#  java:
+#    aggregateIdWhenSingletonObjectAsAggregate:
+#      name: AccountAddress
+#      type: address
+#      defaultValue: "0x00"
+
   aggregates:
     AptosFormsDemoMainForm:
       metadata:
