@@ -212,7 +212,8 @@
             "value": 2000000
           }
         ],
-        "coinType": "APT"
+        "coinType": "APT",
+        "updatable": true
       }
     }
   },
