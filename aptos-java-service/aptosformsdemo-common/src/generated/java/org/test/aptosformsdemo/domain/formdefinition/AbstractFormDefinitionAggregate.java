@@ -129,7 +129,7 @@ public abstract class AbstractFormDefinitionAggregate extends AbstractAggregate 
         ((AbstractCommand)c).setRequesterId(outerCommand.getRequesterId());
         FormPageDefinitionEventId stateEventId = new FormPageDefinitionEventId(outerState.getFormSequenceId(), c.getPageNumber(), offChainVersion);
         FormPageDefinitionEvent.FormPageDefinitionStateCreated e = newFormPageDefinitionStateCreated(stateEventId);
-        FormPageDefinitionState s = ((EntityStateCollection.ModifiableEntityStateCollection<Integer, FormPageDefinitionState>)outerState.getPageDefinitions()).getOrAdd(c.getPageNumber());
+        FormPageDefinitionState s = ((EntityStateCollection.ModifiableEntityStateCollection<Integer, FormPageDefinitionState>)outerState.getPageDefinitions()).getOrAddDefault(c.getPageNumber());
 
         e.setPageName(c.getPageName());
         e.setMoveStateTableFieldName(c.getMoveStateTableFieldName());
@@ -150,7 +150,7 @@ public abstract class AbstractFormDefinitionAggregate extends AbstractAggregate 
         ((AbstractCommand)c).setRequesterId(outerCommand.getRequesterId());
         FormPageDefinitionEventId stateEventId = new FormPageDefinitionEventId(outerState.getFormSequenceId(), c.getPageNumber(), offChainVersion);
         FormPageDefinitionEvent.FormPageDefinitionStateMergePatched e = newFormPageDefinitionStateMergePatched(stateEventId);
-        FormPageDefinitionState s = ((EntityStateCollection.ModifiableEntityStateCollection<Integer, FormPageDefinitionState>)outerState.getPageDefinitions()).getOrAdd(c.getPageNumber());
+        FormPageDefinitionState s = ((EntityStateCollection.ModifiableEntityStateCollection<Integer, FormPageDefinitionState>)outerState.getPageDefinitions()).getOrAddDefault(c.getPageNumber());
 
         e.setPageName(c.getPageName());
         e.setMoveStateTableFieldName(c.getMoveStateTableFieldName());

@@ -174,7 +174,7 @@ public abstract class AbstractAptosFormsDemoMainFormState implements AptosFormsD
         return false;
     }
 
-    protected void merge(AptosFormsDemoMainFormState s) {
+    public void merge(AptosFormsDemoMainFormState s) {
         if (s == this) {
             return;
         }

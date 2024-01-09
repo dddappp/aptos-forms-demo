@@ -74,6 +74,7 @@ public class M {
         clsMap.put("u64", java.math.BigInteger.class);
         clsMap.put("u128", java.math.BigInteger.class);
         clsMap.put("u256", java.math.BigInteger.class);
+        clsMap.put("AsciiString", String.class);
         clsMap.put("vector<u8>", String.class);
         clsMap.put("OffsetDateTime", java.time.OffsetDateTime.class);
         clsMap.put("java.time.OffsetDateTime", java.time.OffsetDateTime.class);

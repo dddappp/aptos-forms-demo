@@ -78,7 +78,7 @@ public class HibernateFormDefinitionStateRepository implements FormDefinitionSta
         FormDefinitionState persistent = getCurrentSession().get(AbstractFormDefinitionState.SimpleFormDefinitionState.class, detached.getFormSequenceId());
         if (persistent != null) {
             merge(persistent, detached);
-            getCurrentSession().merge(detached);
+            getCurrentSession().save(persistent);
         } else {
             getCurrentSession().save(detached);
         }
@@ -86,31 +86,7 @@ public class HibernateFormDefinitionStateRepository implements FormDefinitionSta
     }
 
     private void merge(FormDefinitionState persistent, FormDefinitionState detached) {
-        ((FormDefinitionState.MutableFormDefinitionState) detached).setOffChainVersion(persistent.getOffChainVersion());
-        if (detached.getPageDefinitions() != null) {
-            removeNonExistentPageDefinitions(persistent.getPageDefinitions(), detached.getPageDefinitions());
-            for (FormPageDefinitionState d : detached.getPageDefinitions()) {
-                FormPageDefinitionState p = persistent.getPageDefinitions().get(d.getPageNumber());
-                if (p == null)
-                    getCurrentSession().save(d);
-                else
-                    merge(p, d);
-            }
-        }
-    }
-
-    private void merge(FormPageDefinitionState persistent, FormPageDefinitionState detached) {
-        ((FormPageDefinitionState.MutableFormPageDefinitionState) detached).setOffChainVersion(persistent.getOffChainVersion());
-    }
-
-    private void removeNonExistentPageDefinitions(EntityStateCollection<Integer, FormPageDefinitionState> persistentCollection, EntityStateCollection<Integer, FormPageDefinitionState> detachedCollection) {
-        Set<Integer> removedIds = persistentCollection.stream().map(i -> i.getPageNumber()).collect(java.util.stream.Collectors.toSet());
-        detachedCollection.forEach(i -> removedIds.remove(i.getPageNumber()));
-        for (Integer i : removedIds) {
-            FormPageDefinitionState s = persistentCollection.get(i);
-            persistentCollection.remove(s);
-            getCurrentSession().delete(s);
-        }
+        ((AbstractFormDefinitionState) persistent).merge(detached);
     }
 
 }

@@ -73,7 +73,7 @@ public class HibernateFormIdRegistrationStateRepository implements FormIdRegistr
         FormIdRegistrationState persistent = getCurrentSession().get(AbstractFormIdRegistrationState.SimpleFormIdRegistrationState.class, detached.getFormSequenceId());
         if (persistent != null) {
             merge(persistent, detached);
-            getCurrentSession().merge(detached);
+            getCurrentSession().save(persistent);
         } else {
             getCurrentSession().save(detached);
         }
@@ -81,7 +81,7 @@ public class HibernateFormIdRegistrationStateRepository implements FormIdRegistr
     }
 
     private void merge(FormIdRegistrationState persistent, FormIdRegistrationState detached) {
-        ((FormIdRegistrationState.MutableFormIdRegistrationState) detached).setOffChainVersion(persistent.getOffChainVersion());
+        ((AbstractFormIdRegistrationState) persistent).merge(detached);
     }
 
 }

@@ -79,7 +79,7 @@ public class HibernateAptosFormsDemoMainFormStateRepository implements AptosForm
         AptosFormsDemoMainFormState persistent = getCurrentSession().get(AbstractAptosFormsDemoMainFormState.SimpleAptosFormsDemoMainFormState.class, detached.getFormPageAndSignerAddress());
         if (persistent != null) {
             merge(persistent, detached);
-            getCurrentSession().merge(detached);
+            getCurrentSession().save(persistent);
         } else {
             getCurrentSession().save(detached);
         }
@@ -87,7 +87,7 @@ public class HibernateAptosFormsDemoMainFormStateRepository implements AptosForm
     }
 
     private void merge(AptosFormsDemoMainFormState persistent, AptosFormsDemoMainFormState detached) {
-        ((AptosFormsDemoMainFormState.MutableAptosFormsDemoMainFormState) detached).setOffChainVersion(persistent.getOffChainVersion());
+        ((AbstractAptosFormsDemoMainFormState) persistent).merge(detached);
     }
 
 }

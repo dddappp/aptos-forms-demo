@@ -161,6 +161,14 @@ public abstract class AbstractFormIdRegistrationState implements FormIdRegistrat
         return false;
     }
 
+    public void merge(FormIdRegistrationState s) {
+        if (s == this) {
+            return;
+        }
+        this.setFormId(s.getFormId());
+        this.setActive(s.getActive());
+    }
+
     public void save() {
     }
 

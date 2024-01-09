@@ -281,7 +281,7 @@ public abstract class AbstractFormPageDefinitionState implements FormPageDefinit
 
     }
 
-    protected void merge(FormPageDefinitionState s) {
+    public void merge(FormPageDefinitionState s) {
         if (s == this) {
             return;
         }
