@@ -20,8 +20,8 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
     const EIdAlreadyExists: u64 = 101;
     const EDataTooLong: u64 = 102;
     const EInappropriateVersion: u64 = 103;
-    const ENotInitialized: u64 = 110;
     const EInvalidEnumValue: u64 = 106;
+    const ENotInitialized: u64 = 110;
 
     struct Events has key {
         aptos_forms_demo_main_form_submitted_handle: event::EventHandle<AptosFormsDemoMainFormSubmitted>,
