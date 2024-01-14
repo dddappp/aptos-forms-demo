@@ -30,3 +30,19 @@ aptos move run --function-id 'default::aptos_forms_demo_global_aggregate::admin_
 --assume-yes
 ```
 
+### DepositCoin_claimer_1_Vault method
+
+```shell
+aptos move run --function-id 'default::aptos_forms_demo_global_aggregate::deposit_coin_claimer_1_vault' \
+--args u64:amount \
+--assume-yes
+```
+
+### AdminWithdrawCoin_claimer_1_Vault method
+
+```shell
+aptos move run --function-id 'default::aptos_forms_demo_global_aggregate::admin_withdraw_coin_claimer_1_vault' \
+--args u64:amount \
+--assume-yes
+```
+

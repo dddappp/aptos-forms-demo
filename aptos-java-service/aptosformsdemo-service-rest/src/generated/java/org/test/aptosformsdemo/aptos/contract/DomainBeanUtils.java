@@ -20,6 +20,9 @@ import org.test.aptosformsdemo.domain.aptosformsdemoglobal.AbstractAptosFormsDem
 import org.test.aptosformsdemo.aptos.contract.aptosformsdemoglobal.Payment_123_VaultDeposited;
 import org.test.aptosformsdemo.aptos.contract.aptosformsdemoglobal.Payment_123_VaultWithdrawn;
 import org.test.aptosformsdemo.aptos.contract.aptosformsdemoglobal.Payment_123_VaultAdminWithdrawn;
+import org.test.aptosformsdemo.aptos.contract.aptosformsdemoglobal.Coin_claimer_1_VaultDeposited;
+import org.test.aptosformsdemo.aptos.contract.aptosformsdemoglobal.Coin_claimer_1_VaultWithdrawn;
+import org.test.aptosformsdemo.aptos.contract.aptosformsdemoglobal.Coin_claimer_1_VaultAdminWithdrawn;
 import org.test.aptosformsdemo.aptos.contract.aptosformsdemoglobal.AptosFormsDemoGlobalInitialized;
 
 /**
@@ -154,6 +157,45 @@ public class DomainBeanUtils {
         setAptosEventProperties(payment_123_VaultAdminWithdrawn, eventEnvelope);
 
         return payment_123_VaultAdminWithdrawn;
+    }
+
+    public static AbstractAptosFormsDemoGlobalEvent.Coin_claimer_1_VaultDeposited toCoin_claimer_1_VaultDeposited(java.util.function.Function<String, FormAndAddress> toFormAndAddress, Event<Coin_claimer_1_VaultDeposited> eventEnvelope) {
+        Coin_claimer_1_VaultDeposited contractEvent = eventEnvelope.getData();
+
+        AbstractAptosFormsDemoGlobalEvent.Coin_claimer_1_VaultDeposited coin_claimer_1_VaultDeposited = new AbstractAptosFormsDemoGlobalEvent.Coin_claimer_1_VaultDeposited();
+        coin_claimer_1_VaultDeposited.setFormAndAccountAddress(toFormAndAddress.apply(contractEvent.getAccountAddress()));
+        coin_claimer_1_VaultDeposited.setDynamicProperties(contractEvent.getDynamicProperties());
+        coin_claimer_1_VaultDeposited.setVersion(contractEvent.getVersion());
+
+        setAptosEventProperties(coin_claimer_1_VaultDeposited, eventEnvelope);
+
+        return coin_claimer_1_VaultDeposited;
+    }
+
+    public static AbstractAptosFormsDemoGlobalEvent.Coin_claimer_1_VaultWithdrawn toCoin_claimer_1_VaultWithdrawn(java.util.function.Function<String, FormAndAddress> toFormAndAddress, Event<Coin_claimer_1_VaultWithdrawn> eventEnvelope) {
+        Coin_claimer_1_VaultWithdrawn contractEvent = eventEnvelope.getData();
+
+        AbstractAptosFormsDemoGlobalEvent.Coin_claimer_1_VaultWithdrawn coin_claimer_1_VaultWithdrawn = new AbstractAptosFormsDemoGlobalEvent.Coin_claimer_1_VaultWithdrawn();
+        coin_claimer_1_VaultWithdrawn.setFormAndAccountAddress(toFormAndAddress.apply(contractEvent.getAccountAddress()));
+        coin_claimer_1_VaultWithdrawn.setDynamicProperties(contractEvent.getDynamicProperties());
+        coin_claimer_1_VaultWithdrawn.setVersion(contractEvent.getVersion());
+
+        setAptosEventProperties(coin_claimer_1_VaultWithdrawn, eventEnvelope);
+
+        return coin_claimer_1_VaultWithdrawn;
+    }
+
+    public static AbstractAptosFormsDemoGlobalEvent.Coin_claimer_1_VaultAdminWithdrawn toCoin_claimer_1_VaultAdminWithdrawn(java.util.function.Function<String, FormAndAddress> toFormAndAddress, Event<Coin_claimer_1_VaultAdminWithdrawn> eventEnvelope) {
+        Coin_claimer_1_VaultAdminWithdrawn contractEvent = eventEnvelope.getData();
+
+        AbstractAptosFormsDemoGlobalEvent.Coin_claimer_1_VaultAdminWithdrawn coin_claimer_1_VaultAdminWithdrawn = new AbstractAptosFormsDemoGlobalEvent.Coin_claimer_1_VaultAdminWithdrawn();
+        coin_claimer_1_VaultAdminWithdrawn.setFormAndAccountAddress(toFormAndAddress.apply(contractEvent.getAccountAddress()));
+        coin_claimer_1_VaultAdminWithdrawn.setDynamicProperties(contractEvent.getDynamicProperties());
+        coin_claimer_1_VaultAdminWithdrawn.setVersion(contractEvent.getVersion());
+
+        setAptosEventProperties(coin_claimer_1_VaultAdminWithdrawn, eventEnvelope);
+
+        return coin_claimer_1_VaultAdminWithdrawn;
     }
 
     public static AbstractAptosFormsDemoGlobalEvent.AptosFormsDemoGlobalInitialized toAptosFormsDemoGlobalInitialized(java.util.function.Function<String, FormAndAddress> toFormAndAddress, Event<AptosFormsDemoGlobalInitialized> eventEnvelope) {

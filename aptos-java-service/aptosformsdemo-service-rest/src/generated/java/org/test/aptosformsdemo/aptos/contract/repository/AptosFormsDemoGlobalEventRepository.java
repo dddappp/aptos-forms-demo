@@ -19,6 +19,12 @@ public interface AptosFormsDemoGlobalEventRepository extends JpaRepository<Abstr
 
     AbstractAptosFormsDemoGlobalEvent.Payment_123_VaultAdminWithdrawn findFirstPayment_123_VaultAdminWithdrawnByOrderByAptosEventSequenceNumber();
 
+    AbstractAptosFormsDemoGlobalEvent.Coin_claimer_1_VaultDeposited findFirstCoin_claimer_1_VaultDepositedByOrderByAptosEventSequenceNumber();
+
+    AbstractAptosFormsDemoGlobalEvent.Coin_claimer_1_VaultWithdrawn findFirstCoin_claimer_1_VaultWithdrawnByOrderByAptosEventSequenceNumber();
+
+    AbstractAptosFormsDemoGlobalEvent.Coin_claimer_1_VaultAdminWithdrawn findFirstCoin_claimer_1_VaultAdminWithdrawnByOrderByAptosEventSequenceNumber();
+
     AbstractAptosFormsDemoGlobalEvent.AptosFormsDemoGlobalInitialized findFirstAptosFormsDemoGlobalInitializedByOrderByAptosEventSequenceNumber();
 
 }

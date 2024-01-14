@@ -13,6 +13,9 @@ module aptos_forms_demo::aptos_forms_demo_global {
     friend aptos_forms_demo::aptos_forms_demo_global_deposit_payment_123_vault_logic;
     friend aptos_forms_demo::aptos_forms_demo_global_withdraw_payment_123_vault_logic;
     friend aptos_forms_demo::aptos_forms_demo_global_admin_withdraw_payment_123_vault_logic;
+    friend aptos_forms_demo::aptos_forms_demo_global_deposit_coin_claimer_1_vault_logic;
+    friend aptos_forms_demo::aptos_forms_demo_global_withdraw_coin_claimer_1_vault_logic;
+    friend aptos_forms_demo::aptos_forms_demo_global_admin_withdraw_coin_claimer_1_vault_logic;
     friend aptos_forms_demo::aptos_forms_demo_global_aggregate;
 
     const EDataTooLong: u64 = 102;
@@ -23,6 +26,9 @@ module aptos_forms_demo::aptos_forms_demo_global {
         payment_123_vault_deposited_handle: event::EventHandle<Payment_123_VaultDeposited>,
         payment_123_vault_withdrawn_handle: event::EventHandle<Payment_123_VaultWithdrawn>,
         payment_123_vault_admin_withdrawn_handle: event::EventHandle<Payment_123_VaultAdminWithdrawn>,
+        coin_claimer_1_vault_deposited_handle: event::EventHandle<Coin_claimer_1_VaultDeposited>,
+        coin_claimer_1_vault_withdrawn_handle: event::EventHandle<Coin_claimer_1_VaultWithdrawn>,
+        coin_claimer_1_vault_admin_withdrawn_handle: event::EventHandle<Coin_claimer_1_VaultAdminWithdrawn>,
     }
 
     public fun initialize(account: &signer) {
@@ -33,6 +39,9 @@ module aptos_forms_demo::aptos_forms_demo_global {
             payment_123_vault_deposited_handle: account::new_event_handle<Payment_123_VaultDeposited>(&res_account),
             payment_123_vault_withdrawn_handle: account::new_event_handle<Payment_123_VaultWithdrawn>(&res_account),
             payment_123_vault_admin_withdrawn_handle: account::new_event_handle<Payment_123_VaultAdminWithdrawn>(&res_account),
+            coin_claimer_1_vault_deposited_handle: account::new_event_handle<Coin_claimer_1_VaultDeposited>(&res_account),
+            coin_claimer_1_vault_withdrawn_handle: account::new_event_handle<Coin_claimer_1_VaultWithdrawn>(&res_account),
+            coin_claimer_1_vault_admin_withdrawn_handle: account::new_event_handle<Coin_claimer_1_VaultAdminWithdrawn>(&res_account),
         });
 
         let aptos_forms_demo_global = new_aptos_forms_demo_global();
@@ -42,6 +51,7 @@ module aptos_forms_demo::aptos_forms_demo_global {
     struct AptosFormsDemoGlobal has key, store {
         version: u64,
         payment_123_vault: Coin<AptosCoin>,
+        coin_claimer_1_vault: Coin<AptosCoin>,
     }
 
     public fun version(aptos_forms_demo_global: &AptosFormsDemoGlobal): u64 {
@@ -56,11 +66,20 @@ module aptos_forms_demo::aptos_forms_demo_global {
         &mut aptos_forms_demo_global.payment_123_vault
     }
 
+    public(friend) fun borrow_coin_claimer_1_vault(aptos_forms_demo_global: &AptosFormsDemoGlobal): &Coin<AptosCoin> {
+        &aptos_forms_demo_global.coin_claimer_1_vault
+    }
+
+    public(friend) fun borrow_mut_coin_claimer_1_vault(aptos_forms_demo_global: &mut AptosFormsDemoGlobal): &mut Coin<AptosCoin> {
+        &mut aptos_forms_demo_global.coin_claimer_1_vault
+    }
+
     public(friend) fun new_aptos_forms_demo_global(
     ): AptosFormsDemoGlobal {
         AptosFormsDemoGlobal {
             version: 0,
             payment_123_vault: aptos_framework::coin::zero(),
+            coin_claimer_1_vault: aptos_framework::coin::zero(),
         }
     }
 
@@ -121,6 +140,63 @@ module aptos_forms_demo::aptos_forms_demo_global {
         }
     }
 
+    struct Coin_claimer_1_VaultDeposited has store, drop {
+        version: u64,
+        amount: u64,
+    }
+
+    public fun coin_claimer_1_vault_deposited_amount(coin_claimer_1_vault_deposited: &Coin_claimer_1_VaultDeposited): u64 {
+        coin_claimer_1_vault_deposited.amount
+    }
+
+    public(friend) fun new_coin_claimer_1_vault_deposited(
+        aptos_forms_demo_global: &AptosFormsDemoGlobal,
+        amount: u64,
+    ): Coin_claimer_1_VaultDeposited {
+        Coin_claimer_1_VaultDeposited {
+            version: version(aptos_forms_demo_global),
+            amount,
+        }
+    }
+
+    struct Coin_claimer_1_VaultWithdrawn has store, drop {
+        version: u64,
+        amount: u64,
+    }
+
+    public fun coin_claimer_1_vault_withdrawn_amount(coin_claimer_1_vault_withdrawn: &Coin_claimer_1_VaultWithdrawn): u64 {
+        coin_claimer_1_vault_withdrawn.amount
+    }
+
+    public(friend) fun new_coin_claimer_1_vault_withdrawn(
+        aptos_forms_demo_global: &AptosFormsDemoGlobal,
+        amount: u64,
+    ): Coin_claimer_1_VaultWithdrawn {
+        Coin_claimer_1_VaultWithdrawn {
+            version: version(aptos_forms_demo_global),
+            amount,
+        }
+    }
+
+    struct Coin_claimer_1_VaultAdminWithdrawn has store, drop {
+        version: u64,
+        amount: u64,
+    }
+
+    public fun coin_claimer_1_vault_admin_withdrawn_amount(coin_claimer_1_vault_admin_withdrawn: &Coin_claimer_1_VaultAdminWithdrawn): u64 {
+        coin_claimer_1_vault_admin_withdrawn.amount
+    }
+
+    public(friend) fun new_coin_claimer_1_vault_admin_withdrawn(
+        aptos_forms_demo_global: &AptosFormsDemoGlobal,
+        amount: u64,
+    ): Coin_claimer_1_VaultAdminWithdrawn {
+        Coin_claimer_1_VaultAdminWithdrawn {
+            version: version(aptos_forms_demo_global),
+            amount,
+        }
+    }
+
     struct AptosFormsDemoGlobalInitialized has store, drop {
     }
 
@@ -166,8 +242,10 @@ module aptos_forms_demo::aptos_forms_demo_global {
         let AptosFormsDemoGlobal {
             version: _version,
             payment_123_vault,
+            coin_claimer_1_vault,
         } = aptos_forms_demo_global;
         aptos_framework::coin::destroy_zero(payment_123_vault);
+        aptos_framework::coin::destroy_zero(coin_claimer_1_vault);
     }
 
     public fun aptos_forms_demo_global_exists(): bool {
@@ -190,6 +268,24 @@ module aptos_forms_demo::aptos_forms_demo_global {
         assert!(exists<Events>(genesis_account::resource_account_address()), ENotInitialized);
         let events = borrow_global_mut<Events>(genesis_account::resource_account_address());
         event::emit_event(&mut events.payment_123_vault_admin_withdrawn_handle, payment_123_vault_admin_withdrawn);
+    }
+
+    public(friend) fun emit_coin_claimer_1_vault_deposited(coin_claimer_1_vault_deposited: Coin_claimer_1_VaultDeposited) acquires Events {
+        assert!(exists<Events>(genesis_account::resource_account_address()), ENotInitialized);
+        let events = borrow_global_mut<Events>(genesis_account::resource_account_address());
+        event::emit_event(&mut events.coin_claimer_1_vault_deposited_handle, coin_claimer_1_vault_deposited);
+    }
+
+    public(friend) fun emit_coin_claimer_1_vault_withdrawn(coin_claimer_1_vault_withdrawn: Coin_claimer_1_VaultWithdrawn) acquires Events {
+        assert!(exists<Events>(genesis_account::resource_account_address()), ENotInitialized);
+        let events = borrow_global_mut<Events>(genesis_account::resource_account_address());
+        event::emit_event(&mut events.coin_claimer_1_vault_withdrawn_handle, coin_claimer_1_vault_withdrawn);
+    }
+
+    public(friend) fun emit_coin_claimer_1_vault_admin_withdrawn(coin_claimer_1_vault_admin_withdrawn: Coin_claimer_1_VaultAdminWithdrawn) acquires Events {
+        assert!(exists<Events>(genesis_account::resource_account_address()), ENotInitialized);
+        let events = borrow_global_mut<Events>(genesis_account::resource_account_address());
+        event::emit_event(&mut events.coin_claimer_1_vault_admin_withdrawn_handle, coin_claimer_1_vault_admin_withdrawn);
     }
 
 }

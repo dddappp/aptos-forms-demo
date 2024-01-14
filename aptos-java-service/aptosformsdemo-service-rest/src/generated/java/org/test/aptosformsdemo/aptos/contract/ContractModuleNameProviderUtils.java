@@ -83,10 +83,16 @@ public class ContractModuleNameProviderUtils {
             final String payment_123_VaultDepositedStructName,
             final String payment_123_VaultWithdrawnStructName,
             final String payment_123_VaultAdminWithdrawnStructName,
+            final String coin_claimer_1_VaultDepositedStructName,
+            final String coin_claimer_1_VaultWithdrawnStructName,
+            final String coin_claimer_1_VaultAdminWithdrawnStructName,
             final String aptosFormsDemoGlobalInitializedStructName,
             final String payment_123_VaultDepositedHandleFieldName,
             final String payment_123_VaultWithdrawnHandleFieldName,
             final String payment_123_VaultAdminWithdrawnHandleFieldName,
+            final String coin_claimer_1_VaultDepositedHandleFieldName,
+            final String coin_claimer_1_VaultWithdrawnHandleFieldName,
+            final String coin_claimer_1_VaultAdminWithdrawnHandleFieldName,
             final String aptosFormsDemoGlobalInitializedHandleFieldName,
             final String stateTableFieldName,
             final String stateStructName
@@ -102,6 +108,15 @@ public class ContractModuleNameProviderUtils {
                 }
                 if ("Payment_123_VaultAdminWithdrawn".equals(eventCategory)) {
                     return moduleName + "::" + payment_123_VaultAdminWithdrawnStructName;
+                }
+                if ("Coin_claimer_1_VaultDeposited".equals(eventCategory)) {
+                    return moduleName + "::" + coin_claimer_1_VaultDepositedStructName;
+                }
+                if ("Coin_claimer_1_VaultWithdrawn".equals(eventCategory)) {
+                    return moduleName + "::" + coin_claimer_1_VaultWithdrawnStructName;
+                }
+                if ("Coin_claimer_1_VaultAdminWithdrawn".equals(eventCategory)) {
+                    return moduleName + "::" + coin_claimer_1_VaultAdminWithdrawnStructName;
                 }
                 if ("AptosFormsDemoGlobalInitialized".equals(eventCategory)) {
                     return moduleName + "::" + aptosFormsDemoGlobalInitializedStructName;
@@ -119,6 +134,15 @@ public class ContractModuleNameProviderUtils {
                 }
                 if ("Payment_123_VaultAdminWithdrawn".equals(eventCategory)) {
                     return payment_123_VaultAdminWithdrawnHandleFieldName;
+                }
+                if ("Coin_claimer_1_VaultDeposited".equals(eventCategory)) {
+                    return coin_claimer_1_VaultDepositedHandleFieldName;
+                }
+                if ("Coin_claimer_1_VaultWithdrawn".equals(eventCategory)) {
+                    return coin_claimer_1_VaultWithdrawnHandleFieldName;
+                }
+                if ("Coin_claimer_1_VaultAdminWithdrawn".equals(eventCategory)) {
+                    return coin_claimer_1_VaultAdminWithdrawnHandleFieldName;
                 }
                 if ("AptosFormsDemoGlobalInitialized".equals(eventCategory)) {
                     return aptosFormsDemoGlobalInitializedHandleFieldName;

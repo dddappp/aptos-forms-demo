@@ -19,6 +19,10 @@ public interface AptosFormsDemoGlobalAggregate {
 
     void adminWithdrawPayment_123_Vault(BigInteger amount, Long offChainVersion, String commandId, String requesterId, AptosFormsDemoGlobalCommands.AdminWithdrawPayment_123_Vault c);
 
+    void depositCoin_claimer_1_Vault(BigInteger amount, Long offChainVersion, String commandId, String requesterId, AptosFormsDemoGlobalCommands.DepositCoin_claimer_1_Vault c);
+
+    void adminWithdrawCoin_claimer_1_Vault(BigInteger amount, Long offChainVersion, String commandId, String requesterId, AptosFormsDemoGlobalCommands.AdminWithdrawCoin_claimer_1_Vault c);
+
     void throwOnInvalidStateTransition(Command c);
 }
 

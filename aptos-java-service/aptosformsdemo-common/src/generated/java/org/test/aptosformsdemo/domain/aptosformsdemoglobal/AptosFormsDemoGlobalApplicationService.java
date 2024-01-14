@@ -17,6 +17,10 @@ import org.test.aptosformsdemo.domain.Command;
 public interface AptosFormsDemoGlobalApplicationService {
     void when(AptosFormsDemoGlobalCommands.AdminWithdrawPayment_123_Vault c);
 
+    void when(AptosFormsDemoGlobalCommands.DepositCoin_claimer_1_Vault c);
+
+    void when(AptosFormsDemoGlobalCommands.AdminWithdrawCoin_claimer_1_Vault c);
+
     AptosFormsDemoGlobalState get(FormAndAddress id);
 
     Iterable<AptosFormsDemoGlobalState> getAll(Integer firstResult, Integer maxResults);

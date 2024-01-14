@@ -70,6 +70,30 @@ public class StaticMethodConstraints {
 
 
         ReflectUtils.assertStaticMethodIfClassExists(
+                    "org.test.aptosformsdemo.domain.aptosformsdemoglobal.DepositCoin_claimer_1_VaultLogic",
+                    "verify",
+                    new Class[]{java.util.function.Supplier.class, AptosFormsDemoGlobalState.class, BigInteger.class, VerificationContext.class},
+                    new String[]{"_", "_", "amount"}
+            );
+
+
+        ReflectUtils.assertStaticMethodIfClassExists(
+                    "org.test.aptosformsdemo.domain.aptosformsdemoglobal.WithdrawCoin_claimer_1_VaultLogic",
+                    "verify",
+                    new Class[]{java.util.function.Supplier.class, AptosFormsDemoGlobalState.class, BigInteger.class, VerificationContext.class},
+                    new String[]{"_", "_", "amount"}
+            );
+
+
+        ReflectUtils.assertStaticMethodIfClassExists(
+                    "org.test.aptosformsdemo.domain.aptosformsdemoglobal.AdminWithdrawCoin_claimer_1_VaultLogic",
+                    "verify",
+                    new Class[]{java.util.function.Supplier.class, AptosFormsDemoGlobalState.class, BigInteger.class, VerificationContext.class},
+                    new String[]{"_", "_", "amount"}
+            );
+
+
+        ReflectUtils.assertStaticMethodIfClassExists(
                     "org.test.aptosformsdemo.domain.aptosformsdemoglobal.__Init__Logic",
                     "verify",
                     new Class[]{java.util.function.Supplier.class, AptosFormsDemoGlobalState.class, VerificationContext.class},
@@ -103,6 +127,22 @@ public class StaticMethodConstraints {
 
         ReflectUtils.assertStaticMethodIfClassExists(
                     "org.test.aptosformsdemo.domain.aptosformsdemoglobal.AdminWithdrawPayment_123_VaultLogic",
+                    "mutate",
+                    new Class[]{AptosFormsDemoGlobalState.class, BigInteger.class, BigInteger.class, BigInteger.class, String.class, AptosEventGuid.class, String.class, MutationContext.class},
+                    new String[]{"_", "amount", "aptosEventVersion", "aptosEventSequenceNumber", "aptosEventType", "aptosEventGuid", "status"}
+            );
+
+
+        ReflectUtils.assertStaticMethodIfClassExists(
+                    "org.test.aptosformsdemo.domain.aptosformsdemoglobal.DepositCoin_claimer_1_VaultLogic",
+                    "mutate",
+                    new Class[]{AptosFormsDemoGlobalState.class, BigInteger.class, BigInteger.class, BigInteger.class, String.class, AptosEventGuid.class, String.class, MutationContext.class},
+                    new String[]{"_", "amount", "aptosEventVersion", "aptosEventSequenceNumber", "aptosEventType", "aptosEventGuid", "status"}
+            );
+
+
+        ReflectUtils.assertStaticMethodIfClassExists(
+                    "org.test.aptosformsdemo.domain.aptosformsdemoglobal.AdminWithdrawCoin_claimer_1_VaultLogic",
                     "mutate",
                     new Class[]{AptosFormsDemoGlobalState.class, BigInteger.class, BigInteger.class, BigInteger.class, String.class, AptosEventGuid.class, String.class, MutationContext.class},
                     new String[]{"_", "amount", "aptosEventVersion", "aptosEventSequenceNumber", "aptosEventType", "aptosEventGuid", "status"}

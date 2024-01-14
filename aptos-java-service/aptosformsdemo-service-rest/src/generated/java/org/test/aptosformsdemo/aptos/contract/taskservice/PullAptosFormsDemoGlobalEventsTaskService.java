@@ -46,6 +46,21 @@ public class PullAptosFormsDemoGlobalEventsTaskService {
         aptosFormsDemoGlobalEventService.pullPayment_123_VaultAdminWithdrawnEvents(getContractModuleNameProvider(), getToFormAndAddressFunction());
     }
 
+    @Scheduled(fixedDelayString = "${aptos.contract.pull-aptos-forms-demo-global-events.coin-claimer-1-vault-deposited.fixed-delay:5000}")
+    public void pullCoin_claimer_1_VaultDepositedEvents() {
+        aptosFormsDemoGlobalEventService.pullCoin_claimer_1_VaultDepositedEvents(getContractModuleNameProvider(), getToFormAndAddressFunction());
+    }
+
+    @Scheduled(fixedDelayString = "${aptos.contract.pull-aptos-forms-demo-global-events.coin-claimer-1-vault-withdrawn.fixed-delay:5000}")
+    public void pullCoin_claimer_1_VaultWithdrawnEvents() {
+        aptosFormsDemoGlobalEventService.pullCoin_claimer_1_VaultWithdrawnEvents(getContractModuleNameProvider(), getToFormAndAddressFunction());
+    }
+
+    @Scheduled(fixedDelayString = "${aptos.contract.pull-aptos-forms-demo-global-events.coin-claimer-1-vault-admin-withdrawn.fixed-delay:5000}")
+    public void pullCoin_claimer_1_VaultAdminWithdrawnEvents() {
+        aptosFormsDemoGlobalEventService.pullCoin_claimer_1_VaultAdminWithdrawnEvents(getContractModuleNameProvider(), getToFormAndAddressFunction());
+    }
+
     private java.util.function.Function<String, FormAndAddress> getToFormAndAddressFunction() {
         return TestTenantizedIdFunctions.toFormAndAddressFunction(); // todo only for test
     }

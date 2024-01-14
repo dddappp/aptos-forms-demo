@@ -188,6 +188,42 @@ public class AptosFormsDemoGlobalResource {
         } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
     }
 
+
+    @PutMapping("{formAndAccountAddress}/_commands/DepositCoin_claimer_1_Vault")
+    public void depositCoin_claimer_1_Vault(@PathVariable("formAndAccountAddress") String formAndAccountAddress, @RequestBody AptosFormsDemoGlobalCommands.DepositCoin_claimer_1_Vault content) {
+        try {
+
+            AptosFormsDemoGlobalCommands.DepositCoin_claimer_1_Vault cmd = content;//.toDepositCoin_claimer_1_Vault();
+            FormAndAddress idObj = AptosFormsDemoGlobalResourceUtils.parseIdString(formAndAccountAddress);
+            if (cmd.getFormAndAccountAddress() == null) {
+                cmd.setFormAndAccountAddress(idObj);
+            } else if (!cmd.getFormAndAccountAddress().equals(idObj)) {
+                throw DomainError.named("inconsistentId", "Argument Id %1$s NOT equals body Id %2$s", formAndAccountAddress, cmd.getFormAndAccountAddress());
+            }
+            cmd.setRequesterId(SecurityContextUtil.getRequesterId());
+            aptosFormsDemoGlobalApplicationService.when(cmd);
+
+        } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
+    }
+
+
+    @PutMapping("{formAndAccountAddress}/_commands/AdminWithdrawCoin_claimer_1_Vault")
+    public void adminWithdrawCoin_claimer_1_Vault(@PathVariable("formAndAccountAddress") String formAndAccountAddress, @RequestBody AptosFormsDemoGlobalCommands.AdminWithdrawCoin_claimer_1_Vault content) {
+        try {
+
+            AptosFormsDemoGlobalCommands.AdminWithdrawCoin_claimer_1_Vault cmd = content;//.toAdminWithdrawCoin_claimer_1_Vault();
+            FormAndAddress idObj = AptosFormsDemoGlobalResourceUtils.parseIdString(formAndAccountAddress);
+            if (cmd.getFormAndAccountAddress() == null) {
+                cmd.setFormAndAccountAddress(idObj);
+            } else if (!cmd.getFormAndAccountAddress().equals(idObj)) {
+                throw DomainError.named("inconsistentId", "Argument Id %1$s NOT equals body Id %2$s", formAndAccountAddress, cmd.getFormAndAccountAddress());
+            }
+            cmd.setRequesterId(SecurityContextUtil.getRequesterId());
+            aptosFormsDemoGlobalApplicationService.when(cmd);
+
+        } catch (Exception ex) { logger.info(ex.getMessage(), ex); throw DomainErrorUtils.convertException(ex); }
+    }
+
     @GetMapping("_metadata/filteringFields")
     public List<PropertyMetadataDto> getMetadataFilteringFields() {
         try {

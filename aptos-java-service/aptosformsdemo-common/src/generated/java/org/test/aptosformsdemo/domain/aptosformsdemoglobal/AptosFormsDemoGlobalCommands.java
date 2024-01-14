@@ -154,6 +154,159 @@ public class AptosFormsDemoGlobalCommands {
 
     }
 
+    public static class DepositCoin_claimer_1_Vault extends AbstractAptosFormsDemoGlobalCommand implements AptosFormsDemoGlobalCommand {
+
+        public String getCommandType() {
+            return "DepositCoin_claimer_1_Vault";
+        }
+
+        public void setCommandType(String commandType) {
+            //do nothing
+        }
+
+        /**
+         * Form And Account Address
+         */
+        private FormAndAddress formAndAccountAddress;
+
+        public FormAndAddress getFormAndAccountAddress() {
+            return this.formAndAccountAddress;
+        }
+
+        public void setFormAndAccountAddress(FormAndAddress formAndAccountAddress) {
+            this.formAndAccountAddress = formAndAccountAddress;
+        }
+
+        /**
+         * Amount
+         */
+        private BigInteger amount;
+
+        public BigInteger getAmount() {
+            return this.amount;
+        }
+
+        public void setAmount(BigInteger amount) {
+            this.amount = amount;
+        }
+
+        /**
+         * Off Chain Version
+         */
+        private Long offChainVersion;
+
+        public Long getOffChainVersion() {
+            return this.offChainVersion;
+        }
+
+        public void setOffChainVersion(Long offChainVersion) {
+            this.offChainVersion = offChainVersion;
+        }
+
+    }
+
+    public static class WithdrawCoin_claimer_1_Vault extends AbstractAptosFormsDemoGlobalCommand implements AptosFormsDemoGlobalCommand {
+
+        public String getCommandType() {
+            return "WithdrawCoin_claimer_1_Vault";
+        }
+
+        public void setCommandType(String commandType) {
+            //do nothing
+        }
+
+        /**
+         * Form And Account Address
+         */
+        private FormAndAddress formAndAccountAddress;
+
+        public FormAndAddress getFormAndAccountAddress() {
+            return this.formAndAccountAddress;
+        }
+
+        public void setFormAndAccountAddress(FormAndAddress formAndAccountAddress) {
+            this.formAndAccountAddress = formAndAccountAddress;
+        }
+
+        /**
+         * Amount
+         */
+        private BigInteger amount;
+
+        public BigInteger getAmount() {
+            return this.amount;
+        }
+
+        public void setAmount(BigInteger amount) {
+            this.amount = amount;
+        }
+
+        /**
+         * Off Chain Version
+         */
+        private Long offChainVersion;
+
+        public Long getOffChainVersion() {
+            return this.offChainVersion;
+        }
+
+        public void setOffChainVersion(Long offChainVersion) {
+            this.offChainVersion = offChainVersion;
+        }
+
+    }
+
+    public static class AdminWithdrawCoin_claimer_1_Vault extends AbstractAptosFormsDemoGlobalCommand implements AptosFormsDemoGlobalCommand {
+
+        public String getCommandType() {
+            return "AdminWithdrawCoin_claimer_1_Vault";
+        }
+
+        public void setCommandType(String commandType) {
+            //do nothing
+        }
+
+        /**
+         * Form And Account Address
+         */
+        private FormAndAddress formAndAccountAddress;
+
+        public FormAndAddress getFormAndAccountAddress() {
+            return this.formAndAccountAddress;
+        }
+
+        public void setFormAndAccountAddress(FormAndAddress formAndAccountAddress) {
+            this.formAndAccountAddress = formAndAccountAddress;
+        }
+
+        /**
+         * Amount
+         */
+        private BigInteger amount;
+
+        public BigInteger getAmount() {
+            return this.amount;
+        }
+
+        public void setAmount(BigInteger amount) {
+            this.amount = amount;
+        }
+
+        /**
+         * Off Chain Version
+         */
+        private Long offChainVersion;
+
+        public Long getOffChainVersion() {
+            return this.offChainVersion;
+        }
+
+        public void setOffChainVersion(Long offChainVersion) {
+            this.offChainVersion = offChainVersion;
+        }
+
+    }
+
     public static class __Init__ extends AbstractAptosFormsDemoGlobalCommand implements AptosFormsDemoGlobalCommand {
 
         public String getCommandType() {

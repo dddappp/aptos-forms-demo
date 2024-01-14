@@ -231,6 +231,69 @@ public abstract class AbstractAptosFormsDemoGlobalEvent extends AbstractEvent im
 
     }
 
+    public static class Coin_claimer_1_VaultDeposited extends AptosFormsDemoGlobalLobEvent implements AptosFormsDemoGlobalEvent.Coin_claimer_1_VaultDeposited {
+
+        @Override
+        public String getEventClass() {
+            return "Coin_claimer_1_VaultDeposited";
+        }
+
+        public BigInteger getAmount() {
+            Object val = getDynamicProperties().get("amount");
+            if (val instanceof BigInteger) {
+                return (BigInteger) val;
+            }
+            return ApplicationContext.current.getTypeConverter().convertValue(val, BigInteger.class);
+        }
+
+        public void setAmount(BigInteger value) {
+            getDynamicProperties().put("amount", value);
+        }
+
+    }
+
+    public static class Coin_claimer_1_VaultWithdrawn extends AptosFormsDemoGlobalLobEvent implements AptosFormsDemoGlobalEvent.Coin_claimer_1_VaultWithdrawn {
+
+        @Override
+        public String getEventClass() {
+            return "Coin_claimer_1_VaultWithdrawn";
+        }
+
+        public BigInteger getAmount() {
+            Object val = getDynamicProperties().get("amount");
+            if (val instanceof BigInteger) {
+                return (BigInteger) val;
+            }
+            return ApplicationContext.current.getTypeConverter().convertValue(val, BigInteger.class);
+        }
+
+        public void setAmount(BigInteger value) {
+            getDynamicProperties().put("amount", value);
+        }
+
+    }
+
+    public static class Coin_claimer_1_VaultAdminWithdrawn extends AptosFormsDemoGlobalLobEvent implements AptosFormsDemoGlobalEvent.Coin_claimer_1_VaultAdminWithdrawn {
+
+        @Override
+        public String getEventClass() {
+            return "Coin_claimer_1_VaultAdminWithdrawn";
+        }
+
+        public BigInteger getAmount() {
+            Object val = getDynamicProperties().get("amount");
+            if (val instanceof BigInteger) {
+                return (BigInteger) val;
+            }
+            return ApplicationContext.current.getTypeConverter().convertValue(val, BigInteger.class);
+        }
+
+        public void setAmount(BigInteger value) {
+            getDynamicProperties().put("amount", value);
+        }
+
+    }
+
     public static class AptosFormsDemoGlobalInitialized extends AptosFormsDemoGlobalLobEvent implements AptosFormsDemoGlobalEvent.AptosFormsDemoGlobalInitialized {
 
         @Override

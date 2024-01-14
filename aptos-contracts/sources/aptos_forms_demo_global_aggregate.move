@@ -5,8 +5,11 @@
 
 module aptos_forms_demo::aptos_forms_demo_global_aggregate {
     use aptos_forms_demo::aptos_forms_demo_global;
+    use aptos_forms_demo::aptos_forms_demo_global_admin_withdraw_coin_claimer_1_vault_logic;
     use aptos_forms_demo::aptos_forms_demo_global_admin_withdraw_payment_123_vault_logic;
+    use aptos_forms_demo::aptos_forms_demo_global_deposit_coin_claimer_1_vault_logic;
     use aptos_forms_demo::aptos_forms_demo_global_deposit_payment_123_vault_logic;
+    use aptos_forms_demo::aptos_forms_demo_global_withdraw_coin_claimer_1_vault_logic;
     use aptos_forms_demo::aptos_forms_demo_global_withdraw_payment_123_vault_logic;
     use aptos_framework::aptos_coin::AptosCoin;
     use aptos_framework::coin::Coin;
@@ -71,6 +74,64 @@ module aptos_forms_demo::aptos_forms_demo_global_aggregate {
         );
         aptos_forms_demo_global::update_version_and_add(updated_aptos_forms_demo_global);
         aptos_forms_demo_global::emit_payment_123_vault_admin_withdrawn(payment_123_vault_admin_withdrawn);
+    }
+
+    public entry fun deposit_coin_claimer_1_vault(
+        account: &signer,
+        amount: u64,
+    ) {
+        let aptos_forms_demo_global = aptos_forms_demo_global::remove_aptos_forms_demo_global();
+        let coin_claimer_1_vault_deposited = aptos_forms_demo_global_deposit_coin_claimer_1_vault_logic::verify(
+            account,
+            amount,
+            &aptos_forms_demo_global,
+        );
+        let updated_aptos_forms_demo_global = aptos_forms_demo_global_deposit_coin_claimer_1_vault_logic::mutate(
+            account,
+            &coin_claimer_1_vault_deposited,
+            aptos_forms_demo_global,
+        );
+        aptos_forms_demo_global::update_version_and_add(updated_aptos_forms_demo_global);
+        aptos_forms_demo_global::emit_coin_claimer_1_vault_deposited(coin_claimer_1_vault_deposited);
+    }
+
+    public(friend) fun withdraw_coin_claimer_1_vault(
+        account: &signer,
+        amount: u64,
+    ): Coin<AptosCoin> {
+        let aptos_forms_demo_global = aptos_forms_demo_global::remove_aptos_forms_demo_global();
+        let coin_claimer_1_vault_withdrawn = aptos_forms_demo_global_withdraw_coin_claimer_1_vault_logic::verify(
+            account,
+            amount,
+            &aptos_forms_demo_global,
+        );
+        let (updated_aptos_forms_demo_global, withdraw_coin_claimer_1_vault_return) = aptos_forms_demo_global_withdraw_coin_claimer_1_vault_logic::mutate(
+            account,
+            &coin_claimer_1_vault_withdrawn,
+            aptos_forms_demo_global,
+        );
+        aptos_forms_demo_global::update_version_and_add(updated_aptos_forms_demo_global);
+        aptos_forms_demo_global::emit_coin_claimer_1_vault_withdrawn(coin_claimer_1_vault_withdrawn);
+        withdraw_coin_claimer_1_vault_return
+    }
+
+    public entry fun admin_withdraw_coin_claimer_1_vault(
+        account: &signer,
+        amount: u64,
+    ) {
+        let aptos_forms_demo_global = aptos_forms_demo_global::remove_aptos_forms_demo_global();
+        let coin_claimer_1_vault_admin_withdrawn = aptos_forms_demo_global_admin_withdraw_coin_claimer_1_vault_logic::verify(
+            account,
+            amount,
+            &aptos_forms_demo_global,
+        );
+        let updated_aptos_forms_demo_global = aptos_forms_demo_global_admin_withdraw_coin_claimer_1_vault_logic::mutate(
+            account,
+            &coin_claimer_1_vault_admin_withdrawn,
+            aptos_forms_demo_global,
+        );
+        aptos_forms_demo_global::update_version_and_add(updated_aptos_forms_demo_global);
+        aptos_forms_demo_global::emit_coin_claimer_1_vault_admin_withdrawn(coin_claimer_1_vault_admin_withdrawn);
     }
 
 }

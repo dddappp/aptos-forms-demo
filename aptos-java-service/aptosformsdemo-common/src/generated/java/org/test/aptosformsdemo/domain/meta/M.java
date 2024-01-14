@@ -691,6 +691,7 @@ public class M {
 
     public static final String[] propertyNames = new String[] {
             "payment_123_Vault",
+            "coin_claimer_1_Vault",
             "offChainVersion",
             "createdBy",
             "createdAt",
@@ -704,6 +705,7 @@ public class M {
     };
 
     public static final String[] propertyTypes = new String[] {
+            "Coin",
             "Coin",
             "Long",
             "String",
@@ -731,6 +733,8 @@ public class M {
     private static  void initAliasMap() {
         aliasMap.put("payment_123_Vault", "payment_123_Vault");
         aliasMap.put("Payment_123_Vault", "payment_123_Vault");
+        aliasMap.put("coin_claimer_1_Vault", "coin_claimer_1_Vault");
+        aliasMap.put("Coin_claimer_1_Vault", "coin_claimer_1_Vault");
         aliasMap.put("offChainVersion", "offChainVersion");
         aliasMap.put("OffChainVersion", "offChainVersion");
         aliasMap.put("createdBy", "createdBy");

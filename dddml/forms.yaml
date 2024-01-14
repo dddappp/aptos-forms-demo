@@ -337,6 +337,10 @@ singletonObjects:
         name: Payment_123_Vault
         type: Coin<APT>
         sequenceNumber: -1
+      Coin_claimer_1_Vault:
+        name: Coin_claimer_1_Vault
+        type: Coin<APT>
+        sequenceNumber: -1
     methods:
       DepositPayment_123_Vault:
         name: DepositPayment_123_Vault
@@ -414,6 +418,77 @@ singletonObjects:
                     aptos_forms_demo_global
         event:
           name: Payment_123_VaultAdminWithdrawn
+      DepositCoin_claimer_1_Vault:
+        name: DepositCoin_claimer_1_Vault
+        parameters:
+          Amount:
+            name: Amount
+            type: u64
+            sequenceNumber: -1
+        metadata: {}
+        verificationLogic:
+          Move: >-
+            assert!(aptos_framework::coin::balance<aptos_framework::aptos_coin::AptosCoin>(std::signer::address_of(account)) > amount, 1);
+                    aptos_forms_demo_global::new_coin_claimer_1_vault_deposited(
+                        aptos_forms_demo_global,
+                        amount,
+                    )
+        mutationLogic:
+          Move: >-
+            let amount_v = aptos_forms_demo_global::coin_claimer_1_vault_deposited_amount(coin_claimer_1_vault_deposited);
+                    let amount = aptos_framework::coin::withdraw<aptos_framework::aptos_coin::AptosCoin>(_account, amount_v);
+                    let vault = aptos_forms_demo_global::borrow_mut_coin_claimer_1_vault(&mut aptos_forms_demo_global);
+                    aptos_framework::coin::merge(vault, amount);
+                    aptos_forms_demo_global
+        event:
+          name: Coin_claimer_1_VaultDeposited
+      WithdrawCoin_claimer_1_Vault:
+        name: WithdrawCoin_claimer_1_Vault
+        parameters:
+          Amount:
+            name: Amount
+            type: u64
+            sequenceNumber: -1
+        result:
+          type: Coin<APT>
+        isInternal: true
+        metadata: {}
+        verificationLogic:
+          Move: >-
+            let _ = account;
+                    aptos_forms_demo_global::new_coin_claimer_1_vault_withdrawn(
+                        aptos_forms_demo_global,
+                        amount,
+                    )
+        mutationLogic:
+          Move: >-
+            let amount = aptos_forms_demo_global::coin_claimer_1_vault_withdrawn_amount(coin_claimer_1_vault_withdrawn);
+                    let vault = aptos_forms_demo_global::borrow_mut_coin_claimer_1_vault(&mut aptos_forms_demo_global);
+                    let w = aptos_framework::coin::extract(vault, amount);
+                    (aptos_forms_demo_global, w)
+        event:
+          name: Coin_claimer_1_VaultWithdrawn
+      AdminWithdrawCoin_claimer_1_Vault:
+        name: AdminWithdrawCoin_claimer_1_Vault
+        parameters:
+          Amount:
+            name: Amount
+            type: u64
+            sequenceNumber: -1
+        metadata: {}
+        verificationLogic:
+          Move: >-
+            aptos_forms_demo::aptos_forms_demo_genesis_account::assert_genesis_account(account);
+                    aptos_forms_demo_global::new_coin_claimer_1_vault_admin_withdrawn(aptos_forms_demo_global, amount)
+        mutationLogic:
+          Move: >-
+            let amount = aptos_forms_demo_global::coin_claimer_1_vault_admin_withdrawn_amount(coin_claimer_1_vault_admin_withdrawn);
+                    let vault = aptos_forms_demo_global::borrow_mut_coin_claimer_1_vault(&mut aptos_forms_demo_global);
+                    let w = aptos_framework::coin::extract(vault, amount);
+                    aptos_framework::coin::deposit(std::signer::address_of(_account), w);
+                    aptos_forms_demo_global
+        event:
+          name: Coin_claimer_1_VaultAdminWithdrawn
       __Init__:
         name: __Init__
         metadata: {}

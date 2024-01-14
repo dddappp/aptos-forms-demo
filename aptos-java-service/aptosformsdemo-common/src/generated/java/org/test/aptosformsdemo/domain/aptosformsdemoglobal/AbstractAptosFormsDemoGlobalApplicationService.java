@@ -54,6 +54,14 @@ public abstract class AbstractAptosFormsDemoGlobalApplicationService implements 
         update(c, ar -> ar.adminWithdrawPayment_123_Vault(c.getAmount(), c.getOffChainVersion(), c.getCommandId(), c.getRequesterId(), c));
     }
 
+    public void when(AptosFormsDemoGlobalCommands.DepositCoin_claimer_1_Vault c) {
+        update(c, ar -> ar.depositCoin_claimer_1_Vault(c.getAmount(), c.getOffChainVersion(), c.getCommandId(), c.getRequesterId(), c));
+    }
+
+    public void when(AptosFormsDemoGlobalCommands.AdminWithdrawCoin_claimer_1_Vault c) {
+        update(c, ar -> ar.adminWithdrawCoin_claimer_1_Vault(c.getAmount(), c.getOffChainVersion(), c.getCommandId(), c.getRequesterId(), c));
+    }
+
     public AptosFormsDemoGlobalState get(FormAndAddress id) {
         AptosFormsDemoGlobalState state = getStateRepository().get(id, true);
         return state;

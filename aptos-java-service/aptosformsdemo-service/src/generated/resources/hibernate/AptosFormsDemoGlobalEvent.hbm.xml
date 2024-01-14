@@ -48,6 +48,9 @@
       <subclass name="AbstractAptosFormsDemoGlobalEvent$Payment_123_VaultDeposited" discriminator-value="Payment_123_VaultDeposited" />
       <subclass name="AbstractAptosFormsDemoGlobalEvent$Payment_123_VaultWithdrawn" discriminator-value="Payment_123_VaultWithdrawn" />
       <subclass name="AbstractAptosFormsDemoGlobalEvent$Payment_123_VaultAdminWithdrawn" discriminator-value="Payment_123_VaultAdminWithdrawn" />
+      <subclass name="AbstractAptosFormsDemoGlobalEvent$Coin_claimer_1_VaultDeposited" discriminator-value="Coin_claimer_1_VaultDeposited" />
+      <subclass name="AbstractAptosFormsDemoGlobalEvent$Coin_claimer_1_VaultWithdrawn" discriminator-value="Coin_claimer_1_VaultWithdrawn" />
+      <subclass name="AbstractAptosFormsDemoGlobalEvent$Coin_claimer_1_VaultAdminWithdrawn" discriminator-value="Coin_claimer_1_VaultAdminWithdrawn" />
       <subclass name="AbstractAptosFormsDemoGlobalEvent$AptosFormsDemoGlobalInitialized" discriminator-value="AptosFormsDemoGlobalInitialized" />
     </subclass>
   </class>

@@ -42,6 +42,27 @@ public interface AptosFormsDemoGlobalEvent extends Event, AptosEvent, HasStatus 
 
     }
 
+    interface Coin_claimer_1_VaultDeposited extends AptosFormsDemoGlobalEvent {
+        BigInteger getAmount();
+
+        void setAmount(BigInteger value);
+
+    }
+
+    interface Coin_claimer_1_VaultWithdrawn extends AptosFormsDemoGlobalEvent {
+        BigInteger getAmount();
+
+        void setAmount(BigInteger value);
+
+    }
+
+    interface Coin_claimer_1_VaultAdminWithdrawn extends AptosFormsDemoGlobalEvent {
+        BigInteger getAmount();
+
+        void setAmount(BigInteger value);
+
+    }
+
     interface AptosFormsDemoGlobalInitialized extends AptosFormsDemoGlobalEvent {
     }
 
