@@ -209,6 +209,28 @@
       CRUD_IT_NO_DELETE: true
       CRUD_IT_CREATE_METHOD_NAME: Submit
       CRUD_IT_UPDATE_METHOD_NAME: Update
+  AptosFormsDemoCoin_claimer_1:
+    name: AptosFormsDemoCoin_claimer_1
+    id:
+      generator:
+        class: signer
+      conceptual: true
+      name: SignerAddress
+      type: address
+      sequenceNumber: -1
+    properties: {}
+    methods:
+      Claim:
+        name: Claim
+        metadata: {}
+        event:
+          name: AptosFormsDemoCoin_claimer_1_Claimed
+    metadata:
+      Preprocessors:
+      - MOVE_CRUD_IT
+      CRUD_IT_NO_DELETE: true
+      CRUD_IT_NO_UPDATE: true
+      CRUD_IT_CREATE_METHOD_NAME: Claim
 enumObjects:
   AptosFormsDemo_fr_duif:
     baseType: String
@@ -428,7 +450,7 @@ singletonObjects:
         metadata: {}
         verificationLogic:
           Move: >-
-            assert!(aptos_framework::coin::balance<aptos_framework::aptos_coin::AptosCoin>(std::signer::address_of(account)) > amount, 1);
+            assert!(aptos_framework::coin::balance<aptos_framework::aptos_coin::AptosCoin>(std::signer::address_of(account)) > amount, EInsufficientFunds);
                     aptos_forms_demo_global::new_coin_claimer_1_vault_deposited(
                         aptos_forms_demo_global,
                         amount,
@@ -442,6 +464,12 @@ singletonObjects:
                     aptos_forms_demo_global
         event:
           name: Coin_claimer_1_VaultDeposited
+        constants:
+          EInsufficientFunds:
+            name: EInsufficientFunds
+            constantExpression:
+              Move: 101
+            type: u64
       WithdrawCoin_claimer_1_Vault:
         name: WithdrawCoin_claimer_1_Vault
         parameters:

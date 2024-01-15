@@ -20,6 +20,15 @@ aptos move run --function-id 'default::aptos_forms_demo_main_form_aggregate::upd
 --assume-yes
 ```
 
+## AptosFormsDemoCoin_claimer_1 aggregate
+
+### Claim method
+
+```shell
+aptos move run --function-id 'default::aptos_forms_demo_coin_claimer_1_aggregate::claim' \
+--assume-yes
+```
+
 ## AptosFormsDemoGlobal singleton object
 
 ### AdminWithdrawPayment_123_Vault method

@@ -16,6 +16,7 @@ module aptos_forms_demo::aptos_forms_demo_global_aggregate {
 
     friend aptos_forms_demo::aptos_forms_demo_main_form_submit_logic;
     friend aptos_forms_demo::aptos_forms_demo_main_form_update_logic;
+    friend aptos_forms_demo::aptos_forms_demo_coin_claimer_1_claim_logic;
 
     public(friend) fun deposit_payment_123_vault(
         account: &signer,

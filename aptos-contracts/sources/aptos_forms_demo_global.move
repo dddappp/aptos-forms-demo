@@ -52,13 +52,31 @@ module aptos_forms_demo::aptos_forms_demo_global {
         version: u64,
         payment_123_vault: Coin<AptosCoin>,
         coin_claimer_1_vault: Coin<AptosCoin>,
+        coin_claimer_1_total_shares: u64,
+        coin_claimer_1_claimed_count: u64,
     }
 
     public fun version(aptos_forms_demo_global: &AptosFormsDemoGlobal): u64 {
         aptos_forms_demo_global.version
     }
 
-    public(friend) fun borrow_payment_123_vault(aptos_forms_demo_global: &AptosFormsDemoGlobal): &Coin<AptosCoin> {
+    public fun coin_claimer_1_total_shares(aptos_forms_demo_global: &AptosFormsDemoGlobal): u64 {
+        aptos_forms_demo_global.coin_claimer_1_total_shares
+    }
+
+    public(friend) fun set_coin_claimer_1_total_shares(aptos_forms_demo_global: &mut AptosFormsDemoGlobal, coin_claimer_1_total_shares: u64) {
+        aptos_forms_demo_global.coin_claimer_1_total_shares = coin_claimer_1_total_shares;
+    }
+
+    public fun coin_claimer_1_claimed_count(aptos_forms_demo_global: &AptosFormsDemoGlobal): u64 {
+        aptos_forms_demo_global.coin_claimer_1_claimed_count
+    }
+
+    public(friend) fun set_coin_claimer_1_claimed_count(aptos_forms_demo_global: &mut AptosFormsDemoGlobal, coin_claimer_1_claimed_count: u64) {
+        aptos_forms_demo_global.coin_claimer_1_claimed_count = coin_claimer_1_claimed_count;
+    }
+
+    public fun borrow_payment_123_vault(aptos_forms_demo_global: &AptosFormsDemoGlobal): &Coin<AptosCoin> {
         &aptos_forms_demo_global.payment_123_vault
     }
 
@@ -66,7 +84,7 @@ module aptos_forms_demo::aptos_forms_demo_global {
         &mut aptos_forms_demo_global.payment_123_vault
     }
 
-    public(friend) fun borrow_coin_claimer_1_vault(aptos_forms_demo_global: &AptosFormsDemoGlobal): &Coin<AptosCoin> {
+    public fun borrow_coin_claimer_1_vault(aptos_forms_demo_global: &AptosFormsDemoGlobal): &Coin<AptosCoin> {
         &aptos_forms_demo_global.coin_claimer_1_vault
     }
 
@@ -80,6 +98,8 @@ module aptos_forms_demo::aptos_forms_demo_global {
             version: 0,
             payment_123_vault: aptos_framework::coin::zero(),
             coin_claimer_1_vault: aptos_framework::coin::zero(),
+            coin_claimer_1_total_shares: 10,
+            coin_claimer_1_claimed_count: 0,
         }
     }
 
@@ -243,6 +263,8 @@ module aptos_forms_demo::aptos_forms_demo_global {
             version: _version,
             payment_123_vault,
             coin_claimer_1_vault,
+            coin_claimer_1_total_shares: _coin_claimer_1_total_shares,
+            coin_claimer_1_claimed_count: _coin_claimer_1_claimed_count,
         } = aptos_forms_demo_global;
         aptos_framework::coin::destroy_zero(payment_123_vault);
         aptos_framework::coin::destroy_zero(coin_claimer_1_vault);

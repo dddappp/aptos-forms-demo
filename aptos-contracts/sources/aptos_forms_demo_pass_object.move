@@ -6,6 +6,7 @@
 module aptos_forms_demo::aptos_forms_demo_pass_object {
 
     friend aptos_forms_demo::aptos_forms_demo_main_form;
+    friend aptos_forms_demo::aptos_forms_demo_coin_claimer_1;
     friend aptos_forms_demo::aptos_forms_demo_global;
 
     /// read-only 'hot potato' wrapper.

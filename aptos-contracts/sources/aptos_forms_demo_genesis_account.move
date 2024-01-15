@@ -11,6 +11,7 @@ module aptos_forms_demo::aptos_forms_demo_genesis_account {
     use std::signer;
 
     friend aptos_forms_demo::aptos_forms_demo_main_form;
+    friend aptos_forms_demo::aptos_forms_demo_coin_claimer_1;
     friend aptos_forms_demo::aptos_forms_demo_global;
 
     const ENotGenesisAccount: u64 = 100;
