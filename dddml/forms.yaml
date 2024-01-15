@@ -363,6 +363,18 @@ singletonObjects:
         name: Coin_claimer_1_Vault
         type: Coin<APT>
         sequenceNumber: -1
+      Coin_claimer_1_TotalShares:
+        name: Coin_claimer_1_TotalShares
+        defaultLogic:
+          Move: 10
+        type: u64
+        sequenceNumber: -1
+      Coin_claimer_1_ClaimedCount:
+        name: Coin_claimer_1_ClaimedCount
+        defaultLogic:
+          Move: 0
+        type: u64
+        sequenceNumber: -1
     methods:
       DepositPayment_123_Vault:
         name: DepositPayment_123_Vault

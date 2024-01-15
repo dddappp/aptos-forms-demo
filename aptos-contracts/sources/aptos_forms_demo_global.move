@@ -60,22 +60,6 @@ module aptos_forms_demo::aptos_forms_demo_global {
         aptos_forms_demo_global.version
     }
 
-    public fun coin_claimer_1_total_shares(aptos_forms_demo_global: &AptosFormsDemoGlobal): u64 {
-        aptos_forms_demo_global.coin_claimer_1_total_shares
-    }
-
-    public(friend) fun set_coin_claimer_1_total_shares(aptos_forms_demo_global: &mut AptosFormsDemoGlobal, coin_claimer_1_total_shares: u64) {
-        aptos_forms_demo_global.coin_claimer_1_total_shares = coin_claimer_1_total_shares;
-    }
-
-    public fun coin_claimer_1_claimed_count(aptos_forms_demo_global: &AptosFormsDemoGlobal): u64 {
-        aptos_forms_demo_global.coin_claimer_1_claimed_count
-    }
-
-    public(friend) fun set_coin_claimer_1_claimed_count(aptos_forms_demo_global: &mut AptosFormsDemoGlobal, coin_claimer_1_claimed_count: u64) {
-        aptos_forms_demo_global.coin_claimer_1_claimed_count = coin_claimer_1_claimed_count;
-    }
-
     public fun borrow_payment_123_vault(aptos_forms_demo_global: &AptosFormsDemoGlobal): &Coin<AptosCoin> {
         &aptos_forms_demo_global.payment_123_vault
     }
@@ -90,6 +74,22 @@ module aptos_forms_demo::aptos_forms_demo_global {
 
     public(friend) fun borrow_mut_coin_claimer_1_vault(aptos_forms_demo_global: &mut AptosFormsDemoGlobal): &mut Coin<AptosCoin> {
         &mut aptos_forms_demo_global.coin_claimer_1_vault
+    }
+
+    public fun coin_claimer_1_total_shares(aptos_forms_demo_global: &AptosFormsDemoGlobal): u64 {
+        aptos_forms_demo_global.coin_claimer_1_total_shares
+    }
+
+    public(friend) fun set_coin_claimer_1_total_shares(aptos_forms_demo_global: &mut AptosFormsDemoGlobal, coin_claimer_1_total_shares: u64) {
+        aptos_forms_demo_global.coin_claimer_1_total_shares = coin_claimer_1_total_shares;
+    }
+
+    public fun coin_claimer_1_claimed_count(aptos_forms_demo_global: &AptosFormsDemoGlobal): u64 {
+        aptos_forms_demo_global.coin_claimer_1_claimed_count
+    }
+
+    public(friend) fun set_coin_claimer_1_claimed_count(aptos_forms_demo_global: &mut AptosFormsDemoGlobal, coin_claimer_1_claimed_count: u64) {
+        aptos_forms_demo_global.coin_claimer_1_claimed_count = coin_claimer_1_claimed_count;
     }
 
     public(friend) fun new_aptos_forms_demo_global(
@@ -251,6 +251,16 @@ module aptos_forms_demo::aptos_forms_demo_global {
     public fun get_aptos_forms_demo_global(): pass_object::PassObject<AptosFormsDemoGlobal> acquires AptosFormsDemoGlobal {
         let aptos_forms_demo_global = remove_aptos_forms_demo_global();
         pass_object::new(aptos_forms_demo_global)
+    }
+
+    public fun singleton_coin_claimer_1_total_shares(): u64 acquires AptosFormsDemoGlobal {
+        let aptos_forms_demo_global = borrow_global<AptosFormsDemoGlobal>(genesis_account::resource_account_address());
+        aptos_forms_demo_global.coin_claimer_1_total_shares
+    }
+
+    public fun singleton_coin_claimer_1_claimed_count(): u64 acquires AptosFormsDemoGlobal {
+        let aptos_forms_demo_global = borrow_global<AptosFormsDemoGlobal>(genesis_account::resource_account_address());
+        aptos_forms_demo_global.coin_claimer_1_claimed_count
     }
 
     public fun return_aptos_forms_demo_global(aptos_forms_demo_global_pass_obj: pass_object::PassObject<AptosFormsDemoGlobal>) {
