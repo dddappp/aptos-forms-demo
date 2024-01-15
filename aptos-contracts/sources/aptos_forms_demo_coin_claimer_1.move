@@ -66,17 +66,31 @@ module aptos_forms_demo::aptos_forms_demo_coin_claimer_1 {
 
     struct AptosFormsDemoCoin_claimer_1_Claimed has store, drop {
         signer_address: address,
+        remaining_amount: u64,
+        remaining_shares: u64,
     }
 
     public fun aptos_forms_demo_coin_claimer_1_claimed_signer_address(aptos_forms_demo_coin_claimer_1_claimed: &AptosFormsDemoCoin_claimer_1_Claimed): address {
         aptos_forms_demo_coin_claimer_1_claimed.signer_address
     }
 
+    public fun aptos_forms_demo_coin_claimer_1_claimed_remaining_amount(aptos_forms_demo_coin_claimer_1_claimed: &AptosFormsDemoCoin_claimer_1_Claimed): u64 {
+        aptos_forms_demo_coin_claimer_1_claimed.remaining_amount
+    }
+
+    public fun aptos_forms_demo_coin_claimer_1_claimed_remaining_shares(aptos_forms_demo_coin_claimer_1_claimed: &AptosFormsDemoCoin_claimer_1_Claimed): u64 {
+        aptos_forms_demo_coin_claimer_1_claimed.remaining_shares
+    }
+
     public(friend) fun new_aptos_forms_demo_coin_claimer_1_claimed(
         signer_address: address,
+        remaining_amount: u64,
+        remaining_shares: u64,
     ): AptosFormsDemoCoin_claimer_1_Claimed {
         AptosFormsDemoCoin_claimer_1_Claimed {
             signer_address,
+            remaining_amount,
+            remaining_shares,
         }
     }
 
