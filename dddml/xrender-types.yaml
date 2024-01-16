@@ -1,5 +1,5 @@
 typeDefinitions:
-  StringRange:
+  XRenderFormStringRange:
     moveType: "xrender_form_utils::string_range::StringRange"
     moveEntryFunType: "vector<std::string::String>"
     moveEntryFunTypeDeserializeFun: "xrender_form_utils::string_range::value_of"
@@ -12,7 +12,7 @@ typeDefinitions:
           type: String
           length: 500
 
-  DateRange:
+  XRenderFormDateRange:
     moveType: "xrender_form_utils::date_range::DateRange"
     moveEntryFunType: "vector<u16>"
     moveEntryFunTypeDeserializeFun: "xrender_form_utils::date_range::value_of"
@@ -23,7 +23,7 @@ typeDefinitions:
         End:
           type: XRenderFormDate
 
-  TimeRange:
+  XRenderFormTimeRange:
     moveType: "xrender_form_utils::time_range::TimeRange"
     moveEntryFunType: "vector<u8>"
     moveEntryFunTypeDeserializeFun: "xrender_form_utils::time_range::value_of"

@@ -37,7 +37,7 @@ module aptos_forms_demo::aptos_forms_demo_coin_claimer_1_claim_logic {
         let signer_address = aptos_forms_demo_coin_claimer_1::aptos_forms_demo_coin_claimer_1_claimed_signer_address(aptos_forms_demo_coin_claimer_1_claimed);
         let remaining_amount = aptos_forms_demo_coin_claimer_1::aptos_forms_demo_coin_claimer_1_claimed_remaining_amount(aptos_forms_demo_coin_claimer_1_claimed);
         let remaining_shares = aptos_forms_demo_coin_claimer_1::aptos_forms_demo_coin_claimer_1_claimed_remaining_shares(aptos_forms_demo_coin_claimer_1_claimed);
-        let max_shares = 3;
+        let max_shares = 2;
         let amount = xrender_form_utils::account_ts_random::random_amount(_account, remaining_amount, remaining_shares, max_shares, 1);
         let coin_withdrawn = aptos_forms_demo::aptos_forms_demo_global_aggregate::withdraw_coin_claimer_1_vault(_account, amount);
         aptos_framework::coin::deposit(std::signer::address_of(_account), coin_withdrawn);
