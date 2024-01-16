@@ -7,8 +7,8 @@ package org.test.aptosformsdemo.domain.aptosformsdemoglobal;
 
 import java.util.*;
 import org.test.aptosformsdemo.domain.*;
-import java.util.Date;
 import java.math.BigInteger;
+import java.util.Date;
 import org.test.aptosformsdemo.domain.AbstractCommand;
 
 public abstract class AbstractAptosFormsDemoGlobalCommand extends AbstractCommand implements AptosFormsDemoGlobalCommand {

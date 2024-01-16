@@ -8,6 +8,9 @@ package org.test.aptosformsdemo.config;
 import org.test.aptosformsdemo.domain.aptosformsdemomainform.*;
 import org.test.aptosformsdemo.domain.*;
 import org.test.aptosformsdemo.domain.aptosformsdemomainform.hibernate.*;
+import org.test.aptosformsdemo.domain.aptosformsdemocoin_claimer_1.*;
+import org.test.aptosformsdemo.domain.*;
+import org.test.aptosformsdemo.domain.aptosformsdemocoin_claimer_1.hibernate.*;
 import org.test.aptosformsdemo.domain.formdefinition.*;
 import org.test.aptosformsdemo.domain.*;
 import org.test.aptosformsdemo.domain.formdefinition.hibernate.*;
@@ -69,6 +72,51 @@ public class AggregatesHibernateConfig {
                 aptosFormsDemoMainFormEventStore,
                 aptosFormsDemoMainFormStateRepository,
                 aptosFormsDemoMainFormStateQueryRepository
+        );
+        return applicationService;
+    }
+
+
+
+    @Bean
+    public AptosFormsDemoCoin_claimer_1StateRepository aptosFormsDemoCoin_claimer_1StateRepository(
+            SessionFactory hibernateSessionFactory,
+            ReadOnlyProxyGenerator stateReadOnlyProxyGenerator
+    ) {
+        HibernateAptosFormsDemoCoin_claimer_1StateRepository repository = new HibernateAptosFormsDemoCoin_claimer_1StateRepository();
+        repository.setSessionFactory(hibernateSessionFactory);
+        repository.setReadOnlyProxyGenerator(stateReadOnlyProxyGenerator);
+        return repository;
+    }
+
+    @Bean
+    public AptosFormsDemoCoin_claimer_1StateQueryRepository aptosFormsDemoCoin_claimer_1StateQueryRepository(
+            SessionFactory hibernateSessionFactory,
+            ReadOnlyProxyGenerator stateReadOnlyProxyGenerator
+    ) {
+        HibernateAptosFormsDemoCoin_claimer_1StateQueryRepository repository = new HibernateAptosFormsDemoCoin_claimer_1StateQueryRepository();
+        repository.setSessionFactory(hibernateSessionFactory);
+        repository.setReadOnlyProxyGenerator(stateReadOnlyProxyGenerator);
+        return repository;
+    }
+
+    @Bean
+    public HibernateAptosFormsDemoCoin_claimer_1EventStore aptosFormsDemoCoin_claimer_1EventStore(SessionFactory hibernateSessionFactory) {
+        HibernateAptosFormsDemoCoin_claimer_1EventStore eventStore = new HibernateAptosFormsDemoCoin_claimer_1EventStore();
+        eventStore.setSessionFactory(hibernateSessionFactory);
+        return eventStore;
+    }
+
+    @Bean
+    public AbstractAptosFormsDemoCoin_claimer_1ApplicationService.SimpleAptosFormsDemoCoin_claimer_1ApplicationService aptosFormsDemoCoin_claimer_1ApplicationService(
+            @Qualifier("aptosFormsDemoCoin_claimer_1EventStore") EventStore aptosFormsDemoCoin_claimer_1EventStore,
+            AptosFormsDemoCoin_claimer_1StateRepository aptosFormsDemoCoin_claimer_1StateRepository,
+            AptosFormsDemoCoin_claimer_1StateQueryRepository aptosFormsDemoCoin_claimer_1StateQueryRepository
+    ) {
+        AbstractAptosFormsDemoCoin_claimer_1ApplicationService.SimpleAptosFormsDemoCoin_claimer_1ApplicationService applicationService = new AbstractAptosFormsDemoCoin_claimer_1ApplicationService.SimpleAptosFormsDemoCoin_claimer_1ApplicationService(
+                aptosFormsDemoCoin_claimer_1EventStore,
+                aptosFormsDemoCoin_claimer_1StateRepository,
+                aptosFormsDemoCoin_claimer_1StateQueryRepository
         );
         return applicationService;
     }

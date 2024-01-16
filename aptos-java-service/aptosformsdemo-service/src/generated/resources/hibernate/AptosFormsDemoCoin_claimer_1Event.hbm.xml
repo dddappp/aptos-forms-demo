@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"[]>
+<hibernate-mapping package="org.test.aptosformsdemo.domain.aptosformsdemocoin_claimer_1">
+  <class name="AbstractAptosFormsDemoCoin_claimer_1Event" table="aptos_forms_demo_coin_claimer_1_event" abstract="true">
+    <composite-id name="aptosFormsDemoCoin_claimer_1EventId" class="org.test.aptosformsdemo.domain.aptosformsdemocoin_claimer_1.AptosFormsDemoCoin_claimer_1EventId">
+      <key-property name="formPageAndSignerAddressFormSequenceId">
+        <column name="form_sequence_id" />
+      </key-property>
+      <key-property name="formPageAndSignerAddressPageNumber">
+        <column name="page_number" />
+      </key-property>
+      <key-property name="formPageAndSignerAddressAddress">
+        <column name="signer_address" sql-type="VARCHAR(66)" />
+      </key-property>
+      <key-property name="version">
+        <column name="version" sql-type="DECIMAL(20,0)" />
+      </key-property>
+    </composite-id>
+    <discriminator column="event_class" type="string" />
+    <property name="createdBy" column="created_by" />
+    <property name="createdAt" column="created_at" />
+    <property name="commandId" column="command_id" />
+    <property name="aptosEventVersion">
+      <column name="aptos_event_version" sql-type="DECIMAL(20,0)" />
+    </property>
+    <property name="aptosEventSequenceNumber">
+      <column name="aptos_event_sequence_number" sql-type="DECIMAL(20,0)" />
+    </property>
+    <property name="aptosEventType">
+      <column name="aptos_event_type" length="500" />
+    </property>
+    <component name="aptosEventGuid" class="org.test.aptosformsdemo.domain.AptosEventGuid">
+      <property name="creationNumber">
+        <column name="aptos_event_guid_creation_number" sql-type="DECIMAL(20,0)" />
+      </property>
+      <property name="accountAddress">
+        <column name="aptos_event_guid_account_address" sql-type="VARCHAR(66)" />
+      </property>
+    </component>
+    <property name="status">
+      <column name="status" sql-type="CHAR(1)" />
+    </property>
+    <property name="commandType" column="command_type" length="50" />
+    <subclass name="AbstractAptosFormsDemoCoin_claimer_1Event$AptosFormsDemoCoin_claimer_1LobEvent" discriminator-value="AptosFormsDemoCoin_claimer_1LobEvent">
+      <property name="dynamicProperties">
+        <column name="dynamic_properties" sql-type="jsonb" />
+        <type name="io.hypersistence.utils.hibernate.type.json.JsonBinaryType">
+          <param name="org.hibernate.type.ParameterType">java.util.HashMap</param>
+        </type>
+      </property>
+      <subclass name="AbstractAptosFormsDemoCoin_claimer_1Event$AptosFormsDemoCoin_claimer_1_Claimed" discriminator-value="AptosFormsDemoCoin_claimer_1_Claimed" />
+    </subclass>
+  </class>
+</hibernate-mapping>

@@ -13,6 +13,8 @@ public class ContractConstants {
 
     public static final String APTOS_FORMS_DEMO_MAIN_FORM_ID_TYPE = "address";
 
+    public static final String APTOS_FORMS_DEMO_COIN_CLAIMER_1_ID_TYPE = "address";
+
     public static final String APTOS_FORMS_DEMO_GLOBAL_ID_TYPE = "address";
 
     public static String toNumericalAddressType(String type, String contractAddress) {

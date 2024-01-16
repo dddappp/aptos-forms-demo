@@ -76,6 +76,65 @@ public class ContractModuleNameProviderUtils {
         return contractModuleNameProvider;
     }
 
+    public static ContractModuleNameProvider getAptosFormsDemoCoin_claimer_1ModuleNameProvider(
+            final String moduleName,
+            final String contractAddress,
+            final String storeAccountAddress,
+            final String aptosFormsDemoCoin_claimer_1_ClaimedStructName,
+            final String aptosFormsDemoCoin_claimer_1_ClaimedHandleFieldName,
+            final String stateTableFieldName,
+            final String stateStructName
+    ) {
+        ContractModuleNameProvider contractModuleNameProvider = new ContractModuleNameProvider() {
+            @Override
+            public String getModuleQualifiedEventStructName(String eventCategory) {
+                if ("AptosFormsDemoCoin_claimer_1_Claimed".equals(eventCategory)) {
+                    return moduleName + "::" + aptosFormsDemoCoin_claimer_1_ClaimedStructName;
+                }
+                throw new IllegalArgumentException("Unknown event category: " + eventCategory);
+            }
+
+            @Override
+            public String getEventHandleFieldName(String eventCategory) {
+                if ("AptosFormsDemoCoin_claimer_1_Claimed".equals(eventCategory)) {
+                    return aptosFormsDemoCoin_claimer_1_ClaimedHandleFieldName;
+                }
+                throw new IllegalArgumentException("Unknown event category: " + eventCategory);
+            }
+
+            @Override
+            public String getStateTableFieldName() {
+                return stateTableFieldName;
+            }
+
+            @Override
+            public String getModuleQualifiedEntityStateStructName() {
+                return moduleName + "::" + stateStructName;
+            }
+
+            @Override
+            public String getModuleQualifiedTablesStructName() {
+                return moduleName + "::Tables";
+            }
+
+            @Override
+            public String getModuleQualifiedEventsStructName() {
+                return moduleName + "::Events";
+            }
+
+            @Override
+            public String getContractAddress() {
+                return contractAddress;
+            }
+
+            @Override
+            public String getStoreAccountAddress() {
+                return storeAccountAddress;
+            }
+        };
+        return contractModuleNameProvider;
+    }
+
     public static ContractModuleNameProvider getAptosFormsDemoGlobalModuleNameProvider(
             final String moduleName,
             final String contractAddress,

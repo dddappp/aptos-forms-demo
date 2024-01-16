@@ -8,7 +8,7 @@ package org.test.aptosformsdemo.domain;
 import java.io.Serializable;
 import org.test.aptosformsdemo.domain.*;
 
-public class StringRange implements Serializable {
+public class XRenderFormStringRange implements Serializable {
     private String start;
 
     public String getStart()
@@ -33,11 +33,11 @@ public class StringRange implements Serializable {
         this.end = end;
     }
 
-    public StringRange()
+    public XRenderFormStringRange()
     {
     }
 
-    public StringRange(String start, String end)
+    public XRenderFormStringRange(String start, String end)
     {
         this.start = start;
         this.end = end;
@@ -53,7 +53,7 @@ public class StringRange implements Serializable {
             return false;
         }
 
-        StringRange other = (StringRange)obj;
+        XRenderFormStringRange other = (XRenderFormStringRange)obj;
         return true 
             && (start == other.start || (start != null && start.equals(other.start)))
             && (end == other.end || (end != null && end.equals(other.end)))
@@ -75,7 +75,7 @@ public class StringRange implements Serializable {
 
     @Override
     public String toString() {
-        return "StringRange{" +
+        return "XRenderFormStringRange{" +
                 "start=" + '\'' + start + '\'' +
                 ", end=" + '\'' + end + '\'' +
                 '}';

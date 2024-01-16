@@ -144,26 +144,26 @@ public class AptosFormsDemoMainFormCommands {
         /**
          * Fr_d8rw
          */
-        private DateRange fr_d8rw;
+        private XRenderFormDateRange fr_d8rw;
 
-        public DateRange getFr_d8rw() {
+        public XRenderFormDateRange getFr_d8rw() {
             return this.fr_d8rw;
         }
 
-        public void setFr_d8rw(DateRange fr_d8rw) {
+        public void setFr_d8rw(XRenderFormDateRange fr_d8rw) {
             this.fr_d8rw = fr_d8rw;
         }
 
         /**
          * Fr_dy3l
          */
-        private DateRange fr_dy3l;
+        private XRenderFormDateRange fr_dy3l;
 
-        public DateRange getFr_dy3l() {
+        public XRenderFormDateRange getFr_dy3l() {
             return this.fr_dy3l;
         }
 
-        public void setFr_dy3l(DateRange fr_dy3l) {
+        public void setFr_dy3l(XRenderFormDateRange fr_dy3l) {
             this.fr_dy3l = fr_dy3l;
         }
 
@@ -183,13 +183,13 @@ public class AptosFormsDemoMainFormCommands {
         /**
          * Fr_47yy
          */
-        private TimeRange fr_47yy;
+        private XRenderFormTimeRange fr_47yy;
 
-        public TimeRange getFr_47yy() {
+        public XRenderFormTimeRange getFr_47yy() {
             return this.fr_47yy;
         }
 
-        public void setFr_47yy(TimeRange fr_47yy) {
+        public void setFr_47yy(XRenderFormTimeRange fr_47yy) {
             this.fr_47yy = fr_47yy;
         }
 
@@ -403,26 +403,26 @@ public class AptosFormsDemoMainFormCommands {
         /**
          * Fr_d8rw
          */
-        private DateRange fr_d8rw;
+        private XRenderFormDateRange fr_d8rw;
 
-        public DateRange getFr_d8rw() {
+        public XRenderFormDateRange getFr_d8rw() {
             return this.fr_d8rw;
         }
 
-        public void setFr_d8rw(DateRange fr_d8rw) {
+        public void setFr_d8rw(XRenderFormDateRange fr_d8rw) {
             this.fr_d8rw = fr_d8rw;
         }
 
         /**
          * Fr_dy3l
          */
-        private DateRange fr_dy3l;
+        private XRenderFormDateRange fr_dy3l;
 
-        public DateRange getFr_dy3l() {
+        public XRenderFormDateRange getFr_dy3l() {
             return this.fr_dy3l;
         }
 
-        public void setFr_dy3l(DateRange fr_dy3l) {
+        public void setFr_dy3l(XRenderFormDateRange fr_dy3l) {
             this.fr_dy3l = fr_dy3l;
         }
 
@@ -442,13 +442,13 @@ public class AptosFormsDemoMainFormCommands {
         /**
          * Fr_47yy
          */
-        private TimeRange fr_47yy;
+        private XRenderFormTimeRange fr_47yy;
 
-        public TimeRange getFr_47yy() {
+        public XRenderFormTimeRange getFr_47yy() {
             return this.fr_47yy;
         }
 
-        public void setFr_47yy(TimeRange fr_47yy) {
+        public void setFr_47yy(XRenderFormTimeRange fr_47yy) {
             this.fr_47yy = fr_47yy;
         }
 

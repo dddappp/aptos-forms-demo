@@ -8,8 +8,8 @@ package org.test.aptosformsdemo.domain.aptosformsdemoglobal;
 import java.util.*;
 import org.dddml.support.criterion.Criterion;
 import org.test.aptosformsdemo.domain.*;
-import java.util.Date;
 import java.math.BigInteger;
+import java.util.Date;
 
 public interface AptosFormsDemoGlobalStateRepository {
     AptosFormsDemoGlobalState get(FormAndAddress id, boolean nullAllowed);

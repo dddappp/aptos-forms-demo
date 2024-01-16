@@ -10,34 +10,34 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.github.wubuku.aptos.bean.*;
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class DateRange {
+public class XRenderFormStringRange {
 
-    private XRenderFormDate start;
+    private String start;
 
-    private XRenderFormDate end;
+    private String end;
 
 
-    public XRenderFormDate getStart() {
+    public String getStart() {
         return start;
     }
 
-    public void setStart(XRenderFormDate start) {
+    public void setStart(String start) {
         this.start = start;
     }
 
-    public XRenderFormDate getEnd() {
+    public String getEnd() {
         return end;
     }
 
-    public void setEnd(XRenderFormDate end) {
+    public void setEnd(String end) {
         this.end = end;
     }
 
     @Override
     public String toString() {
-        return "DateRange{" +
-                "start=" + start +
-                ", end=" + end +
+        return "XRenderFormStringRange{" +
+                "start=" + '\'' + start + '\'' +
+                ", end=" + '\'' + end + '\'' +
                 '}';
     }
 }

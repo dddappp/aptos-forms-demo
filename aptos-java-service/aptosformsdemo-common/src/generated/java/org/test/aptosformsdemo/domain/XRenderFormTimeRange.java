@@ -8,7 +8,7 @@ package org.test.aptosformsdemo.domain;
 import java.io.Serializable;
 import org.test.aptosformsdemo.domain.*;
 
-public class TimeRange implements Serializable {
+public class XRenderFormTimeRange implements Serializable {
     private XRenderFormTime start = new XRenderFormTime();
 
     public XRenderFormTime getStart()
@@ -93,11 +93,11 @@ public class TimeRange implements Serializable {
         getEnd().setSecond(endSecond);
     }
 
-    public TimeRange()
+    public XRenderFormTimeRange()
     {
     }
 
-    public TimeRange(XRenderFormTime start, XRenderFormTime end)
+    public XRenderFormTimeRange(XRenderFormTime start, XRenderFormTime end)
     {
         this.start = start;
         this.end = end;
@@ -113,7 +113,7 @@ public class TimeRange implements Serializable {
             return false;
         }
 
-        TimeRange other = (TimeRange)obj;
+        XRenderFormTimeRange other = (XRenderFormTimeRange)obj;
         return true 
             && (start == other.start || (start != null && start.equals(other.start)))
             && (end == other.end || (end != null && end.equals(other.end)))
@@ -135,7 +135,7 @@ public class TimeRange implements Serializable {
 
     @Override
     public String toString() {
-        return "TimeRange{" +
+        return "XRenderFormTimeRange{" +
                 "start=" + start +
                 ", end=" + end +
                 '}';

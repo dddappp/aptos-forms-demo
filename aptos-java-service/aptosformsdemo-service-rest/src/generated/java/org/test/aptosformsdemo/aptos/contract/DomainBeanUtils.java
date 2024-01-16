@@ -15,6 +15,9 @@ import org.test.aptosformsdemo.domain.FormPageAndAddress;
 import org.test.aptosformsdemo.domain.aptosformsdemomainform.AbstractAptosFormsDemoMainFormEvent;
 import org.test.aptosformsdemo.aptos.contract.aptosformsdemomainform.AptosFormsDemoMainFormSubmitted;
 import org.test.aptosformsdemo.aptos.contract.aptosformsdemomainform.AptosFormsDemoMainFormUpdated;
+import org.test.aptosformsdemo.domain.FormPageAndAddress;
+import org.test.aptosformsdemo.domain.aptosformsdemocoin_claimer_1.AbstractAptosFormsDemoCoin_claimer_1Event;
+import org.test.aptosformsdemo.aptos.contract.aptosformsdemocoin_claimer_1.AptosFormsDemoCoin_claimer_1_Claimed;
 import org.test.aptosformsdemo.domain.FormAndAddress;
 import org.test.aptosformsdemo.domain.aptosformsdemoglobal.AbstractAptosFormsDemoGlobalEvent;
 import org.test.aptosformsdemo.aptos.contract.aptosformsdemoglobal.Payment_123_VaultDeposited;
@@ -41,36 +44,6 @@ public class DomainBeanUtils {
         return coin;
     }
 
-    public static org.test.aptosformsdemo.domain.DateRange toDateRange(DateRange contractDateRange) {
-        if (contractDateRange == null) {
-            return null;
-        }
-        org.test.aptosformsdemo.domain.DateRange dateRange = new org.test.aptosformsdemo.domain.DateRange();
-        dateRange.setStart(toXRenderFormDate(contractDateRange.getStart()));
-        dateRange.setEnd(toXRenderFormDate(contractDateRange.getEnd()));
-        return dateRange;
-    }
-
-    public static org.test.aptosformsdemo.domain.StringRange toStringRange(StringRange contractStringRange) {
-        if (contractStringRange == null) {
-            return null;
-        }
-        org.test.aptosformsdemo.domain.StringRange stringRange = new org.test.aptosformsdemo.domain.StringRange();
-        stringRange.setStart(contractStringRange.getStart());
-        stringRange.setEnd(contractStringRange.getEnd());
-        return stringRange;
-    }
-
-    public static org.test.aptosformsdemo.domain.TimeRange toTimeRange(TimeRange contractTimeRange) {
-        if (contractTimeRange == null) {
-            return null;
-        }
-        org.test.aptosformsdemo.domain.TimeRange timeRange = new org.test.aptosformsdemo.domain.TimeRange();
-        timeRange.setStart(toXRenderFormTime(contractTimeRange.getStart()));
-        timeRange.setEnd(toXRenderFormTime(contractTimeRange.getEnd()));
-        return timeRange;
-    }
-
     public static org.test.aptosformsdemo.domain.XRenderFormDate toXRenderFormDate(XRenderFormDate contractXRenderFormDate) {
         if (contractXRenderFormDate == null) {
             return null;
@@ -82,6 +55,26 @@ public class DomainBeanUtils {
         return xRenderFormDate;
     }
 
+    public static org.test.aptosformsdemo.domain.XRenderFormDateRange toXRenderFormDateRange(XRenderFormDateRange contractXRenderFormDateRange) {
+        if (contractXRenderFormDateRange == null) {
+            return null;
+        }
+        org.test.aptosformsdemo.domain.XRenderFormDateRange xRenderFormDateRange = new org.test.aptosformsdemo.domain.XRenderFormDateRange();
+        xRenderFormDateRange.setStart(toXRenderFormDate(contractXRenderFormDateRange.getStart()));
+        xRenderFormDateRange.setEnd(toXRenderFormDate(contractXRenderFormDateRange.getEnd()));
+        return xRenderFormDateRange;
+    }
+
+    public static org.test.aptosformsdemo.domain.XRenderFormStringRange toXRenderFormStringRange(XRenderFormStringRange contractXRenderFormStringRange) {
+        if (contractXRenderFormStringRange == null) {
+            return null;
+        }
+        org.test.aptosformsdemo.domain.XRenderFormStringRange xRenderFormStringRange = new org.test.aptosformsdemo.domain.XRenderFormStringRange();
+        xRenderFormStringRange.setStart(contractXRenderFormStringRange.getStart());
+        xRenderFormStringRange.setEnd(contractXRenderFormStringRange.getEnd());
+        return xRenderFormStringRange;
+    }
+
     public static org.test.aptosformsdemo.domain.XRenderFormTime toXRenderFormTime(XRenderFormTime contractXRenderFormTime) {
         if (contractXRenderFormTime == null) {
             return null;
@@ -91,6 +84,16 @@ public class DomainBeanUtils {
         xRenderFormTime.setMinute(contractXRenderFormTime.getMinute());
         xRenderFormTime.setSecond(contractXRenderFormTime.getSecond());
         return xRenderFormTime;
+    }
+
+    public static org.test.aptosformsdemo.domain.XRenderFormTimeRange toXRenderFormTimeRange(XRenderFormTimeRange contractXRenderFormTimeRange) {
+        if (contractXRenderFormTimeRange == null) {
+            return null;
+        }
+        org.test.aptosformsdemo.domain.XRenderFormTimeRange xRenderFormTimeRange = new org.test.aptosformsdemo.domain.XRenderFormTimeRange();
+        xRenderFormTimeRange.setStart(toXRenderFormTime(contractXRenderFormTimeRange.getStart()));
+        xRenderFormTimeRange.setEnd(toXRenderFormTime(contractXRenderFormTimeRange.getEnd()));
+        return xRenderFormTimeRange;
     }
 
 
@@ -118,6 +121,19 @@ public class DomainBeanUtils {
         setAptosEventProperties(aptosFormsDemoMainFormUpdated, eventEnvelope);
 
         return aptosFormsDemoMainFormUpdated;
+    }
+
+    public static AbstractAptosFormsDemoCoin_claimer_1Event.AptosFormsDemoCoin_claimer_1_Claimed toAptosFormsDemoCoin_claimer_1_Claimed(java.util.function.Function<String, FormPageAndAddress> toFormPageAndAddress, Event<AptosFormsDemoCoin_claimer_1_Claimed> eventEnvelope) {
+        AptosFormsDemoCoin_claimer_1_Claimed contractEvent = eventEnvelope.getData();
+
+        AbstractAptosFormsDemoCoin_claimer_1Event.AptosFormsDemoCoin_claimer_1_Claimed aptosFormsDemoCoin_claimer_1_Claimed = new AbstractAptosFormsDemoCoin_claimer_1Event.AptosFormsDemoCoin_claimer_1_Claimed();
+        aptosFormsDemoCoin_claimer_1_Claimed.setFormPageAndSignerAddress(toFormPageAndAddress.apply(contractEvent.getSignerAddress()));
+        aptosFormsDemoCoin_claimer_1_Claimed.setDynamicProperties(contractEvent.getDynamicProperties());
+        aptosFormsDemoCoin_claimer_1_Claimed.setVersion(BigInteger.valueOf(-1));
+
+        setAptosEventProperties(aptosFormsDemoCoin_claimer_1_Claimed, eventEnvelope);
+
+        return aptosFormsDemoCoin_claimer_1_Claimed;
     }
 
     public static AbstractAptosFormsDemoGlobalEvent.Payment_123_VaultDeposited toPayment_123_VaultDeposited(java.util.function.Function<String, FormAndAddress> toFormAndAddress, Event<Payment_123_VaultDeposited> eventEnvelope) {

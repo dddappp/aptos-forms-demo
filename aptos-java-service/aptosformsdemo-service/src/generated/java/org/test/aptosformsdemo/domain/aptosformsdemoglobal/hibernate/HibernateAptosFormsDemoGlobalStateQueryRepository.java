@@ -7,8 +7,8 @@ package org.test.aptosformsdemo.domain.aptosformsdemoglobal.hibernate;
 
 import java.util.*;
 import org.test.aptosformsdemo.domain.*;
-import java.util.Date;
 import java.math.BigInteger;
+import java.util.Date;
 import org.hibernate.Session;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
@@ -31,7 +31,7 @@ public class HibernateAptosFormsDemoGlobalStateQueryRepository implements AptosF
         return this.sessionFactory.getCurrentSession();
     }
     
-    private static final Set<String> readOnlyPropertyPascalCaseNames = new HashSet<String>(Arrays.asList("FormAndAccountAddress", "Payment_123_Vault", "Coin_claimer_1_Vault", "OffChainVersion", "CreatedBy", "CreatedAt", "UpdatedBy", "UpdatedAt", "Active", "Deleted", "Version"));
+    private static final Set<String> readOnlyPropertyPascalCaseNames = new HashSet<String>(Arrays.asList("FormAndAccountAddress", "Payment_123_Vault", "Coin_claimer_1_Vault", "Coin_claimer_1_TotalShares", "Coin_claimer_1_ClaimedCount", "OffChainVersion", "CreatedBy", "CreatedAt", "UpdatedBy", "UpdatedAt", "Active", "Deleted", "Version"));
     
     private ReadOnlyProxyGenerator readOnlyProxyGenerator;
     

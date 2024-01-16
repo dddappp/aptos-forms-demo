@@ -8,7 +8,7 @@ package org.test.aptosformsdemo.domain;
 import java.io.Serializable;
 import org.test.aptosformsdemo.domain.*;
 
-public class DateRange implements Serializable {
+public class XRenderFormDateRange implements Serializable {
     private XRenderFormDate start = new XRenderFormDate();
 
     public XRenderFormDate getStart()
@@ -93,11 +93,11 @@ public class DateRange implements Serializable {
         getEnd().setDay(endDay);
     }
 
-    public DateRange()
+    public XRenderFormDateRange()
     {
     }
 
-    public DateRange(XRenderFormDate start, XRenderFormDate end)
+    public XRenderFormDateRange(XRenderFormDate start, XRenderFormDate end)
     {
         this.start = start;
         this.end = end;
@@ -113,7 +113,7 @@ public class DateRange implements Serializable {
             return false;
         }
 
-        DateRange other = (DateRange)obj;
+        XRenderFormDateRange other = (XRenderFormDateRange)obj;
         return true 
             && (start == other.start || (start != null && start.equals(other.start)))
             && (end == other.end || (end != null && end.equals(other.end)))
@@ -135,7 +135,7 @@ public class DateRange implements Serializable {
 
     @Override
     public String toString() {
-        return "DateRange{" +
+        return "XRenderFormDateRange{" +
                 "start=" + start +
                 ", end=" + end +
                 '}';

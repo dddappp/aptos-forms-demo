@@ -54,21 +54,21 @@ public interface AptosFormsDemoMainFormEvent extends Event, AptosEvent, HasStatu
 
         void setFr_1z7o(BigInteger value);
 
-        DateRange getFr_d8rw();
+        XRenderFormDateRange getFr_d8rw();
 
-        void setFr_d8rw(DateRange value);
+        void setFr_d8rw(XRenderFormDateRange value);
 
-        DateRange getFr_dy3l();
+        XRenderFormDateRange getFr_dy3l();
 
-        void setFr_dy3l(DateRange value);
+        void setFr_dy3l(XRenderFormDateRange value);
 
         BigInteger getFr_6f68();
 
         void setFr_6f68(BigInteger value);
 
-        TimeRange getFr_47yy();
+        XRenderFormTimeRange getFr_47yy();
 
-        void setFr_47yy(TimeRange value);
+        void setFr_47yy(XRenderFormTimeRange value);
 
         String[] getFr_gh3o();
 
@@ -125,21 +125,21 @@ public interface AptosFormsDemoMainFormEvent extends Event, AptosEvent, HasStatu
 
         void setFr_1z7o(BigInteger value);
 
-        DateRange getFr_d8rw();
+        XRenderFormDateRange getFr_d8rw();
 
-        void setFr_d8rw(DateRange value);
+        void setFr_d8rw(XRenderFormDateRange value);
 
-        DateRange getFr_dy3l();
+        XRenderFormDateRange getFr_dy3l();
 
-        void setFr_dy3l(DateRange value);
+        void setFr_dy3l(XRenderFormDateRange value);
 
         BigInteger getFr_6f68();
 
         void setFr_6f68(BigInteger value);
 
-        TimeRange getFr_47yy();
+        XRenderFormTimeRange getFr_47yy();
 
-        void setFr_47yy(TimeRange value);
+        void setFr_47yy(XRenderFormTimeRange value);
 
         String[] getFr_gh3o();
 

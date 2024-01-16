@@ -10,7 +10,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.github.wubuku.aptos.bean.*;
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class TimeRange {
+public class XRenderFormTimeRange {
 
     private XRenderFormTime start;
 
@@ -35,7 +35,7 @@ public class TimeRange {
 
     @Override
     public String toString() {
-        return "TimeRange{" +
+        return "XRenderFormTimeRange{" +
                 "start=" + start +
                 ", end=" + end +
                 '}';

@@ -271,27 +271,27 @@ public abstract class AbstractAptosFormsDemoMainFormEvent extends AbstractEvent 
             getDynamicProperties().put("fr_1z7o", value);
         }
 
-        public DateRange getFr_d8rw() {
+        public XRenderFormDateRange getFr_d8rw() {
             Object val = getDynamicProperties().get("fr_d8rw");
-            if (val instanceof DateRange) {
-                return (DateRange) val;
+            if (val instanceof XRenderFormDateRange) {
+                return (XRenderFormDateRange) val;
             }
-            return ApplicationContext.current.getTypeConverter().convertValue(val, DateRange.class);
+            return ApplicationContext.current.getTypeConverter().convertValue(val, XRenderFormDateRange.class);
         }
 
-        public void setFr_d8rw(DateRange value) {
+        public void setFr_d8rw(XRenderFormDateRange value) {
             getDynamicProperties().put("fr_d8rw", value);
         }
 
-        public DateRange getFr_dy3l() {
+        public XRenderFormDateRange getFr_dy3l() {
             Object val = getDynamicProperties().get("fr_dy3l");
-            if (val instanceof DateRange) {
-                return (DateRange) val;
+            if (val instanceof XRenderFormDateRange) {
+                return (XRenderFormDateRange) val;
             }
-            return ApplicationContext.current.getTypeConverter().convertValue(val, DateRange.class);
+            return ApplicationContext.current.getTypeConverter().convertValue(val, XRenderFormDateRange.class);
         }
 
-        public void setFr_dy3l(DateRange value) {
+        public void setFr_dy3l(XRenderFormDateRange value) {
             getDynamicProperties().put("fr_dy3l", value);
         }
 
@@ -307,15 +307,15 @@ public abstract class AbstractAptosFormsDemoMainFormEvent extends AbstractEvent 
             getDynamicProperties().put("fr_6f68", value);
         }
 
-        public TimeRange getFr_47yy() {
+        public XRenderFormTimeRange getFr_47yy() {
             Object val = getDynamicProperties().get("fr_47yy");
-            if (val instanceof TimeRange) {
-                return (TimeRange) val;
+            if (val instanceof XRenderFormTimeRange) {
+                return (XRenderFormTimeRange) val;
             }
-            return ApplicationContext.current.getTypeConverter().convertValue(val, TimeRange.class);
+            return ApplicationContext.current.getTypeConverter().convertValue(val, XRenderFormTimeRange.class);
         }
 
-        public void setFr_47yy(TimeRange value) {
+        public void setFr_47yy(XRenderFormTimeRange value) {
             getDynamicProperties().put("fr_47yy", value);
         }
 
@@ -484,27 +484,27 @@ public abstract class AbstractAptosFormsDemoMainFormEvent extends AbstractEvent 
             getDynamicProperties().put("fr_1z7o", value);
         }
 
-        public DateRange getFr_d8rw() {
+        public XRenderFormDateRange getFr_d8rw() {
             Object val = getDynamicProperties().get("fr_d8rw");
-            if (val instanceof DateRange) {
-                return (DateRange) val;
+            if (val instanceof XRenderFormDateRange) {
+                return (XRenderFormDateRange) val;
             }
-            return ApplicationContext.current.getTypeConverter().convertValue(val, DateRange.class);
+            return ApplicationContext.current.getTypeConverter().convertValue(val, XRenderFormDateRange.class);
         }
 
-        public void setFr_d8rw(DateRange value) {
+        public void setFr_d8rw(XRenderFormDateRange value) {
             getDynamicProperties().put("fr_d8rw", value);
         }
 
-        public DateRange getFr_dy3l() {
+        public XRenderFormDateRange getFr_dy3l() {
             Object val = getDynamicProperties().get("fr_dy3l");
-            if (val instanceof DateRange) {
-                return (DateRange) val;
+            if (val instanceof XRenderFormDateRange) {
+                return (XRenderFormDateRange) val;
             }
-            return ApplicationContext.current.getTypeConverter().convertValue(val, DateRange.class);
+            return ApplicationContext.current.getTypeConverter().convertValue(val, XRenderFormDateRange.class);
         }
 
-        public void setFr_dy3l(DateRange value) {
+        public void setFr_dy3l(XRenderFormDateRange value) {
             getDynamicProperties().put("fr_dy3l", value);
         }
 
@@ -520,15 +520,15 @@ public abstract class AbstractAptosFormsDemoMainFormEvent extends AbstractEvent 
             getDynamicProperties().put("fr_6f68", value);
         }
 
-        public TimeRange getFr_47yy() {
+        public XRenderFormTimeRange getFr_47yy() {
             Object val = getDynamicProperties().get("fr_47yy");
-            if (val instanceof TimeRange) {
-                return (TimeRange) val;
+            if (val instanceof XRenderFormTimeRange) {
+                return (XRenderFormTimeRange) val;
             }
-            return ApplicationContext.current.getTypeConverter().convertValue(val, TimeRange.class);
+            return ApplicationContext.current.getTypeConverter().convertValue(val, XRenderFormTimeRange.class);
         }
 
-        public void setFr_47yy(TimeRange value) {
+        public void setFr_47yy(XRenderFormTimeRange value) {
             getDynamicProperties().put("fr_47yy", value);
         }
 
