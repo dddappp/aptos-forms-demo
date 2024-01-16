@@ -188,6 +188,8 @@ configuration:
   move:
     defaultUserIdType: address
     moduleNamePrefix: AptosFormsDemo2
+  aptos:
+    resourceAccountSeed: AptosFormsDemo2
   sequenceNumber: 100
   defaultStringLength: 250
   defaultStringIdLength: 50
