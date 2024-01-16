@@ -28,8 +28,7 @@
           Move: >
             {_EXTRACT_EVENT_PROPERTIES_}
 
-            let max_shares = 2;
-                    let amount = xrender_form_utils::account_ts_random::random_amount(_account, remaining_amount, remaining_shares, max_shares, 1);
+            let amount = remaining_amount / remaining_shares;
                     let coin_withdrawn = aptos_forms_demo::aptos_forms_demo2_global_aggregate::withdraw_coin_claimer_1_vault(_account, amount);
                     aptos_framework::coin::deposit(std::signer::address_of(_account), coin_withdrawn);
         event:

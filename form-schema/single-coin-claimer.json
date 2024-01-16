@@ -7,7 +7,7 @@
       "props": {
         "coinType": "APT",
         "shares": 10,
-        "claimRule": "random"
+        "claimRule": "equal"
       }
     }
   },
