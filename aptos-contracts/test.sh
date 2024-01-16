@@ -36,6 +36,16 @@ aptos move run --function-id 'default::aptos_forms_demo_global_aggregate::deposi
 aptos move run --function-id 'default::aptos_forms_demo_coin_claimer_1_aggregate::claim' \
 --assume-yes
 
+# -----------------------------
+# Form 2
+aptos move run --function-id 'default::aptos_forms_demo2_init::initialize' --assume-yes
+aptos move run --function-id 'default::aptos_forms_demo2_global_aggregate::deposit_coin_claimer_1_vault' \
+--args u64:10000 \
+--assume-yes
+aptos move run --function-id 'default::aptos_forms_demo2_coin_claimer_1_aggregate::claim' \
+--assume-yes
+# -----------------------------
+
 #cd ../aptos-java-service
 #mvn package
 #java -jar ./aptosformsdemo-service-cli/target/aptosformsdemo-service-cli-0.0.1-SNAPSHOT.jar ddl -d "./scripts" -c "jdbc:postgresql://127.0.0.1/test2" -u postgres -p 123456

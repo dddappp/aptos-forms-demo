@@ -5,18 +5,18 @@
 
 package org.test.aptosformsdemo.config;
 
-import org.test.aptosformsdemo.domain.aptosformsdemomainform.*;
-import org.test.aptosformsdemo.domain.*;
-import org.test.aptosformsdemo.domain.aptosformsdemomainform.hibernate.*;
-import org.test.aptosformsdemo.domain.aptosformsdemocoin_claimer_1.*;
-import org.test.aptosformsdemo.domain.*;
-import org.test.aptosformsdemo.domain.aptosformsdemocoin_claimer_1.hibernate.*;
 import org.test.aptosformsdemo.domain.formdefinition.*;
 import org.test.aptosformsdemo.domain.*;
 import org.test.aptosformsdemo.domain.formdefinition.hibernate.*;
 import org.test.aptosformsdemo.domain.formidregistration.*;
 import org.test.aptosformsdemo.domain.*;
 import org.test.aptosformsdemo.domain.formidregistration.hibernate.*;
+import org.test.aptosformsdemo.domain.aptosformsdemomainform.*;
+import org.test.aptosformsdemo.domain.*;
+import org.test.aptosformsdemo.domain.aptosformsdemomainform.hibernate.*;
+import org.test.aptosformsdemo.domain.aptosformsdemocoin_claimer_1.*;
+import org.test.aptosformsdemo.domain.*;
+import org.test.aptosformsdemo.domain.aptosformsdemocoin_claimer_1.hibernate.*;
 import org.test.aptosformsdemo.domain.aptosformsdemoglobal.*;
 import org.test.aptosformsdemo.domain.*;
 import org.test.aptosformsdemo.domain.aptosformsdemoglobal.hibernate.*;
@@ -31,6 +31,94 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class AggregatesHibernateConfig {
+
+
+    @Bean
+    public FormPageDefinitionEventDao formPageDefinitionEventDao(SessionFactory hibernateSessionFactory) {
+        HibernateFormPageDefinitionEventDao dao = new HibernateFormPageDefinitionEventDao();
+        dao.setSessionFactory(hibernateSessionFactory);
+        return dao;
+    }
+
+    @Bean
+    public FormDefinitionStateRepository formDefinitionStateRepository(
+            SessionFactory hibernateSessionFactory,
+            ReadOnlyProxyGenerator stateReadOnlyProxyGenerator
+    ) {
+        HibernateFormDefinitionStateRepository repository = new HibernateFormDefinitionStateRepository();
+        repository.setSessionFactory(hibernateSessionFactory);
+        repository.setReadOnlyProxyGenerator(stateReadOnlyProxyGenerator);
+        return repository;
+    }
+
+    @Bean
+    public FormDefinitionStateQueryRepository formDefinitionStateQueryRepository(
+            SessionFactory hibernateSessionFactory,
+            ReadOnlyProxyGenerator stateReadOnlyProxyGenerator
+    ) {
+        HibernateFormDefinitionStateQueryRepository repository = new HibernateFormDefinitionStateQueryRepository();
+        repository.setSessionFactory(hibernateSessionFactory);
+        repository.setReadOnlyProxyGenerator(stateReadOnlyProxyGenerator);
+        return repository;
+    }
+
+    @Bean
+    public HibernateFormDefinitionEventStore formDefinitionEventStore(SessionFactory hibernateSessionFactory) {
+        HibernateFormDefinitionEventStore eventStore = new HibernateFormDefinitionEventStore();
+        eventStore.setSessionFactory(hibernateSessionFactory);
+        return eventStore;
+    }
+
+    @Bean
+    public AbstractFormDefinitionApplicationService.SimpleFormDefinitionApplicationService formDefinitionApplicationService(
+            @Qualifier("formDefinitionEventStore") EventStore formDefinitionEventStore,
+            FormDefinitionStateRepository formDefinitionStateRepository,
+            FormDefinitionStateQueryRepository formDefinitionStateQueryRepository
+    ) {
+        AbstractFormDefinitionApplicationService.SimpleFormDefinitionApplicationService applicationService = new AbstractFormDefinitionApplicationService.SimpleFormDefinitionApplicationService(
+                formDefinitionEventStore,
+                formDefinitionStateRepository,
+                formDefinitionStateQueryRepository
+        );
+        return applicationService;
+    }
+
+
+
+    @Bean
+    public FormIdRegistrationStateRepository formIdRegistrationStateRepository(
+            SessionFactory hibernateSessionFactory,
+            ReadOnlyProxyGenerator stateReadOnlyProxyGenerator
+    ) {
+        HibernateFormIdRegistrationStateRepository repository = new HibernateFormIdRegistrationStateRepository();
+        repository.setSessionFactory(hibernateSessionFactory);
+        repository.setReadOnlyProxyGenerator(stateReadOnlyProxyGenerator);
+        return repository;
+    }
+
+    @Bean
+    public FormIdRegistrationStateQueryRepository formIdRegistrationStateQueryRepository(
+            SessionFactory hibernateSessionFactory,
+            ReadOnlyProxyGenerator stateReadOnlyProxyGenerator
+    ) {
+        HibernateFormIdRegistrationStateQueryRepository repository = new HibernateFormIdRegistrationStateQueryRepository();
+        repository.setSessionFactory(hibernateSessionFactory);
+        repository.setReadOnlyProxyGenerator(stateReadOnlyProxyGenerator);
+        return repository;
+    }
+
+    @Bean
+    public AbstractFormIdRegistrationApplicationService.SimpleFormIdRegistrationApplicationService formIdRegistrationApplicationService(
+            FormIdRegistrationStateRepository formIdRegistrationStateRepository,
+            FormIdRegistrationStateQueryRepository formIdRegistrationStateQueryRepository
+    ) {
+        AbstractFormIdRegistrationApplicationService.SimpleFormIdRegistrationApplicationService applicationService = new AbstractFormIdRegistrationApplicationService.SimpleFormIdRegistrationApplicationService(
+                formIdRegistrationStateRepository,
+                formIdRegistrationStateQueryRepository
+        );
+        return applicationService;
+    }
+
 
 
     @Bean
@@ -117,94 +205,6 @@ public class AggregatesHibernateConfig {
                 aptosFormsDemoCoin_claimer_1EventStore,
                 aptosFormsDemoCoin_claimer_1StateRepository,
                 aptosFormsDemoCoin_claimer_1StateQueryRepository
-        );
-        return applicationService;
-    }
-
-
-
-    @Bean
-    public FormPageDefinitionEventDao formPageDefinitionEventDao(SessionFactory hibernateSessionFactory) {
-        HibernateFormPageDefinitionEventDao dao = new HibernateFormPageDefinitionEventDao();
-        dao.setSessionFactory(hibernateSessionFactory);
-        return dao;
-    }
-
-    @Bean
-    public FormDefinitionStateRepository formDefinitionStateRepository(
-            SessionFactory hibernateSessionFactory,
-            ReadOnlyProxyGenerator stateReadOnlyProxyGenerator
-    ) {
-        HibernateFormDefinitionStateRepository repository = new HibernateFormDefinitionStateRepository();
-        repository.setSessionFactory(hibernateSessionFactory);
-        repository.setReadOnlyProxyGenerator(stateReadOnlyProxyGenerator);
-        return repository;
-    }
-
-    @Bean
-    public FormDefinitionStateQueryRepository formDefinitionStateQueryRepository(
-            SessionFactory hibernateSessionFactory,
-            ReadOnlyProxyGenerator stateReadOnlyProxyGenerator
-    ) {
-        HibernateFormDefinitionStateQueryRepository repository = new HibernateFormDefinitionStateQueryRepository();
-        repository.setSessionFactory(hibernateSessionFactory);
-        repository.setReadOnlyProxyGenerator(stateReadOnlyProxyGenerator);
-        return repository;
-    }
-
-    @Bean
-    public HibernateFormDefinitionEventStore formDefinitionEventStore(SessionFactory hibernateSessionFactory) {
-        HibernateFormDefinitionEventStore eventStore = new HibernateFormDefinitionEventStore();
-        eventStore.setSessionFactory(hibernateSessionFactory);
-        return eventStore;
-    }
-
-    @Bean
-    public AbstractFormDefinitionApplicationService.SimpleFormDefinitionApplicationService formDefinitionApplicationService(
-            @Qualifier("formDefinitionEventStore") EventStore formDefinitionEventStore,
-            FormDefinitionStateRepository formDefinitionStateRepository,
-            FormDefinitionStateQueryRepository formDefinitionStateQueryRepository
-    ) {
-        AbstractFormDefinitionApplicationService.SimpleFormDefinitionApplicationService applicationService = new AbstractFormDefinitionApplicationService.SimpleFormDefinitionApplicationService(
-                formDefinitionEventStore,
-                formDefinitionStateRepository,
-                formDefinitionStateQueryRepository
-        );
-        return applicationService;
-    }
-
-
-
-    @Bean
-    public FormIdRegistrationStateRepository formIdRegistrationStateRepository(
-            SessionFactory hibernateSessionFactory,
-            ReadOnlyProxyGenerator stateReadOnlyProxyGenerator
-    ) {
-        HibernateFormIdRegistrationStateRepository repository = new HibernateFormIdRegistrationStateRepository();
-        repository.setSessionFactory(hibernateSessionFactory);
-        repository.setReadOnlyProxyGenerator(stateReadOnlyProxyGenerator);
-        return repository;
-    }
-
-    @Bean
-    public FormIdRegistrationStateQueryRepository formIdRegistrationStateQueryRepository(
-            SessionFactory hibernateSessionFactory,
-            ReadOnlyProxyGenerator stateReadOnlyProxyGenerator
-    ) {
-        HibernateFormIdRegistrationStateQueryRepository repository = new HibernateFormIdRegistrationStateQueryRepository();
-        repository.setSessionFactory(hibernateSessionFactory);
-        repository.setReadOnlyProxyGenerator(stateReadOnlyProxyGenerator);
-        return repository;
-    }
-
-    @Bean
-    public AbstractFormIdRegistrationApplicationService.SimpleFormIdRegistrationApplicationService formIdRegistrationApplicationService(
-            FormIdRegistrationStateRepository formIdRegistrationStateRepository,
-            FormIdRegistrationStateQueryRepository formIdRegistrationStateQueryRepository
-    ) {
-        AbstractFormIdRegistrationApplicationService.SimpleFormIdRegistrationApplicationService applicationService = new AbstractFormIdRegistrationApplicationService.SimpleFormIdRegistrationApplicationService(
-                formIdRegistrationStateRepository,
-                formIdRegistrationStateQueryRepository
         );
         return applicationService;
     }

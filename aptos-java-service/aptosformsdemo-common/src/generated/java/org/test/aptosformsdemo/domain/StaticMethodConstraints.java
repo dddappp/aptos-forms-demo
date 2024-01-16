@@ -8,19 +8,27 @@ package org.test.aptosformsdemo.domain;
 import org.test.aptosformsdemo.specialization.ReflectUtils;
 import org.test.aptosformsdemo.specialization.MutationContext;
 import org.test.aptosformsdemo.specialization.VerificationContext;
-import org.test.aptosformsdemo.domain.aptosformsdemomainform.*;
-import org.test.aptosformsdemo.domain.*;
-import java.math.BigInteger;
-import java.time.OffsetDateTime;
-import org.test.aptosformsdemo.domain.aptosformsdemocoin_claimer_1.*;
 import org.test.aptosformsdemo.domain.formdefinition.*;
+import java.time.OffsetDateTime;
+import org.test.aptosformsdemo.domain.*;
 import org.test.aptosformsdemo.domain.formidregistration.*;
+import org.test.aptosformsdemo.domain.aptosformsdemomainform.*;
+import java.math.BigInteger;
+import org.test.aptosformsdemo.domain.aptosformsdemocoin_claimer_1.*;
 import org.test.aptosformsdemo.domain.aptosformsdemoglobal.*;
 import java.util.Date;
 
 public class StaticMethodConstraints {
 
     public static void assertStaticVerificationAndMutationMethods() {
+
+        ReflectUtils.assertStaticMethodIfClassExists(
+                    "org.test.aptosformsdemo.domain.formdefinition.DefineFormWithFirstPageLogic",
+                    "verify",
+                    new Class[]{java.util.function.Supplier.class, FormDefinitionState.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, VerificationContext.class},
+                    new String[]{"_", "_", "formId", "contractAddress", "storeAccountAddress", "pageName", "moveStateTableFieldName", "moveStateStructName", "moveSubmitEventHandleFieldName", "moveUpdateEventHandleFieldName", "moveSubmitEventStructName", "moveUpdateEventStructName"}
+            );
+
 
         ReflectUtils.assertStaticMethodIfClassExists(
                     "org.test.aptosformsdemo.domain.aptosformsdemomainform.SubmitLogic",
@@ -43,14 +51,6 @@ public class StaticMethodConstraints {
                     "verify",
                     new Class[]{java.util.function.Supplier.class, AptosFormsDemoCoin_claimer_1State.class, VerificationContext.class},
                     new String[]{"_", "_"}
-            );
-
-
-        ReflectUtils.assertStaticMethodIfClassExists(
-                    "org.test.aptosformsdemo.domain.formdefinition.DefineFormWithFirstPageLogic",
-                    "verify",
-                    new Class[]{java.util.function.Supplier.class, FormDefinitionState.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, VerificationContext.class},
-                    new String[]{"_", "_", "formId", "contractAddress", "storeAccountAddress", "pageName", "moveStateTableFieldName", "moveStateStructName", "moveSubmitEventHandleFieldName", "moveUpdateEventHandleFieldName", "moveSubmitEventStructName", "moveUpdateEventStructName"}
             );
 
 
@@ -111,6 +111,14 @@ public class StaticMethodConstraints {
 
 
         ReflectUtils.assertStaticMethodIfClassExists(
+                    "org.test.aptosformsdemo.domain.formdefinition.DefineFormWithFirstPageLogic",
+                    "mutate",
+                    new Class[]{FormDefinitionState.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, MutationContext.class},
+                    new String[]{"_", "formId", "contractAddress", "storeAccountAddress", "pageName", "moveStateTableFieldName", "moveStateStructName", "moveSubmitEventHandleFieldName", "moveUpdateEventHandleFieldName", "moveSubmitEventStructName", "moveUpdateEventStructName"}
+            );
+
+
+        ReflectUtils.assertStaticMethodIfClassExists(
                     "org.test.aptosformsdemo.domain.aptosformsdemomainform.SubmitLogic",
                     "mutate",
                     new Class[]{AptosFormsDemoMainFormState.class, BigInteger.class, String[].class, String[].class, String.class, String.class, BigInteger.class, String.class, BigInteger.class, XRenderFormDateRange.class, XRenderFormDateRange.class, BigInteger.class, XRenderFormTimeRange.class, String[].class, String[].class, XRenderFormDate.class, String.class, BigInteger.class, BigInteger.class, BigInteger.class, String.class, AptosEventGuid.class, String.class, MutationContext.class},
@@ -131,14 +139,6 @@ public class StaticMethodConstraints {
                     "mutate",
                     new Class[]{AptosFormsDemoCoin_claimer_1State.class, BigInteger.class, BigInteger.class, BigInteger.class, BigInteger.class, String.class, AptosEventGuid.class, String.class, MutationContext.class},
                     new String[]{"_", "remainingAmount", "remainingShares", "aptosEventVersion", "aptosEventSequenceNumber", "aptosEventType", "aptosEventGuid", "status"}
-            );
-
-
-        ReflectUtils.assertStaticMethodIfClassExists(
-                    "org.test.aptosformsdemo.domain.formdefinition.DefineFormWithFirstPageLogic",
-                    "mutate",
-                    new Class[]{FormDefinitionState.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, MutationContext.class},
-                    new String[]{"_", "formId", "contractAddress", "storeAccountAddress", "pageName", "moveStateTableFieldName", "moveStateStructName", "moveSubmitEventHandleFieldName", "moveUpdateEventHandleFieldName", "moveSubmitEventStructName", "moveUpdateEventStructName"}
             );
 
 

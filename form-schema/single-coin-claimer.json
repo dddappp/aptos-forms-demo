@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "properties": {
+    "coin_claimer_1": {
+      "title": "领取红包",
+      "widget": "coinClaimer",
+      "props": {
+        "coinType": "APT",
+        "shares": 10,
+        "claimRule": "random"
+      }
+    }
+  },
+  "displayType": "row",
+  "maxWidth": "340px"
+}

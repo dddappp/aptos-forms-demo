@@ -599,7 +599,7 @@ configuration:
     noGeneratingMutateStateByEventMethods: true
   move:
     defaultUserIdType: address
-    isModuleNamePackagePrefixEnabled: true
+    moduleNamePrefix: AptosFormsDemo
   sequenceNumber: 100
   defaultStringLength: 250
   defaultStringIdLength: 50
