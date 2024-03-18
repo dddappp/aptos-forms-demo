@@ -9,7 +9,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
     use aptos_framework::account;
     use aptos_framework::event;
     use aptos_std::table::{Self, Table};
-    use std::option::{Self, Option};
+    use std::option::Option;
     use std::string::String;
     use xrender_form_utils::date::Date;
     use xrender_form_utils::date_range::DateRange;
@@ -212,7 +212,9 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
     }
 
     public(friend) fun set_fr_gh3o(aptos_forms_demo_main_form: &mut AptosFormsDemoMainForm, fr_gh3o: Option<vector<String>>) {
-        if (option::is_some(&fr_gh3o)) { assert!(aptos_forms_demo::aptos_forms_demo_fr_gh3o::are_all_valid(option::borrow(&fr_gh3o)), EInvalidEnumValue); };
+        if (std::option::is_some(&fr_gh3o)) {
+            assert!(aptos_forms_demo::aptos_forms_demo_fr_gh3o::are_all_valid(std::option::borrow(&fr_gh3o)), EInvalidEnumValue);
+        };
         aptos_forms_demo_main_form.fr_gh3o = fr_gh3o;
     }
 
@@ -284,7 +286,9 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         assert!(std::string::length(&fr_9c3f) <= 1, EDataTooLong);
         assert!(aptos_forms_demo::aptos_forms_demo_fr_9c3f::is_valid(fr_9c3f), EInvalidEnumValue);
         assert!(std::string::length(&fr_b3ub) <= 50, EDataTooLong);
-        if (option::is_some(&fr_gh3o)) { assert!(aptos_forms_demo::aptos_forms_demo_fr_gh3o::are_all_valid(option::borrow(&fr_gh3o)), EInvalidEnumValue); };
+        if (std::option::is_some(&fr_gh3o)) {
+            assert!(aptos_forms_demo::aptos_forms_demo_fr_gh3o::are_all_valid(std::option::borrow(&fr_gh3o)), EInvalidEnumValue);
+        };
         assert!(aptos_forms_demo::aptos_forms_demo_fr_fbba::are_all_valid(&fr_fbba), EInvalidEnumValue);
         assert!(aptos_forms_demo::aptos_forms_demo_payment_123::is_valid(payment_123), EInvalidEnumValue);
         AptosFormsDemoMainForm {
@@ -375,8 +379,8 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         aptos_forms_demo_main_form_submitted.fr_dy3l
     }
 
-    public(friend) fun set_aptos_forms_demo_main_form_submitted_fr_dy3l(aptos_forms_demo_main_form_submitted: &mut AptosFormsDemoMainFormSubmitted, fr_dy3l: DateRange) {
-        aptos_forms_demo_main_form_submitted.fr_dy3l = option::some(fr_dy3l);
+    public(friend) fun set_aptos_forms_demo_main_form_submitted_fr_dy3l(aptos_forms_demo_main_form_submitted: &mut AptosFormsDemoMainFormSubmitted, fr_dy3l: Option<DateRange>) {
+        aptos_forms_demo_main_form_submitted.fr_dy3l = fr_dy3l;
     }
 
     public fun aptos_forms_demo_main_form_submitted_fr_6f68(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): u128 {
@@ -391,8 +395,8 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         aptos_forms_demo_main_form_submitted.fr_gh3o
     }
 
-    public(friend) fun set_aptos_forms_demo_main_form_submitted_fr_gh3o(aptos_forms_demo_main_form_submitted: &mut AptosFormsDemoMainFormSubmitted, fr_gh3o: vector<String>) {
-        aptos_forms_demo_main_form_submitted.fr_gh3o = option::some(fr_gh3o);
+    public(friend) fun set_aptos_forms_demo_main_form_submitted_fr_gh3o(aptos_forms_demo_main_form_submitted: &mut AptosFormsDemoMainFormSubmitted, fr_gh3o: Option<vector<String>>) {
+        aptos_forms_demo_main_form_submitted.fr_gh3o = fr_gh3o;
     }
 
     public fun aptos_forms_demo_main_form_submitted_fr_fbba(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): vector<String> {
@@ -407,8 +411,8 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         aptos_forms_demo_main_form_submitted.single_text1
     }
 
-    public(friend) fun set_aptos_forms_demo_main_form_submitted_single_text1(aptos_forms_demo_main_form_submitted: &mut AptosFormsDemoMainFormSubmitted, single_text1: String) {
-        aptos_forms_demo_main_form_submitted.single_text1 = option::some(single_text1);
+    public(friend) fun set_aptos_forms_demo_main_form_submitted_single_text1(aptos_forms_demo_main_form_submitted: &mut AptosFormsDemoMainFormSubmitted, single_text1: Option<String>) {
+        aptos_forms_demo_main_form_submitted.single_text1 = single_text1;
     }
 
     public fun aptos_forms_demo_main_form_submitted_payment_123(aptos_forms_demo_main_form_submitted: &AptosFormsDemoMainFormSubmitted): u64 {
@@ -525,8 +529,8 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         aptos_forms_demo_main_form_updated.fr_dy3l
     }
 
-    public(friend) fun set_aptos_forms_demo_main_form_updated_fr_dy3l(aptos_forms_demo_main_form_updated: &mut AptosFormsDemoMainFormUpdated, fr_dy3l: DateRange) {
-        aptos_forms_demo_main_form_updated.fr_dy3l = option::some(fr_dy3l);
+    public(friend) fun set_aptos_forms_demo_main_form_updated_fr_dy3l(aptos_forms_demo_main_form_updated: &mut AptosFormsDemoMainFormUpdated, fr_dy3l: Option<DateRange>) {
+        aptos_forms_demo_main_form_updated.fr_dy3l = fr_dy3l;
     }
 
     public fun aptos_forms_demo_main_form_updated_fr_6f68(aptos_forms_demo_main_form_updated: &AptosFormsDemoMainFormUpdated): u128 {
@@ -541,8 +545,8 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         aptos_forms_demo_main_form_updated.fr_gh3o
     }
 
-    public(friend) fun set_aptos_forms_demo_main_form_updated_fr_gh3o(aptos_forms_demo_main_form_updated: &mut AptosFormsDemoMainFormUpdated, fr_gh3o: vector<String>) {
-        aptos_forms_demo_main_form_updated.fr_gh3o = option::some(fr_gh3o);
+    public(friend) fun set_aptos_forms_demo_main_form_updated_fr_gh3o(aptos_forms_demo_main_form_updated: &mut AptosFormsDemoMainFormUpdated, fr_gh3o: Option<vector<String>>) {
+        aptos_forms_demo_main_form_updated.fr_gh3o = fr_gh3o;
     }
 
     public fun aptos_forms_demo_main_form_updated_fr_fbba(aptos_forms_demo_main_form_updated: &AptosFormsDemoMainFormUpdated): vector<String> {
@@ -557,8 +561,8 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         aptos_forms_demo_main_form_updated.single_text1
     }
 
-    public(friend) fun set_aptos_forms_demo_main_form_updated_single_text1(aptos_forms_demo_main_form_updated: &mut AptosFormsDemoMainFormUpdated, single_text1: String) {
-        aptos_forms_demo_main_form_updated.single_text1 = option::some(single_text1);
+    public(friend) fun set_aptos_forms_demo_main_form_updated_single_text1(aptos_forms_demo_main_form_updated: &mut AptosFormsDemoMainFormUpdated, single_text1: Option<String>) {
+        aptos_forms_demo_main_form_updated.single_text1 = single_text1;
     }
 
     public fun aptos_forms_demo_main_form_updated_payment_123(aptos_forms_demo_main_form_updated: &AptosFormsDemoMainFormUpdated): u64 {
