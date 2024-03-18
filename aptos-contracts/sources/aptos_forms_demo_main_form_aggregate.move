@@ -7,7 +7,9 @@ module aptos_forms_demo::aptos_forms_demo_main_form_aggregate {
     use aptos_forms_demo::aptos_forms_demo_main_form;
     use aptos_forms_demo::aptos_forms_demo_main_form_submit_logic;
     use aptos_forms_demo::aptos_forms_demo_main_form_update_logic;
+    use std::option::{Self, Option};
     use std::string::String;
+    use std::vector;
 
     public entry fun submit(
         account: &signer,
@@ -23,10 +25,10 @@ module aptos_forms_demo::aptos_forms_demo_main_form_aggregate {
         fr_dy3l: vector<u16>,
         fr_6f68: u128,
         fr_47yy: vector<u8>,
-        fr_gh3o: vector<String>,
+        fr_gh3o: vector<vector<String>>,
         fr_fbba: vector<String>,
         fr_hhzp: vector<u16>,
-        single_text1: String,
+        single_text1: vector<String>,
         payment_123: u64,
     ) {
         let aptos_forms_demo_main_form_submitted = aptos_forms_demo_main_form_submit_logic::verify(
@@ -40,18 +42,18 @@ module aptos_forms_demo::aptos_forms_demo_main_form_aggregate {
             fr_b3ub,
             fr_1z7o,
             xrender_form_utils::date_range::value_of(fr_d8rw),
-            xrender_form_utils::date_range::value_of(fr_dy3l),
+            if (vector::is_empty(&fr_dy3l)) { option::none() } else { option::some(xrender_form_utils::date_range::value_of(fr_dy3l)) },
             fr_6f68,
             xrender_form_utils::time_range::value_of(fr_47yy),
-            fr_gh3o,
+            vector_to_option(fr_gh3o),
             fr_fbba,
             xrender_form_utils::date::value_of(fr_hhzp),
-            single_text1,
+            vector_to_option(single_text1),
             payment_123,
         );
         let aptos_forms_demo_main_form = aptos_forms_demo_main_form_submit_logic::mutate(
             account,
-            &aptos_forms_demo_main_form_submitted,
+            &mut aptos_forms_demo_main_form_submitted,
         );
         aptos_forms_demo_main_form::add_aptos_forms_demo_main_form(aptos_forms_demo_main_form);
         aptos_forms_demo_main_form::emit_aptos_forms_demo_main_form_submitted(aptos_forms_demo_main_form_submitted);
@@ -72,10 +74,10 @@ module aptos_forms_demo::aptos_forms_demo_main_form_aggregate {
         fr_dy3l: vector<u16>,
         fr_6f68: u128,
         fr_47yy: vector<u8>,
-        fr_gh3o: vector<String>,
+        fr_gh3o: vector<vector<String>>,
         fr_fbba: vector<String>,
         fr_hhzp: vector<u16>,
-        single_text1: String,
+        single_text1: vector<String>,
         payment_123: u64,
     ) {
         let aptos_forms_demo_main_form = aptos_forms_demo_main_form::remove_aptos_forms_demo_main_form(signer_address);
@@ -90,23 +92,31 @@ module aptos_forms_demo::aptos_forms_demo_main_form_aggregate {
             fr_b3ub,
             fr_1z7o,
             xrender_form_utils::date_range::value_of(fr_d8rw),
-            xrender_form_utils::date_range::value_of(fr_dy3l),
+            if (vector::is_empty(&fr_dy3l)) { option::none() } else { option::some(xrender_form_utils::date_range::value_of(fr_dy3l)) },
             fr_6f68,
             xrender_form_utils::time_range::value_of(fr_47yy),
-            fr_gh3o,
+            vector_to_option(fr_gh3o),
             fr_fbba,
             xrender_form_utils::date::value_of(fr_hhzp),
-            single_text1,
+            vector_to_option(single_text1),
             payment_123,
             &aptos_forms_demo_main_form,
         );
         let updated_aptos_forms_demo_main_form = aptos_forms_demo_main_form_update_logic::mutate(
             account,
-            &aptos_forms_demo_main_form_updated,
+            &mut aptos_forms_demo_main_form_updated,
             aptos_forms_demo_main_form,
         );
         aptos_forms_demo_main_form::update_version_and_add(updated_aptos_forms_demo_main_form);
         aptos_forms_demo_main_form::emit_aptos_forms_demo_main_form_updated(aptos_forms_demo_main_form_updated);
+    }
+
+    fun vector_to_option<V : drop>(v: vector<V>): Option<V> {
+        if (vector::length(&v) == 0) { option::none() } else {
+            option::some(
+                vector::pop_back(&mut v)
+            )
+        }
     }
 
 }

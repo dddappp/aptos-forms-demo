@@ -1,5 +1,6 @@
 module aptos_forms_demo::aptos_forms_demo_main_form_submit_logic {
     use aptos_forms_demo::aptos_forms_demo_main_form;
+    use std::option::{Self, Option};
     use std::string::String;
     use xrender_form_utils::date::Date;
     use xrender_form_utils::date_range::DateRange;
@@ -21,13 +22,13 @@ module aptos_forms_demo::aptos_forms_demo_main_form_submit_logic {
         fr_b3ub: String,
         fr_1z7o: u128,
         fr_d8rw: DateRange,
-        fr_dy3l: DateRange,
+        fr_dy3l: Option<DateRange>,
         fr_6f68: u128,
         fr_47yy: TimeRange,
-        fr_gh3o: vector<String>,
+        fr_gh3o: Option<vector<String>>,
         fr_fbba: vector<String>,
         fr_hhzp: Date,
-        single_text1: String,
+        single_text1: Option<String>,
         payment_123: u64,
     ): aptos_forms_demo_main_form::AptosFormsDemoMainFormSubmitted {
         let signer_address = std::signer::address_of(account);

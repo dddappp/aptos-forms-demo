@@ -70,7 +70,7 @@
         sequenceNumber: 8
       Fr_dy3l:
         name: Fr_dy3l
-        optional: false
+        optional: true
         type: XRenderFormDateRange
         sequenceNumber: 9
       Fr_6f68:
@@ -86,7 +86,7 @@
       Fr_gh3o:
         name: Fr_gh3o
         displayName: 下拉多选
-        optional: false
+        optional: true
         itemLength: 1
         size:
           max: 2
@@ -109,7 +109,7 @@
         sequenceNumber: 14
       Single_text1:
         name: Single_text1
-        optional: false
+        optional: true
         length: 50
         type: String
         sequenceNumber: 15

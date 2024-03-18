@@ -120,7 +120,8 @@
           "结束时间"
         ]
       },
-      "widget": "dateRange"
+      "widget": "dateRange",
+      "optional": true
     },
     "fr-6f68": {
       "title": "评分",
@@ -159,7 +160,8 @@
           }
         ],
         "placeholder": "请选择"
-      }
+      },
+      "optional": true
     },
     "fr-fbba": {
       "title": "点击多选",
@@ -196,7 +198,8 @@
       "title": "单行文本",
       "type": "string",
       "format": "email",
-      "widget": "input"
+      "widget": "input",
+      "optional": true
     },
     "payment_123": {
       "title": "支付",

@@ -437,6 +437,7 @@ public class M {
 
     public static final String[] propertyNames = new String[] {
             "fr_5pqi",
+            "version",
             "fr_8xjs",
             "fr_9c3f",
             "fr_4ok6",
@@ -445,7 +446,6 @@ public class M {
             "fr_6f68",
             "single_text1",
             "payment_123",
-            "version",
             "offChainVersion",
             "createdBy",
             "createdAt",
@@ -481,14 +481,14 @@ public class M {
 
     public static final String[] propertyTypes = new String[] {
             "BigInteger",
-            "String",
-            "String",
             "BigInteger",
             "String",
-            "BigInteger",
+            "String",
             "BigInteger",
             "String",
             "BigInteger",
+            "BigInteger",
+            "String",
             "BigInteger",
             "Long",
             "String",
@@ -537,6 +537,8 @@ public class M {
     private static  void initAliasMap() {
         aliasMap.put("fr_5pqi", "fr_5pqi");
         aliasMap.put("Fr_5pqi", "fr_5pqi");
+        aliasMap.put("version", "version");
+        aliasMap.put("Version", "version");
         aliasMap.put("fr_8xjs", "fr_8xjs");
         aliasMap.put("Fr_8xjs", "fr_8xjs");
         aliasMap.put("fr_9c3f", "fr_9c3f");
@@ -553,8 +555,6 @@ public class M {
         aliasMap.put("Single_text1", "single_text1");
         aliasMap.put("payment_123", "payment_123");
         aliasMap.put("Payment_123", "payment_123");
-        aliasMap.put("version", "version");
-        aliasMap.put("Version", "version");
         aliasMap.put("offChainVersion", "offChainVersion");
         aliasMap.put("OffChainVersion", "offChainVersion");
         aliasMap.put("createdBy", "createdBy");
