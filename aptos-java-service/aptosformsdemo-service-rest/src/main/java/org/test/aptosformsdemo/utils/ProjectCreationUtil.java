@@ -11,6 +11,9 @@ import java.nio.file.Paths;
 import java.util.Map;
 import java.util.Objects;
 
+import static org.test.aptosformsdemo.utils.StringUtil.getSafeFormId;
+import static org.test.aptosformsdemo.utils.StringUtil.toUnderscoreCase;
+
 public class ProjectCreationUtil {
     public static final String FORM_SCHEMA_FILES_FIELD_NAME = "files";
     public static final String DEFAULT_GENERATED_ZIP_NAME = "Generated.zip";
@@ -19,51 +22,52 @@ public class ProjectCreationUtil {
             OkHttpClient client,
             String serviceUrl,
             File[] formSchemaFiles,
-            String aptosPackageName,
+            String formId,
             Map<String, String> creationOptions,
             String saveDirectory
     ) throws IOException {
-        creationOptions.put("boundedContextAptosPackageName", aptosPackageName);
+        if (formId == null || formId.isEmpty()) {
+            throw new IllegalArgumentException("formId is required.");
+        }
+        formId = getSafeFormId(formId);
+        creationOptions.put("xRenderFormId", formId);
+        if (!creationOptions.containsKey("boundedContextAptosPackageName")) {
+            creationOptions.put("boundedContextAptosPackageName", formId);
+        }
         fixProjectCreationOptions(creationOptions);
 
         MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
         for (File file : formSchemaFiles) {
-            builder.addFormDataPart(FORM_SCHEMA_FILES_FIELD_NAME, file.getName(),
-                    RequestBody.create(file, MediaType.parse("application/octet-stream")));
+            builder.addFormDataPart(FORM_SCHEMA_FILES_FIELD_NAME, file.getName(), RequestBody.create(file, MediaType.parse("application/octet-stream")));
         }
         for (Map.Entry<String, String> entry : creationOptions.entrySet()) {
             builder.addFormDataPart(entry.getKey(), entry.getValue());
         }
-        // Build the request body
-        RequestBody requestBody = builder.build();
+
+        RequestBody requestBody = builder.build(); // Build the request body
         // Build the request
-        Request request = new Request.Builder()
-                .url(serviceUrl)
-                .post(requestBody)
-                .build();
+        Request request = new Request.Builder().url(serviceUrl).post(requestBody).build();
         // Send the request
         try (Response response = client.newCall(request).execute()) {
             if (!response.isSuccessful()) throw new IOException("Unexpected HTTP code: " + response);
             File saveFile = getSaveFile(saveDirectory, response);
-            try (Sink sink = Okio.sink(saveFile);
-                 BufferedSink bufferedSink = Okio.buffer(sink)) {
+            try (Sink sink = Okio.sink(saveFile); BufferedSink bufferedSink = Okio.buffer(sink)) {
                 bufferedSink.writeAll(Objects.requireNonNull(response.body()).source());
             }
         }
     }
 
+    // Fix the creationOptions, if necessary.
     private static void fixProjectCreationOptions(Map<String, String> creationOptions) {
-        // Fix the creationOptions, if necessary.
         String aptosPackageName = creationOptions.get("boundedContextAptosPackageName");
         if (!creationOptions.containsKey("boundedContextName")) {
-            creationOptions.put("boundedContextName", "Dddappp." + aptosPackageName);
+            creationOptions.put("boundedContextName", "Dddml." + aptosPackageName);
         }
         if (!creationOptions.containsKey("aptosMoveProjectDirectoryPath")) {
             creationOptions.put("aptosMoveProjectDirectoryPath", ".");
         }
         if (!creationOptions.containsKey("boundedContextAptosNamedAddress")) {
-            // to snake_case
-            String aptosNamedAddress = aptosPackageName.replaceAll("([a-z0-9])([A-Z])", "$1_$2").toLowerCase();
+            String aptosNamedAddress = toUnderscoreCase(aptosPackageName);
             creationOptions.put("boundedContextAptosNamedAddress", aptosNamedAddress);
         }
         if (!creationOptions.containsKey("xRenderFormUpdatable")) {
@@ -73,10 +77,7 @@ public class ProjectCreationUtil {
             creationOptions.put("xRenderFormStartPageName", "StartPage");
         }
         if (!creationOptions.containsKey("pomGroupId")) {
-            creationOptions.put("pomGroupId", "dddappp." + aptosPackageName.toLowerCase());
-        }
-        if (!creationOptions.containsKey("xRenderFormId")) {
-            creationOptions.put("xRenderFormId", aptosPackageName);
+            creationOptions.put("pomGroupId", "org.dddml." + aptosPackageName.toLowerCase());
         }
         //creationOptions.put("xRenderFormOpenAt", "2023-11-06T07:36:54Z");
         //creationOptions.put("xRenderFormCutoffAt", "2093-11-08T07:36:54+08:00");
@@ -93,6 +94,7 @@ public class ProjectCreationUtil {
             creationOptions.put("javaProjectsDirectoryPath", "aptos-java-service");
         }
     }
+
 
     private static File getSaveFile(String saveDirectory, Response response) {
         String contentDisposition = response.header("Content-Disposition");
