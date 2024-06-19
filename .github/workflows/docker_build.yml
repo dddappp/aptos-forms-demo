@@ -13,8 +13,8 @@ jobs:
     strategy:
       matrix:
         include:
-          - #image: wubuku/aptos-forms-java
-            ghcr_image: ghcr.io/wubuku/aptos-forms-java
+          - #image: dddappp/aptos-forms-java
+            ghcr_image: ghcr.io/dddappp/aptos-forms-java
             dockerfile: docker/Dockerfile
     steps:
       - name: Checkout
