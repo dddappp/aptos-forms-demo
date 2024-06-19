@@ -13,22 +13,29 @@ import java.util.stream.Stream;
 public class TempDirectoryUtil {
 
     public static final Path SYSTEM_TEMP_DIR_PATH = Paths.get(System.getProperty("java.io.tmpdir"));
-    public static final long MAX_TEMP_DIRECTORY_SIZE = 500 * 1024 * 1024;
+    public static final long MAX_TEMP_DIRECTORY_SIZE = 200 * 1024 * 1024;
     private static final String TEMP_DIR_PREFIX = "MOVE_FORMS_";
     private static final long ONE_DAY_IN_MILLIS = 24 * 60 * 60 * 1000;
 
     private TempDirectoryUtil() {
     }
 
+    public static String createTempDirectory() throws IOException {
+        return Files.createTempDirectory(TEMP_DIR_PREFIX).toString();
+    }
 
-    public static void cleanUpOldTempDirectories() throws IOException {
+    public static void cleanUpOldTempDirectories(Long expirationThresholdMillis) throws IOException {
+        if (expirationThresholdMillis == null) {
+            expirationThresholdMillis = ONE_DAY_IN_MILLIS;
+        }
         long currentTime = System.currentTimeMillis();
         try (Stream<Path> stream = Files.list(SYSTEM_TEMP_DIR_PATH)) {
+            Long finalExpirationThresholdMillis = expirationThresholdMillis;
             stream.filter(Files::isDirectory)
                     .filter(path -> path.getFileName().toString().startsWith(TEMP_DIR_PREFIX))
                     .filter(path -> {
                         try {
-                            return (currentTime - Files.getLastModifiedTime(path).toMillis()) > ONE_DAY_IN_MILLIS;
+                            return (currentTime - Files.getLastModifiedTime(path).toMillis()) > finalExpirationThresholdMillis;
                         } catch (IOException e) {
                             e.printStackTrace();
                             return false;
@@ -51,6 +58,10 @@ public class TempDirectoryUtil {
                 .sorted(Comparator.reverseOrder())
                 .map(Path::toFile)
                 .forEach(File::delete);
+    }
+
+    public static long calculatorTempDirectorySize(boolean breakIfOverSize) {
+        return calculatorTempDirectorySize(SYSTEM_TEMP_DIR_PATH, breakIfOverSize);
     }
 
     public static long calculatorTempDirectorySize(Path startPath, boolean breakIfOverSize) {

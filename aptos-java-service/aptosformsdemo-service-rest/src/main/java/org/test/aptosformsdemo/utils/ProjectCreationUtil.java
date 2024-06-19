@@ -11,29 +11,29 @@ import java.nio.file.Paths;
 import java.util.Map;
 import java.util.Objects;
 
-import static org.test.aptosformsdemo.utils.StringUtil.getSafeFormId;
 import static org.test.aptosformsdemo.utils.StringUtil.toUnderscoreCase;
 
 public class ProjectCreationUtil {
     public static final String FORM_SCHEMA_FILES_FIELD_NAME = "files";
     public static final String DEFAULT_GENERATED_ZIP_NAME = "Generated.zip";
 
-    public static void createContractProject(
+    public static File createContractProject(
             OkHttpClient client,
             String serviceUrl,
             File[] formSchemaFiles,
             String formId,
+            String aptosPackageName,
             Map<String, String> creationOptions,
             String saveDirectory
     ) throws IOException {
         if (formId == null || formId.isEmpty()) {
             throw new IllegalArgumentException("formId is required.");
         }
-        formId = getSafeFormId(formId);
         creationOptions.put("xRenderFormId", formId);
-        if (!creationOptions.containsKey("boundedContextAptosPackageName")) {
-            creationOptions.put("boundedContextAptosPackageName", formId);
+        if (aptosPackageName == null || aptosPackageName.isEmpty()) {
+            aptosPackageName = formId;
         }
+        creationOptions.put("boundedContextAptosPackageName", aptosPackageName);
         fixProjectCreationOptions(creationOptions);
 
         MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
@@ -54,6 +54,7 @@ public class ProjectCreationUtil {
             try (Sink sink = Okio.sink(saveFile); BufferedSink bufferedSink = Okio.buffer(sink)) {
                 bufferedSink.writeAll(Objects.requireNonNull(response.body()).source());
             }
+            return saveFile;
         }
     }
 
