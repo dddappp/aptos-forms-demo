@@ -29,31 +29,31 @@ aptos:
       base-url: "https://fullnode.devnet.aptoslabs.com/v1"
     pull-aptos-forms-demo-coin-claimer-1-events:
       aptos-forms-demo-coin-claimer-1-claimed:
-        fixed-delay: 60000
+        fixed-delay: 600000
     pull-aptos-forms-demo-global-events:
       payment-123-vault-deposited:
-        fixed-delay: 60000
+        fixed-delay: 600000
       payment-123-vault-withdrawn:
-        fixed-delay: 60000
+        fixed-delay: 600000
       payment-123-vault-admin-withdrawn:
-        fixed-delay: 60000
+        fixed-delay: 600000
       coin-claimer-1-vault-deposited:
-        fixed-delay: 60000
+        fixed-delay: 600000
       coin-claimer-1-vault-withdrawn:
-        fixed-delay: 60000
+        fixed-delay: 600000
       coin-claimer-1-vault-admin-withdrawn:
-        fixed-delay: 60000
+        fixed-delay: 600000
     pull-aptos-forms-demo-main-form-events:
       aptos-forms-demo-main-form-submitted:
-        fixed-delay: 60000
+        fixed-delay: 600000
       aptos-forms-demo-main-form-updated:
-        fixed-delay: 60000
+        fixed-delay: 600000
     update-aptos-forms-demo-coin-claimer-1-states:
-      fixed-delay: 60000
+      fixed-delay: 600000
     update-aptos-forms-demo-global-states:
-      fixed-delay: 60000
+      fixed-delay: 600000
     update-aptos-forms-demo-main-form-states:
-      fixed-delay: 60000
+      fixed-delay: 600000
 
 
   cli:
