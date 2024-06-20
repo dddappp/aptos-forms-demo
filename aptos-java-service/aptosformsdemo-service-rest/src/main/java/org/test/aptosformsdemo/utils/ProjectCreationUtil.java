@@ -74,9 +74,9 @@ public class ProjectCreationUtil {
         if (!creationOptions.containsKey("xRenderFormUpdatable")) {
             creationOptions.put("xRenderFormUpdatable", "true");
         }
-        if (!creationOptions.containsKey("xRenderFormStartPageName")) {
-            creationOptions.put("xRenderFormStartPageName", "StartPage");
-        }
+        //if (!creationOptions.containsKey("xRenderFormStartPageName")) {
+        //    creationOptions.put("xRenderFormStartPageName", "MainPage"); // This is default value.
+        //}
         if (!creationOptions.containsKey("pomGroupId")) {
             creationOptions.put("pomGroupId", "org.dddml." + aptosPackageName.toLowerCase());
         }

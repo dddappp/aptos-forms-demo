@@ -31,8 +31,8 @@ import static org.test.aptosformsdemo.utils.StringUtil.getSafeFormId;
 @RequestMapping(path = "offChain")
 @RestController
 public class OffChainResource {
+    public static final String PACKAGE_METADATA_FILE_NAME = "package-metadata.bcs";
     private static final Logger logger = LoggerFactory.getLogger(OffChainResource.class);
-
     @Autowired
     private OkHttpClient okHttpClient;
 
@@ -85,17 +85,23 @@ public class OffChainResource {
 
         ProcessUtil.compileMove(aptosCliPath, extractionDir, namedAddresses, compileLogFilePath);
 
-        Path metadataFilePath = Paths.get(extractionDir, "build", aptosPackageName, "package-metadata.bcs");
+        Path metadataFilePath = Paths.get(extractionDir, "build", aptosPackageName, PACKAGE_METADATA_FILE_NAME);
         File metadataFile = metadataFilePath.toFile();
         // Ensure the metadata file exists
         if (!metadataFile.exists()) {
             throw new IOException("Metadata file not found: " + metadataFile);
         }
+        Path buildZipPath = Paths.get(extractionDir, "build", aptosPackageName + ".zip");
+        ZipUtil.zipSpecifiedContents(
+                Paths.get(extractionDir, "build", aptosPackageName).toString(),
+                buildZipPath.toString(),
+                new String[]{PACKAGE_METADATA_FILE_NAME, "bytecode_modules"}
+        );
 
-        ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(metadataFilePath));
+        ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(buildZipPath));
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION,
-                        "attachment; filename=\"" + metadataFile.getName() + "\""
+                        "attachment; filename=\"" + buildZipPath.toFile().getName() + "\""
                 )
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .body(resource);

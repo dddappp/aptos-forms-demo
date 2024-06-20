@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+import java.util.zip.ZipOutputStream;
 
 public class ZipUtil {
     private ZipUtil() {
@@ -58,6 +59,41 @@ public class ZipUtil {
         }
 
         return destFile;
+    }
+
+    public static void zipSpecifiedContents(String sourceDirPath, String zipFilePath,
+                                             String[] includes
+    ) throws IOException {
+        Path zipFile = Files.createFile(Paths.get(zipFilePath));
+        try (ZipOutputStream zs = new ZipOutputStream(Files.newOutputStream(zipFile))) {
+            Path sourceDir = Paths.get(sourceDirPath);
+            for (String include : includes) {
+                Path includePath = sourceDir.resolve(include);
+                if (Files.isDirectory(includePath)) {
+                    // If it is a directory, only include the files under the directory
+                    Files.walk(includePath, 1) // Note that 1 here limits the depth of traversal
+                            .filter(path -> !Files.isDirectory(path)) // Exclude subdirectories
+                            .forEach(path -> {
+                                try {
+                                    pack(path, sourceDir, zs);
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            });
+                } else {
+                    // If it is a file, add it directly
+                    pack(includePath, sourceDir, zs);
+                }
+            }
+        }
+    }
+
+    private static void pack(Path file, Path sourceDir, ZipOutputStream zs) throws IOException {
+        String zipEntryName = sourceDir.relativize(file).toString();
+        ZipEntry zipEntry = new ZipEntry(zipEntryName);
+        zs.putNextEntry(zipEntry);
+        Files.copy(file, zs);
+        zs.closeEntry();
     }
 
     // Get the extraction subdirectory path

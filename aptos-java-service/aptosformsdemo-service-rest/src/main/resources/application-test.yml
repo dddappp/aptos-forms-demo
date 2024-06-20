@@ -62,7 +62,8 @@ aptos:
 
 dddappp:
   project-creation-service:
-    url: "http://ec2-35-165-219-121.us-west-2.compute.amazonaws.com:5000/ProjectTools/CreateProject"
+    #url: "http://ec2-35-165-219-121.us-west-2.compute.amazonaws.com:5000/ProjectTools/CreateProject"
+    url: "http://localhost:5271/ProjectTools/CreateProject"
 
 logging:
   level:
