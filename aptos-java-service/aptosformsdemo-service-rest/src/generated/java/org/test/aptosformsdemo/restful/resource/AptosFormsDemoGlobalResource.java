@@ -294,7 +294,7 @@ public class AptosFormsDemoGlobalResource {
             return formatter.parse(idString);
         }
 
-        public static void setNullIdOrThrowOnInconsistentIds(String formAndAccountAddress, AptosFormsDemoGlobalCommand value) {
+        public static void setNullIdOrThrowOnInconsistentIds(String formAndAccountAddress, org.test.aptosformsdemo.domain.aptosformsdemoglobal.AptosFormsDemoGlobalCommand value) {
             FormAndAddress idObj = parseIdString(formAndAccountAddress);
             if (value.getFormAndAccountAddress() == null) {
                 value.setFormAndAccountAddress(idObj);

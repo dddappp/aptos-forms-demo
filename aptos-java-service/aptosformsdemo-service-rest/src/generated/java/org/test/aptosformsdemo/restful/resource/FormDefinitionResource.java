@@ -314,7 +314,7 @@ public class FormDefinitionResource {
  
     public static class FormDefinitionResourceUtils {
 
-        public static void setNullIdOrThrowOnInconsistentIds(Long formSequenceId, FormDefinitionCommand value) {
+        public static void setNullIdOrThrowOnInconsistentIds(Long formSequenceId, org.test.aptosformsdemo.domain.formdefinition.FormDefinitionCommand value) {
             Long idObj = formSequenceId;
             if (value.getFormSequenceId() == null) {
                 value.setFormSequenceId(idObj);

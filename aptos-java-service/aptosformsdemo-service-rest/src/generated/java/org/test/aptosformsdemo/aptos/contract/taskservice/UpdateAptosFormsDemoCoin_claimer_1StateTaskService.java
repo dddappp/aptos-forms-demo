@@ -40,7 +40,7 @@ public class UpdateAptosFormsDemoCoin_claimer_1StateTaskService {
     @Scheduled(fixedDelayString = "${aptos.contract.update-aptos-forms-demo-coin-claimer-1-states.fixed-delay:5000}")
     @Transactional
     public void updateAptosFormsDemoCoin_claimer_1States() {
-        aptosFormsDemoCoin_claimer_1EventRepository.findByStatusIsNull().forEach(e -> {
+        aptosFormsDemoCoin_claimer_1EventRepository.findByEventStatusIsNull().forEach(e -> {
             aptosAptosFormsDemoCoin_claimer_1Service.updateAptosFormsDemoCoin_claimer_1State(getContractModuleNameProvider(), getToFormPageAndAddressFunction(), e.getFormPageAndSignerAddress().getAddress());
             aptosFormsDemoCoin_claimer_1EventService.updateStatusToProcessed(e);
         });

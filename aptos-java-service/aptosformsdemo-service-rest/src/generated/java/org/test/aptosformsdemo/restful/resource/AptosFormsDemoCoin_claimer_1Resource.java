@@ -258,7 +258,7 @@ public class AptosFormsDemoCoin_claimer_1Resource {
             return formatter.parse(idString);
         }
 
-        public static void setNullIdOrThrowOnInconsistentIds(String formPageAndSignerAddress, AptosFormsDemoCoin_claimer_1Command value) {
+        public static void setNullIdOrThrowOnInconsistentIds(String formPageAndSignerAddress, org.test.aptosformsdemo.domain.aptosformsdemocoin_claimer_1.AptosFormsDemoCoin_claimer_1Command value) {
             FormPageAndAddress idObj = parseIdString(formPageAndSignerAddress);
             if (value.getFormPageAndSignerAddress() == null) {
                 value.setFormPageAndSignerAddress(idObj);

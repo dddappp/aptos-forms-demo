@@ -40,7 +40,7 @@ public class UpdateAptosFormsDemoMainFormStateTaskService {
     @Scheduled(fixedDelayString = "${aptos.contract.update-aptos-forms-demo-main-form-states.fixed-delay:5000}")
     @Transactional
     public void updateAptosFormsDemoMainFormStates() {
-        aptosFormsDemoMainFormEventRepository.findByStatusIsNull().forEach(e -> {
+        aptosFormsDemoMainFormEventRepository.findByEventStatusIsNull().forEach(e -> {
             final long formSequenceId = e.getAptosFormsDemoMainFormEventId().getFormPageAndSignerAddress().getFormSequenceId();
             final int pageNumber = e.getAptosFormsDemoMainFormEventId().getFormPageAndSignerAddress().getPageNumber();
             FormDefinitionState formDefinitionState = formDefinitionStateQueryRepository.get(formSequenceId);

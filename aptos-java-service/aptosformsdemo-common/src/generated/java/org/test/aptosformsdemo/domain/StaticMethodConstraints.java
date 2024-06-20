@@ -122,7 +122,7 @@ public class StaticMethodConstraints {
                     "org.test.aptosformsdemo.domain.aptosformsdemomainform.SubmitLogic",
                     "mutate",
                     new Class[]{AptosFormsDemoMainFormState.class, BigInteger.class, String[].class, String[].class, String.class, String.class, BigInteger.class, String.class, BigInteger.class, XRenderFormDateRange.class, XRenderFormDateRange.class, BigInteger.class, XRenderFormTimeRange.class, String[].class, String[].class, XRenderFormDate.class, String.class, BigInteger.class, BigInteger.class, BigInteger.class, String.class, AptosEventGuid.class, String.class, MutationContext.class},
-                    new String[]{"_", "fr_5pqi", "fr_duif", "fr_6i34", "fr_8xjs", "fr_9c3f", "fr_4ok6", "fr_b3ub", "fr_1z7o", "fr_d8rw", "fr_dy3l", "fr_6f68", "fr_47yy", "fr_gh3o", "fr_fbba", "fr_hhzp", "single_text1", "payment_123", "aptosEventVersion", "aptosEventSequenceNumber", "aptosEventType", "aptosEventGuid", "status"}
+                    new String[]{"_", "fr_5pqi", "fr_duif", "fr_6i34", "fr_8xjs", "fr_9c3f", "fr_4ok6", "fr_b3ub", "fr_1z7o", "fr_d8rw", "fr_dy3l", "fr_6f68", "fr_47yy", "fr_gh3o", "fr_fbba", "fr_hhzp", "single_text1", "payment_123", "aptosEventVersion", "aptosEventSequenceNumber", "aptosEventType", "aptosEventGuid", "eventStatus"}
             );
 
 
@@ -130,7 +130,7 @@ public class StaticMethodConstraints {
                     "org.test.aptosformsdemo.domain.aptosformsdemomainform.UpdateLogic",
                     "mutate",
                     new Class[]{AptosFormsDemoMainFormState.class, BigInteger.class, String[].class, String[].class, String.class, String.class, BigInteger.class, String.class, BigInteger.class, XRenderFormDateRange.class, XRenderFormDateRange.class, BigInteger.class, XRenderFormTimeRange.class, String[].class, String[].class, XRenderFormDate.class, String.class, BigInteger.class, BigInteger.class, BigInteger.class, BigInteger.class, BigInteger.class, String.class, AptosEventGuid.class, String.class, MutationContext.class},
-                    new String[]{"_", "fr_5pqi", "fr_duif", "fr_6i34", "fr_8xjs", "fr_9c3f", "fr_4ok6", "fr_b3ub", "fr_1z7o", "fr_d8rw", "fr_dy3l", "fr_6f68", "fr_47yy", "fr_gh3o", "fr_fbba", "fr_hhzp", "single_text1", "payment_123", "payment_123_Supplement", "payment_123_Refund", "aptosEventVersion", "aptosEventSequenceNumber", "aptosEventType", "aptosEventGuid", "status"}
+                    new String[]{"_", "fr_5pqi", "fr_duif", "fr_6i34", "fr_8xjs", "fr_9c3f", "fr_4ok6", "fr_b3ub", "fr_1z7o", "fr_d8rw", "fr_dy3l", "fr_6f68", "fr_47yy", "fr_gh3o", "fr_fbba", "fr_hhzp", "single_text1", "payment_123", "payment_123_Supplement", "payment_123_Refund", "aptosEventVersion", "aptosEventSequenceNumber", "aptosEventType", "aptosEventGuid", "eventStatus"}
             );
 
 
@@ -138,7 +138,7 @@ public class StaticMethodConstraints {
                     "org.test.aptosformsdemo.domain.aptosformsdemocoin_claimer_1.ClaimLogic",
                     "mutate",
                     new Class[]{AptosFormsDemoCoin_claimer_1State.class, BigInteger.class, BigInteger.class, BigInteger.class, BigInteger.class, String.class, AptosEventGuid.class, String.class, MutationContext.class},
-                    new String[]{"_", "remainingAmount", "remainingShares", "aptosEventVersion", "aptosEventSequenceNumber", "aptosEventType", "aptosEventGuid", "status"}
+                    new String[]{"_", "remainingAmount", "remainingShares", "aptosEventVersion", "aptosEventSequenceNumber", "aptosEventType", "aptosEventGuid", "eventStatus"}
             );
 
 
@@ -146,7 +146,7 @@ public class StaticMethodConstraints {
                     "org.test.aptosformsdemo.domain.aptosformsdemoglobal.AdminWithdrawPayment_123_VaultLogic",
                     "mutate",
                     new Class[]{AptosFormsDemoGlobalState.class, BigInteger.class, BigInteger.class, BigInteger.class, String.class, AptosEventGuid.class, String.class, MutationContext.class},
-                    new String[]{"_", "amount", "aptosEventVersion", "aptosEventSequenceNumber", "aptosEventType", "aptosEventGuid", "status"}
+                    new String[]{"_", "amount", "aptosEventVersion", "aptosEventSequenceNumber", "aptosEventType", "aptosEventGuid", "eventStatus"}
             );
 
 
@@ -154,7 +154,7 @@ public class StaticMethodConstraints {
                     "org.test.aptosformsdemo.domain.aptosformsdemoglobal.DepositCoin_claimer_1_VaultLogic",
                     "mutate",
                     new Class[]{AptosFormsDemoGlobalState.class, BigInteger.class, BigInteger.class, BigInteger.class, String.class, AptosEventGuid.class, String.class, MutationContext.class},
-                    new String[]{"_", "amount", "aptosEventVersion", "aptosEventSequenceNumber", "aptosEventType", "aptosEventGuid", "status"}
+                    new String[]{"_", "amount", "aptosEventVersion", "aptosEventSequenceNumber", "aptosEventType", "aptosEventGuid", "eventStatus"}
             );
 
 
@@ -162,7 +162,7 @@ public class StaticMethodConstraints {
                     "org.test.aptosformsdemo.domain.aptosformsdemoglobal.AdminWithdrawCoin_claimer_1_VaultLogic",
                     "mutate",
                     new Class[]{AptosFormsDemoGlobalState.class, BigInteger.class, BigInteger.class, BigInteger.class, String.class, AptosEventGuid.class, String.class, MutationContext.class},
-                    new String[]{"_", "amount", "aptosEventVersion", "aptosEventSequenceNumber", "aptosEventType", "aptosEventGuid", "status"}
+                    new String[]{"_", "amount", "aptosEventVersion", "aptosEventSequenceNumber", "aptosEventType", "aptosEventGuid", "eventStatus"}
             );
 
 
@@ -170,7 +170,7 @@ public class StaticMethodConstraints {
                     "org.test.aptosformsdemo.domain.aptosformsdemoglobal.__Init__Logic",
                     "mutate",
                     new Class[]{AptosFormsDemoGlobalState.class, BigInteger.class, BigInteger.class, String.class, AptosEventGuid.class, String.class, MutationContext.class},
-                    new String[]{"_", "aptosEventVersion", "aptosEventSequenceNumber", "aptosEventType", "aptosEventGuid", "status"}
+                    new String[]{"_", "aptosEventVersion", "aptosEventSequenceNumber", "aptosEventType", "aptosEventGuid", "eventStatus"}
             );
 
 

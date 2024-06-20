@@ -43,7 +43,7 @@ public class AptosFormsDemoGlobalEventService {
 
     @Transactional
     public void updateStatusToProcessed(AbstractAptosFormsDemoGlobalEvent event) {
-        event.setStatus("D");
+        event.setEventStatus("D");
         aptosFormsDemoGlobalEventRepository.save(event);
     }
 

@@ -237,7 +237,7 @@ public class FormIdRegistrationResource {
  
     public static class FormIdRegistrationResourceUtils {
 
-        public static void setNullIdOrThrowOnInconsistentIds(Long formSequenceId, FormIdRegistrationCommand value) {
+        public static void setNullIdOrThrowOnInconsistentIds(Long formSequenceId, org.test.aptosformsdemo.domain.formidregistration.FormIdRegistrationCommand value) {
             Long idObj = formSequenceId;
             if (value.getFormSequenceId() == null) {
                 value.setFormSequenceId(idObj);

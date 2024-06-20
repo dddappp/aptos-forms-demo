@@ -38,7 +38,7 @@ public class AptosFormsDemoMainFormEventService {
 
     @Transactional
     public void updateStatusToProcessed(AbstractAptosFormsDemoMainFormEvent event) {
-        event.setStatus("D");
+        event.setEventStatus("D");
         aptosFormsDemoMainFormEventRepository.save(event);
     }
 

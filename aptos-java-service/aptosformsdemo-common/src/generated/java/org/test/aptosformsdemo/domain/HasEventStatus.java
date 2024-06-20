@@ -8,13 +8,13 @@ package org.test.aptosformsdemo.domain;
 import java.math.*;
 import java.util.*;
 
-public interface HasStatus {
+public interface HasEventStatus {
 
-    String getStatus();
+    String getEventStatus();
 
-    interface MutableHasStatus {
+    interface MutableHasEventStatus {
 
-        void setStatus(String p);
+        void setEventStatus(String p);
 
     }
 

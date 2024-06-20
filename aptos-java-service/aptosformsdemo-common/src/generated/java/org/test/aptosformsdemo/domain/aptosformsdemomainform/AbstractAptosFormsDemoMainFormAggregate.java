@@ -171,7 +171,7 @@ public abstract class AbstractAptosFormsDemoMainFormAggregate extends AbstractAg
             e.setAptosEventSequenceNumber(null);
             e.setAptosEventType(null);
             e.setAptosEventGuid(null);
-            e.setStatus(null);
+            e.setEventStatus(null);
 
             e.setCommandId(commandId);
             e.setCreatedBy(requesterId);
@@ -208,7 +208,7 @@ public abstract class AbstractAptosFormsDemoMainFormAggregate extends AbstractAg
             e.setAptosEventSequenceNumber(null);
             e.setAptosEventType(null);
             e.setAptosEventGuid(null);
-            e.setStatus(null);
+            e.setEventStatus(null);
 
             e.setCommandId(commandId);
             e.setCreatedBy(requesterId);

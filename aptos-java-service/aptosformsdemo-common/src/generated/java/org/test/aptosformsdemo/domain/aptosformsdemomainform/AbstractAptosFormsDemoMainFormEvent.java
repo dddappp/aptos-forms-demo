@@ -12,7 +12,7 @@ import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.specialization.*;
 import org.test.aptosformsdemo.domain.AbstractEvent;
 
-public abstract class AbstractAptosFormsDemoMainFormEvent extends AbstractEvent implements AptosFormsDemoMainFormEvent.SqlAptosFormsDemoMainFormEvent, AptosEvent.MutableAptosEvent, HasStatus.MutableHasStatus {
+public abstract class AbstractAptosFormsDemoMainFormEvent extends AbstractEvent implements AptosFormsDemoMainFormEvent.SqlAptosFormsDemoMainFormEvent, AptosEvent.MutableAptosEvent, HasEventStatus.MutableHasEventStatus {
     private AptosFormsDemoMainFormEventId aptosFormsDemoMainFormEventId = new AptosFormsDemoMainFormEventId();
 
     public AptosFormsDemoMainFormEventId getAptosFormsDemoMainFormEventId() {
@@ -85,14 +85,14 @@ public abstract class AbstractAptosFormsDemoMainFormEvent extends AbstractEvent 
         this.aptosEventGuid = aptosEventGuid;
     }
 
-    private String status;
+    private String eventStatus;
 
-    public String getStatus() {
-        return this.status;
+    public String getEventStatus() {
+        return this.eventStatus;
     }
     
-    public void setStatus(String status) {
-        this.status = status;
+    public void setEventStatus(String eventStatus) {
+        this.eventStatus = eventStatus;
     }
 
     private String createdBy;

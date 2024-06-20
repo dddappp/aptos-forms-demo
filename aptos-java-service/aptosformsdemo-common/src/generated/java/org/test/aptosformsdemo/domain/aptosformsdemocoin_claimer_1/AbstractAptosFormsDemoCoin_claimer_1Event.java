@@ -12,7 +12,7 @@ import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.specialization.*;
 import org.test.aptosformsdemo.domain.AbstractEvent;
 
-public abstract class AbstractAptosFormsDemoCoin_claimer_1Event extends AbstractEvent implements AptosFormsDemoCoin_claimer_1Event.SqlAptosFormsDemoCoin_claimer_1Event, AptosEvent.MutableAptosEvent, HasStatus.MutableHasStatus {
+public abstract class AbstractAptosFormsDemoCoin_claimer_1Event extends AbstractEvent implements AptosFormsDemoCoin_claimer_1Event.SqlAptosFormsDemoCoin_claimer_1Event, AptosEvent.MutableAptosEvent, HasEventStatus.MutableHasEventStatus {
     private AptosFormsDemoCoin_claimer_1EventId aptosFormsDemoCoin_claimer_1EventId = new AptosFormsDemoCoin_claimer_1EventId();
 
     public AptosFormsDemoCoin_claimer_1EventId getAptosFormsDemoCoin_claimer_1EventId() {
@@ -85,14 +85,14 @@ public abstract class AbstractAptosFormsDemoCoin_claimer_1Event extends Abstract
         this.aptosEventGuid = aptosEventGuid;
     }
 
-    private String status;
+    private String eventStatus;
 
-    public String getStatus() {
-        return this.status;
+    public String getEventStatus() {
+        return this.eventStatus;
     }
     
-    public void setStatus(String status) {
-        this.status = status;
+    public void setEventStatus(String eventStatus) {
+        this.eventStatus = eventStatus;
     }
 
     private String createdBy;

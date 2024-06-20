@@ -11,7 +11,7 @@ import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.specialization.Event;
 
-public interface AptosFormsDemoMainFormEvent extends Event, AptosEvent, HasStatus {
+public interface AptosFormsDemoMainFormEvent extends Event, AptosEvent, HasEventStatus {
 
     interface SqlAptosFormsDemoMainFormEvent extends AptosFormsDemoMainFormEvent {
         AptosFormsDemoMainFormEventId getAptosFormsDemoMainFormEventId();

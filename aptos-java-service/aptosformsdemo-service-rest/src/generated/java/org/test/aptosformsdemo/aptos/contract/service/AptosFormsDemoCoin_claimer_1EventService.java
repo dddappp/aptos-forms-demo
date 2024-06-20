@@ -37,7 +37,7 @@ public class AptosFormsDemoCoin_claimer_1EventService {
 
     @Transactional
     public void updateStatusToProcessed(AbstractAptosFormsDemoCoin_claimer_1Event event) {
-        event.setStatus("D");
+        event.setEventStatus("D");
         aptosFormsDemoCoin_claimer_1EventRepository.save(event);
     }
 

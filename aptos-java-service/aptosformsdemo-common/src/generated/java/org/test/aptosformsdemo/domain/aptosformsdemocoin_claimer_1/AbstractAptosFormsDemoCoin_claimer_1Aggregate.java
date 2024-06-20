@@ -89,7 +89,7 @@ public abstract class AbstractAptosFormsDemoCoin_claimer_1Aggregate extends Abst
             e.setAptosEventSequenceNumber(null);
             e.setAptosEventType(null);
             e.setAptosEventGuid(null);
-            e.setStatus(null);
+            e.setEventStatus(null);
 
             e.setCommandId(commandId);
             e.setCreatedBy(requesterId);

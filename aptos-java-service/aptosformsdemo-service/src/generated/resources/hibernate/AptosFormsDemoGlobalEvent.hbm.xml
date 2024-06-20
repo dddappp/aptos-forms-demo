@@ -34,8 +34,8 @@
         <column name="aptos_event_guid_account_address" sql-type="VARCHAR(66)" />
       </property>
     </component>
-    <property name="status">
-      <column name="status" sql-type="CHAR(1)" />
+    <property name="eventStatus">
+      <column name="event_status" sql-type="CHAR(1)" />
     </property>
     <property name="commandType" column="command_type" length="50" />
     <subclass name="AbstractAptosFormsDemoGlobalEvent$AptosFormsDemoGlobalLobEvent" discriminator-value="AptosFormsDemoGlobalLobEvent">

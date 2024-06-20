@@ -40,7 +40,7 @@ public class UpdateAptosFormsDemoGlobalStateTaskService {
     @Scheduled(fixedDelayString = "${aptos.contract.update-aptos-forms-demo-global-states.fixed-delay:5000}")
     @Transactional
     public void updateAptosFormsDemoGlobalStates() {
-        aptosFormsDemoGlobalEventRepository.findByStatusIsNull().forEach(e -> {
+        aptosFormsDemoGlobalEventRepository.findByEventStatusIsNull().forEach(e -> {
             aptosAptosFormsDemoGlobalService.updateAptosFormsDemoGlobalState(getContractModuleNameProvider(), getToFormAndAddressFunction(), e.getFormAndAccountAddress().getAddress());
             aptosFormsDemoGlobalEventService.updateStatusToProcessed(e);
         });

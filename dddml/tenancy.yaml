@@ -11,11 +11,11 @@ aggregates:
     #
     #  configuration:
     #    mandatoryAggregateImplements: [ "VersionedAptosMoveObject" ]
-    #    mandatoryAggregateEventImplements: [ "AptosEvent", "HasStatus" ]
+    #    mandatoryAggregateEventImplements: [ "AptosEvent", "HasEventStatus" ]
     #
     # But the current object is an off-chain object, so we separately set the interfaces we want it not to implement.
     shouldNotImplement: [ "VersionedAptosMoveObject" ]
-    eventShouldNotImplement: [ "AptosEvent", "HasStatus" ]
+    eventShouldNotImplement: [ "AptosEvent", "HasEventStatus" ]
     # The event version property has been set globally in order to generate event objects corresponding to the objects on-chain.
     #
     #  aggregateEventVersionProperty:
@@ -128,7 +128,7 @@ aggregates:
       AutoGeneratingCrUDCommandsDisabled: false
       DuplicateEventNameCheckingDisabled: true
     shouldNotImplement: [ "VersionedAptosMoveObject" ]
-    eventShouldNotImplement: [ "AptosEvent", "HasStatus" ]
+    eventShouldNotImplement: [ "AptosEvent", "HasEventStatus" ]
     eventVersionProperty:
       name: OffChainVersion
       type: long
@@ -183,7 +183,11 @@ configuration:
       idTypeFormat: "FormAnd{_ORIGINAL_ID_TYPE_}"
       originalIdPropertyNameFormat: "{_ORIGINAL_ID_TYPE_}"
 
-#  java:
+  java:
+    eventProcessingInterfaceName: HasEventStatus
+    eventProcessingStatusPropertyName: EventStatus
+    eventProcessingStatusPropertyType: indicator
+
 #    aggregateIdWhenSingletonObjectAsAggregate:
 #      name: AccountAddress
 #      type: address

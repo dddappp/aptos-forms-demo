@@ -11,7 +11,7 @@ import java.util.*;
 
 public interface AptosFormsDemoCoin_claimer_1EventRepository extends JpaRepository<AbstractAptosFormsDemoCoin_claimer_1Event, AptosFormsDemoCoin_claimer_1EventId> {
 
-    List<AbstractAptosFormsDemoCoin_claimer_1Event> findByStatusIsNull();
+    List<AbstractAptosFormsDemoCoin_claimer_1Event> findByEventStatusIsNull();
 
     AbstractAptosFormsDemoCoin_claimer_1Event.AptosFormsDemoCoin_claimer_1_Claimed findFirstAptosFormsDemoCoin_claimer_1_ClaimedByOrderByAptosEventSequenceNumber();
 
