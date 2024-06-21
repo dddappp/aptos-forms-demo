@@ -32,6 +32,7 @@ import static org.test.aptosformsdemo.utils.StringUtil.getSafeFormId;
 @RestController
 public class OffChainResource {
     public static final String PACKAGE_METADATA_FILE_NAME = "package-metadata.bcs";
+    public static final String NAMED_ADDRESS_PARAM_PREFIX = "named_address__";
     private static final Logger logger = LoggerFactory.getLogger(OffChainResource.class);
     @Autowired
     private OkHttpClient okHttpClient;
@@ -46,18 +47,26 @@ public class OffChainResource {
     public ResponseEntity<Resource> createContractAndCompile(
             @RequestParam("files") MultipartFile[] files,
             @RequestParam("formId") String formId,
+            @RequestParam(required = false) String packageAddress,
             @RequestParam(required = false) String formOpenAt,
             @RequestParam(required = false) String formCutoffAt,
             @RequestParam(required = false) String formStartPageName,
             @RequestParam Map<String, String> allParams
     ) throws IOException, InterruptedException {
+        formId = getSafeFormId(formId);
+        String aptosPackageName = formId;
+
         // Filter specific parameters into namedAddresses
         Map<String, String> namedAddresses = allParams.entrySet().stream()
-                .filter(entry -> entry.getKey().startsWith("named_address__"))
+                .filter(entry -> entry.getKey().startsWith(NAMED_ADDRESS_PARAM_PREFIX))
                 .collect(Collectors.toMap(
-                        k -> k.getKey().substring("named_address__".length()),
+                        k -> k.getKey().substring(NAMED_ADDRESS_PARAM_PREFIX.length()),
                         Map.Entry::getValue
                 ));
+        String packageAddressName = StringUtil.toUnderscoreCase(aptosPackageName);
+        if (packageAddress != null && !packageAddress.isEmpty()) {
+            namedAddresses.put(packageAddressName, packageAddress); // Override package address if provided
+        }
         String tempDir = TempDirectoryUtil.createTempDirectory();
         logger.info("Temp directory: {}", tempDir);
         Map<String, String> creationOptions = new HashMap<>();
@@ -70,8 +79,6 @@ public class OffChainResource {
         if (formStartPageName != null) {
             creationOptions.put("xRenderFormStartPageName", formStartPageName);
         }
-        formId = getSafeFormId(formId);
-        String aptosPackageName = formId;
         File[] formSchemaFiles = FileUtil.convertMultipartFilesToFileArray(files, tempDir);
         File contractZipFile = ProjectCreationUtil.createContractProject(
                 okHttpClient, projectCreationServiceUrl,
@@ -91,17 +98,29 @@ public class OffChainResource {
         if (!metadataFile.exists()) {
             throw new IOException("Metadata file not found: " + metadataFile);
         }
-        Path buildZipPath = Paths.get(extractionDir, "build", aptosPackageName + ".zip");
-        ZipUtil.zipSpecifiedContents(
-                Paths.get(extractionDir, "build", aptosPackageName).toString(),
-                buildZipPath.toString(),
-                new String[]{PACKAGE_METADATA_FILE_NAME, "bytecode_modules"}
-        );
 
-        ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(buildZipPath));
+        //Path buildZipPath = Paths.get(extractionDir, "build", aptosPackageName + ".zip");
+        //ZipUtil.zipSpecifiedContents(
+        //        Paths.get(extractionDir, "build", aptosPackageName).toString(),
+        //        buildZipPath.toString(),
+        //        new String[]{PACKAGE_METADATA_FILE_NAME, "bytecode_modules"}
+        //);
+        Path onChainZipPath = Paths.get(extractionDir, "on-chain.zip");
+        String[] zipIncludes = new String[]{
+                Paths.get("build", aptosPackageName, PACKAGE_METADATA_FILE_NAME).toString(),
+                Paths.get("build", aptosPackageName, "bytecode_modules").toString(),
+                "Move.toml",
+                "sources",
+                "dddml",
+                "dddappp.json"
+        };
+        ZipUtil.zipSpecifiedContents(extractionDir, onChainZipPath.toString(), zipIncludes);
+
+        //ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(buildZipPath));
+        ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(onChainZipPath));
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION,
-                        "attachment; filename=\"" + buildZipPath.toFile().getName() + "\""
+                        "attachment; filename=\"" + onChainZipPath.toFile().getName() + "\""
                 )
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .body(resource);
