@@ -62,13 +62,16 @@ public class ZipUtil {
     }
 
     public static void zipSpecifiedContents(String sourceDirPath, String zipFilePath,
-                                             String[] includes
+                                             String[] includes, boolean ignoreNonExistent
     ) throws IOException {
         Path zipFile = Files.createFile(Paths.get(zipFilePath));
         try (ZipOutputStream zs = new ZipOutputStream(Files.newOutputStream(zipFile))) {
             Path sourceDir = Paths.get(sourceDirPath);
             for (String include : includes) {
                 Path includePath = sourceDir.resolve(include);
+                if (ignoreNonExistent && !Files.exists(includePath)) {
+                    continue;
+                }
                 if (Files.isDirectory(includePath)) {
                     // If it is a directory, only include the files under the directory
                     Files.walk(includePath, 1) // Note that 1 here limits the depth of traversal

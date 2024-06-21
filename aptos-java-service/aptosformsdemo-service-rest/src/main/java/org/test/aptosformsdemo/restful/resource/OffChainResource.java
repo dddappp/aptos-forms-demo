@@ -114,7 +114,7 @@ public class OffChainResource {
                 "dddml",
                 "dddappp.json"
         };
-        ZipUtil.zipSpecifiedContents(extractionDir, onChainZipPath.toString(), zipIncludes);
+        ZipUtil.zipSpecifiedContents(extractionDir, onChainZipPath.toString(), zipIncludes, true);
 
         //ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(buildZipPath));
         ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(onChainZipPath));
