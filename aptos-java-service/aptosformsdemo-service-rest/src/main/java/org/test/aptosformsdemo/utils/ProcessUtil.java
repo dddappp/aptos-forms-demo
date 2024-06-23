@@ -31,6 +31,7 @@ public class ProcessUtil {
                 "move", "compile",
                 "--save-metadata",
                 "--skip-fetch-latest-git-deps",
+                "--included-artifacts none",
                 "--package-dir", packageDirPath,
                 "--named-addresses", namedAddressesList.toString()
         };
