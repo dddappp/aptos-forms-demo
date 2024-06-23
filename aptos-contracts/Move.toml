@@ -8,5 +8,5 @@ xrender_form_utils = "_"
 
 [dependencies]
 AptosFramework = { git = "https://github.com/aptos-labs/aptos-core.git", subdir = "aptos-move/framework/aptos-framework", rev = "main" }
-AptosTokenObjects = { git = "https://github.com/aptos-labs/aptos-core.git", subdir = "aptos-move/framework/aptos-token-objects", rev = "main" }
+#AptosTokenObjects = { git = "https://github.com/aptos-labs/aptos-core.git", subdir = "aptos-move/framework/aptos-token-objects", rev = "main" }
 XRenderFormUtils = { git = "https://github.com/dddappp/XRender-Form-Utils.git", subdir = "aptos-move", rev = "main" }

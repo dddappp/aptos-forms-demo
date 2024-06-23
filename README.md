@@ -196,7 +196,7 @@ Next, we will deploy and test the Demo application.
 Execute the following command in the directory `aptos-contracts` to publish the contract on chain:
 
 ```shell
-aptos move publish --named-addresses aptos_forms_demo=default,xrender_form_utils=0x71df3ab1b6cf015aa5870a8a6e8ee0951c54e8d7d79bb59fa3b737c3a38fb93b --assume-yes
+aptos move publish --included-artifacts none --skip-fetch-latest-git-deps --named-addresses aptos_forms_demo=default,xrender_form_utils=0x71df3ab1b6cf015aa5870a8a6e8ee0951c54e8d7d79bb59fa3b737c3a38fb93b --assume-yes
 ```
 
 If the command is executed successfully, it should display similar information:
@@ -230,7 +230,9 @@ You can do a test of submitting the form using the default account:
 
 ```shell
 aptos move run --function-id 'default::aptos_forms_demo_main_form_aggregate::submit' \
---args u128:12 'string:["A","B"]' 'string:["A","B"]' 'string:fr_8xjs' 'string:1' u128:1 'string:fr_b3ub' u128:1 'u16:[2022,1,1,2022,1,2]' 'u16:[2022,1,1,2022,1,2]' u128:1 'u8:[1,1,1,1,1,2]' 'string:["A","B"]' 'string:["1","2"]' 'u16:[2022,1,1]' 'string:single_text1' u64:1000000 \
+--args u128:12 'string:["A","B"]' 'string:["A","B"]' 'string:fr_8xjs' 'string:1' u128:1 'string:fr_b3ub' u128:1 \
+  'u16:[2022,1,1,2022,1,2]' 'u16:[2022,1,1,2022,1,2]' u128:1 'u8:[1,1,1,1,1,2]' 'string:["A","B"]' 'string:["1","2"]' \
+  'u16:[2022,1,1]' 'string:["single_text1"]' u64:1000000 \
 --assume-yes
 ```
 
@@ -240,7 +242,10 @@ You can do a test of updating the form like this:
 
 ```shell
 aptos move run --function-id 'default::aptos_forms_demo_main_form_aggregate::update' \
---args address:56c01bfdfae128e57544f59f52be70bb883ea2d1fb97ba5774741996f77b4eb7  u128:12 'string:["A","B"]' 'string:["A","B"]' 'string:fr_8xjs' 'string:1' u128:1 'string:fr_b3ub' u128:1 'u16:[2022,1,1,2022,1,2]' 'u16:[2022,1,1,2022,1,2]' u128:1 'u8:[1,1,1,1,1,2]' 'string:["A","B"]' 'string:["1","2"]' 'u16:[2022,1,1]' 'string:single_text1' u64:1000000 \
+--args address:56c01bfdfae128e57544f59f52be70bb883ea2d1fb97ba5774741996f77b4eb7  \
+  u128:12 'string:["A","B"]' 'string:["A","B"]' 'string:fr_8xjs' 'string:1' u128:1 'string:fr_b3ub' u128:1 \
+  'u16:[2022,1,1,2022,1,2]' 'u16:[2022,1,1,2022,1,2]' u128:1 'u8:[1,1,1,1,1,2]' 'string:["A","B"]' 'string:["1","2"]' \
+  'u16:[2022,1,1]' 'string:["single_text1"]' u64:1000000 \
 --assume-yes
 ```
 
