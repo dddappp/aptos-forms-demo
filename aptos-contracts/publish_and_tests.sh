@@ -3,6 +3,7 @@ cd ../../XRender-Form-Utils/aptos-move
 #aptos init
 # Press Enter to confirm using the default values:
 
+# For devnet or testnet, use the following command to fund the account:
 aptos account fund-with-faucet --account default --amount 50000000000
 # View Aptos Profiles:
 #aptos config show-profiles
@@ -17,6 +18,7 @@ cd ../../aptos-forms-demo/aptos-contracts
 #aptos init
 # Press Enter to confirm using the default values:
 
+# For devnet or testnet, use the following command to fund the account:
 aptos account fund-with-faucet --account default --amount 50000000000
 # View Aptos Profiles:
 #aptos config show-profiles
@@ -26,7 +28,7 @@ aptos move publish --named-addresses aptos_forms_demo=default,xrender_form_utils
 aptos move run --function-id 'default::aptos_forms_demo_init::initialize' --assume-yes
 
 aptos move run --function-id 'default::aptos_forms_demo_main_form_aggregate::submit' \
---args u128:12 'string:["A","B"]' 'string:["A","B"]' 'string:fr_8xjs' 'string:1' u128:1 'string:fr_b3ub' u128:1 'u16:[2022,1,1,2022,1,2]' 'u16:[2022,1,1,2022,1,2]' u128:1 'u8:[1,1,1,1,1,2]' 'string:["A","B"]' 'string:["1","2"]' 'u16:[2022,1,1]' 'string:single_text1' u64:1000000 \
+--args u128:12 'string:["A","B"]' 'string:["A","B"]' 'string:fr_8xjs' 'string:1' u128:1 'string:fr_b3ub' u128:1 'u16:[2022,1,1,2022,1,2]' 'u16:[2022,1,1,2022,1,2]' u128:1 'u8:[1,1,1,1,1,2]' 'string:["A","B"]' 'string:["1","2"]' 'u16:[2022,1,1]' 'string:["single_text1"]' u64:1000000 \
 --assume-yes
 
 aptos move run --function-id 'default::aptos_forms_demo_global_aggregate::deposit_coin_claimer_1_vault' \
