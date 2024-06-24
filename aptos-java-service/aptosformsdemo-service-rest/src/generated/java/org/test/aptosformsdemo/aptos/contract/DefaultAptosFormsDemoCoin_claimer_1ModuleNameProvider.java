@@ -30,7 +30,7 @@ public class DefaultAptosFormsDemoCoin_claimer_1ModuleNameProvider implements Co
 
     @Override
     public String getModuleQualifiedEntityStateStructName() {
-        return MODULE_NAME + "::AptosFormsDemoCoin_claimer_1";
+        return MODULE_NAME + "::AptosFormsDemoCoinClaimer1";
     }
 
     @Override
