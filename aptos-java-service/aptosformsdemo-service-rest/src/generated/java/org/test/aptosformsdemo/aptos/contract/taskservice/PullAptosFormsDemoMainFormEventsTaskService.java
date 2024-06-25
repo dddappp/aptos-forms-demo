@@ -35,7 +35,8 @@ public class PullAptosFormsDemoMainFormEventsTaskService {
 
     @Scheduled(fixedDelayString = "${aptos.contract.pull-aptos-forms-demo-main-form-events.aptos-forms-demo-main-form-submitted.fixed-delay:5000}")
     public void pullAptosFormsDemoMainFormSubmittedEvents() {
-        FormDefinitionState formDefinitionState = getFirstFormDefinitionState(); //todo only for test
+        //FormDefinitionState formDefinitionState = getFirstFormDefinitionState(); //todo only for test
+        FormDefinitionState formDefinitionState = getSecondFormDefinitionState(); //todo only for test
         if (formDefinitionState == null) { return; }
         FormPageDefinitionState formPageDefinitionState = formDefinitionState.getPageDefinitions().get(1);
         if (formPageDefinitionState == null) { return; }
@@ -64,6 +65,13 @@ public class PullAptosFormsDemoMainFormEventsTaskService {
         java.util.List<String> orders = new java.util.ArrayList<>();
         orders.add("formSequenceId");
         FormDefinitionState formDefinitionState = formDefinitionStateQueryRepository.getFirst(filter.entrySet(), orders);
+        return formDefinitionState;
+    }
+
+    private FormDefinitionState getSecondFormDefinitionState() {
+        java.util.Map<String, Object> filter = new HashMap<>();
+        filter.put("formSequenceId", 2L); //todo only for test
+        FormDefinitionState formDefinitionState = formDefinitionStateQueryRepository.getFirst(filter.entrySet(), null);
         return formDefinitionState;
     }
 
