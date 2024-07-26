@@ -12,7 +12,7 @@ public class ProcessUtil {
     private ProcessUtil() {
     }
 
-    public static int compileMove(
+    public static void compileMove(
             String aptosCliPath,
             String packageDirPath,
             Map<String, String> namedAddresses,
@@ -31,15 +31,15 @@ public class ProcessUtil {
                 "move", "compile",
                 "--save-metadata",
                 "--skip-fetch-latest-git-deps",
-                "--included-artifacts none",
+                "--included-artifacts", "none", // Don't use "--included-artifacts none"
                 "--package-dir", packageDirPath,
                 "--named-addresses", namedAddressesList.toString()
         };
-        return executeProcess(command, logFilePath);
+        executeProcess(command, logFilePath);
     }
 
     // Execute process and log it
-    private static int executeProcess(String[] command, String logFilePath) throws IOException, InterruptedException {
+    private static void executeProcess(String[] command, String logFilePath) throws IOException, InterruptedException {
         // Process command and arguments
         //String[] command = {"your_command", "arg1", "arg2"};
         // Base path of log file
@@ -59,14 +59,21 @@ public class ProcessUtil {
             output.append(line).append(System.lineSeparator());
         }
 
+        String processOutput = output.toString();
         int exitCode = process.waitFor();
+        String msg = "Aptos CLI command: \n" +
+                String.join(" ", command) + "\n" +
+                "Exit code: " + exitCode + ", output: \n" + processOutput;
+        if (exitCode != 0) {
+            throw new RuntimeException(msg);
+        }
+
         // Determine the name of the log file based on the exit code of the process?
         //String logFileName = exitCode == 0 ? "output.log" : "error.log";
         try (FileWriter fileWriter = new FileWriter(logFilePath)) {//new File(logFilePath, logFileName))) {
-            fileWriter.write(output.toString());
+            fileWriter.write(processOutput);
         }
         //System.out.println("Exit code: " + exitCode);
-        return exitCode;
     }
 
     //

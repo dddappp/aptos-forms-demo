@@ -89,9 +89,13 @@ public class OffChainResource {
         String extractionDir = ZipUtil.getExtractionSubdirectoryPath(tempDir, contractZipFile.getPath());
         ZipUtil.unzip(contractZipFile.getPath(), extractionDir);
         String compileLogFilePath = Paths.get(tempDir, "aptos-move-compile.log").toString();
-
-        ProcessUtil.compileMove(aptosCliPath, extractionDir, namedAddresses, compileLogFilePath);
-
+        try {
+            ProcessUtil.compileMove(aptosCliPath, extractionDir, namedAddresses, compileLogFilePath);
+        } catch (IOException | InterruptedException | RuntimeException e) {
+            logger.error("Failed to compile Move code", e);
+            //return ResponseEntity.badRequest().body(new ByteArrayResource(Files.readAllBytes(Paths.get(compileLogFilePath))));
+            throw e; // Just rethrow the exception?
+        }
         Path metadataFilePath = Paths.get(extractionDir, "build", aptosPackageName, PACKAGE_METADATA_FILE_NAME);
         File metadataFile = metadataFilePath.toFile();
         // Ensure the metadata file exists
