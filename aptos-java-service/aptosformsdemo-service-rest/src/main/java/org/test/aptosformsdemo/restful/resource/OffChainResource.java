@@ -33,6 +33,7 @@ import static org.test.aptosformsdemo.utils.StringUtil.getSafeFormId;
 public class OffChainResource {
     public static final String PACKAGE_METADATA_FILE_NAME = "package-metadata.bcs";
     public static final String NAMED_ADDRESS_PARAM_PREFIX = "named_address__";
+    public static final String PUBLISH_PAYLOAD_JSON_FILE_NAME = "publish-payload.json";
     private static final Logger logger = LoggerFactory.getLogger(OffChainResource.class);
     @Autowired
     private OkHttpClient okHttpClient;
@@ -86,22 +87,26 @@ public class OffChainResource {
                 formId, aptosPackageName, creationOptions,
                 tempDir
         );
+        String aptosBuildLogFilePath = Paths.get(tempDir, "aptos-move-build.log").toString();
+
         String extractionDir = ZipUtil.getExtractionSubdirectoryPath(tempDir, contractZipFile.getPath());
         ZipUtil.unzip(contractZipFile.getPath(), extractionDir);
-        String compileLogFilePath = Paths.get(tempDir, "aptos-move-compile.log").toString();
+
+        String publishPayloadJsonPath = Paths.get(extractionDir, PUBLISH_PAYLOAD_JSON_FILE_NAME).toString();
         try {
-            ProcessUtil.compileMove(aptosCliPath, extractionDir, namedAddresses, compileLogFilePath);
+            ProcessUtil.aptosBuildPublishPayload(aptosCliPath, extractionDir, namedAddresses, publishPayloadJsonPath, aptosBuildLogFilePath);
         } catch (IOException | InterruptedException | RuntimeException e) {
             logger.error("Failed to compile Move code", e);
             //return ResponseEntity.badRequest().body(new ByteArrayResource(Files.readAllBytes(Paths.get(compileLogFilePath))));
             throw e; // Just rethrow the exception?
         }
-        Path metadataFilePath = Paths.get(extractionDir, "build", aptosPackageName, PACKAGE_METADATA_FILE_NAME);
-        File metadataFile = metadataFilePath.toFile();
-        // Ensure the metadata file exists
-        if (!metadataFile.exists()) {
-            throw new IOException("Metadata file not found: " + metadataFile);
-        }
+
+//        Path metadataFilePath = Paths.get(extractionDir, "build", aptosPackageName, PACKAGE_METADATA_FILE_NAME);
+//        File metadataFile = metadataFilePath.toFile();
+//        // Ensure the metadata file exists
+//        if (!metadataFile.exists()) {
+//            throw new IOException("Metadata file not found: " + metadataFile);
+//        }
 
         //Path buildZipPath = Paths.get(extractionDir, "build", aptosPackageName + ".zip");
         //ZipUtil.zipSpecifiedContents(
@@ -111,8 +116,9 @@ public class OffChainResource {
         //);
         Path onChainZipPath = Paths.get(extractionDir, "on-chain.zip");
         String[] zipIncludes = new String[]{
-                Paths.get("build", aptosPackageName, PACKAGE_METADATA_FILE_NAME).toString(),
-                Paths.get("build", aptosPackageName, "bytecode_modules").toString(),
+                //Paths.get("build", aptosPackageName, PACKAGE_METADATA_FILE_NAME).toString(),
+                //Paths.get("build", aptosPackageName, "bytecode_modules").toString(),
+                PUBLISH_PAYLOAD_JSON_FILE_NAME,
                 "Move.toml",
                 "sources",
                 "dddml",

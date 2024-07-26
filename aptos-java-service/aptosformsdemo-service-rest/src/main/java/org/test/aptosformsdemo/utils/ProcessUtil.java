@@ -12,10 +12,11 @@ public class ProcessUtil {
     private ProcessUtil() {
     }
 
-    public static void compileMove(
+    public static void aptosBuildPublishPayload(
             String aptosCliPath,
             String packageDirPath,
             Map<String, String> namedAddresses,
+            String publishPayloadJsonPath,
             String logFilePath
     ) throws IOException, InterruptedException {
         // String logFilePath = "/tmp/aptos-move-compile.log";
@@ -28,8 +29,11 @@ public class ProcessUtil {
         }
         String[] command = {
                 aptosCliPath,//"aptos"
-                "move", "compile",
-                "--save-metadata",
+                "move",
+                //"compile",
+                //"--save-metadata",
+                "build-publish-payload",
+                "--json-output-file", publishPayloadJsonPath,
                 "--skip-fetch-latest-git-deps",
                 "--included-artifacts", "none", // Don't use "--included-artifacts none"
                 "--package-dir", packageDirPath,
