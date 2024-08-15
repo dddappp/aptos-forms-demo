@@ -15,15 +15,10 @@ RUN --mount=type=cache,target=/root/.m2 ./mvnw install -DskipTests
 
 FROM ghcr.io/wubuku/aptos-java:main
 
-RUN apt-get update && \
-apt-get install -y cron && \
-echo "0 * * * * root rm -rf /tmp/*" > /etc/cron.d/cleanup && \
-chmod 0644 /etc/cron.d/cleanup && \
-crontab /etc/cron.d/cleanup
-
 #RUN addgroup -S aptosforms && adduser -S aptosforms -G aptosforms
 RUN addgroup aptosforms && adduser --ingroup aptosforms aptosforms
-#VOLUME /tmp # NOTE: not needed for now???
+VOLUME /tmp
+# Is "VOLUME /tmp" needed for now???
 USER aptosforms
 ENV APTOS_CLI_PATH=/opt/aptos/aptos
 ENV DDDAPPP_PROJECT_CREATION_SERVICE_URL=http://host.docker.internal:5000/ProjectTools/CreateProject
