@@ -138,14 +138,6 @@ public abstract class AbstractAptosFormsDemoGlobalAggregate extends AbstractAggr
             return e;
         }
 
-//        protected AptosFormsDemoGlobalEvent.AptosFormsDemoGlobalInitialized verify__Init__(java.util.function.Supplier<AptosFormsDemoGlobalEvent.AptosFormsDemoGlobalInitialized> eventFactory, AptosFormsDemoGlobalCommands.__Init__ c) {
-//
-//            AptosFormsDemoGlobalEvent.AptosFormsDemoGlobalInitialized e = (AptosFormsDemoGlobalEvent.AptosFormsDemoGlobalInitialized) ApplicationContext.current.get(I__Init__Logic.class).verify(
-//                    eventFactory, getState(), VerificationContext.of(c));
-//
-//            return e;
-//        }
-
         protected AbstractAptosFormsDemoGlobalEvent.Payment_123_VaultAdminWithdrawn newPayment_123_VaultAdminWithdrawn(BigInteger amount, Long offChainVersion, String commandId, String requesterId) {
             AptosFormsDemoGlobalEventId eventId = new AptosFormsDemoGlobalEventId(getState().getFormAndAccountAddress(), null);
             AbstractAptosFormsDemoGlobalEvent.Payment_123_VaultAdminWithdrawn e = new AbstractAptosFormsDemoGlobalEvent.Payment_123_VaultAdminWithdrawn();
