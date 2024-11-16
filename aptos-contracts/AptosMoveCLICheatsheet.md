@@ -55,3 +55,5 @@ aptos move run --function-id 'default::aptos_forms_demo_global_aggregate::admin_
 --assume-yes
 ```
 
+## Register "friends" in dependency packages
+

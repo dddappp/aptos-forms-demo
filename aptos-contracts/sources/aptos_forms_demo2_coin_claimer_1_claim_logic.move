@@ -44,9 +44,10 @@ module aptos_forms_demo::aptos_forms_demo2_coin_claimer_1_claim_logic {
         let coin_withdrawn = aptos_forms_demo::aptos_forms_demo2_global_aggregate::withdraw_coin_claimer_1_vault(_account, amount);
         aptos_framework::coin::deposit(std::signer::address_of(_account), coin_withdrawn);
 
-        aptos_forms_demo2_coin_claimer_1::create_aptos_forms_demo2_coin_claimer_1(
+        let aptos_forms_demo2_coin_claimer_1 = aptos_forms_demo2_coin_claimer_1::create_aptos_forms_demo2_coin_claimer_1(
             signer_address,
-        )
+        );
+        aptos_forms_demo2_coin_claimer_1
     }
 
 }

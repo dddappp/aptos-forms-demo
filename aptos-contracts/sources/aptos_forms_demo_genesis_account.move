@@ -11,8 +11,20 @@ module aptos_forms_demo::aptos_forms_demo_genesis_account {
     use std::signer;
 
     friend aptos_forms_demo::aptos_forms_demo_main_form;
+    friend aptos_forms_demo::aptos_forms_demo_main_form_aggregate;
+    friend aptos_forms_demo::aptos_forms_demo_main_form_submit_logic;
+    friend aptos_forms_demo::aptos_forms_demo_main_form_update_logic;
     friend aptos_forms_demo::aptos_forms_demo_coin_claimer_1;
+    friend aptos_forms_demo::aptos_forms_demo_coin_claimer_1_aggregate;
+    friend aptos_forms_demo::aptos_forms_demo_coin_claimer_1_claim_logic;
     friend aptos_forms_demo::aptos_forms_demo_global;
+    friend aptos_forms_demo::aptos_forms_demo_global_aggregate;
+    friend aptos_forms_demo::aptos_forms_demo_global_deposit_payment_123_vault_logic;
+    friend aptos_forms_demo::aptos_forms_demo_global_withdraw_payment_123_vault_logic;
+    friend aptos_forms_demo::aptos_forms_demo_global_admin_withdraw_payment_123_vault_logic;
+    friend aptos_forms_demo::aptos_forms_demo_global_deposit_coin_claimer_1_vault_logic;
+    friend aptos_forms_demo::aptos_forms_demo_global_withdraw_coin_claimer_1_vault_logic;
+    friend aptos_forms_demo::aptos_forms_demo_global_admin_withdraw_coin_claimer_1_vault_logic;
 
     const ENotGenesisAccount: u64 = 100;
 

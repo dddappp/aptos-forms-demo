@@ -192,6 +192,10 @@ module aptos_forms_demo::aptos_forms_demo2_global {
         private_add_aptos_forms_demo2_global(aptos_forms_demo2_global);
     }
 
+    public(friend) fun borrow_singleton_mut(aptos_forms_demo2_global_pass_obj: &mut pass_object::PassObject<AptosFormsDemo2Global>): &mut AptosFormsDemo2Global {
+        pass_object::borrow_mut(aptos_forms_demo2_global_pass_obj)
+    }
+
     public(friend) fun drop_aptos_forms_demo2_global(aptos_forms_demo2_global: AptosFormsDemo2Global) {
         let AptosFormsDemo2Global {
             version: _version,

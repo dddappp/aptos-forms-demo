@@ -81,7 +81,7 @@ module aptos_forms_demo::aptos_forms_demo_main_form_submit_logic {
         let payment_123 = aptos_forms_demo_main_form::aptos_forms_demo_main_form_submitted_payment_123(aptos_forms_demo_main_form_submitted);
         let withdrawn_payment_123 = aptos_framework::coin::withdraw<aptos_framework::aptos_coin::AptosCoin>(_account, payment_123);
         aptos_forms_demo::aptos_forms_demo_global_aggregate::deposit_payment_123_vault(_account, withdrawn_payment_123);
-        aptos_forms_demo_main_form::create_aptos_forms_demo_main_form(
+        let aptos_forms_demo_main_form = aptos_forms_demo_main_form::create_aptos_forms_demo_main_form(
             signer_address,
             fr_5pqi,
             fr_duif,
@@ -100,7 +100,8 @@ module aptos_forms_demo::aptos_forms_demo_main_form_submit_logic {
             fr_hhzp,
             single_text1,
             payment_123,
-        )
+        );
+        aptos_forms_demo_main_form
     }
 
 }

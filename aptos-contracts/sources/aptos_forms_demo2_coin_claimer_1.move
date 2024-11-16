@@ -146,6 +146,10 @@ module aptos_forms_demo::aptos_forms_demo2_coin_claimer_1 {
         private_add_aptos_forms_demo2_coin_claimer_1(aptos_forms_demo2_coin_claimer_1);
     }
 
+    public(friend) fun borrow_mut(aptos_forms_demo2_coin_claimer_1_pass_obj: &mut pass_object::PassObject<AptosFormsDemo2CoinClaimer1>): &mut AptosFormsDemo2CoinClaimer1 {
+        pass_object::borrow_mut(aptos_forms_demo2_coin_claimer_1_pass_obj)
+    }
+
     public(friend) fun drop_aptos_forms_demo2_coin_claimer_1(aptos_forms_demo2_coin_claimer_1: AptosFormsDemo2CoinClaimer1) {
         let AptosFormsDemo2CoinClaimer1 {
             version: _version,

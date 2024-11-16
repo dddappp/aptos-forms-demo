@@ -710,6 +710,10 @@ module aptos_forms_demo::aptos_forms_demo_main_form {
         private_add_aptos_forms_demo_main_form(aptos_forms_demo_main_form);
     }
 
+    public(friend) fun borrow_mut(aptos_forms_demo_main_form_pass_obj: &mut pass_object::PassObject<AptosFormsDemoMainForm>): &mut AptosFormsDemoMainForm {
+        pass_object::borrow_mut(aptos_forms_demo_main_form_pass_obj)
+    }
+
     public(friend) fun drop_aptos_forms_demo_main_form(aptos_forms_demo_main_form: AptosFormsDemoMainForm) {
         let AptosFormsDemoMainForm {
             version: _version,
