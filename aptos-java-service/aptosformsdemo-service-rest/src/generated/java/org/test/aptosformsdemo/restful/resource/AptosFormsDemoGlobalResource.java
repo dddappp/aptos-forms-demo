@@ -285,7 +285,6 @@ public class AptosFormsDemoGlobalResource {
         };
     }
 
-    // ////////////////////////////////
  
     public static class AptosFormsDemoGlobalResourceUtils {
 

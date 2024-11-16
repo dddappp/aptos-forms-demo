@@ -249,7 +249,6 @@ public class AptosFormsDemoCoin_claimer_1Resource {
         };
     }
 
-    // ////////////////////////////////
  
     public static class AptosFormsDemoCoin_claimer_1ResourceUtils {
 

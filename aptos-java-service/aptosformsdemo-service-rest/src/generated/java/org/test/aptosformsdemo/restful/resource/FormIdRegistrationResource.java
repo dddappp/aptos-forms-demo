@@ -233,7 +233,6 @@ public class FormIdRegistrationResource {
         };
     }
 
-    // ////////////////////////////////
  
     public static class FormIdRegistrationResourceUtils {
 

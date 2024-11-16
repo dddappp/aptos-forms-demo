@@ -267,7 +267,6 @@ public class AptosFormsDemoMainFormResource {
         };
     }
 
-    // ////////////////////////////////
  
     public static class AptosFormsDemoMainFormResourceUtils {
 

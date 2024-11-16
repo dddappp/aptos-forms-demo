@@ -613,6 +613,8 @@ configuration:
     AlwaysGeneratingEventClobProperties: false
     AlwaysGeneratingClobEventProperties: false
     NO_MOVE_EVENT_MODULE: true
+    AutoAggregateMethodJavaDefaultLogicEnabled: false
+    ShouldInvokeJavaLogicFunctionsByReflection: true
   commandIdName: CommandId
   requesterIdName: RequesterId
   commandContextName: CommandContext

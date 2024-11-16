@@ -290,8 +290,15 @@ public abstract class AbstractFormDefinitionAggregate extends AbstractAggregate 
             String MoveSubmitEventStructName = moveSubmitEventStructName;
             String MoveUpdateEventStructName = moveUpdateEventStructName;
 
-            FormDefinitionEvent.FormWithFirstPageDefined e = (FormDefinitionEvent.FormWithFirstPageDefined) ApplicationContext.current.get(IDefineFormWithFirstPageLogic.class).verify(
+            FormDefinitionEvent.FormWithFirstPageDefined e = (FormDefinitionEvent.FormWithFirstPageDefined) ((DefineFormWithFirstPageVerification) DefineFormWithFirstPageLogic::verify).verify(
                     eventFactory, getState(), formId, contractAddress, storeAccountAddress, pageName, moveStateTableFieldName, moveStateStructName, moveSubmitEventHandleFieldName, moveUpdateEventHandleFieldName, moveSubmitEventStructName, moveUpdateEventStructName, VerificationContext.of(c));
+
+//package org.test.aptosformsdemo.domain.formdefinition;
+//
+//public class DefineFormWithFirstPageLogic {
+//    public static FormDefinitionEvent.FormWithFirstPageDefined verify(java.util.function.Supplier<FormDefinitionEvent.FormWithFirstPageDefined> eventFactory, FormDefinitionState formDefinitionState, String formId, String contractAddress, String storeAccountAddress, String pageName, String moveStateTableFieldName, String moveStateStructName, String moveSubmitEventHandleFieldName, String moveUpdateEventHandleFieldName, String moveSubmitEventStructName, String moveUpdateEventStructName, VerificationContext verificationContext) {
+//    }
+//}
 
             return e;
         }
