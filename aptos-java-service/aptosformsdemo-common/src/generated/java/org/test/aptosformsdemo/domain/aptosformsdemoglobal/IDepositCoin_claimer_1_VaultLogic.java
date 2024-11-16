@@ -9,8 +9,9 @@ import java.math.*;
 import java.util.*;
 import org.test.aptosformsdemo.domain.*;
 import org.test.aptosformsdemo.specialization.*;
-
+import org.test.aptosformsdemo.domain.FormAndAddress;
 import java.math.BigInteger;
+
 public interface IDepositCoin_claimer_1_VaultLogic {
 
     AptosFormsDemoGlobalEvent.Coin_claimer_1_VaultDeposited verify(java.util.function.Supplier<AptosFormsDemoGlobalEvent.Coin_claimer_1_VaultDeposited> eventFactory, AptosFormsDemoGlobalState aptosFormsDemoGlobalState, BigInteger amount, VerificationContext verificationContext);

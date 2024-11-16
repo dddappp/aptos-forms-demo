@@ -9,8 +9,9 @@ import java.math.*;
 import java.util.*;
 import org.test.aptosformsdemo.domain.*;
 import org.test.aptosformsdemo.specialization.*;
-
+import org.test.aptosformsdemo.domain.FormAndAddress;
 import java.math.BigInteger;
+
 public interface IAdminWithdrawCoin_claimer_1_VaultLogic {
 
     AptosFormsDemoGlobalEvent.Coin_claimer_1_VaultAdminWithdrawn verify(java.util.function.Supplier<AptosFormsDemoGlobalEvent.Coin_claimer_1_VaultAdminWithdrawn> eventFactory, AptosFormsDemoGlobalState aptosFormsDemoGlobalState, BigInteger amount, VerificationContext verificationContext);

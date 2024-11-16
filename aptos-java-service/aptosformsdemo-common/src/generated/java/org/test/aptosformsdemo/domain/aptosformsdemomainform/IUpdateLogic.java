@@ -9,11 +9,12 @@ import java.math.*;
 import java.util.*;
 import org.test.aptosformsdemo.domain.*;
 import org.test.aptosformsdemo.specialization.*;
-
+import org.test.aptosformsdemo.domain.FormPageAndAddress;
 import java.math.BigInteger;
 import org.test.aptosformsdemo.domain.XRenderFormDateRange;
 import org.test.aptosformsdemo.domain.XRenderFormTimeRange;
 import org.test.aptosformsdemo.domain.XRenderFormDate;
+
 public interface IUpdateLogic {
 
     AptosFormsDemoMainFormEvent.AptosFormsDemoMainFormUpdated verify(java.util.function.Supplier<AptosFormsDemoMainFormEvent.AptosFormsDemoMainFormUpdated> eventFactory, AptosFormsDemoMainFormState aptosFormsDemoMainFormState, BigInteger fr_5pqi, String[] fr_duif, String[] fr_6i34, String fr_8xjs, String fr_9c3f, BigInteger fr_4ok6, String fr_b3ub, BigInteger fr_1z7o, XRenderFormDateRange fr_d8rw, XRenderFormDateRange fr_dy3l, BigInteger fr_6f68, XRenderFormTimeRange fr_47yy, String[] fr_gh3o, String[] fr_fbba, XRenderFormDate fr_hhzp, String single_text1, BigInteger payment_123, VerificationContext verificationContext);

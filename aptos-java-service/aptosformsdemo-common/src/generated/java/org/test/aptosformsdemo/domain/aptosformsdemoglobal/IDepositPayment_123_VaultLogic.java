@@ -9,6 +9,7 @@ import java.math.*;
 import java.util.*;
 import org.test.aptosformsdemo.domain.*;
 import org.test.aptosformsdemo.specialization.*;
+import org.test.aptosformsdemo.domain.FormAndAddress;
 
 public interface IDepositPayment_123_VaultLogic {
 
