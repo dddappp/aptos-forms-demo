@@ -24,7 +24,7 @@ public interface AptosFormsDemoGlobalCommand extends Command {
 
     static void throwOnInvalidStateTransition(AptosFormsDemoGlobalState state, Command c) {
         if (state.getOffChainVersion() == null) {
-            if (isCommandCreate((AptosFormsDemoGlobalCommand)c)) {
+            if (isCreationCommand((AptosFormsDemoGlobalCommand)c)) {
                 return;
             }
             throw DomainError.named("premature", "Can't do anything to unexistent aggregate");
@@ -32,11 +32,29 @@ public interface AptosFormsDemoGlobalCommand extends Command {
         if (state.getDeleted() != null && state.getDeleted()) {
             throw DomainError.named("zombie", "Can't do anything to deleted aggregate.");
         }
-        if (isCommandCreate((AptosFormsDemoGlobalCommand)c))
+        if (isCreationCommand((AptosFormsDemoGlobalCommand)c))
             throw DomainError.named("rebirth", "Can't create aggregate that already exists");
     }
 
-    static boolean isCommandCreate(AptosFormsDemoGlobalCommand c) {
+    static boolean isCreationCommand(AptosFormsDemoGlobalCommand c) {
+        if (c.getCommandType() != null) {
+            String commandType = c.getCommandType();
+            if (commandType.equals("DepositPayment_123_Vault"))
+                return false;
+            if (commandType.equals("WithdrawPayment_123_Vault"))
+                return false;
+            if (commandType.equals("AdminWithdrawPayment_123_Vault"))
+                return false;
+            if (commandType.equals("DepositCoin_claimer_1_Vault"))
+                return false;
+            if (commandType.equals("WithdrawCoin_claimer_1_Vault"))
+                return false;
+            if (commandType.equals("AdminWithdrawCoin_claimer_1_Vault"))
+                return false;
+            if (commandType.equals("__Init__"))
+                return false;
+        }
+
         if (c.getOffChainVersion().equals(AptosFormsDemoGlobalState.VERSION_NULL))
             return true;
         return false;

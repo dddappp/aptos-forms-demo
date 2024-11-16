@@ -30,11 +30,11 @@ public class HibernateAptosFormsDemoGlobalStateQueryRepository implements AptosF
     protected Session getCurrentSession() {
         return this.sessionFactory.getCurrentSession();
     }
-    
+
     private static final Set<String> readOnlyPropertyPascalCaseNames = new HashSet<String>(Arrays.asList("FormAndAccountAddress", "Payment_123_Vault", "Coin_claimer_1_Vault", "Coin_claimer_1_TotalShares", "Coin_claimer_1_ClaimedCount", "OffChainVersion", "CreatedBy", "CreatedAt", "UpdatedBy", "UpdatedAt", "Active", "Deleted", "Version"));
-    
+
     private ReadOnlyProxyGenerator readOnlyProxyGenerator;
-    
+
     public ReadOnlyProxyGenerator getReadOnlyProxyGenerator() {
         return readOnlyProxyGenerator;
     }
@@ -59,7 +59,7 @@ public class HibernateAptosFormsDemoGlobalStateQueryRepository implements AptosF
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         if (firstResult != null) { criteria.setFirstResult(firstResult); }
         if (maxResults != null) { criteria.setMaxResults(maxResults); }
-         addNotDeletedRestriction(criteria);
+        addNotDeletedRestriction(criteria);
         return criteria.list();
     }
 
@@ -84,8 +84,7 @@ public class HibernateAptosFormsDemoGlobalStateQueryRepository implements AptosF
     @Transactional(readOnly = true)
     public AptosFormsDemoGlobalState getFirst(Iterable<Map.Entry<String, Object>> filter, List<String> orders) {
         List<AptosFormsDemoGlobalState> list = (List<AptosFormsDemoGlobalState>)get(filter, orders, 0, 1);
-        if (list == null || list.size() <= 0)
-        {
+        if (list == null || list.size() <= 0) {
             return null;
         }
         return list.get(0);

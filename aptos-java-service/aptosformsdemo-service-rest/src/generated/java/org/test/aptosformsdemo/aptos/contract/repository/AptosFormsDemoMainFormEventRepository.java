@@ -11,6 +11,8 @@ import java.util.*;
 
 public interface AptosFormsDemoMainFormEventRepository extends JpaRepository<AbstractAptosFormsDemoMainFormEvent, AptosFormsDemoMainFormEventId> {
 
+    AbstractAptosFormsDemoMainFormEvent findFirstByEventStatusIsNull();
+
     List<AbstractAptosFormsDemoMainFormEvent> findByEventStatusIsNull();
 
     AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted findFirstAptosFormsDemoMainFormSubmittedByOrderByAptosEventSequenceNumber();

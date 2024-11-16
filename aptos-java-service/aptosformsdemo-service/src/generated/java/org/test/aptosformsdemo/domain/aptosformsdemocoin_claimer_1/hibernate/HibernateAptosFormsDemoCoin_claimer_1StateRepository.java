@@ -10,10 +10,6 @@ import org.test.aptosformsdemo.domain.*;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import org.hibernate.Session;
-import org.hibernate.Criteria;
-//import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.Projections;
 import org.hibernate.SessionFactory;
 import org.test.aptosformsdemo.domain.aptosformsdemocoin_claimer_1.*;
 import org.test.aptosformsdemo.specialization.*;
@@ -30,7 +26,7 @@ public class HibernateAptosFormsDemoCoin_claimer_1StateRepository implements Apt
     protected Session getCurrentSession() {
         return this.sessionFactory.getCurrentSession();
     }
-    
+
     private static final Set<String> readOnlyPropertyPascalCaseNames = new HashSet<String>(Arrays.asList("FormPageAndSignerAddress", "Version", "OffChainVersion", "CreatedBy", "CreatedAt", "UpdatedBy", "UpdatedAt", "Active", "Deleted"));
     
     private ReadOnlyProxyGenerator readOnlyProxyGenerator;
@@ -61,14 +57,13 @@ public class HibernateAptosFormsDemoCoin_claimer_1StateRepository implements Apt
         if (getReadOnlyProxyGenerator() != null) {
             s = (AptosFormsDemoCoin_claimer_1State) getReadOnlyProxyGenerator().getTarget(state);
         }
-        if(s.getOffChainVersion() == null) {
+        if (s.getOffChainVersion() == null) {
             getCurrentSession().save(s);
         } else {
             getCurrentSession().update(s);
         }
 
-        if (s instanceof Saveable)
-        {
+        if (s instanceof Saveable) {
             Saveable saveable = (Saveable) s;
             saveable.save();
         }

@@ -9,10 +9,6 @@ import java.util.*;
 import java.time.OffsetDateTime;
 import org.test.aptosformsdemo.domain.*;
 import org.hibernate.Session;
-import org.hibernate.Criteria;
-//import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.Projections;
 import org.hibernate.SessionFactory;
 import org.test.aptosformsdemo.domain.formidregistration.*;
 import org.test.aptosformsdemo.specialization.*;
@@ -29,7 +25,7 @@ public class HibernateFormIdRegistrationStateRepository implements FormIdRegistr
     protected Session getCurrentSession() {
         return this.sessionFactory.getCurrentSession();
     }
-    
+
     private static final Set<String> readOnlyPropertyPascalCaseNames = new HashSet<String>(Arrays.asList("FormSequenceId", "FormId", "OffChainVersion", "CreatedBy", "CreatedAt", "UpdatedBy", "UpdatedAt", "Active", "Deleted"));
     
     private ReadOnlyProxyGenerator readOnlyProxyGenerator;
@@ -55,14 +51,13 @@ public class HibernateFormIdRegistrationStateRepository implements FormIdRegistr
     @Transactional
     public void save(FormIdRegistrationState state) {
         FormIdRegistrationState s = state;
-        if(s.getOffChainVersion() == null) {
+        if (s.getOffChainVersion() == null) {
             getCurrentSession().save(s);
         } else {
             getCurrentSession().update(s);
         }
 
-        if (s instanceof Saveable)
-        {
+        if (s instanceof Saveable) {
             Saveable saveable = (Saveable) s;
             saveable.save();
         }

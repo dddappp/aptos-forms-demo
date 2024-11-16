@@ -25,11 +25,9 @@ public class HibernateFormPageDefinitionEventDao implements FormPageDefinitionEv
     }
 
     @Override
-    public void save(FormPageDefinitionEvent e)
-    {
+    public void save(FormPageDefinitionEvent e) {
         getCurrentSession().save(e);
-        if (e instanceof Saveable)
-        {
+        if (e instanceof Saveable) {
             Saveable saveable = (Saveable) e;
             saveable.save();
         }
@@ -38,8 +36,7 @@ public class HibernateFormPageDefinitionEventDao implements FormPageDefinitionEv
 
     @Transactional(readOnly = true)
     @Override
-    public Iterable<FormPageDefinitionEvent> findByFormDefinitionEventId(FormDefinitionEventId formDefinitionEventId)
-    {
+    public Iterable<FormPageDefinitionEvent> findByFormDefinitionEventId(FormDefinitionEventId formDefinitionEventId) {
         Criteria criteria = getCurrentSession().createCriteria(AbstractFormPageDefinitionEvent.class);
         Junction partIdCondition = Restrictions.conjunction()
             .add(Restrictions.eq("formPageDefinitionEventId.formDefinitionFormSequenceId", formDefinitionEventId.getFormSequenceId()))

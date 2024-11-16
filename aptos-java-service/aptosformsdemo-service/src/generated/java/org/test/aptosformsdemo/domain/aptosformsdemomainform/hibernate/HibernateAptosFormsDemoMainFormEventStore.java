@@ -52,7 +52,6 @@ public class HibernateAptosFormsDemoMainFormEventStore extends AbstractHibernate
         if (es.size() > 0) {
             eventStream.setSteamVersion(((AbstractAptosFormsDemoMainFormEvent) es.get(es.size() - 1)).getAptosFormsDemoMainFormEventId().getVersion().longValue());
         } else {
-            //todo?
         }
         eventStream.setEvents(es);
         return eventStream;

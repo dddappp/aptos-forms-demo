@@ -49,7 +49,6 @@ public class HibernateFormDefinitionEventStore extends AbstractHibernateEventSto
         if (es.size() > 0) {
             eventStream.setSteamVersion(((AbstractFormDefinitionEvent) es.get(es.size() - 1)).getFormDefinitionEventId().getOffChainVersion());
         } else {
-            //todo?
         }
         eventStream.setEvents(es);
         return eventStream;

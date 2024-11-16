@@ -5,6 +5,7 @@
 
 package org.test.aptosformsdemo.aptos.contract.taskservice;
 
+import org.test.aptosformsdemo.domain.aptosformsdemocoin_claimer_1.AbstractAptosFormsDemoCoin_claimer_1Event;
 import org.test.aptosformsdemo.aptos.contract.repository.*;
 import org.test.aptosformsdemo.aptos.contract.service.*;
 import org.test.aptosformsdemo.aptos.contract.ContractConstants;
@@ -40,10 +41,13 @@ public class UpdateAptosFormsDemoCoin_claimer_1StateTaskService {
     @Scheduled(fixedDelayString = "${aptos.contract.update-aptos-forms-demo-coin-claimer-1-states.fixed-delay:5000}")
     @Transactional
     public void updateAptosFormsDemoCoin_claimer_1States() {
-        aptosFormsDemoCoin_claimer_1EventRepository.findByEventStatusIsNull().forEach(e -> {
+        java.util.List<AbstractAptosFormsDemoCoin_claimer_1Event> es = aptosFormsDemoCoin_claimer_1EventRepository.findByEventStatusIsNull();
+        AbstractAptosFormsDemoCoin_claimer_1Event e = es.stream().findFirst().orElse(null);
+        if (e != null) {
             aptosAptosFormsDemoCoin_claimer_1Service.updateAptosFormsDemoCoin_claimer_1State(getContractModuleNameProvider(), getToFormPageAndAddressFunction(), e.getFormPageAndSignerAddress().getAddress());
-            aptosFormsDemoCoin_claimer_1EventService.updateStatusToProcessed(e);
-        });
+            es.stream().filter(ee -> ee.getFormPageAndSignerAddress().getAddress().equals(e.getFormPageAndSignerAddress().getAddress()))
+                    .forEach(aptosFormsDemoCoin_claimer_1EventService::updateStatusToProcessed);
+        }
     }
 
     private java.util.function.Function<String, FormPageAndAddress> getToFormPageAndAddressFunction() {
@@ -59,7 +63,7 @@ public class UpdateAptosFormsDemoCoin_claimer_1StateTaskService {
     }
 
     private String getResourceAccountAddress() {
-        return aptosAccountRepository.findById(ContractConstants.RESOURCE_ACCOUNT_ADDRESS)
+        return aptosAccountRepository.findById(ContractConstants.APTOS_FORMS_DEMO_RESOURCE_ACCOUNT)
                 .map(AptosAccount::getAddress).orElse(null);
     }
 }

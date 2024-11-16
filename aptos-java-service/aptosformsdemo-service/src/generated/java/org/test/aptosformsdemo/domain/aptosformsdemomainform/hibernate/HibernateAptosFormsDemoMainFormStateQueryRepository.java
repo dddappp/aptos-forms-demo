@@ -30,11 +30,11 @@ public class HibernateAptosFormsDemoMainFormStateQueryRepository implements Apto
     protected Session getCurrentSession() {
         return this.sessionFactory.getCurrentSession();
     }
-    
+
     private static final Set<String> readOnlyPropertyPascalCaseNames = new HashSet<String>(Arrays.asList("FormPageAndSignerAddress", "Fr_5pqi", "Version", "Fr_duif", "Fr_6i34", "Fr_8xjs", "Fr_9c3f", "Fr_4ok6", "Fr_b3ub", "Fr_1z7o", "Fr_d8rw", "Fr_dy3l", "Fr_6f68", "Fr_47yy", "Fr_gh3o", "Fr_fbba", "Fr_hhzp", "Single_text1", "Payment_123", "OffChainVersion", "CreatedBy", "CreatedAt", "UpdatedBy", "UpdatedAt", "Active", "Deleted"));
-    
+
     private ReadOnlyProxyGenerator readOnlyProxyGenerator;
-    
+
     public ReadOnlyProxyGenerator getReadOnlyProxyGenerator() {
         return readOnlyProxyGenerator;
     }
@@ -59,7 +59,7 @@ public class HibernateAptosFormsDemoMainFormStateQueryRepository implements Apto
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         if (firstResult != null) { criteria.setFirstResult(firstResult); }
         if (maxResults != null) { criteria.setMaxResults(maxResults); }
-         addNotDeletedRestriction(criteria);
+        addNotDeletedRestriction(criteria);
         return criteria.list();
     }
 
@@ -84,8 +84,7 @@ public class HibernateAptosFormsDemoMainFormStateQueryRepository implements Apto
     @Transactional(readOnly = true)
     public AptosFormsDemoMainFormState getFirst(Iterable<Map.Entry<String, Object>> filter, List<String> orders) {
         List<AptosFormsDemoMainFormState> list = (List<AptosFormsDemoMainFormState>)get(filter, orders, 0, 1);
-        if (list == null || list.size() <= 0)
-        {
+        if (list == null || list.size() <= 0) {
             return null;
         }
         return list.get(0);

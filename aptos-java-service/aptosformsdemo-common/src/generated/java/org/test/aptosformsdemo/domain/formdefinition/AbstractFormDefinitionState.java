@@ -381,16 +381,9 @@ public abstract class AbstractFormDefinitionState implements FormDefinitionState
         this.setUpdatedBy(e.getCreatedBy());
         this.setUpdatedAt(e.getCreatedAt());
 
-        FormDefinitionState updatedFormDefinitionState = ((DefineFormWithFirstPageMutation) DefineFormWithFirstPageLogic::mutate).mutate(
-                this, formId, contractAddress, storeAccountAddress, pageName, moveStateTableFieldName, moveStateStructName, moveSubmitEventHandleFieldName, moveUpdateEventHandleFieldName, moveSubmitEventStructName, moveUpdateEventStructName, MutationContext.forEvent(e, s -> {if (s == this) {return this;} else {throw new UnsupportedOperationException();}}));
+        FormDefinitionState updatedFormDefinitionState = ApplicationContext.current.get(IDefineFormWithFirstPageLogic.class).mutate(
+                this, formId, contractAddress, storeAccountAddress, pageName, moveStateTableFieldName, moveStateStructName, moveSubmitEventHandleFieldName, moveUpdateEventHandleFieldName, moveSubmitEventStructName, moveUpdateEventStructName, MutationContext.of(e, s -> {if (s == this) {return this;} else {throw new UnsupportedOperationException();}}));
 
-
-//package org.test.aptosformsdemo.domain.formdefinition;
-//
-//public class DefineFormWithFirstPageLogic {
-//    public static FormDefinitionState mutate(FormDefinitionState formDefinitionState, String formId, String contractAddress, String storeAccountAddress, String pageName, String moveStateTableFieldName, String moveStateStructName, String moveSubmitEventHandleFieldName, String moveUpdateEventHandleFieldName, String moveSubmitEventStructName, String moveUpdateEventStructName, MutationContext<FormDefinitionState, FormDefinitionState.MutableFormDefinitionState> mutationContext) {
-//    }
-//}
 
         if (this != updatedFormDefinitionState) { merge(updatedFormDefinitionState); } //else do nothing
 
@@ -419,8 +412,8 @@ public abstract class AbstractFormDefinitionState implements FormDefinitionState
         if (eventVersion == null) {
             throw new NullPointerException("event.getFormDefinitionEventId().getOffChainVersion() == null");
         }
-        if (!(stateVersion == null && eventVersion.equals(FormDefinitionState.VERSION_NULL)) && !eventVersion.equals(stateVersion)) {
-            throw DomainError.named("concurrencyConflict", "Conflict between state version (%1$s) and event version (%2$s)", stateVersion, eventVersion);
+        if (!(stateVersion == null && eventVersion.equals(VERSION_NULL)) && !eventVersion.equals(stateVersion)) {
+            throw DomainError.named("concurrencyConflict", "Conflict between state version (%1$s) and event version (%2$s)", stateVersion, eventVersion == VERSION_NULL ? "NULL" : eventVersion + "");
         }
 
     }

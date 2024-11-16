@@ -36,14 +36,14 @@ public class Payment_123_VaultAdminWithdrawn {
         this.version = version;
     }
 
-    private Map<String, Object> dynamicProperties = new HashMap<>();
+    private java.util.Map<String, Object> dynamicProperties = new HashMap<>();
 
     @com.fasterxml.jackson.annotation.JsonAnyGetter
-    public Map<String, Object> getDynamicProperties() {
+    public java.util.Map<String, Object> getDynamicProperties() {
         return this.dynamicProperties;
     }
 
-    public void setDynamicProperties(Map<String, Object> dynamicProperties) {
+    public void setDynamicProperties(java.util.Map<String, Object> dynamicProperties) {
         this.dynamicProperties = dynamicProperties;
     }
 

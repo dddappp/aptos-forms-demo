@@ -11,6 +11,8 @@ import java.util.*;
 
 public interface AptosFormsDemoGlobalEventRepository extends JpaRepository<AbstractAptosFormsDemoGlobalEvent, AptosFormsDemoGlobalEventId> {
 
+    AbstractAptosFormsDemoGlobalEvent findFirstByEventStatusIsNull();
+
     List<AbstractAptosFormsDemoGlobalEvent> findByEventStatusIsNull();
 
     AbstractAptosFormsDemoGlobalEvent.Payment_123_VaultDeposited findFirstPayment_123_VaultDepositedByOrderByAptosEventSequenceNumber();

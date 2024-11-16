@@ -24,7 +24,7 @@ public interface AptosFormsDemoCoin_claimer_1Command extends Command {
 
     static void throwOnInvalidStateTransition(AptosFormsDemoCoin_claimer_1State state, Command c) {
         if (state.getOffChainVersion() == null) {
-            if (isCommandCreate((AptosFormsDemoCoin_claimer_1Command)c)) {
+            if (isCreationCommand((AptosFormsDemoCoin_claimer_1Command)c)) {
                 return;
             }
             throw DomainError.named("premature", "Can't do anything to unexistent aggregate");
@@ -32,11 +32,17 @@ public interface AptosFormsDemoCoin_claimer_1Command extends Command {
         if (state.getDeleted() != null && state.getDeleted()) {
             throw DomainError.named("zombie", "Can't do anything to deleted aggregate.");
         }
-        if (isCommandCreate((AptosFormsDemoCoin_claimer_1Command)c))
+        if (isCreationCommand((AptosFormsDemoCoin_claimer_1Command)c))
             throw DomainError.named("rebirth", "Can't create aggregate that already exists");
     }
 
-    static boolean isCommandCreate(AptosFormsDemoCoin_claimer_1Command c) {
+    static boolean isCreationCommand(AptosFormsDemoCoin_claimer_1Command c) {
+        if (c.getCommandType() != null) {
+            String commandType = c.getCommandType();
+            if (commandType.equals("Claim"))
+                return true;
+        }
+
         if (c.getOffChainVersion().equals(AptosFormsDemoCoin_claimer_1State.VERSION_NULL))
             return true;
         return false;

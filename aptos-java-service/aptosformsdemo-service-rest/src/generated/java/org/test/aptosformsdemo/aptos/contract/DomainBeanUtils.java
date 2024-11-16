@@ -6,6 +6,7 @@
 package org.test.aptosformsdemo.aptos.contract;
 
 import java.math.*;
+import java.util.*;
 
 import com.github.wubuku.aptos.bean.Event;
 import com.github.wubuku.aptos.bean.Option;
@@ -42,6 +43,57 @@ public class DomainBeanUtils {
         org.test.aptosformsdemo.domain.Coin coin = new org.test.aptosformsdemo.domain.Coin();
         coin.setValue(contractCoin.getValue());
         return coin;
+    }
+
+    public static org.test.aptosformsdemo.domain.FAMetadata toFAMetadata(FAMetadata contractFAMetadata) {
+        if (contractFAMetadata == null) {
+            return null;
+        }
+        org.test.aptosformsdemo.domain.FAMetadata faMetadata = new org.test.aptosformsdemo.domain.FAMetadata();
+        faMetadata.setName(contractFAMetadata.getName());
+        faMetadata.setSymbol(contractFAMetadata.getSymbol());
+        faMetadata.setDecimals(contractFAMetadata.getDecimals());
+        faMetadata.setIconUri(contractFAMetadata.getIconUri());
+        faMetadata.setProjectUri(contractFAMetadata.getProjectUri());
+        return faMetadata;
+    }
+
+    public static org.test.aptosformsdemo.domain.FungibleStore toFungibleStore(FungibleStore contractFungibleStore) {
+        if (contractFungibleStore == null) {
+            return null;
+        }
+        org.test.aptosformsdemo.domain.FungibleStore fungibleStore = new org.test.aptosformsdemo.domain.FungibleStore();
+        fungibleStore.setMetadata(contractFungibleStore.getMetadata());
+        fungibleStore.setBalance(contractFungibleStore.getBalance());
+        fungibleStore.setFrozen(contractFungibleStore.getFrozen());
+        return fungibleStore;
+    }
+
+    public static org.test.aptosformsdemo.domain.ObjectDeleteRef toObjectDeleteRef(ObjectDeleteRef contractObjectDeleteRef) {
+        if (contractObjectDeleteRef == null) {
+            return null;
+        }
+        org.test.aptosformsdemo.domain.ObjectDeleteRef objectDeleteRef = new org.test.aptosformsdemo.domain.ObjectDeleteRef();
+        objectDeleteRef.setSelf(contractObjectDeleteRef.getSelf());
+        return objectDeleteRef;
+    }
+
+    public static org.test.aptosformsdemo.domain.ObjectExtendRef toObjectExtendRef(ObjectExtendRef contractObjectExtendRef) {
+        if (contractObjectExtendRef == null) {
+            return null;
+        }
+        org.test.aptosformsdemo.domain.ObjectExtendRef objectExtendRef = new org.test.aptosformsdemo.domain.ObjectExtendRef();
+        objectExtendRef.setSelf(contractObjectExtendRef.getSelf());
+        return objectExtendRef;
+    }
+
+    public static org.test.aptosformsdemo.domain.ObjectTransferRef toObjectTransferRef(ObjectTransferRef contractObjectTransferRef) {
+        if (contractObjectTransferRef == null) {
+            return null;
+        }
+        org.test.aptosformsdemo.domain.ObjectTransferRef objectTransferRef = new org.test.aptosformsdemo.domain.ObjectTransferRef();
+        objectTransferRef.setSelf(contractObjectTransferRef.getSelf());
+        return objectTransferRef;
     }
 
     public static org.test.aptosformsdemo.domain.XRenderFormDate toXRenderFormDate(XRenderFormDate contractXRenderFormDate) {
@@ -242,5 +294,17 @@ public class DomainBeanUtils {
         return optionView == null ? null
                 : (optionView.getVec() == null || optionView.getVec().size() == 0) ? null
                 : optionView.getVec().get(0);
+    }
+
+    public static List<String> extractTypeArguments(String type) {
+        int i = type.indexOf("<");
+        int j = type.lastIndexOf(">");
+        if (i > 0 && j > i && j == type.length() - 1) {
+            String typeArguments = type.substring(i + 1, j);
+            String[] typeArgumentArray = typeArguments.split(",");
+            return Arrays.stream(typeArgumentArray).map(String::trim).collect(java.util.stream.Collectors.toList());
+        } else {
+            return Collections.emptyList();
+        }
     }
 }

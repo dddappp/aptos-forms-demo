@@ -52,7 +52,6 @@ public class HibernateAptosFormsDemoCoin_claimer_1EventStore extends AbstractHib
         if (es.size() > 0) {
             eventStream.setSteamVersion(((AbstractAptosFormsDemoCoin_claimer_1Event) es.get(es.size() - 1)).getAptosFormsDemoCoin_claimer_1EventId().getVersion().longValue());
         } else {
-            //todo?
         }
         eventStream.setEvents(es);
         return eventStream;

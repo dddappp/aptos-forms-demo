@@ -87,148 +87,64 @@ public abstract class AbstractAptosFormsDemoGlobalAggregate extends AbstractAggr
 
         protected AptosFormsDemoGlobalEvent.Payment_123_VaultDeposited verifyDepositPayment_123_Vault(java.util.function.Supplier<AptosFormsDemoGlobalEvent.Payment_123_VaultDeposited> eventFactory, AptosFormsDemoGlobalCommands.DepositPayment_123_Vault c) {
 
-            AptosFormsDemoGlobalEvent.Payment_123_VaultDeposited e = (AptosFormsDemoGlobalEvent.Payment_123_VaultDeposited) ReflectUtils.invokeStaticMethod(
-                    "org.test.aptosformsdemo.domain.aptosformsdemoglobal.DepositPayment_123_VaultLogic",
-                    "verify",
-                    new Class[]{java.util.function.Supplier.class, AptosFormsDemoGlobalState.class, VerificationContext.class},
-                    new Object[]{eventFactory, getState(), VerificationContext.forCommand(c)}
-            );
-
-//package org.test.aptosformsdemo.domain.aptosformsdemoglobal;
-//
-//public class DepositPayment_123_VaultLogic {
-//    public static AptosFormsDemoGlobalEvent.Payment_123_VaultDeposited verify(java.util.function.Supplier<AptosFormsDemoGlobalEvent.Payment_123_VaultDeposited> eventFactory, AptosFormsDemoGlobalState aptosFormsDemoGlobalState, VerificationContext verificationContext) {
-//    }
-//}
+            AptosFormsDemoGlobalEvent.Payment_123_VaultDeposited e = (AptosFormsDemoGlobalEvent.Payment_123_VaultDeposited) ApplicationContext.current.get(IDepositPayment_123_VaultLogic.class).verify(
+                    eventFactory, getState(), VerificationContext.of(c));
 
             return e;
         }
-           
 
         protected AptosFormsDemoGlobalEvent.Payment_123_VaultWithdrawn verifyWithdrawPayment_123_Vault(java.util.function.Supplier<AptosFormsDemoGlobalEvent.Payment_123_VaultWithdrawn> eventFactory, BigInteger amount, AptosFormsDemoGlobalCommands.WithdrawPayment_123_Vault c) {
             BigInteger Amount = amount;
 
-            AptosFormsDemoGlobalEvent.Payment_123_VaultWithdrawn e = (AptosFormsDemoGlobalEvent.Payment_123_VaultWithdrawn) ReflectUtils.invokeStaticMethod(
-                    "org.test.aptosformsdemo.domain.aptosformsdemoglobal.WithdrawPayment_123_VaultLogic",
-                    "verify",
-                    new Class[]{java.util.function.Supplier.class, AptosFormsDemoGlobalState.class, BigInteger.class, VerificationContext.class},
-                    new Object[]{eventFactory, getState(), amount, VerificationContext.forCommand(c)}
-            );
-
-//package org.test.aptosformsdemo.domain.aptosformsdemoglobal;
-//
-//public class WithdrawPayment_123_VaultLogic {
-//    public static AptosFormsDemoGlobalEvent.Payment_123_VaultWithdrawn verify(java.util.function.Supplier<AptosFormsDemoGlobalEvent.Payment_123_VaultWithdrawn> eventFactory, AptosFormsDemoGlobalState aptosFormsDemoGlobalState, BigInteger amount, VerificationContext verificationContext) {
-//    }
-//}
+            AptosFormsDemoGlobalEvent.Payment_123_VaultWithdrawn e = (AptosFormsDemoGlobalEvent.Payment_123_VaultWithdrawn) ApplicationContext.current.get(IWithdrawPayment_123_VaultLogic.class).verify(
+                    eventFactory, getState(), amount, VerificationContext.of(c));
 
             return e;
         }
-           
 
         protected AptosFormsDemoGlobalEvent.Payment_123_VaultAdminWithdrawn verifyAdminWithdrawPayment_123_Vault(java.util.function.Supplier<AptosFormsDemoGlobalEvent.Payment_123_VaultAdminWithdrawn> eventFactory, BigInteger amount, AptosFormsDemoGlobalCommands.AdminWithdrawPayment_123_Vault c) {
             BigInteger Amount = amount;
 
-            AptosFormsDemoGlobalEvent.Payment_123_VaultAdminWithdrawn e = (AptosFormsDemoGlobalEvent.Payment_123_VaultAdminWithdrawn) ReflectUtils.invokeStaticMethod(
-                    "org.test.aptosformsdemo.domain.aptosformsdemoglobal.AdminWithdrawPayment_123_VaultLogic",
-                    "verify",
-                    new Class[]{java.util.function.Supplier.class, AptosFormsDemoGlobalState.class, BigInteger.class, VerificationContext.class},
-                    new Object[]{eventFactory, getState(), amount, VerificationContext.forCommand(c)}
-            );
-
-//package org.test.aptosformsdemo.domain.aptosformsdemoglobal;
-//
-//public class AdminWithdrawPayment_123_VaultLogic {
-//    public static AptosFormsDemoGlobalEvent.Payment_123_VaultAdminWithdrawn verify(java.util.function.Supplier<AptosFormsDemoGlobalEvent.Payment_123_VaultAdminWithdrawn> eventFactory, AptosFormsDemoGlobalState aptosFormsDemoGlobalState, BigInteger amount, VerificationContext verificationContext) {
-//    }
-//}
+            AptosFormsDemoGlobalEvent.Payment_123_VaultAdminWithdrawn e = (AptosFormsDemoGlobalEvent.Payment_123_VaultAdminWithdrawn) ApplicationContext.current.get(IAdminWithdrawPayment_123_VaultLogic.class).verify(
+                    eventFactory, getState(), amount, VerificationContext.of(c));
 
             return e;
         }
-           
 
         protected AptosFormsDemoGlobalEvent.Coin_claimer_1_VaultDeposited verifyDepositCoin_claimer_1_Vault(java.util.function.Supplier<AptosFormsDemoGlobalEvent.Coin_claimer_1_VaultDeposited> eventFactory, BigInteger amount, AptosFormsDemoGlobalCommands.DepositCoin_claimer_1_Vault c) {
             BigInteger Amount = amount;
 
-            AptosFormsDemoGlobalEvent.Coin_claimer_1_VaultDeposited e = (AptosFormsDemoGlobalEvent.Coin_claimer_1_VaultDeposited) ReflectUtils.invokeStaticMethod(
-                    "org.test.aptosformsdemo.domain.aptosformsdemoglobal.DepositCoin_claimer_1_VaultLogic",
-                    "verify",
-                    new Class[]{java.util.function.Supplier.class, AptosFormsDemoGlobalState.class, BigInteger.class, VerificationContext.class},
-                    new Object[]{eventFactory, getState(), amount, VerificationContext.forCommand(c)}
-            );
-
-//package org.test.aptosformsdemo.domain.aptosformsdemoglobal;
-//
-//public class DepositCoin_claimer_1_VaultLogic {
-//    public static AptosFormsDemoGlobalEvent.Coin_claimer_1_VaultDeposited verify(java.util.function.Supplier<AptosFormsDemoGlobalEvent.Coin_claimer_1_VaultDeposited> eventFactory, AptosFormsDemoGlobalState aptosFormsDemoGlobalState, BigInteger amount, VerificationContext verificationContext) {
-//    }
-//}
+            AptosFormsDemoGlobalEvent.Coin_claimer_1_VaultDeposited e = (AptosFormsDemoGlobalEvent.Coin_claimer_1_VaultDeposited) ApplicationContext.current.get(IDepositCoin_claimer_1_VaultLogic.class).verify(
+                    eventFactory, getState(), amount, VerificationContext.of(c));
 
             return e;
         }
-           
 
         protected AptosFormsDemoGlobalEvent.Coin_claimer_1_VaultWithdrawn verifyWithdrawCoin_claimer_1_Vault(java.util.function.Supplier<AptosFormsDemoGlobalEvent.Coin_claimer_1_VaultWithdrawn> eventFactory, BigInteger amount, AptosFormsDemoGlobalCommands.WithdrawCoin_claimer_1_Vault c) {
             BigInteger Amount = amount;
 
-            AptosFormsDemoGlobalEvent.Coin_claimer_1_VaultWithdrawn e = (AptosFormsDemoGlobalEvent.Coin_claimer_1_VaultWithdrawn) ReflectUtils.invokeStaticMethod(
-                    "org.test.aptosformsdemo.domain.aptosformsdemoglobal.WithdrawCoin_claimer_1_VaultLogic",
-                    "verify",
-                    new Class[]{java.util.function.Supplier.class, AptosFormsDemoGlobalState.class, BigInteger.class, VerificationContext.class},
-                    new Object[]{eventFactory, getState(), amount, VerificationContext.forCommand(c)}
-            );
-
-//package org.test.aptosformsdemo.domain.aptosformsdemoglobal;
-//
-//public class WithdrawCoin_claimer_1_VaultLogic {
-//    public static AptosFormsDemoGlobalEvent.Coin_claimer_1_VaultWithdrawn verify(java.util.function.Supplier<AptosFormsDemoGlobalEvent.Coin_claimer_1_VaultWithdrawn> eventFactory, AptosFormsDemoGlobalState aptosFormsDemoGlobalState, BigInteger amount, VerificationContext verificationContext) {
-//    }
-//}
+            AptosFormsDemoGlobalEvent.Coin_claimer_1_VaultWithdrawn e = (AptosFormsDemoGlobalEvent.Coin_claimer_1_VaultWithdrawn) ApplicationContext.current.get(IWithdrawCoin_claimer_1_VaultLogic.class).verify(
+                    eventFactory, getState(), amount, VerificationContext.of(c));
 
             return e;
         }
-           
 
         protected AptosFormsDemoGlobalEvent.Coin_claimer_1_VaultAdminWithdrawn verifyAdminWithdrawCoin_claimer_1_Vault(java.util.function.Supplier<AptosFormsDemoGlobalEvent.Coin_claimer_1_VaultAdminWithdrawn> eventFactory, BigInteger amount, AptosFormsDemoGlobalCommands.AdminWithdrawCoin_claimer_1_Vault c) {
             BigInteger Amount = amount;
 
-            AptosFormsDemoGlobalEvent.Coin_claimer_1_VaultAdminWithdrawn e = (AptosFormsDemoGlobalEvent.Coin_claimer_1_VaultAdminWithdrawn) ReflectUtils.invokeStaticMethod(
-                    "org.test.aptosformsdemo.domain.aptosformsdemoglobal.AdminWithdrawCoin_claimer_1_VaultLogic",
-                    "verify",
-                    new Class[]{java.util.function.Supplier.class, AptosFormsDemoGlobalState.class, BigInteger.class, VerificationContext.class},
-                    new Object[]{eventFactory, getState(), amount, VerificationContext.forCommand(c)}
-            );
-
-//package org.test.aptosformsdemo.domain.aptosformsdemoglobal;
-//
-//public class AdminWithdrawCoin_claimer_1_VaultLogic {
-//    public static AptosFormsDemoGlobalEvent.Coin_claimer_1_VaultAdminWithdrawn verify(java.util.function.Supplier<AptosFormsDemoGlobalEvent.Coin_claimer_1_VaultAdminWithdrawn> eventFactory, AptosFormsDemoGlobalState aptosFormsDemoGlobalState, BigInteger amount, VerificationContext verificationContext) {
-//    }
-//}
+            AptosFormsDemoGlobalEvent.Coin_claimer_1_VaultAdminWithdrawn e = (AptosFormsDemoGlobalEvent.Coin_claimer_1_VaultAdminWithdrawn) ApplicationContext.current.get(IAdminWithdrawCoin_claimer_1_VaultLogic.class).verify(
+                    eventFactory, getState(), amount, VerificationContext.of(c));
 
             return e;
         }
-           
 
-        protected AptosFormsDemoGlobalEvent.AptosFormsDemoGlobalInitialized verify__Init__(java.util.function.Supplier<AptosFormsDemoGlobalEvent.AptosFormsDemoGlobalInitialized> eventFactory, AptosFormsDemoGlobalCommands.__Init__ c) {
-
-            AptosFormsDemoGlobalEvent.AptosFormsDemoGlobalInitialized e = (AptosFormsDemoGlobalEvent.AptosFormsDemoGlobalInitialized) ReflectUtils.invokeStaticMethod(
-                    "org.test.aptosformsdemo.domain.aptosformsdemoglobal.__Init__Logic",
-                    "verify",
-                    new Class[]{java.util.function.Supplier.class, AptosFormsDemoGlobalState.class, VerificationContext.class},
-                    new Object[]{eventFactory, getState(), VerificationContext.forCommand(c)}
-            );
-
-//package org.test.aptosformsdemo.domain.aptosformsdemoglobal;
+//        protected AptosFormsDemoGlobalEvent.AptosFormsDemoGlobalInitialized verify__Init__(java.util.function.Supplier<AptosFormsDemoGlobalEvent.AptosFormsDemoGlobalInitialized> eventFactory, AptosFormsDemoGlobalCommands.__Init__ c) {
 //
-//public class __Init__Logic {
-//    public static AptosFormsDemoGlobalEvent.AptosFormsDemoGlobalInitialized verify(java.util.function.Supplier<AptosFormsDemoGlobalEvent.AptosFormsDemoGlobalInitialized> eventFactory, AptosFormsDemoGlobalState aptosFormsDemoGlobalState, VerificationContext verificationContext) {
-//    }
-//}
-
-            return e;
-        }
-           
+//            AptosFormsDemoGlobalEvent.AptosFormsDemoGlobalInitialized e = (AptosFormsDemoGlobalEvent.AptosFormsDemoGlobalInitialized) ApplicationContext.current.get(I__Init__Logic.class).verify(
+//                    eventFactory, getState(), VerificationContext.of(c));
+//
+//            return e;
+//        }
 
         protected AbstractAptosFormsDemoGlobalEvent.Payment_123_VaultAdminWithdrawn newPayment_123_VaultAdminWithdrawn(BigInteger amount, Long offChainVersion, String commandId, String requesterId) {
             AptosFormsDemoGlobalEventId eventId = new AptosFormsDemoGlobalEventId(getState().getFormAndAccountAddress(), null);

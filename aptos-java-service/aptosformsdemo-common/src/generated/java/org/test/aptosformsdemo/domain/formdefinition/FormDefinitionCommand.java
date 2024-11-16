@@ -23,7 +23,7 @@ public interface FormDefinitionCommand extends Command {
 
     static void throwOnInvalidStateTransition(FormDefinitionState state, Command c) {
         if (state.getOffChainVersion() == null) {
-            if (isCommandCreate((FormDefinitionCommand)c)) {
+            if (isCreationCommand((FormDefinitionCommand)c)) {
                 return;
             }
             throw DomainError.named("premature", "Can't do anything to unexistent aggregate");
@@ -31,11 +31,11 @@ public interface FormDefinitionCommand extends Command {
         if (state.getDeleted() != null && state.getDeleted()) {
             throw DomainError.named("zombie", "Can't do anything to deleted aggregate.");
         }
-        if (isCommandCreate((FormDefinitionCommand)c))
+        if (isCreationCommand((FormDefinitionCommand)c))
             throw DomainError.named("rebirth", "Can't create aggregate that already exists");
     }
 
-    static boolean isCommandCreate(FormDefinitionCommand c) {
+    static boolean isCreationCommand(FormDefinitionCommand c) {
         if ((c instanceof FormDefinitionCommand.CreateFormDefinition) 
             && (COMMAND_TYPE_CREATE.equals(c.getCommandType()) || c.getOffChainVersion().equals(FormDefinitionState.VERSION_NULL)))
             return true;
@@ -43,6 +43,12 @@ public interface FormDefinitionCommand extends Command {
             return false;
         if ((c instanceof FormDefinitionCommand.DeleteFormDefinition))
             return false;
+        if (c.getCommandType() != null) {
+            String commandType = c.getCommandType();
+            if (commandType.equals("DefineFormWithFirstPage"))
+                return true;
+        }
+
         if (c.getOffChainVersion().equals(FormDefinitionState.VERSION_NULL))
             return true;
         return false;

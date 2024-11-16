@@ -23,7 +23,7 @@ public interface FormIdRegistrationCommand extends Command {
 
     static void throwOnInvalidStateTransition(FormIdRegistrationState state, Command c) {
         if (state.getOffChainVersion() == null) {
-            if (isCommandCreate((FormIdRegistrationCommand)c)) {
+            if (isCreationCommand((FormIdRegistrationCommand)c)) {
                 return;
             }
             throw DomainError.named("premature", "Can't do anything to unexistent aggregate");
@@ -31,11 +31,11 @@ public interface FormIdRegistrationCommand extends Command {
         if (state.getDeleted() != null && state.getDeleted()) {
             throw DomainError.named("zombie", "Can't do anything to deleted aggregate.");
         }
-        if (isCommandCreate((FormIdRegistrationCommand)c))
+        if (isCreationCommand((FormIdRegistrationCommand)c))
             throw DomainError.named("rebirth", "Can't create aggregate that already exists");
     }
 
-    static boolean isCommandCreate(FormIdRegistrationCommand c) {
+    static boolean isCreationCommand(FormIdRegistrationCommand c) {
         if ((c instanceof FormIdRegistrationCommand.CreateFormIdRegistration) 
             && (COMMAND_TYPE_CREATE.equals(c.getCommandType()) || c.getOffChainVersion().equals(FormIdRegistrationState.VERSION_NULL)))
             return true;
@@ -43,6 +43,10 @@ public interface FormIdRegistrationCommand extends Command {
             return false;
         if ((c instanceof FormIdRegistrationCommand.DeleteFormIdRegistration))
             return false;
+        if (c.getCommandType() != null) {
+            String commandType = c.getCommandType();
+        }
+
         if (c.getOffChainVersion().equals(FormIdRegistrationState.VERSION_NULL))
             return true;
         return false;

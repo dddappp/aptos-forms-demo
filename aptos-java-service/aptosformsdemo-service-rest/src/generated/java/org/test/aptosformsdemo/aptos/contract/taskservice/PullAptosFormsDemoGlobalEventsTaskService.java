@@ -74,7 +74,7 @@ public class PullAptosFormsDemoGlobalEventsTaskService {
     }
 
     private String getResourceAccountAddress() {
-        return aptosAccountRepository.findById(ContractConstants.RESOURCE_ACCOUNT_ADDRESS)
+        return aptosAccountRepository.findById(ContractConstants.APTOS_FORMS_DEMO_RESOURCE_ACCOUNT)
                 .map(AptosAccount::getAddress).orElse(null);
     }
 }

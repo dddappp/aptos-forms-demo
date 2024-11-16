@@ -107,7 +107,6 @@ public class M {
         clsMap.put("comment", String.class);
         clsMap.put("description", String.class);
         clsMap.put("name", String.class);
-        clsMap.put("value", String.class);
         clsMap.put("credit-card-number", String.class);
         clsMap.put("credit-card-date", String.class);
         clsMap.put("email", String.class);
@@ -115,6 +114,7 @@ public class M {
         clsMap.put("id-long-ne", String.class);
         clsMap.put("id-vlong-ne", String.class);
         clsMap.put("tel-number", String.class);
+        clsMap.put("AptosObjectID", String.class);
         clsMap.put("address", String.class);
         CLASS_MAP = clsMap;
     }
@@ -179,7 +179,7 @@ public class M {
         initAliasMap();
     }
 
-    private static  void initAliasMap() {
+    private static void initAliasMap() {
         aliasMap.put("formSequenceId", "formSequenceId");
         aliasMap.put("FormSequenceId", "formSequenceId");
         aliasMap.put("formId", "formId");
@@ -280,7 +280,7 @@ public class M {
         initAliasMap();
     }
 
-    private static  void initAliasMap() {
+    private static void initAliasMap() {
         aliasMap.put("pageNumber", "formDefinitionFormPageDefinitionId.pageNumber");
         aliasMap.put("PageNumber", "formDefinitionFormPageDefinitionId.pageNumber");
         aliasMap.put("pageName", "pageName");
@@ -379,7 +379,7 @@ public class M {
         initAliasMap();
     }
 
-    private static  void initAliasMap() {
+    private static void initAliasMap() {
         aliasMap.put("formSequenceId", "formSequenceId");
         aliasMap.put("FormSequenceId", "formSequenceId");
         aliasMap.put("formId", "formId");
@@ -534,7 +534,7 @@ public class M {
         initAliasMap();
     }
 
-    private static  void initAliasMap() {
+    private static void initAliasMap() {
         aliasMap.put("fr_5pqi", "fr_5pqi");
         aliasMap.put("Fr_5pqi", "fr_5pqi");
         aliasMap.put("version", "version");
@@ -729,7 +729,7 @@ public class M {
         initAliasMap();
     }
 
-    private static  void initAliasMap() {
+    private static void initAliasMap() {
         aliasMap.put("version", "version");
         aliasMap.put("Version", "version");
         aliasMap.put("offChainVersion", "offChainVersion");
@@ -834,7 +834,7 @@ public class M {
         initAliasMap();
     }
 
-    private static  void initAliasMap() {
+    private static void initAliasMap() {
         aliasMap.put("payment_123_Vault", "payment_123_Vault");
         aliasMap.put("Payment_123_Vault", "payment_123_Vault");
         aliasMap.put("coin_claimer_1_Vault", "coin_claimer_1_Vault");

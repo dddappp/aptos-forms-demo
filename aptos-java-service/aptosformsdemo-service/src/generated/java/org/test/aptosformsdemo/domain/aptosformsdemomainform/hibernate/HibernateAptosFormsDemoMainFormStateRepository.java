@@ -10,10 +10,6 @@ import org.test.aptosformsdemo.domain.*;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import org.hibernate.Session;
-import org.hibernate.Criteria;
-//import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.Projections;
 import org.hibernate.SessionFactory;
 import org.test.aptosformsdemo.domain.aptosformsdemomainform.*;
 import org.test.aptosformsdemo.specialization.*;
@@ -30,7 +26,7 @@ public class HibernateAptosFormsDemoMainFormStateRepository implements AptosForm
     protected Session getCurrentSession() {
         return this.sessionFactory.getCurrentSession();
     }
-    
+
     private static final Set<String> readOnlyPropertyPascalCaseNames = new HashSet<String>(Arrays.asList("FormPageAndSignerAddress", "Fr_5pqi", "Version", "Fr_duif", "Fr_6i34", "Fr_8xjs", "Fr_9c3f", "Fr_4ok6", "Fr_b3ub", "Fr_1z7o", "Fr_d8rw", "Fr_dy3l", "Fr_6f68", "Fr_47yy", "Fr_gh3o", "Fr_fbba", "Fr_hhzp", "Single_text1", "Payment_123", "OffChainVersion", "CreatedBy", "CreatedAt", "UpdatedBy", "UpdatedAt", "Active", "Deleted"));
     
     private ReadOnlyProxyGenerator readOnlyProxyGenerator;
@@ -61,14 +57,13 @@ public class HibernateAptosFormsDemoMainFormStateRepository implements AptosForm
         if (getReadOnlyProxyGenerator() != null) {
             s = (AptosFormsDemoMainFormState) getReadOnlyProxyGenerator().getTarget(state);
         }
-        if(s.getOffChainVersion() == null) {
+        if (s.getOffChainVersion() == null) {
             getCurrentSession().save(s);
         } else {
             getCurrentSession().update(s);
         }
 
-        if (s instanceof Saveable)
-        {
+        if (s instanceof Saveable) {
             Saveable saveable = (Saveable) s;
             saveable.save();
         }

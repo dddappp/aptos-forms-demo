@@ -5,6 +5,7 @@
 
 package org.test.aptosformsdemo.aptos.contract.taskservice;
 
+import org.test.aptosformsdemo.domain.aptosformsdemoglobal.AbstractAptosFormsDemoGlobalEvent;
 import org.test.aptosformsdemo.aptos.contract.repository.*;
 import org.test.aptosformsdemo.aptos.contract.service.*;
 import org.test.aptosformsdemo.aptos.contract.ContractConstants;
@@ -40,10 +41,13 @@ public class UpdateAptosFormsDemoGlobalStateTaskService {
     @Scheduled(fixedDelayString = "${aptos.contract.update-aptos-forms-demo-global-states.fixed-delay:5000}")
     @Transactional
     public void updateAptosFormsDemoGlobalStates() {
-        aptosFormsDemoGlobalEventRepository.findByEventStatusIsNull().forEach(e -> {
+        java.util.List<AbstractAptosFormsDemoGlobalEvent> es = aptosFormsDemoGlobalEventRepository.findByEventStatusIsNull();
+        AbstractAptosFormsDemoGlobalEvent e = es.stream().findFirst().orElse(null);
+        if (e != null) {
             aptosAptosFormsDemoGlobalService.updateAptosFormsDemoGlobalState(getContractModuleNameProvider(), getToFormAndAddressFunction(), e.getFormAndAccountAddress().getAddress());
-            aptosFormsDemoGlobalEventService.updateStatusToProcessed(e);
-        });
+            es.stream().filter(ee -> ee.getFormAndAccountAddress().getAddress().equals(e.getFormAndAccountAddress().getAddress()))
+                    .forEach(aptosFormsDemoGlobalEventService::updateStatusToProcessed);
+        }
     }
 
     private java.util.function.Function<String, FormAndAddress> getToFormAndAddressFunction() {
@@ -59,7 +63,7 @@ public class UpdateAptosFormsDemoGlobalStateTaskService {
     }
 
     private String getResourceAccountAddress() {
-        return aptosAccountRepository.findById(ContractConstants.RESOURCE_ACCOUNT_ADDRESS)
+        return aptosAccountRepository.findById(ContractConstants.APTOS_FORMS_DEMO_RESOURCE_ACCOUNT)
                 .map(AptosAccount::getAddress).orElse(null);
     }
 }

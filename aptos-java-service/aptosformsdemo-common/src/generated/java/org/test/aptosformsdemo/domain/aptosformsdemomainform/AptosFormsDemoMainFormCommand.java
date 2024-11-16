@@ -24,7 +24,7 @@ public interface AptosFormsDemoMainFormCommand extends Command {
 
     static void throwOnInvalidStateTransition(AptosFormsDemoMainFormState state, Command c) {
         if (state.getOffChainVersion() == null) {
-            if (isCommandCreate((AptosFormsDemoMainFormCommand)c)) {
+            if (isCreationCommand((AptosFormsDemoMainFormCommand)c)) {
                 return;
             }
             throw DomainError.named("premature", "Can't do anything to unexistent aggregate");
@@ -32,11 +32,19 @@ public interface AptosFormsDemoMainFormCommand extends Command {
         if (state.getDeleted() != null && state.getDeleted()) {
             throw DomainError.named("zombie", "Can't do anything to deleted aggregate.");
         }
-        if (isCommandCreate((AptosFormsDemoMainFormCommand)c))
+        if (isCreationCommand((AptosFormsDemoMainFormCommand)c))
             throw DomainError.named("rebirth", "Can't create aggregate that already exists");
     }
 
-    static boolean isCommandCreate(AptosFormsDemoMainFormCommand c) {
+    static boolean isCreationCommand(AptosFormsDemoMainFormCommand c) {
+        if (c.getCommandType() != null) {
+            String commandType = c.getCommandType();
+            if (commandType.equals("Submit"))
+                return true;
+            if (commandType.equals("Update"))
+                return false;
+        }
+
         if (c.getOffChainVersion().equals(AptosFormsDemoMainFormState.VERSION_NULL))
             return true;
         return false;

@@ -6,8 +6,8 @@
 package org.test.aptosformsdemo.aptos.contract;
 
 public class ContractConstants {
-    public static final String RESOURCE_ACCOUNT_ADDRESS = "RESOURCE_ACCOUNT_ADDRESS";
-    public static final String RESOURCE_ACCOUNT_MODULE_RESOURCE_ACCOUNT = "aptos_forms_demo_resource_account::ResourceAccount";
+    public static final String APTOS_FORMS_DEMO_RESOURCE_ACCOUNT = "APTOS_FORMS_DEMO_RESOURCE_ACCOUNT";
+    public static final String APTOS_FORMS_DEMO_RESOURCE_ACCOUNT_MODULE_CAP_STRUCT = "aptos_forms_demo_resource_account::ResourceAccount";
 
     public static final String CONTRACT_NAMED_ADDRESS = "aptos_forms_demo";
 

@@ -29,11 +29,11 @@ public class HibernateFormIdRegistrationStateQueryRepository implements FormIdRe
     protected Session getCurrentSession() {
         return this.sessionFactory.getCurrentSession();
     }
-    
+
     private static final Set<String> readOnlyPropertyPascalCaseNames = new HashSet<String>(Arrays.asList("FormSequenceId", "FormId", "OffChainVersion", "CreatedBy", "CreatedAt", "UpdatedBy", "UpdatedAt", "Active", "Deleted"));
-    
+
     private ReadOnlyProxyGenerator readOnlyProxyGenerator;
-    
+
     public ReadOnlyProxyGenerator getReadOnlyProxyGenerator() {
         return readOnlyProxyGenerator;
     }
@@ -55,7 +55,7 @@ public class HibernateFormIdRegistrationStateQueryRepository implements FormIdRe
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         if (firstResult != null) { criteria.setFirstResult(firstResult); }
         if (maxResults != null) { criteria.setMaxResults(maxResults); }
-         addNotDeletedRestriction(criteria);
+        addNotDeletedRestriction(criteria);
         return criteria.list();
     }
 
@@ -80,8 +80,7 @@ public class HibernateFormIdRegistrationStateQueryRepository implements FormIdRe
     @Transactional(readOnly = true)
     public FormIdRegistrationState getFirst(Iterable<Map.Entry<String, Object>> filter, List<String> orders) {
         List<FormIdRegistrationState> list = (List<FormIdRegistrationState>)get(filter, orders, 0, 1);
-        if (list == null || list.size() <= 0)
-        {
+        if (list == null || list.size() <= 0) {
             return null;
         }
         return list.get(0);
