@@ -48,100 +48,12 @@ public abstract class AbstractAptosFormsDemoMainFormAggregate extends AbstractAg
 
         @Override
         public void submit(BigInteger fr_5pqi, String[] fr_duif, String[] fr_6i34, String fr_8xjs, String fr_9c3f, BigInteger fr_4ok6, String fr_b3ub, BigInteger fr_1z7o, XRenderFormDateRange fr_d8rw, XRenderFormDateRange fr_dy3l, BigInteger fr_6f68, XRenderFormTimeRange fr_47yy, String[] fr_gh3o, String[] fr_fbba, XRenderFormDate fr_hhzp, String single_text1, BigInteger payment_123, Long offChainVersion, String commandId, String requesterId, AptosFormsDemoMainFormCommands.Submit c) {
-            java.util.function.Supplier<AptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted> eventFactory = () -> newAptosFormsDemoMainFormSubmitted(fr_5pqi, fr_duif, fr_6i34, fr_8xjs, fr_9c3f, fr_4ok6, fr_b3ub, fr_1z7o, fr_d8rw, fr_dy3l, fr_6f68, fr_47yy, fr_gh3o, fr_fbba, fr_hhzp, single_text1, payment_123, offChainVersion, commandId, requesterId);
-            AptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted e;
-            try {
-                e = verifySubmit(eventFactory, fr_5pqi, fr_duif, fr_6i34, fr_8xjs, fr_9c3f, fr_4ok6, fr_b3ub, fr_1z7o, fr_d8rw, fr_dy3l, fr_6f68, fr_47yy, fr_gh3o, fr_fbba, fr_hhzp, single_text1, payment_123, c);
-            } catch (Exception ex) {
-                throw new DomainError("VerificationFailed", ex);
-            }
-
-            apply(e);
+            throw new UnsupportedOperationException();
         }
 
         @Override
         public void update(BigInteger fr_5pqi, String[] fr_duif, String[] fr_6i34, String fr_8xjs, String fr_9c3f, BigInteger fr_4ok6, String fr_b3ub, BigInteger fr_1z7o, XRenderFormDateRange fr_d8rw, XRenderFormDateRange fr_dy3l, BigInteger fr_6f68, XRenderFormTimeRange fr_47yy, String[] fr_gh3o, String[] fr_fbba, XRenderFormDate fr_hhzp, String single_text1, BigInteger payment_123, Long offChainVersion, String commandId, String requesterId, AptosFormsDemoMainFormCommands.Update c) {
-            java.util.function.Supplier<AptosFormsDemoMainFormEvent.AptosFormsDemoMainFormUpdated> eventFactory = () -> newAptosFormsDemoMainFormUpdated(fr_5pqi, fr_duif, fr_6i34, fr_8xjs, fr_9c3f, fr_4ok6, fr_b3ub, fr_1z7o, fr_d8rw, fr_dy3l, fr_6f68, fr_47yy, fr_gh3o, fr_fbba, fr_hhzp, single_text1, payment_123, offChainVersion, commandId, requesterId);
-            AptosFormsDemoMainFormEvent.AptosFormsDemoMainFormUpdated e;
-            try {
-                e = verifyUpdate(eventFactory, fr_5pqi, fr_duif, fr_6i34, fr_8xjs, fr_9c3f, fr_4ok6, fr_b3ub, fr_1z7o, fr_d8rw, fr_dy3l, fr_6f68, fr_47yy, fr_gh3o, fr_fbba, fr_hhzp, single_text1, payment_123, c);
-            } catch (Exception ex) {
-                throw new DomainError("VerificationFailed", ex);
-            }
-
-            apply(e);
-        }
-
-        protected AptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted verifySubmit(java.util.function.Supplier<AptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted> eventFactory, BigInteger fr_5pqi, String[] fr_duif, String[] fr_6i34, String fr_8xjs, String fr_9c3f, BigInteger fr_4ok6, String fr_b3ub, BigInteger fr_1z7o, XRenderFormDateRange fr_d8rw, XRenderFormDateRange fr_dy3l, BigInteger fr_6f68, XRenderFormTimeRange fr_47yy, String[] fr_gh3o, String[] fr_fbba, XRenderFormDate fr_hhzp, String single_text1, BigInteger payment_123, AptosFormsDemoMainFormCommands.Submit c) {
-            BigInteger Fr_5pqi = fr_5pqi;
-            String[] Fr_duif = fr_duif;
-            String[] Fr_6i34 = fr_6i34;
-            String Fr_8xjs = fr_8xjs;
-            String Fr_9c3f = fr_9c3f;
-            BigInteger Fr_4ok6 = fr_4ok6;
-            String Fr_b3ub = fr_b3ub;
-            BigInteger Fr_1z7o = fr_1z7o;
-            XRenderFormDateRange Fr_d8rw = fr_d8rw;
-            XRenderFormDateRange Fr_dy3l = fr_dy3l;
-            BigInteger Fr_6f68 = fr_6f68;
-            XRenderFormTimeRange Fr_47yy = fr_47yy;
-            String[] Fr_gh3o = fr_gh3o;
-            String[] Fr_fbba = fr_fbba;
-            XRenderFormDate Fr_hhzp = fr_hhzp;
-            String Single_text1 = single_text1;
-            BigInteger Payment_123 = payment_123;
-
-            AptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted e = (AptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted) ReflectUtils.invokeStaticMethod(
-                    "org.test.aptosformsdemo.domain.aptosformsdemomainform.SubmitLogic",
-                    "verify",
-                    new Class[]{java.util.function.Supplier.class, AptosFormsDemoMainFormState.class, BigInteger.class, String[].class, String[].class, String.class, String.class, BigInteger.class, String.class, BigInteger.class, XRenderFormDateRange.class, XRenderFormDateRange.class, BigInteger.class, XRenderFormTimeRange.class, String[].class, String[].class, XRenderFormDate.class, String.class, BigInteger.class, VerificationContext.class},
-                    new Object[]{eventFactory, getState(), fr_5pqi, fr_duif, fr_6i34, fr_8xjs, fr_9c3f, fr_4ok6, fr_b3ub, fr_1z7o, fr_d8rw, fr_dy3l, fr_6f68, fr_47yy, fr_gh3o, fr_fbba, fr_hhzp, single_text1, payment_123, VerificationContext.of(c)}
-            );
-
-//package org.test.aptosformsdemo.domain.aptosformsdemomainform;
-//
-//public class SubmitLogic {
-//    public static AptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted verify(java.util.function.Supplier<AptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted> eventFactory, AptosFormsDemoMainFormState aptosFormsDemoMainFormState, BigInteger fr_5pqi, String[] fr_duif, String[] fr_6i34, String fr_8xjs, String fr_9c3f, BigInteger fr_4ok6, String fr_b3ub, BigInteger fr_1z7o, XRenderFormDateRange fr_d8rw, XRenderFormDateRange fr_dy3l, BigInteger fr_6f68, XRenderFormTimeRange fr_47yy, String[] fr_gh3o, String[] fr_fbba, XRenderFormDate fr_hhzp, String single_text1, BigInteger payment_123, VerificationContext verificationContext) {
-//    }
-//}
-
-            return e;
-        }
-
-        protected AptosFormsDemoMainFormEvent.AptosFormsDemoMainFormUpdated verifyUpdate(java.util.function.Supplier<AptosFormsDemoMainFormEvent.AptosFormsDemoMainFormUpdated> eventFactory, BigInteger fr_5pqi, String[] fr_duif, String[] fr_6i34, String fr_8xjs, String fr_9c3f, BigInteger fr_4ok6, String fr_b3ub, BigInteger fr_1z7o, XRenderFormDateRange fr_d8rw, XRenderFormDateRange fr_dy3l, BigInteger fr_6f68, XRenderFormTimeRange fr_47yy, String[] fr_gh3o, String[] fr_fbba, XRenderFormDate fr_hhzp, String single_text1, BigInteger payment_123, AptosFormsDemoMainFormCommands.Update c) {
-            BigInteger Fr_5pqi = fr_5pqi;
-            String[] Fr_duif = fr_duif;
-            String[] Fr_6i34 = fr_6i34;
-            String Fr_8xjs = fr_8xjs;
-            String Fr_9c3f = fr_9c3f;
-            BigInteger Fr_4ok6 = fr_4ok6;
-            String Fr_b3ub = fr_b3ub;
-            BigInteger Fr_1z7o = fr_1z7o;
-            XRenderFormDateRange Fr_d8rw = fr_d8rw;
-            XRenderFormDateRange Fr_dy3l = fr_dy3l;
-            BigInteger Fr_6f68 = fr_6f68;
-            XRenderFormTimeRange Fr_47yy = fr_47yy;
-            String[] Fr_gh3o = fr_gh3o;
-            String[] Fr_fbba = fr_fbba;
-            XRenderFormDate Fr_hhzp = fr_hhzp;
-            String Single_text1 = single_text1;
-            BigInteger Payment_123 = payment_123;
-
-            AptosFormsDemoMainFormEvent.AptosFormsDemoMainFormUpdated e = (AptosFormsDemoMainFormEvent.AptosFormsDemoMainFormUpdated) ReflectUtils.invokeStaticMethod(
-                    "org.test.aptosformsdemo.domain.aptosformsdemomainform.UpdateLogic",
-                    "verify",
-                    new Class[]{java.util.function.Supplier.class, AptosFormsDemoMainFormState.class, BigInteger.class, String[].class, String[].class, String.class, String.class, BigInteger.class, String.class, BigInteger.class, XRenderFormDateRange.class, XRenderFormDateRange.class, BigInteger.class, XRenderFormTimeRange.class, String[].class, String[].class, XRenderFormDate.class, String.class, BigInteger.class, VerificationContext.class},
-                    new Object[]{eventFactory, getState(), fr_5pqi, fr_duif, fr_6i34, fr_8xjs, fr_9c3f, fr_4ok6, fr_b3ub, fr_1z7o, fr_d8rw, fr_dy3l, fr_6f68, fr_47yy, fr_gh3o, fr_fbba, fr_hhzp, single_text1, payment_123, VerificationContext.of(c)}
-            );
-
-//package org.test.aptosformsdemo.domain.aptosformsdemomainform;
-//
-//public class UpdateLogic {
-//    public static AptosFormsDemoMainFormEvent.AptosFormsDemoMainFormUpdated verify(java.util.function.Supplier<AptosFormsDemoMainFormEvent.AptosFormsDemoMainFormUpdated> eventFactory, AptosFormsDemoMainFormState aptosFormsDemoMainFormState, BigInteger fr_5pqi, String[] fr_duif, String[] fr_6i34, String fr_8xjs, String fr_9c3f, BigInteger fr_4ok6, String fr_b3ub, BigInteger fr_1z7o, XRenderFormDateRange fr_d8rw, XRenderFormDateRange fr_dy3l, BigInteger fr_6f68, XRenderFormTimeRange fr_47yy, String[] fr_gh3o, String[] fr_fbba, XRenderFormDate fr_hhzp, String single_text1, BigInteger payment_123, VerificationContext verificationContext) {
-//    }
-//}
-
-            return e;
+            throw new UnsupportedOperationException();
         }
 
         protected AbstractAptosFormsDemoMainFormEvent.AptosFormsDemoMainFormSubmitted newAptosFormsDemoMainFormSubmitted(BigInteger fr_5pqi, String[] fr_duif, String[] fr_6i34, String fr_8xjs, String fr_9c3f, BigInteger fr_4ok6, String fr_b3ub, BigInteger fr_1z7o, XRenderFormDateRange fr_d8rw, XRenderFormDateRange fr_dy3l, BigInteger fr_6f68, XRenderFormTimeRange fr_47yy, String[] fr_gh3o, String[] fr_fbba, XRenderFormDate fr_hhzp, String single_text1, BigInteger payment_123, Long offChainVersion, String commandId, String requesterId) {

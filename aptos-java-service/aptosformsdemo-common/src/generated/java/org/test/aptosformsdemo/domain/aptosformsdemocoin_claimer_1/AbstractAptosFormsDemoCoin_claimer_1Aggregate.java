@@ -48,34 +48,7 @@ public abstract class AbstractAptosFormsDemoCoin_claimer_1Aggregate extends Abst
 
         @Override
         public void claim(Long offChainVersion, String commandId, String requesterId, AptosFormsDemoCoin_claimer_1Commands.Claim c) {
-            java.util.function.Supplier<AptosFormsDemoCoin_claimer_1Event.AptosFormsDemoCoin_claimer_1_Claimed> eventFactory = () -> newAptosFormsDemoCoin_claimer_1_Claimed(offChainVersion, commandId, requesterId);
-            AptosFormsDemoCoin_claimer_1Event.AptosFormsDemoCoin_claimer_1_Claimed e;
-            try {
-                e = verifyClaim(eventFactory, c);
-            } catch (Exception ex) {
-                throw new DomainError("VerificationFailed", ex);
-            }
-
-            apply(e);
-        }
-
-        protected AptosFormsDemoCoin_claimer_1Event.AptosFormsDemoCoin_claimer_1_Claimed verifyClaim(java.util.function.Supplier<AptosFormsDemoCoin_claimer_1Event.AptosFormsDemoCoin_claimer_1_Claimed> eventFactory, AptosFormsDemoCoin_claimer_1Commands.Claim c) {
-
-            AptosFormsDemoCoin_claimer_1Event.AptosFormsDemoCoin_claimer_1_Claimed e = (AptosFormsDemoCoin_claimer_1Event.AptosFormsDemoCoin_claimer_1_Claimed) ReflectUtils.invokeStaticMethod(
-                    "org.test.aptosformsdemo.domain.aptosformsdemocoin_claimer_1.ClaimLogic",
-                    "verify",
-                    new Class[]{java.util.function.Supplier.class, AptosFormsDemoCoin_claimer_1State.class, VerificationContext.class},
-                    new Object[]{eventFactory, getState(), VerificationContext.of(c)}
-            );
-
-//package org.test.aptosformsdemo.domain.aptosformsdemocoin_claimer_1;
-//
-//public class ClaimLogic {
-//    public static AptosFormsDemoCoin_claimer_1Event.AptosFormsDemoCoin_claimer_1_Claimed verify(java.util.function.Supplier<AptosFormsDemoCoin_claimer_1Event.AptosFormsDemoCoin_claimer_1_Claimed> eventFactory, AptosFormsDemoCoin_claimer_1State aptosFormsDemoCoin_claimer_1State, VerificationContext verificationContext) {
-//    }
-//}
-
-            return e;
+            throw new UnsupportedOperationException();
         }
 
         protected AbstractAptosFormsDemoCoin_claimer_1Event.AptosFormsDemoCoin_claimer_1_Claimed newAptosFormsDemoCoin_claimer_1_Claimed(Long offChainVersion, String commandId, String requesterId) {
