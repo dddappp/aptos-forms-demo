@@ -1,5 +1,7 @@
 # README
 
+[![DeepWiki](https://img.shields.io/badge/DeepWiki-Docs-blue?logo=read-the-docs)](https://deepwiki.com/dddappp/aptos-forms-demo)
+
 This is a demo of Move Forms.
 
 Move Forms is a No-Code tool. It is based on [dddappp](https://www.dddappp.org), the Low-Code Development Platform.
